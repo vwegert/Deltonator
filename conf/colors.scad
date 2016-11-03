@@ -18,7 +18,7 @@ module color_extrusion() {
  * The color of punches and other objects that are usually not intended to be rendered as such, but rather to be
  * used as subtractive objects.
  */
-module color_extrusion() {
+module color_punch() {
 	color("Red")
 		children();
 } 
