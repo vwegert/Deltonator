@@ -8,6 +8,7 @@
  **********************************************************************************************************************/
 
 include <printer_config.scad>
+use <part_sizes.scad>
 
 // ===== PRINTER FRAME SIZES ===========================================================================================
 
@@ -51,7 +52,7 @@ function position_rail_b() = [
 function position_rail_c() = [0, 0, 0];
 
 function position_front_assembly() = [ 
-	sqrt(pow(horizontal_base_length(), 2) - pow(horizontal_base_length() / 2, 2)) + 20, // vslot_width(), 
+	sqrt(pow(horizontal_base_length(), 2) - pow(horizontal_base_length() / 2, 2)) + vslot_2020_width(), 
 	-horizontal_extrusion_length()/2, 
 	0 
 ];

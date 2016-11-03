@@ -10,29 +10,7 @@
 
 use <../../conf/colors.scad>
 use <../../conf/derived_sizes.scad>
-
-// ----- DIMENSIONS ----------------------------------------------------------------------------------------------------
-
-// The dimensions were taken from the file vslot_2020_dimensions.jpg.
-
-/**
- * Return the depth (X size) and width (Y size) of the V-Slot extrusion.
- */
-function vslot_2020_depth() = 20;
-function vslot_2020_width() = 20;
-
-/**
- * The edge radius of the back side and the resolution used to render the curve.
- */
-function vslot_2020_edge_radius() = 1.5;
-function vslot_2020_edge_resolution() = 64;
-
-/**
- * Return the offset of the screw/nut slots from the back edges or the center.
- */
-function vslot_2020_slot_offset() = 10;
-
-// ----- EXTRUSIONS ----------------------------------------------------------------------------------------------------
+use <../../conf/part_sizes.scad>
 
 /**
  * Provides the pre-rendered horizontal side piece.
@@ -42,8 +20,6 @@ module vslot_2020_side() {
 	color_extrusion()
 		import(file = "vslot_2020_side.stl"); 
 }
-
-// ----- PUNCH ---------------------------------------------------------------------------------------------------------
 
 /**
  * Create an object that resembles the outer shell of a V-Slot 20x20 mm  extrusion. Usage is similar

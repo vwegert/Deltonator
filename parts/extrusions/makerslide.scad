@@ -10,44 +10,7 @@
 
 use <../../conf/colors.scad>
 use <../../conf/derived_sizes.scad>
-
-// ----- DIMENSIONS ----------------------------------------------------------------------------------------------------
-
-// All dimensions were taken from the file makerslide_b17022_rev_2.pdf.
-
-/**
- * Return the depth (X size) and width (Y size) of the base of the MakerSlide extrusion. These measurements exclude the 
- * rail extensions on the front side, i. e. only comprise the rectangular main body.
- */
-function makerslide_base_depth() = 20;
-function makerslide_base_width() = 40;
-
-/**
- * Return the additional depth (X size) and width (Y size) introduced by the rail extensions. Note that the width
- * specified here comprises a single rail only.
- */
-function makerslide_rail_depth() = 4.75/2;
-function makerslide_rail_width() = 5.9358/2;
-
-/**
- * Return the depth (X size) and width (Y size) of the MakerSlide extrusion. These measurements comprise the 
- * rail extensions on the front side.
- */
-function makerslide_depth() = makerslide_base_depth() + makerslide_rail_depth();
-function makerslide_width() = makerslide_base_width() + 2*makerslide_rail_width();
-
-/**
- * The edge radius of the back side and the resolution used to render the curve.
- */
-function makerslide_edge_radius() = 1;
-function makerslide_edge_resolution() = 64;
-
-/**
- * Return the offset of the screw/nut slots from the back edges or the center.
- */
-function makerslide_slot_offset() = 10;
-
-// ----- EXTRUSIONS ----------------------------------------------------------------------------------------------------
+use <../../conf/part_sizes.scad>
 
 /**
  * Provides the pre-rendered main vertical rail.
@@ -58,8 +21,6 @@ module makerslide_vertical_rail() {
 		import(file = "makerslide_rail.stl"); 
 }
 
-// ----- PUNCH ---------------------------------------------------------------------------------------------------------
-
 /**
  * Create an object that resembles the outer shell of a MakerSlide extrusion. Usage is similar
  * to makerslide_vertical_rail(length). This is handy to punch a hole into a printed part that will later
@@ -69,7 +30,7 @@ module makerslide_punch(length) {
 	color_punch()
 		linear_extrude(height = length, center = false, convexity = 10)
 			union() {
-				hull() { // TODO make hull
+				hull() {
 					// use two circles for the back sides
 					_y_offset = makerslide_base_width()/2 - makerslide_edge_radius();
 					translate([makerslide_edge_radius(), -_y_offset, 0])
