@@ -66,7 +66,7 @@ module makerslide_vertical_rail() {
  * accomodate the MakerSlide extrusion.
  */
 module makerslide_punch(length) {
-	color("Red")
+	color_punch()
 		linear_extrude(height = length, center = false, convexity = 10)
 			union() {
 				hull() { // TODO make hull

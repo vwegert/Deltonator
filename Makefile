@@ -68,7 +68,11 @@ printer: printer/printer_default.stl
 #
 # Rule to build the assemblies
 #
-assemblies: assemblies/vertical_axis.stl
+assemblies: \
+	assemblies/vertical_axis.stl \
+	assemblies/horizontal_front.stl \
+	assemblies/horizontal_left.stl \
+	assemblies/horizontal_right.stl
 
 # #
 # # Rule to build the individual parts.

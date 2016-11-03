@@ -9,7 +9,7 @@
 
 include <printer_config.scad>
 
-// ===== PRINTER SIZES ================================================================================================
+// ===== PRINTER FRAME SIZES ===========================================================================================
 
 /**
  * The length of the vertical MakerSlide extrusions.
@@ -37,14 +37,26 @@ function horizontal_base_length() = horizontal_extrusion_length() + 2 * horizont
 // ===== PART PLACEMENT ================================================================================================
 
 function position_rail_a() = [
-								sqrt(pow(horizontal_base_length(), 2) - pow(horizontal_base_length() / 2, 2)), 
-								-horizontal_base_length() / 2,
-								0
-							 ];
+	sqrt(pow(horizontal_base_length(), 2) - pow(horizontal_base_length() / 2, 2)), 
+	-horizontal_base_length() / 2,
+	0
+];
+
 function position_rail_b() = [
-								sqrt(pow(horizontal_base_length(), 2) - pow(horizontal_base_length() / 2, 2)), 
-								horizontal_base_length() / 2, 
-								0
-							 ];
+	sqrt(pow(horizontal_base_length(), 2) - pow(horizontal_base_length() / 2, 2)), 
+	horizontal_base_length() / 2, 
+	0
+];
+
 function position_rail_c() = [0, 0, 0];
 
+function position_front_assembly() = [ 
+	sqrt(pow(horizontal_base_length(), 2) - pow(horizontal_base_length() / 2, 2)) + 20, // vslot_width(), 
+	-horizontal_extrusion_length()/2, 
+	0 
+];
+
+// TODO determine the exact rail positions
+function position_left_assembly() = [ 0, 0, 0 ];
+// TODO determine the exact rail positions
+function position_right_assembly() = [ 0, 0, 0 ];
