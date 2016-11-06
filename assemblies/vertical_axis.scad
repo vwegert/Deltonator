@@ -9,7 +9,10 @@
  **
  **********************************************************************************************************************/
 
+use <../conf/derived_sizes.scad>
+use <../conf/part_sizes.scad>
 use <../parts/extrusions/makerslide.scad>
+use <../parts/printed/foot.scad>
 
 /**
  * Provides access to the assembly.
@@ -26,8 +29,9 @@ module vertical_axis_assembly(position = [0, 0, 0], angle = 0) {
  */
 module _vertical_axis_assembly() {
 	// the vertical MakerSlide extrusion
-//	translate([0, 0, frame_wall_thickness()])
-		makerslide_vertical_rail();
+	makerslide_vertical_rail();
+	// the lower foot
+	foot();
 }
 
 // render the axis to a separate output file if requested

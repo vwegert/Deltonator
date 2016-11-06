@@ -24,21 +24,25 @@ module vslot_2020_side() {
 }
 
 /**
- * Create an object that resembles the outer shell of a V-Slot 20x20 mm  extrusion. Usage is similar
+ * Create an object that resembles the outer shell of a V-Slot 20x20 mm extrusion. Usage is similar
  * to vslot_extrusion(length). This is handy to punch a hole into a printed part that will later
- * accomodate the V-Slot 20x20 mm  extrusion.
+ * accomodate the V-Slot 20x20 mm extrusion.
  */
-module vslot_2020_punch(length) {
+module vslot_2020_punch(length, rounded = false) {
 	color_punch()
 		linear_extrude(height = length, center = false, convexity = 10)
-			hull($fn = vslot_2020_edge_resolution()) {
-				translate([vslot_2020_edge_radius(), vslot_2020_edge_radius(), 0])
-					circle(r = vslot_2020_edge_radius());
-				translate([vslot_2020_depth() - vslot_2020_edge_radius(), vslot_2020_edge_radius(), 0])
-					circle(r = vslot_2020_edge_radius());
-				translate([vslot_2020_edge_radius(), 18.5, 0])
-					circle(r = vslot_2020_edge_radius());
-				translate([vslot_2020_depth() - vslot_2020_edge_radius(), vslot_2020_width() - vslot_2020_edge_radius(), 0])
-					circle(r = vslot_2020_edge_radius());
+			if (rounded) {
+				hull($fn = vslot_2020_edge_resolution()) {
+					translate([vslot_2020_edge_radius(), vslot_2020_edge_radius(), 0])
+						circle(r = vslot_2020_edge_radius());
+					translate([vslot_2020_depth() - vslot_2020_edge_radius(), vslot_2020_edge_radius(), 0])
+						circle(r = vslot_2020_edge_radius());
+					translate([vslot_2020_edge_radius(), 18.5, 0])
+						circle(r = vslot_2020_edge_radius());
+					translate([vslot_2020_depth() - vslot_2020_edge_radius(), vslot_2020_width() - vslot_2020_edge_radius(), 0])
+						circle(r = vslot_2020_edge_radius());
+				}
+			} else {
+				square([vslot_2020_depth(), vslot_2020_width()]);
 			}
 }
