@@ -23,6 +23,14 @@ module color_printed_outer_frame() {
 } 
 
 /**
+ * The color of the stock hardware parts like nuts, bolts and screws.
+ */
+module color_hardware() {
+	color("DarkSlateGray")
+		children();
+} 
+
+/**
  * The color of punches and other objects that are usually not intended to be rendered as such, but rather to be
  * used as subtractive objects.
  */

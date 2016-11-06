@@ -16,3 +16,6 @@ OPENSCAD = /Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD
 
 # Where to find the Perl executable.
 PERL = /usr/bin/perl
+
+# Where to find the Git executable
+GIT = /usr/bin/git

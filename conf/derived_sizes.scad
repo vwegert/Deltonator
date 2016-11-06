@@ -68,14 +68,16 @@ function motor_bracket_height() = FRAME_PART_BRACKET_HEIGHT;
 // ===== SCREWS, NUTS, BOLTS AND OTHER HARDWARE =======================================================================
 
 /**
- * The diameter of the screws used to assemble the frame.
+ * The diameter of the screws used to assemble the frame. Not configurable because that would introduce weird 
+ * dependency tracing issues with the rendered screws.
  */
-function frame_screw_size() = FRAME_SCREW_SIZE;
+function frame_screw_size() = 5;
 
 /**
- * The diameter of the heads of the screws used to assemble the frame.
+ * The diameter of the heads of the screws used to assemble the frame. Actually, this is the size of the inset flange.
+* The screw head of a M5 hex screw is 8.5 mm in diameter, so 10 mm should leave enough clearance.
  */
-function frame_screw_head_size() = FRAME_SCREW_HEAD_SIZE;
+function frame_screw_head_size() = 10;
 
 /**
  * The rendering resolution of the screw holes. Not configurable at the moment.

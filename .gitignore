@@ -1,14 +1,20 @@
+# exclude some stuff introduced by the OS or the author's favorite editor
 **/.DS_Store
 **/*.sublime-workspace
 
+# do not track the generated dependency files since they contain the absolute local paths
+**/*.deps
+
+# no need to have the dirty spots visible throughout the history...
 TODO
+attic
 
-assemblies/**/*.deps
+# do not track the generated assembly and printer STLs
 assemblies/**/*.stl
+printer/**/*.stl
 
+# do not track the temporary BOM data file
 bom/*.echo
 
-parts/**/*.deps
-
-printer/**/*.deps
-printer/**/*.stl
+# do not track optional internal libraries
+lib/nutsnbolts/nutsnbolts

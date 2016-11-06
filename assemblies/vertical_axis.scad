@@ -30,8 +30,9 @@ module vertical_axis_assembly(position = [0, 0, 0], angle = 0) {
 module _vertical_axis_assembly() {
 	// the vertical MakerSlide extrusion
 	makerslide_vertical_rail();
-	// the lower foot
+	// the lower foot with associated hardware
 	foot();
+	foot_hardware();
 }
 
 // render the axis to a separate output file if requested
