@@ -20,10 +20,13 @@ FRAME_V_RAIL_HEIGHT = 800;
 // The length of the horizontal 20x20 V-Slot extrusions that form the sides of the triangle.
 FRAME_H_RAIL_LENGTH = 400;
 
-// // ===== FABRICATED PART DIMENSIONS ===================================================================================
+// ===== FABRICATED PART DIMENSIONS ===================================================================================
 
 // // The thickness of the walls outside the extruded parts.
 // FRAME_PART_WALL_THICKNESS = 3;
+
+// The thickness of the wall that separates the vertical rails from the horizontal extrusions.
+FRAME_V_H_RAIL_SEPARATION = 8;
 
 // // The depth of the holes that hold the V-Slot extrusions.
 // FRAME_PART_VSLOT_DEPTH = 30;

@@ -54,6 +54,14 @@ function makerslide_depth() = makerslide_base_depth() + makerslide_rail_depth();
 function makerslide_width() = makerslide_base_width() + 2*makerslide_rail_width();
 
 /**
+ * The distance from the "back center" (the origin) of the MakerSlide vertical rails to the outer edges of the rail.
+ * Measured value from the DXF drawings: 30.52933453 mm.
+ * Calculated size: 32.065 mm
+ * The difference is probably due to a rounded edge in the drawing.
+ */
+function makerslide_rail_edge_distance() = sqrt(pow(makerslide_width() / 2, 2) + pow(makerslide_depth(), 2));
+
+/**
  * The edge radius of the back side and the resolution used to render the curve.
  */
 function makerslide_edge_radius() = 1;

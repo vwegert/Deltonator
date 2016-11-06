@@ -8,6 +8,8 @@
  **
  **********************************************************************************************************************/
 
+use <../conf/derived_sizes.scad>
+use <../conf/part_sizes.scad>
 use <../parts/extrusions/vslot_2020.scad>
 
 /**
@@ -27,8 +29,9 @@ module horizontal_front_assembly(position = [0, 0, 0], angle = 0, with_connector
  */
 module _horizontal_front_assembly(with_connectors = false) {
 	// the bottom extrusion
-	// TODO offset to match foot?
-	vslot_2020_side();
+	translate([vslot_2020_depth(), 0, 0])
+		rotate([0, 0, 90])
+			vslot_2020_side();
 }
 
 // render the axis to a separate output file if requested

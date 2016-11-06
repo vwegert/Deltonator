@@ -8,14 +8,16 @@
  **
  **********************************************************************************************************************/
 
+use <../conf/derived_sizes.scad>
+use <../conf/part_sizes.scad>
 use <../parts/extrusions/vslot_2020.scad>
 
 /**
  * Provides access to the assembly.
  */
 module horizontal_right_assembly(position = [0, 0, 0], angle = 0, with_connectors = false) {
-	translate(position)
-		rotate([0, 0, angle]) {
+	rotate([0, 0, angle]) 
+		translate(position) {
 			_horizontal_right_assembly();
 			// TODO connectors
 		}
@@ -27,8 +29,9 @@ module horizontal_right_assembly(position = [0, 0, 0], angle = 0, with_connector
  */
 module _horizontal_right_assembly(with_connectors = false) {
 	// the bottom extrusion
-	// TODO offset to match foot?
-	vslot_2020_side();
+	translate([vslot_2020_depth(), 0, 0])
+		rotate([0, 0, 90])
+			vslot_2020_side();
 }
 
 // render the axis to a separate output file if requested

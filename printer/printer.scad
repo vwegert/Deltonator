@@ -22,8 +22,8 @@ module printer_model() {
 
 	// place the horizontal parts
 	horizontal_front_assembly(position = position_front_assembly(), angle = 0, with_connectors = false);
-	horizontal_left_assembly(position = position_left_assembly(), angle = 30, with_connectors = false);
-	horizontal_right_assembly(position = position_right_assembly(), angle = -30, with_connectors = false);
+	horizontal_left_assembly(position = position_left_assembly(), angle = 60, with_connectors = false);
+	horizontal_right_assembly(position = position_right_assembly(), angle = -60, with_connectors = false);
 
 
 }
