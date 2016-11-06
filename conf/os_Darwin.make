@@ -13,3 +13,6 @@ CP = cp
 
 # The full path to the OpenSCAD executable.
 OPENSCAD = /Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD
+
+# Where to find the Perl executable.
+PERL = /usr/bin/perl

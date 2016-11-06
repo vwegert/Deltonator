@@ -1,7 +1,14 @@
 **/.DS_Store
+**/*.sublime-workspace
+
+TODO
+
 assemblies/**/*.deps
 assemblies/**/*.stl
+
+bom/*.echo
+
 parts/**/*.deps
+
 printer/**/*.deps
 printer/**/*.stl
-**/*.sublime-workspace

@@ -7,7 +7,7 @@
 #
 # phony target definitions (targets that are no files)
 #
-.PHONY: all clean assemblies printer # parts demos printer
+.PHONY: all clean assemblies printer bom # parts demos printer
 
 #
 # OS detection and inclusion of OS-specific configuration files
@@ -28,7 +28,7 @@ endif
 #
 # default targets all and clean
 #
-all: assemblies printer # demos
+all: assemblies printer bom # demos
 
 clean:
 # do NOT clean the STL files in the parts directories because not all of them are built automatically!
@@ -39,6 +39,7 @@ clean:
 	$(RM) assemblies/*.stl
 	$(RM) printer/*.deps
 	$(RM) printer/*.stl
+	$(RM) bom/bom_raw_data.echo
 # 	$(RM) lib/*.deps
 # 	$(RM) lib/*.dxf 
 # 	$(RM) lib/*.stl
@@ -49,7 +50,7 @@ clean:
 # file-type specific build rules
 #
 %.stl: %.scad 
-	$(OPENSCAD) -m make -o $@ -d $@.deps $<
+	$(OPENSCAD) -m make -o $@ -d $@.deps -D WRITE_BOM=false $<
 
 #
 # Include the dependency files provided by OpenSCAD. 
@@ -73,6 +74,17 @@ assemblies: \
 	assemblies/horizontal_front.stl \
 	assemblies/horizontal_left.stl \
 	assemblies/horizontal_right.stl
+
+#
+# Rules to assemble the BOM
+#
+bom: printer/printer_default.stl bom/bom.txt
+
+bom/bom_raw_data.echo: printer/printer_default.stl printer/printer_default.scad bom/bom.scad
+	$(OPENSCAD) -m make -o $@ -D WRITE_BOM=true printer/printer_default.scad 
+
+bom/bom.txt: bom/bom_raw_data.echo bom/make_bom.pl 
+	$(PERL) bom/make_bom.pl < $< > $@
 
 # #
 # # Rule to build the individual parts.

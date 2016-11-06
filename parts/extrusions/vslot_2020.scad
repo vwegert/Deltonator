@@ -8,6 +8,7 @@
  **
  **********************************************************************************************************************/
 
+use <../../bom/bom.scad>
 use <../../conf/colors.scad>
 use <../../conf/derived_sizes.scad>
 use <../../conf/part_sizes.scad>
@@ -17,6 +18,7 @@ use <../../conf/part_sizes.scad>
  * The extrusion will lie horizontally along the positive X axis and will extend into positve Y and Z.
  */
 module vslot_2020_side() {
+	bom_entry(description = "V-Slot Extrusion", size = str(horizontal_extrusion_length(), "x20x20 mm"));
 	color_extrusion()
 		import(file = "vslot_2020_side.stl"); 
 }
