@@ -13,6 +13,7 @@ use <../conf/derived_sizes.scad>
 use <../conf/part_sizes.scad>
 use <../parts/extrusions/makerslide.scad>
 use <../parts/printed/foot.scad>
+use <../parts/printed/motor_bracket.scad>
 
 /**
  * Provides access to the assembly.
@@ -33,6 +34,14 @@ module _vertical_axis_assembly() {
 	// the lower foot with associated hardware
 	foot();
 	foot_hardware();
+	// the motor bracket with the stepper and the associated hardware
+	translate([0, 0, motor_bracket_z_offset()]) {
+		motor_bracket();
+		motor_bracket_hardware();
+		motor_bracket_stepper(with_pulley = true);
+		motor_bracket_stepper_hardware();
+	}
+
 }
 
 // render the axis to a separate output file if requested

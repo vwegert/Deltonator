@@ -65,6 +65,12 @@ function vertical_recess_depth() = FRAME_PART_HSLOT_DEPTH;
  */
 function motor_bracket_height() = FRAME_PART_BRACKET_HEIGHT;
 
+/**
+ * The radius and resolution of the rounded edges of the motor bracket.
+ */
+function motor_bracket_edge_radius() = 5;
+function motor_bracket_edge_resolution() = 16;
+
 // ===== SCREWS, NUTS, BOLTS AND OTHER HARDWARE =======================================================================
 
 /**
@@ -115,3 +121,22 @@ function position_left_assembly() = [-horizontal_extrusion_outward_offset() - vs
                                      -horizontal_extrusion_length() - horizontal_extrusion_offset(), 0];
 function position_right_assembly() = [-horizontal_extrusion_outward_offset() - vslot_2020_depth(),
                                       horizontal_extrusion_offset(), 0];
+
+/**
+ * The height at which the bracket is mounted. At the moment, it is placed directly above the lower foot.
+ * see also: lower_foot_vertical_height() 
+ */
+function motor_bracket_z_offset() = vertical_recess_depth();
+
+/**
+ * The distance of the motor front face to the inward face of the vertical MakerSlide extrusion.
+ * The nominal length of the axis is 24 mm. The value of frame_wall_thickness() (default 3mm) is irrelevant here 
+ * because it applies to both the inner wall of the bracket and the motor mounting plate in the same direction.
+ */
+function vmotor_rail_distance() = vmotor_shaft_length();
+
+/**
+ * The height at which the motor is mounted. 
+ */
+function vmotor_z_offset() = motor_bracket_z_offset() + motor_bracket_height() / 2;
+

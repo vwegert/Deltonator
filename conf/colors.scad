@@ -23,6 +23,14 @@ module color_printed_outer_frame() {
 } 
 
 /**
+ * The color of the "inner" printed frame elements.
+ */
+module color_printed_inner_frame() {
+	color("DodgerBlue")
+		children();
+} 
+
+/**
  * The color of the stock hardware parts like nuts, bolts and screws.
  */
 module color_hardware() {

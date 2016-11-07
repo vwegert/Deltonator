@@ -72,3 +72,37 @@ function makerslide_edge_resolution() = 64;
  */
 function makerslide_slot_offset() = 10;
 
+// ----- vertical axis NEMA 17 stepper motors --------------------------------------------------------------------------
+
+/**
+ * The NEMA size of the motor.
+ */
+function vmotor_size() = 17;
+
+/**
+ * The outer dimensions of the motor (width and height) perpendicular to the axis. 
+ * The depth is irrelevant (at the moment, at least).
+ */
+function vmotor_width() = 42.2;
+function vmotor_height() = 42.2;
+
+/**
+ * The length of the shaft.
+ */
+function vmotor_shaft_length() = 24;
+
+/**
+ * The diameter of the round hole to leave for placing the motor
+ */
+function vmotor_mounting_hole_diameter() = 25; // NEMA drawings say 22, better leave some clearance here
+function vmotor_mounting_hole_resolution() = 32;
+
+/**
+ * The distance between the screw holes on the front face of the motor.
+ */
+function vmotor_screw_distance() = 31;
+
+/** 
+ * The size of the screw holes to hold the motor.
+ */
+function vmotor_screw_size() = 3;
