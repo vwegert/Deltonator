@@ -9,5 +9,6 @@
 include <MCAD/stepper.scad>
 
 $fn = 48;
-rotate([0, -90, 0])
-	motor(Nema14, NemaShort, dualAxis = false);
+translate([lookup(NemaRoundExtrusionHeight, Nema14)/2, 0, 0])
+	rotate([0, -90, 0])
+		motor(Nema14, NemaShort, dualAxis = false);

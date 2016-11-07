@@ -11,7 +11,7 @@ use <../../conf/colors.scad>
 
 /**
  * Provides the pre-rendered stepper motors.
- * The motor is centered along the X axis with the axis extending into positive X.
+ * The motor is centered along the X axis with the shaft extending into positive X.
  */
 module stepper_short(size = 17) {
 	bom_entry(description = "Stepper Motor", size = str("NEMA ", size, " short"));
