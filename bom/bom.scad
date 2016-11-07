@@ -13,9 +13,9 @@
 function _bom_parent_list(level, delimiter = ">") = 
 	(level < $parent_modules - 1) ? str(_bom_parent_list(level = level + 1), delimiter, parent_module(level)) : "";
 
-module bom_entry(description = "", size = "", number = 1) {
+module bom_entry(section = "", description = "", size = "", number = 1) {
 	// Only perform any actions if WRITE_BOM is set. This is done through the command line - see Makefile.
 	if (WRITE_BOM) {
-		echo(str("BOM;", description, ";", size, ";", number, ";", _bom_parent_list(level = 2)));
+		echo(str("BOM;", section, ";", description, ";", size, ";", number, ";", _bom_parent_list(level = 2)));
 	}
 }

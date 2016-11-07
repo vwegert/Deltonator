@@ -136,7 +136,7 @@ module _render_foot() {
  * manipulation, similar to the MakerSlide extrusion. 
  */
 module foot() {
-	bom_entry(description = "Printed Frame Parts", size = "Foot");
+	bom_entry(section = "Printed Parts", description = "Frame", size = "Foot");
 	color_printed_outer_frame()
 		import(file = "foot.stl");
 }

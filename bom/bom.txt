@@ -1,29 +1,44 @@
-DIN 912 / ISO 4762 Hex Socket Head Cap Screw
-  M3 x 6mm.............................................................. 12
-    vertical_axis_assembly >> motor_bracket_stepper_hardware               (12)
-  M5 x 12mm............................................................. 12
-    vertical_axis_assembly >> foot_hardware                                (6)
-    vertical_axis_assembly >> motor_bracket_hardware                       (6)
-  M5 x 8mm.............................................................. 24
-    vertical_axis_assembly >> foot_hardware                                (18)
-    vertical_axis_assembly >> motor_bracket_hardware                       (6)
+
+===== Aluminium Extrusions ============================================================
+
 MakerSlide Extrusion
-  800 mm................................................................ 3
-    vertical_axis_assembly                                                 (3)
-Printed Frame Parts
-  Foot.................................................................. 3
-    vertical_axis_assembly                                                 (3)
-  Motor Bracket......................................................... 3
-    vertical_axis_assembly                                                 (3)
-Stepper Motor
-  NEMA 17 medium........................................................ 3
-    vertical_axis_assembly >> motor_bracket_stepper                        (3)
-T-Slot Nut
-  M5.................................................................... 36
-    vertical_axis_assembly >> foot_hardware                                (24)
-    vertical_axis_assembly >> motor_bracket_hardware                       (12)
+  800 mm.......................................................................... 3
+    vertical_axis_assembly                                                   (3)
+
 V-Slot Extrusion
-  400x20x20 mm.......................................................... 3
-    horizontal_front_assembly                                              (1)
-    horizontal_left_assembly                                               (1)
-    horizontal_right_assembly                                              (1)
+  400x20x20 mm.................................................................... 3
+    horizontal_front_assembly                                                (1)
+    horizontal_left_assembly                                                 (1)
+    horizontal_right_assembly                                                (1)
+
+===== Electronic Components ===========================================================
+
+Stepper Motor
+  NEMA 17 medium.................................................................. 3
+    vertical_axis_assembly >> motor_bracket_stepper                          (3)
+
+===== General Hardware ================================================================
+
+DIN 912 / ISO 4762 Hex Socket Head Cap Screw
+  M3 x 6mm........................................................................ 12
+    vertical_axis_assembly >> motor_bracket_stepper_hardware                 (12)
+  M5 x 12mm....................................................................... 12
+    vertical_axis_assembly >> foot_hardware                                  (6)
+    vertical_axis_assembly >> motor_bracket_hardware                         (6)
+  M5 x 8mm........................................................................ 24
+    vertical_axis_assembly >> foot_hardware                                  (18)
+    vertical_axis_assembly >> motor_bracket_hardware                         (6)
+
+T-Slot Nut
+  M5.............................................................................. 36
+    vertical_axis_assembly >> foot_hardware                                  (24)
+    vertical_axis_assembly >> motor_bracket_hardware                         (12)
+
+===== Printed Parts ===================================================================
+
+Frame
+  Foot............................................................................ 3
+    vertical_axis_assembly                                                   (3)
+  Motor Bracket................................................................... 3
+    vertical_axis_assembly                                                   (3)
+

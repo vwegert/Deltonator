@@ -18,7 +18,7 @@ use <../../conf/part_sizes.scad>
  * The extrusion will reach into positive X and Z space while being centered on the Y axis.
  */
 module makerslide_vertical_rail() {
-	bom_entry(description = "MakerSlide Extrusion", size = str(vertical_extrusion_length(), " mm"));
+	bom_entry(section = "Aluminium Extrusions", description = "MakerSlide Extrusion", size = str(vertical_extrusion_length(), " mm"));
 	color_extrusion()
 		import(file = "makerslide_rail.stl"); 
 }

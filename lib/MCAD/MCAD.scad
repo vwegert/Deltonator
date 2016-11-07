@@ -14,17 +14,17 @@ use <../../conf/colors.scad>
  * The motor is centered along the X axis with the shaft extending into positive X.
  */
 module stepper_short(size = 17) {
-	bom_entry(description = "Stepper Motor", size = str("NEMA ", size, " short"));
+	bom_entry(section = "Electronic Components", description = "Stepper Motor", size = str("NEMA ", size, " short"));
 	color_motor()
 		import(file = str("stepper_nema", size, "_short.stl")); 
 }
 module stepper_medium(size = 17) {
-	bom_entry(description = "Stepper Motor", size = str("NEMA ", size, " medium"));
+	bom_entry(section = "Electronic Components", description = "Stepper Motor", size = str("NEMA ", size, " medium"));
 	color_motor()
 		import(file = str("stepper_nema", size, "_medium.stl")); 
 }
 module stepper_long(size = 17) {
-	bom_entry(description = "Stepper Motor", size = str("NEMA ", size, " long"));
+	bom_entry(section = "Electronic Components", escription = "Stepper Motor", size = str("NEMA ", size, " long"));
 	color_motor()
 		import(file = str("stepper_nema", size, "_long.stl")); 
 }

@@ -155,7 +155,7 @@ module _render_motor_bracket() {
  * manipulation, similar to the MakerSlide extrusion. 
  */
 module motor_bracket(render = false) {
-	bom_entry(description = "Printed Frame Parts", size = "Motor Bracket");
+	bom_entry(section = "Printed Parts", description = "Frame", size = "Motor Bracket");
 	color_printed_inner_frame()
 		import(file = "motor_bracket.stl");
 }
