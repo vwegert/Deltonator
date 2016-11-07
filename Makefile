@@ -7,7 +7,7 @@
 #
 # phony target definitions (targets that are no files)
 #
-.PHONY: all clean assemblies printer bom # parts demos printer
+.PHONY: all clean assemblies printer bom screws steppers
 
 #
 # OS detection and inclusion of OS-specific configuration files
@@ -70,6 +70,23 @@ assemblies: \
 	assemblies/horizontal_front.stl \
 	assemblies/horizontal_left.stl \
 	assemblies/horizontal_right.stl
+
+#
+# Rules to buld the parts provided by the external libraries
+#
+screws: \
+	lib/nutsnbolts/screw_M5x8.stl
+
+steppers: \
+	lib/MCAD/stepper_nema14_long.stl \
+	lib/MCAD/stepper_nema14_medium.stl \
+	lib/MCAD/stepper_nema14_short.stl \
+	lib/MCAD/stepper_nema17_long.stl \
+	lib/MCAD/stepper_nema17_medium.stl \
+	lib/MCAD/stepper_nema17_short.stl \
+	lib/MCAD/stepper_nema23_long.stl \
+	lib/MCAD/stepper_nema23_medium.stl \
+	lib/MCAD/stepper_nema23_short.stl
 
 #
 # Rules to assemble the BOM
