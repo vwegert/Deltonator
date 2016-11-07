@@ -15,6 +15,3 @@ printer/**/*.stl
 
 # do not track the temporary BOM data file
 bom/*.echo
-
-# do not track optional internal libraries
-lib/nutsnbolts/nutsnbolts

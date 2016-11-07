@@ -86,5 +86,6 @@ bom/bom.txt: bom/bom_raw_data.echo bom/make_bom.pl
 # Rules to fetch external libraries.
 #
 lib/nutsnbolts/nutsnbolts/cyl_head_bolt.scad: 
-	$(GIT) clone https://github.com/JohK/nutsnbolts.git lib/nutsnbolts/nutsnbolts/
+	$(GIT) submodule init
+	$(GIT) submodule update
 
