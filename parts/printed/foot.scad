@@ -1,6 +1,6 @@
 /**********************************************************************************************************************
  **
- ** parts/foot.scad
+ ** parts/printed/foot.scad
  **
  ** This file constructs the lower foot of the printer frame. To assemble the printer, you need three of these parts.
  **
@@ -21,13 +21,13 @@ function _foot_horizontal_depth()  = horizontal_extrusion_offset() + horizontal_
 function _foot_horizontal_left_y_offset() = -frame_wall_thickness() + horizontal_extrusion_outward_offset();
 function _foot_horizontal_right_y_offset() = -_foot_horizontal_width() - horizontal_extrusion_outward_offset() + frame_wall_thickness();
 
-
 // The dimensions of the vertical part that holds the MakerSlide extrusion.
 function _foot_vertical_height() = vertical_recess_depth();
 function _foot_vertical_width()  = frame_wall_thickness() + makerslide_width() + frame_wall_thickness();
 function _foot_vertical_depth()  = frame_wall_thickness() + makerslide_depth() + frame_wall_thickness();
 function _foot_vertical_back_screw_height() = frame_wall_thickness() + vertical_recess_depth()/2;
 function _foot_vertical_side_screw_height() = _foot_horizontal_height()/2; // align with other screw
+function _foot_vertical_side_screw_y_offset() = _foot_vertical_width()/2 + 1;
 
 // TODO add some holes to screw the foot to a flat surface
 // TODO add the possibility to add a variable foot for height adjustment / leveling
@@ -64,13 +64,13 @@ module _foot_horizontal_leg_hardware(right = false) {
 	// inner screw
 	translate([_screw_x, right ? _foot_horizontal_width() : 0, vslot_2020_depth()/2])
 		rotate([0, 0, right ? -90 : 90]) {
-			screw_m5x8();
+			screw_m5(8);
 			nut_tslot_m5();
 		}
 	// top screw
 	translate([_screw_x, vslot_2020_depth()/2 + (right ? 0 : frame_wall_thickness()), _foot_horizontal_height()])
 		rotate([0, 90, 0]) {
-			screw_m5x8();
+			screw_m5(8);
 			nut_tslot_m5();
 		}
 }
@@ -119,11 +119,11 @@ module _render_foot() {
 								 center = true, $fn = frame_screw_hole_resolution());
 				// minus an additional inset so that the side screws can rest on a perpendicular surface
 				_inset_depth = 100;
-				translate([makerslide_slot_offset(), _foot_vertical_width()/2 + _inset_depth/2, _foot_vertical_side_screw_height()])
+				translate([makerslide_slot_offset(), _foot_vertical_side_screw_y_offset() + _inset_depth/2, _foot_vertical_side_screw_height()])
 					rotate([90, 0, 0])
 						cylinder(d = frame_screw_head_size(), h = _inset_depth, 
 								 center = true, $fn = frame_screw_hole_resolution());
-				translate([makerslide_slot_offset(), -_foot_vertical_width()/2 - _inset_depth/2, _foot_vertical_side_screw_height()])
+				translate([makerslide_slot_offset(), -_foot_vertical_side_screw_y_offset() - _inset_depth/2, _foot_vertical_side_screw_height()])
 					rotate([90, 0, 0])
 						cylinder(d = frame_screw_head_size(), h = _inset_depth, 
 								 center = true, $fn = frame_screw_hole_resolution());				
@@ -148,24 +148,24 @@ module foot_hardware() {
 
 	// vertical MakerSlide rail -- back 
 	translate([-frame_wall_thickness(), -makerslide_slot_offset(), _foot_vertical_back_screw_height()]) {
-		screw_m5x8();
+		screw_m5(8);
 		nut_tslot_m5();
 	}
 	translate([-frame_wall_thickness(), makerslide_slot_offset(), _foot_vertical_back_screw_height()]) {
-		screw_m5x8();
+		screw_m5(8);
 		nut_tslot_m5();
 	}
 
 	// vertical MakerSlide rail -- sides
-	_side_screw_y = makerslide_base_width() / 2 + frame_wall_thickness();
+	_side_screw_y = _foot_vertical_side_screw_y_offset();
 	translate([makerslide_slot_offset(), _side_screw_y, _foot_vertical_side_screw_height()]) 
 		rotate([0, 0, -90]) {
-			screw_m5x8();
+			screw_m5(12);
 			nut_tslot_m5();
 		}
 	translate([makerslide_slot_offset(), -_side_screw_y, _foot_vertical_side_screw_height()]) 
 		rotate([0, 0, 90]) {
-			screw_m5x8();
+			screw_m5(12);
 			nut_tslot_m5();
 		}
 
