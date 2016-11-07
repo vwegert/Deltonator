@@ -13,10 +13,15 @@ use <../../conf/colors.scad>
  * Provides the pre-rendered screws.
  * The screw is centered along the X axis with the thread extending into positive X.
  */
-module screw_m5x8() {
-	bom_entry(description = "DIN 912 / ISO 4762 Hex Socket Head Cap Screw", size = "M5 x 8mm");
+module screw_m3(length) {
+	bom_entry(description = "DIN 912 / ISO 4762 Hex Socket Head Cap Screw", size = str("M3 x ", length, "mm"));
 	color_hardware()
-		import(file = "screw_M5x8.stl"); 
+		import(file = str("screw_M3x", length, ".stl")); 
+}
+module screw_m5(length) {
+	bom_entry(description = "DIN 912 / ISO 4762 Hex Socket Head Cap Screw", size = str("M5 x ", length, "mm"));
+	color_hardware()
+		import(file = str("screw_M5x", length, ".stl")); 
 }
 
 

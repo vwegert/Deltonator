@@ -75,7 +75,9 @@ assemblies: \
 # Rules to buld the parts provided by the external libraries
 #
 screws: \
-	lib/nutsnbolts/screw_M5x8.stl
+	lib/nutsnbolts/screw_M3x6.stl \
+	lib/nutsnbolts/screw_M5x8.stl \
+	lib/nutsnbolts/screw_M5x12.stl
 
 steppers: \
 	lib/MCAD/stepper_nema14_long.stl \
