@@ -10,9 +10,10 @@ use <../../bom/bom.scad>
 use <../../conf/colors.scad>
 use <../../conf/derived_sizes.scad>
 use <../../conf/part_sizes.scad>
-use <../../lib/nutsnbolts/nutsnbolts.scad>
 use <../../parts/extrusions/makerslide.scad>
 use <../../parts/extrusions/vslot_2020.scad>
+use <../../parts/vitamins/screws.scad>
+use <../../parts/vitamins/steppers.scad>
 
 // The dimensions of the horizontal parts that hold the V-Slot extrusions.
 function _foot_horizontal_height() = vslot_2020_depth() + frame_wall_thickness();

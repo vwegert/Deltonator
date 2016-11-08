@@ -1,8 +1,8 @@
 /**********************************************************************************************************************
  **
- ** lib/MCAD/MCAD.scad
+ ** parts/vitamins/steppers.scad
  **
- ** This file provides access to the pre-rendered parts of the MCAD library.
+ ** This file provides access to the pre-rendered steppers created with the MCAD library.
  **
  **********************************************************************************************************************/
 

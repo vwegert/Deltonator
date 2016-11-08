@@ -1,8 +1,8 @@
 /**********************************************************************************************************************
  **
- ** lib/nutsnbolts/nutsnbolts.scad
+ ** parts/vitamins/screws.scad
  **
- ** This file provides access to the pre-rendered parts of the nutsnbolts library.
+ ** This file provides access to the pre-rendered screws created with the nutsnbolts library.
  **
  **********************************************************************************************************************/
 
