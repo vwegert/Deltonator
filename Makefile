@@ -7,7 +7,7 @@
 #
 # phony target definitions (targets that are no files)
 #
-.PHONY: all clean assemblies printer bom screws steppers
+.PHONY: all clean assemblies printer bom vitamins
 
 #
 # OS detection and inclusion of OS-specific configuration files
@@ -34,7 +34,6 @@ clean:
 	$(RM) assemblies/*.deps
 	$(RM) assemblies/*.stl
 	$(RM) bom/bom_raw_data.echo
-	$(RM) -r lib/nutsnbolts/nutsnbolts
 # do NOT clean the STL files in the parts directories because not all of them are built automatically!
 	$(RM) parts/vitamins/*.deps
 	$(RM) parts/extrusions/*.deps
@@ -74,21 +73,19 @@ assemblies: \
 #
 # Rules to buld the parts provided by the external libraries
 #
-screws: \
-	lib/nutsnbolts/screw_M3x6.stl \
-	lib/nutsnbolts/screw_M5x8.stl \
-	lib/nutsnbolts/screw_M5x12.stl
-
-steppers: \
-	lib/MCAD/stepper_nema14_long.stl \
-	lib/MCAD/stepper_nema14_medium.stl \
-	lib/MCAD/stepper_nema14_short.stl \
-	lib/MCAD/stepper_nema17_long.stl \
-	lib/MCAD/stepper_nema17_medium.stl \
-	lib/MCAD/stepper_nema17_short.stl \
-	lib/MCAD/stepper_nema23_long.stl \
-	lib/MCAD/stepper_nema23_medium.stl \
-	lib/MCAD/stepper_nema23_short.stl
+vitamins: \
+	parts/vitamins/screw_M3x6.stl \
+	parts/vitamins/screw_M5x8.stl \
+	parts/vitamins/screw_M5x12.stl \
+	parts/vitamins/stepper_nema14_long.stl \
+	parts/vitamins/stepper_nema14_medium.stl \
+	parts/vitamins/stepper_nema14_short.stl \
+	parts/vitamins/stepper_nema17_long.stl \
+	parts/vitamins/stepper_nema17_medium.stl \
+	parts/vitamins/stepper_nema17_short.stl \
+	parts/vitamins/stepper_nema23_long.stl \
+	parts/vitamins/stepper_nema23_medium.stl \
+	parts/vitamins/stepper_nema23_short.stl
 
 #
 # Rules to assemble the BOM
@@ -104,7 +101,10 @@ bom/bom.txt: bom/bom_raw_data.echo bom/make_bom.pl
 # 
 # Rules to fetch external libraries.
 #
-lib/nutsnbolts/nutsnbolts/cyl_head_bolt.scad: 
+lib/nutsnbolts/cyl_head_bolt.scad: 
 	$(GIT) submodule init
 	$(GIT) submodule update
 
+lib/MCAD/stepper.scad: 
+	$(GIT) submodule init
+	$(GIT) submodule update

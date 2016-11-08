@@ -11,9 +11,9 @@ use <../../bom/bom.scad>
 use <../../conf/colors.scad>
 use <../../conf/derived_sizes.scad>
 use <../../conf/part_sizes.scad>
-use <../../lib/nutsnbolts/nutsnbolts.scad>
-use <../../lib/MCAD/MCAD.scad>
 use <../../parts/extrusions/makerslide.scad>
+use <../../parts/vitamins/screws.scad>
+use <../../parts/vitamins/steppers.scad>
 
 /**
  * The dimensions of the bracket part that fits onto the MakerSlide extrusion.
