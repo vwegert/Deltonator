@@ -34,12 +34,15 @@ clean:
 	$(RM) assemblies/*.deps
 	$(RM) assemblies/*.stl
 	$(RM) bom/bom_raw_data.echo
-# do NOT clean the STL files in the parts directories because not all of them are built automatically!
-	$(RM) parts/vitamins/*.deps
 	$(RM) parts/extrusions/*.deps
+	$(RM) parts/extrusions/*.stl
 	$(RM) parts/printed/*.deps
+	$(RM) parts/printed/*.stl
+# do NOT clean the STL files in the vitamins directories because not all of them are built automatically!
+	$(RM) parts/vitamins/*.deps
 	$(RM) printer/*.deps
 	$(RM) printer/*.stl
+# TODO the clean target does not work on Windows systems 
 
 #
 # file-type specific build rules
