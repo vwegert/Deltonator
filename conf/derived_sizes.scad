@@ -140,3 +140,9 @@ function vmotor_rail_distance() = vmotor_shaft_length();
  */
 function vmotor_z_offset() = motor_bracket_z_offset() + motor_bracket_height() / 2;
 
+/** 
+ * The distance of the pulleys and belts from the inward face of the vertical MakerSlide extrusion.
+ */
+function vmotor_gt2_pulley_rail_distance() = vmotor_rail_distance() - 2;
+function vmotor_gt2_belt_rail_distance() = vmotor_gt2_pulley_rail_distance() - gt2_pulley_depth() + 1;
+

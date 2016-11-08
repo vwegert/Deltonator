@@ -39,6 +39,22 @@ module color_hardware() {
 } 
 
 /**
+ * The color of the gears and ball bearings.
+ */
+module color_gears() {
+	color("Gray")
+		children();
+} 
+
+/**
+ * The color of the belts.
+ */
+module color_belt() {
+	color("SaddleBrown")
+		children();
+} 
+
+/**
  * The color of the stepper motors.
  */
 module color_motor() {

@@ -20,12 +20,12 @@ Stepper Motor
 ===== General Hardware ================================================================
 
 DIN 912 / ISO 4762 Hex Socket Head Cap Screw
-  M3 x 6mm........................................................................ 12
+  M3 x 6 mm....................................................................... 12
     vertical_axis_assembly >> motor_bracket_stepper_hardware                 (12)
-  M5 x 12mm....................................................................... 12
+  M5 x 12 mm...................................................................... 12
     vertical_axis_assembly >> foot_hardware                                  (6)
     vertical_axis_assembly >> motor_bracket_hardware                         (6)
-  M5 x 8mm........................................................................ 24
+  M5 x 8 mm....................................................................... 24
     vertical_axis_assembly >> foot_hardware                                  (18)
     vertical_axis_assembly >> motor_bracket_hardware                         (6)
 
@@ -41,4 +41,10 @@ Frame
     vertical_axis_assembly                                                   (3)
   Motor Bracket................................................................... 3
     vertical_axis_assembly                                                   (3)
+
+===== Timing Belts and Pulleys ========================================================
+
+GT2 Pulley
+  20 Teeth x 5 mm Bore............................................................ 3
+    vertical_axis_assembly >> motor_bracket_stepper                          (3)
 

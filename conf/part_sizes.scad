@@ -7,12 +7,12 @@
  **
  **********************************************************************************************************************/
 
-// ----- parts/extrusions/vslot_2020.scad ------------------------------------------------------------------------------
+// ===== parts/extrusions/vslot_2020.scad ==============================================================================
 
 // The dimensions were taken from the file vslot_2020_dimensions.jpg.
 
 /**
- * Return the depth (X size) and width (Y size) of the V-Slot extrusion.
+ * Return the depth (X size) and width (Y size) of the V=Slot extrusion.
  */
 function vslot_2020_depth() = 20;
 function vslot_2020_width() = 20;
@@ -28,7 +28,7 @@ function vslot_2020_edge_resolution() = 64;
  */
 function vslot_2020_slot_offset() = 10;
 
-// ----- parts/extrusions/makerslide.scad ------------------------------------------------------------------------------
+// ===== parts/extrusions/makerslide.scad ==============================================================================
 
 // All dimensions were taken from the file makerslide_b17022_rev_2.pdf.
 
@@ -72,7 +72,7 @@ function makerslide_edge_resolution() = 64;
  */
 function makerslide_slot_offset() = 10;
 
-// ----- vertical axis NEMA 17 stepper motors --------------------------------------------------------------------------
+// ===== VERTICAL AXIS NEMA 17 STEPPER MOTORS ==========================================================================
 
 /**
  * The NEMA size of the motor.
@@ -106,3 +106,22 @@ function vmotor_screw_distance() = 31;
  * The size of the screw holes to hold the motor.
  */
 function vmotor_screw_size() = 3;
+
+// ===== GT2 TIMING BELTS AND ASSOCIATED HARDWARE =====================================================================
+
+/**
+ * The dimensions of a GT2 belt.
+ */
+function gt2_belt_width() = 6;
+function gt2_belt_thickness_max() = 1.38; 
+function gt2_belt_groove_depth()  = 0.75;
+function gt2_belt_thickness_min() = gt2_belt_thickness_max() - gt2_belt_groove_depth();
+
+/**
+ * The diameter and overall depth of the GT2 pulley.
+ */
+function gt2_pulley_diameter() = 16;
+function gt2_pulley_depth() = 16;
+function gt2_pulley_inner_diameter_max() = 12.22;
+function gt2_pulley_inner_diameter_min() = gt2_pulley_inner_diameter_max() - gt2_belt_groove_depth();
+

@@ -12,6 +12,7 @@ use <../../conf/colors.scad>
 use <../../conf/derived_sizes.scad>
 use <../../conf/part_sizes.scad>
 use <../../parts/extrusions/makerslide.scad>
+use <../../parts/vitamins/gt2.scad>
 use <../../parts/vitamins/screws.scad>
 use <../../parts/vitamins/steppers.scad>
 
@@ -167,12 +168,11 @@ module motor_bracket_stepper(with_pulley = true) {
 	translate([makerslide_depth() + vmotor_rail_distance(), 0, motor_bracket_height() / 2]) 
 		rotate([0, 0, 180])
 			stepper_medium(17);
-	// TODO add pulley
-	// if (with_pulley) {
-	// 	translate([makerslide_depth() + gt2_pulley_rail_distance(), 0, motor_z_offset()]) 
-	// 		rotate([0, 0, 180])
-	// 			gt2_pulley_20t_5mm();
-	// }
+	if (with_pulley) {
+		translate([makerslide_depth() + vmotor_gt2_pulley_rail_distance(), 0, motor_bracket_height() / 2]) 
+			rotate([0, 0, 180])
+				gt2_pulley_20t_5mm();
+	}
 }
 
 /** 
