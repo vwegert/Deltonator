@@ -46,7 +46,7 @@ clean:
 # file-type specific build rules
 #
 %.stl: %.scad 
-	$(OPENSCAD) -m make -o $@ -d $@.deps -D WRITE_BOM=false $<
+	$(OPENSCAD) -m $(MAKE) -o $@ -d $@.deps -D WRITE_BOM=false $<
 
 #
 # Include the dependency files provided by OpenSCAD. 

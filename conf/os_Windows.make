@@ -1,24 +1,24 @@
 ###################################################################################################
 ##
-## conf/os_Darwin.make
+## conf/os_Windows.make
 ##
 ###################################################################################################
 #
-# This file contains some OS-specific settings with default values set for a Mac OS X installation.
+# This file contains some OS-specific settings with default values set for a Windows installation.
 # Adjust these parameters to match your installation.
 #
 
 # The make executable.
-MAKE = /usr/bin/make
+MAKE = "C:\Program Files\GnuWin32\bin\make.exe"
 
 # The command to copy files from A to B.
-CP = cp
+CP = copy
 
 # The full path to the OpenSCAD executable.
-OPENSCAD = /Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD
+OPENSCAD = "C:\Program Files\OpenSCAD\openscad.exe"
 
 # Where to find the Perl executable.
-PERL = /usr/bin/perl
+PERL = "C:\StrawberryPerl\perl\bin\perl.exe"
 
 # Where to find the Git executable
-GIT = /usr/bin/git
+GIT =  "C:\Program Files\Git\cmd\git.exe"	
