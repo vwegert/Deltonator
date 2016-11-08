@@ -34,7 +34,6 @@ clean:
 	$(RM) assemblies/*.deps
 	$(RM) assemblies/*.stl
 	$(RM) bom/bom_raw_data.echo
-	$(RM) -r lib/nutsnbolts/nutsnbolts
 # do NOT clean the STL files in the parts directories because not all of them are built automatically!
 	$(RM) parts/vitamins/*.deps
 	$(RM) parts/extrusions/*.deps
@@ -102,7 +101,10 @@ bom/bom.txt: bom/bom_raw_data.echo bom/make_bom.pl
 # 
 # Rules to fetch external libraries.
 #
-lib/nutsnbolts/nutsnbolts/cyl_head_bolt.scad: 
+lib/nutsnbolts/cyl_head_bolt.scad: 
 	$(GIT) submodule init
 	$(GIT) submodule update
 
+lib/MCAD/stepper.scad: 
+	$(GIT) submodule init
+	$(GIT) submodule update
