@@ -125,3 +125,26 @@ function gt2_pulley_depth() = 16;
 function gt2_pulley_inner_diameter_max() = 12.22;
 function gt2_pulley_inner_diameter_min() = gt2_pulley_inner_diameter_max() - gt2_belt_groove_depth();
 
+// ===== WHEELS AND BEARINGS ==========================================================================================
+
+/**
+ * The size of a 625 ball bearing.
+ */
+function bearing_625_bore_diameter() = 5;
+function bearing_625_outer_diameter() = 16;
+function bearing_625_width() = 5;
+
+/**
+ * Some of the dimensions of a V-Wheel for the MakerSlide rails.
+ */
+function vwheel_width() = 7.5;
+function vwheel_inner_bevel_width() = 1;
+function vwheel_bearing_inset() = (vwheel_width() - vwheel_inner_bevel_width()) / 2;
+
+/**
+ * Some data to position the V-Wheels on the MakerSlide rails.
+ * see http://store.amberspyglass.co.uk/v-wheel.html
+ */
+function vwheel_pair_center_distance() = 64.6;
+function vwheel_depth_offset() = makerslide_base_depth();
+function vwheel_width_offset() = vwheel_pair_center_distance() / 2;

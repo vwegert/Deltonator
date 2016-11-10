@@ -66,7 +66,7 @@ module color_motor() {
  * The color of the V-Wheels.
  */
 module color_vwheels() {
-	color("Black")
+	color([0.075, 0.075, 0.075])
 		children();
 } 
 
