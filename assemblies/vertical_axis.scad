@@ -14,6 +14,7 @@ use <../conf/part_sizes.scad>
 use <../parts/extrusions/makerslide.scad>
 use <../parts/printed/foot.scad>
 use <../parts/printed/motor_bracket.scad>
+use <../parts/vitamins/gt2.scad>
 
 /**
  * Provides access to the assembly.
@@ -41,6 +42,17 @@ module _vertical_axis_assembly() {
 		motor_bracket_stepper(with_pulley = true);
 		motor_bracket_stepper_hardware();
 	}
+
+	// TODO add the upper end and determine the length of the belt
+	_belt_length = 750;
+
+	// the belt for this axis
+	translate([makerslide_depth() + vmotor_gt2_belt_rail_distance(), 0, vmotor_z_offset() + _belt_length])
+			rotate([0, 90, 0])
+				gt2_belt_loop(length = _belt_length, 
+					inner_diameter_end2 = gt2_pulley_inner_diameter_min(), 
+					inner_diameter_end1 = gt2_pulley_inner_diameter_min());// bearing_f623zz_outer_diameter());
+
 
 }
 
