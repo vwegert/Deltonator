@@ -77,6 +77,8 @@ assemblies: \
 # Rules to buld the parts provided by the external libraries
 #
 vitamins: \
+	parts/vitamins/bearing_625.stl \
+	parts/vitamins/gt2_pulley_20t_5mm.stl \
 	parts/vitamins/screw_M3x6.stl \
 	parts/vitamins/screw_M5x8.stl \
 	parts/vitamins/screw_M5x12.stl \
@@ -88,7 +90,8 @@ vitamins: \
 	parts/vitamins/stepper_nema17_short.stl \
 	parts/vitamins/stepper_nema23_long.stl \
 	parts/vitamins/stepper_nema23_medium.stl \
-	parts/vitamins/stepper_nema23_short.stl
+	parts/vitamins/stepper_nema23_short.stl \
+	parts/vitamins/vwheel_dbl_bearing.stl
 
 #
 # Rules to assemble the BOM
