@@ -91,7 +91,10 @@ vitamins: \
 	parts/vitamins/stepper_nema23_long.stl \
 	parts/vitamins/stepper_nema23_medium.stl \
 	parts/vitamins/stepper_nema23_short.stl \
-	parts/vitamins/vwheel_dbl_bearing.stl
+	parts/vitamins/vwheel_dbl_bearing.stl \
+	parts/vitamins/washer_M3.stl \
+	parts/vitamins/washer_M4.stl \
+	parts/vitamins/washer_M5.stl
 
 #
 # Rules to assemble the BOM
