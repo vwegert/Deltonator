@@ -85,6 +85,8 @@ vitamins: \
 	parts/vitamins/screw_M3x6.stl \
 	parts/vitamins/screw_M5x8.stl \
 	parts/vitamins/screw_M5x12.stl \
+	parts/vitamins/screw_M5x30.stl \
+	parts/vitamins/screw_M5x35.stl \
 	parts/vitamins/stepper_nema14_long.stl \
 	parts/vitamins/stepper_nema14_medium.stl \
 	parts/vitamins/stepper_nema14_short.stl \
@@ -95,6 +97,7 @@ vitamins: \
 	parts/vitamins/stepper_nema23_medium.stl \
 	parts/vitamins/stepper_nema23_short.stl \
 	parts/vitamins/vwheel_dbl_bearing.stl \
+	parts/vitamins/vwheel_spacer.stl \
 	parts/vitamins/washer_M3.stl \
 	parts/vitamins/washer_M4.stl \
 	parts/vitamins/washer_M5.stl

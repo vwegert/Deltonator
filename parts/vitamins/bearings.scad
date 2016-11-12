@@ -37,3 +37,13 @@ module vslot_wheel(include_bearings = true) {
 			bearing(size = 625, suffix="RS");
 	}
 }
+
+/**
+ * Provides a pre-rendered eccentric spacer for the V-Wheel (only that this spacer isn't actually eccentric).
+ * The spacer is centered along the X axis with the hexagonal body extending into positive X, the inset into negative X.
+ */
+module vslot_wheel_spacer() {
+	bom_entry(section = "Bearings and Wheels", description = "Eccentric Spacer for V-Wheel", size = "");
+	color_hardware()
+		import(file = "vwheel_spacer.stl"); 
+}

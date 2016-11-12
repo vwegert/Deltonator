@@ -72,6 +72,15 @@ function makerslide_edge_resolution() = 64;
  */
 function makerslide_slot_offset() = 10;
 
+// ===== SCREWS, NUTS, BOLTS AND OTHER HARDWARE =======================================================================
+
+/**
+ * The thickness of washers of various dimensions.
+ */
+function washer_thickness_m3() = 0.5;
+function washer_thickness_m4() = 0.8;
+function washer_thickness_m5() = 1.0;
+
 // ===== VERTICAL AXIS NEMA 17 STEPPER MOTORS ==========================================================================
 
 /**
@@ -134,12 +143,24 @@ function bearing_625_bore_diameter() = 5;
 function bearing_625_outer_diameter() = 16;
 function bearing_625_width() = 5;
 
+/** 
+ * The dimensions of the eccentric spacer.
+ */
+function vwheel_spacer_hex_height() = 6;
+function vwheel_spacer_inset_height() = 2; // TODO validate this number
+function vwheel_spacer_total_height() = vwheel_spacer_hex_height() + vwheel_spacer_inset_height();
+function vwheel_spacer_hex_size() = 8; // the wrench size in mm
+function vwheel_spacer_inset_diameter() = 7.12; // TODO validate this number
+function vwheel_spacer_bore_diameter() = 5;
+
 /**
  * Some of the dimensions of a V-Wheel for the MakerSlide rails.
  */
 function vwheel_width() = 7.5;
 function vwheel_inner_bevel_width() = 1;
 function vwheel_bearing_inset() = (vwheel_width() - vwheel_inner_bevel_width()) / 2;
+function vwheel_assembly_thickness() = 2 * bearing_625_width() + 1; // the inner spacer is 1 mm thick
+function vwheel_assembly_overhang() = (bearing_625_width() + 0.5) - (vwheel_width() / 2); 
 
 /**
  * Some data to position the V-Wheels on the MakerSlide rails.
@@ -148,3 +169,7 @@ function vwheel_bearing_inset() = (vwheel_width() - vwheel_inner_bevel_width()) 
 function vwheel_pair_center_distance() = 64.6;
 function vwheel_depth_offset() = makerslide_base_depth();
 function vwheel_width_offset() = vwheel_pair_center_distance() / 2;
+
+function vwheel_max_mounting_hole_size() = 8; // TODO derive this from the excentrical nut size!
+
+
