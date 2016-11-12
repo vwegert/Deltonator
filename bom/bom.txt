@@ -11,6 +11,20 @@ V-Slot Extrusion
     horizontal_left_assembly                                                 (1)
     horizontal_right_assembly                                                (1)
 
+===== Bearings and Wheels =============================================================
+
+Ball Bearing
+  625RS........................................................................... 18
+    vertical_axis_assembly >> carriage_hardware >> vslot_wheel               (18)
+
+Eccentric Spacer for V-Wheel
+  ................................................................................ 3
+    vertical_axis_assembly >> carriage_hardware                              (3)
+
+V-Wheel for MakerSlide
+  ................................................................................ 9
+    vertical_axis_assembly >> carriage_hardware                              (9)
+
 ===== Electronic Components ===========================================================
 
 Stepper Motor
@@ -19,15 +33,27 @@ Stepper Motor
 
 ===== General Hardware ================================================================
 
+DIN 125A / ISO 7089 Washer
+  M3.............................................................................. 27
+    vertical_axis_assembly >> carriage_hardware                              (27)
+
 DIN 912 / ISO 4762 Hex Socket Head Cap Screw
   M3 x 6 mm....................................................................... 12
     vertical_axis_assembly >> motor_bracket_stepper_hardware                 (12)
   M5 x 12 mm...................................................................... 12
     vertical_axis_assembly >> foot_hardware                                  (6)
     vertical_axis_assembly >> motor_bracket_hardware                         (6)
+  M5 x 30 mm...................................................................... 6
+    vertical_axis_assembly >> carriage_hardware                              (6)
+  M5 x 35 mm...................................................................... 3
+    vertical_axis_assembly >> carriage_hardware                              (3)
   M5 x 8 mm....................................................................... 24
     vertical_axis_assembly >> foot_hardware                                  (18)
     vertical_axis_assembly >> motor_bracket_hardware                         (6)
+
+DIN 934 / ISO 4032 Hex Nut
+  M5.............................................................................. 9
+    vertical_axis_assembly >> carriage_hardware                              (9)
 
 T-Slot Nut
   M5.............................................................................. 36
@@ -35,6 +61,10 @@ T-Slot Nut
     vertical_axis_assembly >> motor_bracket_hardware                         (12)
 
 ===== Printed Parts ===================================================================
+
+Arm
+  Outer Carriage.................................................................. 3
+    vertical_axis_assembly                                                   (3)
 
 Frame
   Foot............................................................................ 3

@@ -28,7 +28,7 @@ endif
 #
 # default targets all and clean
 #
-all: assemblies printer bom # demos
+all: vitamins bom # assemblies printer
 
 clean:
 	$(RM) assemblies/*.deps
@@ -105,9 +105,9 @@ vitamins: \
 #
 # Rules to assemble the BOM
 #
-bom: printer/printer_default.stl bom/bom.txt
+bom: bom/bom.txt
 
-bom/bom_raw_data.echo: printer/printer_default.stl printer/printer_default.scad bom/bom.scad
+bom/bom_raw_data.echo: printer/printer_default.scad bom/bom.scad
 	$(OPENSCAD) -m make -o $@ -D WRITE_BOM=true printer/printer_default.scad 
 
 bom/bom.txt: bom/bom_raw_data.echo bom/make_bom.pl 

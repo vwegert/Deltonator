@@ -131,6 +131,7 @@ function gt2_belt_thickness_min() = gt2_belt_thickness_max() - gt2_belt_groove_d
  */
 function gt2_pulley_diameter() = 16;
 function gt2_pulley_depth() = 16;
+function gt2_pulley_base_depth() = 7.5;
 function gt2_pulley_inner_diameter_max() = 12.22;
 function gt2_pulley_inner_diameter_min() = gt2_pulley_inner_diameter_max() - gt2_belt_groove_depth();
 
