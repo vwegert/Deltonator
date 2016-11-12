@@ -79,6 +79,9 @@ assemblies: \
 vitamins: \
 	parts/vitamins/bearing_625.stl \
 	parts/vitamins/gt2_pulley_20t_5mm.stl \
+	parts/vitamins/nut_M3.stl \
+	parts/vitamins/nut_M4.stl \
+	parts/vitamins/nut_M5.stl \
 	parts/vitamins/screw_M3x6.stl \
 	parts/vitamins/screw_M5x8.stl \
 	parts/vitamins/screw_M5x12.stl \
