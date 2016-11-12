@@ -12,6 +12,7 @@
 use <../conf/derived_sizes.scad>
 use <../conf/part_sizes.scad>
 use <../parts/extrusions/makerslide.scad>
+use <../parts/printed/carriage.scad>
 use <../parts/printed/foot.scad>
 use <../parts/printed/motor_bracket.scad>
 use <../parts/vitamins/gt2.scad>
@@ -52,6 +53,13 @@ module _vertical_axis_assembly() {
 				gt2_belt_loop(length = _belt_length, 
 					inner_diameter_end2 = gt2_pulley_inner_diameter_min(), 
 					inner_diameter_end1 = gt2_pulley_inner_diameter_min());// bearing_f623zz_outer_diameter());
+
+	// TODO make the carriage position dynamic
+	_carriage_z = 250;
+	translate([carriage_x_offset(), 0, _carriage_z]) {
+		carriage();
+		carriage_hardware();
+	}
 
 
 }

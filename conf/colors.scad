@@ -31,6 +31,14 @@ module color_printed_inner_frame() {
 } 
 
 /**
+ * The color of the printed carriages.
+ */
+module color_printed_carriage() {
+	color("DodgerBlue")
+		children();
+} 
+
+/**
  * The color of the stock hardware parts like nuts, bolts and screws.
  */
 module color_hardware() {

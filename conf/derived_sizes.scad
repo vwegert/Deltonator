@@ -71,6 +71,58 @@ function motor_bracket_height() = FRAME_PART_BRACKET_HEIGHT;
 function motor_bracket_edge_radius() = 5;
 function motor_bracket_edge_resolution() = 16;
 
+/**
+ * The thickness of the carriage base plate.
+ */
+function carriage_plate_thickness() = CARRIAGE_PLATE_THICKNESS;
+
+/** 
+ * The width of the border around the holes in the carriage base plate that hold the V-Wheels. 
+ */
+function carriage_plate_border_width() = CARRIAGE_PLATE_BORDER_WIDTH; 
+
+/** 
+ * The horizontal and vertical distance of the center points of the carriage wheels.
+ */
+function carriage_wheel_distance_x() = vwheel_pair_center_distance(); // FIXED otherwise it won't fit the rail!
+function carriage_wheel_distance_y() = vwheel_pair_center_distance();
+
+/**
+ * The outer dimensions of the carriage base plate.
+ */
+function carriage_plate_width()  = carriage_wheel_distance_x() 
+                                 + vwheel_max_mounting_hole_size() 
+                                 + 2 * carriage_plate_border_width();
+function carriage_plate_height() = carriage_wheel_distance_y() 
+                                 + vwheel_max_mounting_hole_size() 
+                                 + 2 * carriage_plate_border_width();
+
+/**
+ * The outer corner radius and resolution of the carriage base plate.
+ */
+function carriage_plate_edge_radius() = 4;
+function carriage_plate_edge_resolution() = 16;
+
+/**
+ * The positions of the holes that the V-Wheels will be mounted on.
+ * Wheel 1 is the top left wheel, 2 is the bottom left one, 3 is the adjustable wheel on the right-hand side.
+ */
+function carriage_wheel1_y() = -vwheel_pair_center_distance()/2;
+function carriage_wheel1_z() = carriage_plate_height() - 
+                                (vwheel_max_mounting_hole_size()/2 + carriage_plate_border_width());
+function carriage_wheel2_y() = -vwheel_pair_center_distance()/2;
+function carriage_wheel2_z() = vwheel_max_mounting_hole_size()/2 + carriage_plate_border_width();
+function carriage_wheel3_y() = vwheel_pair_center_distance()/2;
+function carriage_wheel3_z() = carriage_plate_height() / 2;
+
+/**
+ * The sizes of the mounting holes: fixed wheels on the left-hand size, adjustable on the right-hand sizde.
+ */
+function carriage_wheel1_hole_diameter() = bearing_625_bore_diameter();
+function carriage_wheel2_hole_diameter() = bearing_625_bore_diameter();
+function carriage_wheel3_hole_diameter() = 8; // TODO adjust to the excenter size
+function carriage_wheel_hole_resolution() = 16;
+
 // ===== SCREWS, NUTS, BOLTS AND OTHER HARDWARE =======================================================================
 
 /**
@@ -145,4 +197,18 @@ function vmotor_z_offset() = motor_bracket_z_offset() + motor_bracket_height() /
  */
 function vmotor_gt2_pulley_rail_distance() = vmotor_rail_distance() - 2;
 function vmotor_gt2_belt_rail_distance() = vmotor_gt2_pulley_rail_distance() - gt2_pulley_depth() + 1;
+
+/**
+ * The inward offset of the carriage from the rail origin (+X in the vertical assembly).
+ */
+function carriage_x_offset() = washer_thickness_m5() + epsilon() + 
+		                       vwheel_assembly_thickness() / 2 + 
+		                       makerslide_base_depth();
+
+// ===== AUXILIARY FUNCTIONS ===========================================================================================
+
+/**
+ * A small value that can be added to or subtracted from edges to eliminate rendering artifacts.
+ */
+function epsilon() = 0.01;
 

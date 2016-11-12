@@ -37,3 +37,11 @@ FRAME_PART_HSLOT_DEPTH = 35;
 // The height of the bracket that holds the motor. WARNING: Increasing this might make it difficult to 
 // turn the screws that hold the motor.
 FRAME_PART_BRACKET_HEIGHT = 25;
+
+// The thickness of the carriage base plate. A thicker plate will make the carriage stiffer, but cost more
+// material to print and take away space from the working area.
+CARRIAGE_PLATE_THICKNESS = 6;
+
+// The width of the border around the holes in the carriage base plate that hold the V-Wheels. 
+CARRIAGE_PLATE_BORDER_WIDTH = 8;
+
