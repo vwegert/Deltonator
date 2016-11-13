@@ -7,14 +7,13 @@
  **
  **********************************************************************************************************************/
 
+include <../../conf/colors.scad>
+include <../../conf/derived_sizes.scad>
+include <../../conf/part_sizes.scad>
+
 use <../../bom/bom.scad>
-use <../../conf/colors.scad>
-use <../../conf/derived_sizes.scad>
-use <../../conf/part_sizes.scad>
 use <../../parts/extrusions/makerslide.scad>
-use <../../parts/vitamins/gt2.scad>
-use <../../parts/vitamins/screws.scad>
-use <../../parts/vitamins/steppers.scad>
+use <../../parts/vitamins/vitamins.scad>
 
 /**
  * The dimensions of the bracket part that fits onto the MakerSlide extrusion.
@@ -167,7 +166,7 @@ module motor_bracket(render = false) {
 module motor_bracket_stepper(with_pulley = true) {
 	translate([makerslide_depth() + vmotor_rail_distance(), 0, motor_bracket_height() / 2]) 
 		rotate([0, 0, 180])
-			stepper_medium(17);
+			stepper_medium(NEMA17);
 	if (with_pulley) {
 		translate([makerslide_depth() + vmotor_gt2_pulley_rail_distance(), 0, motor_bracket_height() / 2]) 
 			rotate([0, 0, 0])
@@ -181,24 +180,24 @@ module motor_bracket_stepper(with_pulley = true) {
 module motor_bracket_hardware() {
 	// vertical MakerSlide rail -- back 
 	translate([-frame_wall_thickness(), -makerslide_slot_offset(), _motor_bracket_screw_z()]) {
-		screw_m5(8);
-		nut_tslot_m5();
+		screw(size = M5, length = 8);
+		nut_tslot(M5);
 	}
 	translate([-frame_wall_thickness(), makerslide_slot_offset(), _motor_bracket_screw_z()]) {
-		screw_m5(8);
-		nut_tslot_m5();
+		screw(size = M5, length = 8);
+		nut_tslot(M5);
 	}
 	// vertical MakerSlide rail -- sides
 	_side_screw_y = makerslide_width() / 2 + frame_wall_thickness();
 	translate([makerslide_slot_offset(), _side_screw_y, _motor_bracket_screw_z()]) 
 		rotate([0, 0, -90]) {
-			screw_m5(12);
-			nut_tslot_m5();
+			screw(size = M5, length = 12);
+			nut_tslot(M5);
 		}
 	translate([makerslide_slot_offset(), -_side_screw_y, _motor_bracket_screw_z()]) 
 		rotate([0, 0, 90]) {
-			screw_m5(12);
-			nut_tslot_m5();
+			screw(size = M5, length = 12);
+			nut_tslot(M5);
 		}
 }
 
@@ -208,13 +207,13 @@ module motor_bracket_hardware() {
 module motor_bracket_stepper_hardware() {
 	translate([_motor_bracket_plate_x(), _motor_bracket_plate_y(), _motor_bracket_plate_z()]) {
 		translate([0, _motor_bracket_plate_screw_dist_y(), _motor_bracket_plate_screw_dist_z()])
-			screw_m3(6);
+			screw(size = M3, length = 6);
 		translate([0, vmotor_width() - _motor_bracket_plate_screw_dist_y(), _motor_bracket_plate_screw_dist_z()])
-			screw_m3(6);
+			screw(size = M3, length = 6);
 		translate([0, _motor_bracket_plate_screw_dist_y(), vmotor_height() - _motor_bracket_plate_screw_dist_z()])
-			screw_m3(6);
+			screw(size = M3, length = 6);
 		translate([0, vmotor_width() - _motor_bracket_plate_screw_dist_y(), vmotor_height() - _motor_bracket_plate_screw_dist_z()])
-			screw_m3(6);
+			screw(size = M3, length = 6);
 	}
 }
 

@@ -9,13 +9,15 @@
  **
  **********************************************************************************************************************/
 
-use <../conf/derived_sizes.scad>
-use <../conf/part_sizes.scad>
+include <../conf/colors.scad>
+include <../conf/derived_sizes.scad>
+include <../conf/part_sizes.scad>
+
 use <../parts/extrusions/makerslide.scad>
 use <../parts/printed/carriage.scad>
 use <../parts/printed/foot.scad>
 use <../parts/printed/motor_bracket.scad>
-use <../parts/vitamins/gt2.scad>
+use <../parts/vitamins/vitamins.scad>
 
 /**
  * Provides access to the assembly.

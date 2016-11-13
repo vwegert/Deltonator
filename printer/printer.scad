@@ -7,7 +7,10 @@
  **
  **********************************************************************************************************************/
 
-use <../conf/derived_sizes.scad>
+include <../conf/colors.scad>
+include <../conf/derived_sizes.scad>
+include <../conf/part_sizes.scad>
+
 use <../assemblies/vertical_axis.scad>
 use <../assemblies/horizontal_front.scad>
 use <../assemblies/horizontal_left.scad>

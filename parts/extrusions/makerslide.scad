@@ -8,10 +8,11 @@
  **
  **********************************************************************************************************************/
 
+include <../../conf/colors.scad>
+include <../../conf/derived_sizes.scad>
+include <../../conf/part_sizes.scad>
+
 use <../../bom/bom.scad>
-use <../../conf/colors.scad>
-use <../../conf/derived_sizes.scad>
-use <../../conf/part_sizes.scad>
 
 /**
  * Provides the pre-rendered main vertical rail.

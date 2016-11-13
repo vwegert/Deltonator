@@ -6,14 +6,14 @@
  **
  **********************************************************************************************************************/
 
+include <../../conf/colors.scad>
+include <../../conf/derived_sizes.scad>
+include <../../conf/part_sizes.scad>
+
 use <../../bom/bom.scad>
-use <../../conf/colors.scad>
-use <../../conf/derived_sizes.scad>
-use <../../conf/part_sizes.scad>
 use <../../parts/extrusions/makerslide.scad>
 use <../../parts/extrusions/vslot_2020.scad>
-use <../../parts/vitamins/screws.scad>
-use <../../parts/vitamins/steppers.scad>
+use <../../parts/vitamins/vitamins.scad>
 
 // The dimensions of the horizontal parts that hold the V-Slot extrusions.
 function _foot_horizontal_height() = vslot_2020_depth() + frame_wall_thickness();
@@ -65,14 +65,14 @@ module _foot_horizontal_leg_hardware(right = false) {
 	// inner screw
 	translate([_screw_x, right ? _foot_horizontal_width() : 0, vslot_2020_depth()/2])
 		rotate([0, 0, right ? -90 : 90]) {
-			screw_m5(8);
-			nut_tslot_m5();
+			screw(size = M5, length = 8);
+			nut_tslot(M5);
 		}
 	// top screw
 	translate([_screw_x, vslot_2020_depth()/2 + (right ? 0 : frame_wall_thickness()), _foot_horizontal_height()])
 		rotate([0, 90, 0]) {
-			screw_m5(8);
-			nut_tslot_m5();
+			screw(size = M5, length = 8);
+			nut_tslot(M5);
 		}
 }
 
@@ -149,25 +149,25 @@ module foot_hardware() {
 
 	// vertical MakerSlide rail -- back 
 	translate([-frame_wall_thickness(), -makerslide_slot_offset(), _foot_vertical_back_screw_height()]) {
-		screw_m5(8);
-		nut_tslot_m5();
+		screw(size = M5, length = 8);
+		nut_tslot(M5);
 	}
 	translate([-frame_wall_thickness(), makerslide_slot_offset(), _foot_vertical_back_screw_height()]) {
-		screw_m5(8);
-		nut_tslot_m5();
+		screw(size = M5, length = 8);
+		nut_tslot(M5);
 	}
 
 	// vertical MakerSlide rail -- sides
 	_side_screw_y = _foot_vertical_side_screw_y_offset();
 	translate([makerslide_slot_offset(), _side_screw_y, _foot_vertical_side_screw_height()]) 
 		rotate([0, 0, -90]) {
-			screw_m5(12);
-			nut_tslot_m5();
+			screw(size = M5, length = 12);
+			nut_tslot(M5);
 		}
 	translate([makerslide_slot_offset(), -_side_screw_y, _foot_vertical_side_screw_height()]) 
 		rotate([0, 0, 90]) {
-			screw_m5(12);
-			nut_tslot_m5();
+			screw(size = M5, length = 12);
+			nut_tslot(M5);
 		}
 
 	// left horizontal leg

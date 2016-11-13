@@ -7,6 +7,16 @@
  **
  **********************************************************************************************************************/
 
+// ===== ALIAS CONSTANTS FOR VARIOUS SIZES =============================================================================
+
+M3 = 3;
+M4 = 4;
+M5 = 5;
+
+NEMA14 = 14;
+NEMA17 = 17;
+NEMA23 = 23;
+
 // ===== parts/extrusions/vslot_2020.scad ==============================================================================
 
 // The dimensions were taken from the file vslot_2020_dimensions.jpg.
@@ -80,6 +90,13 @@ function makerslide_slot_offset() = 10;
 function washer_thickness_m3() = 0.5;
 function washer_thickness_m4() = 0.8;
 function washer_thickness_m5() = 1.0;
+
+/**
+ * The thickness of washers of various dimensions.
+ */
+function nut_thickness_m3() = 2.4;
+function nut_thickness_m4() = 3.2;
+function nut_thickness_m5() = 4.7;
 
 // ===== VERTICAL AXIS NEMA 17 STEPPER MOTORS ==========================================================================
 

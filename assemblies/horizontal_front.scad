@@ -8,8 +8,10 @@
  **
  **********************************************************************************************************************/
 
-use <../conf/derived_sizes.scad>
-use <../conf/part_sizes.scad>
+include <../conf/colors.scad>
+include <../conf/derived_sizes.scad>
+include <../conf/part_sizes.scad>
+
 use <../parts/extrusions/vslot_2020.scad>
 
 /**

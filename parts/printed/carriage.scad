@@ -6,14 +6,13 @@
  **
  **********************************************************************************************************************/
 
+include <../../conf/colors.scad>
+include <../../conf/derived_sizes.scad>
+include <../../conf/part_sizes.scad>
+
 use <../../bom/bom.scad>
-use <../../conf/colors.scad>
-use <../../conf/derived_sizes.scad>
-use <../../conf/part_sizes.scad>
 use <../../parts/extrusions/makerslide.scad>
-use <../../parts/vitamins/bearings.scad>
-use <../../parts/vitamins/screws.scad>
-use <../../parts/vitamins/washers.scad>
+use <../../parts/vitamins/vitamins.scad>
 
 /**
  * Renders the lower part of the base plate of the carriage that holds the wheels.
@@ -126,10 +125,10 @@ module carriage() {
 module _carriage_hardware_fixed_wheel() {
 	// washer on the inner side (facing away from the rail)
 	translate([carriage_plate_thickness() + epsilon(), 0, 0])
-		washer_m5();
+		washer(M5);
 	// washer between the plate and the wheel
 	translate([-(washer_thickness_m5() + epsilon()), 0, 0])
-		washer_m5();
+		washer(M5);
 	// wheel assembly
 	_vwheel_x = -(washer_thickness_m5() + epsilon() + 
 		          vwheel_assembly_thickness() - vwheel_assembly_overhang() + epsilon()); 
@@ -138,16 +137,20 @@ module _carriage_hardware_fixed_wheel() {
 	// washer on the outer side of the wheel
 	_outer_washer_x = _vwheel_x - vwheel_assembly_overhang() - epsilon() - washer_thickness_m5();
 	translate([_outer_washer_x, 0, 0])
-		washer_m5();
+		washer(M5);
 	// screw
+	_screw_min_length = 3 * washer_thickness_m5() + carriage_plate_thickness() + 
+	                    vwheel_assembly_thickness() + nut_thickness_m5();
+	_screw_max_length = 2 * washer_thickness_m5() + carriage_plate_thickness() + 
+	                    vwheel_assembly_thickness()/2 + makerslide_base_depth();
 	translate([carriage_plate_thickness() + epsilon() + washer_thickness_m5() + epsilon(), 0, 0])
 		rotate([0, 180, 0])
-			screw_m5(30); // TODO make the length dynamic - depends on the plate thickness!
+			screw(size = M5, min_length = _screw_min_length, max_length = _screw_max_length); 
 	// nut
 	_nut_x = _outer_washer_x - epsilon();
 	translate([_nut_x, 0, 0])
 		rotate([0, 180, 0])
-			nut_m5();
+			nut(M5);
 }
 
 /**
@@ -160,10 +163,10 @@ module _carriage_hardware_adjustable_wheel() {
 	// washer between the screw and the spacer
 	_inner_washer_x = carriage_plate_thickness() + epsilon() + vwheel_spacer_hex_height() + epsilon();
 	translate([_inner_washer_x, 0, 0])
-		washer_m5();
+		washer(M5);
 	// washer between the plate and the wheel
 	translate([-(washer_thickness_m5() + epsilon()), 0, 0])
-		washer_m5();
+		washer(M5);
 	// wheel assembly
 	_vwheel_x = -(washer_thickness_m5() + epsilon() + 
 		          vwheel_assembly_thickness() - vwheel_assembly_overhang() + epsilon()); 
@@ -172,16 +175,20 @@ module _carriage_hardware_adjustable_wheel() {
 	// washer on the outer side of the wheel
 	_outer_washer_x = _vwheel_x - vwheel_assembly_overhang() - epsilon() - washer_thickness_m5();
 	translate([_outer_washer_x, 0, 0])
-		washer_m5();
+		washer(M5);
 	// screw
+	_screw_min_length = 3 * washer_thickness_m5() + vwheel_spacer_hex_height() + carriage_plate_thickness() + 
+	                    vwheel_assembly_thickness() + nut_thickness_m5();
+	_screw_max_length = 2 * washer_thickness_m5() + vwheel_spacer_hex_height() + carriage_plate_thickness() +
+					    vwheel_assembly_thickness()/2 + makerslide_base_depth();
 	translate([_inner_washer_x + epsilon() + washer_thickness_m5() + epsilon(), 0, 0])
 		rotate([0, 180, 0])
-			screw_m5(35); // TODO make the length dynamic - depends on the plate thickness!
+			screw(size = M5, min_length = _screw_min_length, max_length = _screw_max_length); 
 	// nut
 	_nut_x = _outer_washer_x - epsilon();
 	translate([_nut_x, 0, 0])
 		rotate([0, 180, 0])
-			nut_m5();
+			nut(M5);
 }
 
 /** 

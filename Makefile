@@ -28,7 +28,7 @@ endif
 #
 # default targets all and clean
 #
-all: vitamins bom # assemblies printer
+all: extrusions vitamins printed bom # assemblies printer
 
 clean:
 	$(RM) assemblies/*.deps
@@ -62,16 +62,32 @@ include $(wildcard printer/*.deps)
 #
 # Rule to build the printer model.
 #
-printer: printer/printer_default.stl
+printer: assemblies \
+	printer/printer_default.stl
 
 #
 # Rule to build the assemblies
 #
-assemblies: \
+assemblies: printed vitamins \
 	assemblies/vertical_axis.stl \
 	assemblies/horizontal_front.stl \
 	assemblies/horizontal_left.stl \
 	assemblies/horizontal_right.stl
+
+#
+# Rule to build the printed parts
+#
+printed: vitamins \
+	parts/printed/carriage.stl \
+	parts/printed/foot.stl \
+	parts/printed/motor_bracket.stl
+
+#
+# Rule to build the extruded parts
+#
+extrusions: \
+	parts/extrusions/makerslide_rail.stl \
+	parts/extrusions/vslot_2020_side.stl
 
 #
 # Rules to buld the parts provided by the external libraries
@@ -83,10 +99,31 @@ vitamins: \
 	parts/vitamins/nut_M4.stl \
 	parts/vitamins/nut_M5.stl \
 	parts/vitamins/screw_M3x6.stl \
+	parts/vitamins/screw_M3x8.stl \
+	parts/vitamins/screw_M3x10.stl \
+	parts/vitamins/screw_M3x12.stl \
+	parts/vitamins/screw_M3x16.stl \
+	parts/vitamins/screw_M3x20.stl \
+	parts/vitamins/screw_M4x8.stl \
+	parts/vitamins/screw_M4x10.stl \
+	parts/vitamins/screw_M4x12.stl \
+	parts/vitamins/screw_M4x16.stl \
+	parts/vitamins/screw_M4x20.stl \
+	parts/vitamins/screw_M4x25.stl \
+	parts/vitamins/screw_M4x30.stl \
+	parts/vitamins/screw_M4x35.stl \
 	parts/vitamins/screw_M5x8.stl \
+	parts/vitamins/screw_M5x10.stl \
 	parts/vitamins/screw_M5x12.stl \
+	parts/vitamins/screw_M5x16.stl \
+	parts/vitamins/screw_M5x20.stl \
+	parts/vitamins/screw_M5x25.stl \
 	parts/vitamins/screw_M5x30.stl \
 	parts/vitamins/screw_M5x35.stl \
+	parts/vitamins/screw_M5x40.stl \
+	parts/vitamins/screw_M5x45.stl \
+	parts/vitamins/screw_M5x55.stl \
+	parts/vitamins/screw_M5x65.stl \
 	parts/vitamins/stepper_nema14_long.stl \
 	parts/vitamins/stepper_nema14_medium.stl \
 	parts/vitamins/stepper_nema14_short.stl \
@@ -105,7 +142,7 @@ vitamins: \
 #
 # Rules to assemble the BOM
 #
-bom: bom/bom.txt
+bom: bom/bom.txt printed
 
 bom/bom_raw_data.echo: printer/printer_default.scad bom/bom.scad
 	$(OPENSCAD) -m make -o $@ -D WRITE_BOM=true printer/printer_default.scad 

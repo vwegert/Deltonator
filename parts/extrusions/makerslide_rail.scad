@@ -7,7 +7,9 @@
  **
  **********************************************************************************************************************/
 
-use <../../conf/derived_sizes.scad>
+include <../../conf/colors.scad>
+include <../../conf/derived_sizes.scad>
+include <../../conf/part_sizes.scad>
 
 // pre-render the main MakerSlide rails into an STL file for later use
 linear_extrude(height = vertical_extrusion_length(), center = false, convexity = 10)

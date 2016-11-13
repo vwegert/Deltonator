@@ -7,8 +7,10 @@
  **
  **********************************************************************************************************************/
 
-use <../../conf/part_sizes.scad>
-use <../../conf/derived_sizes.scad>
+include <../../conf/colors.scad>
+include <../../conf/derived_sizes.scad>
+include <../../conf/part_sizes.scad>
+
 use <vslot_2020.scad>
 
 // pre-render the side V-Slot extrusion into an STL file for later use
