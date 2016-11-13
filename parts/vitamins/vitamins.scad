@@ -123,6 +123,30 @@ module nut_tslot(size) {
 	}
 }
 
+// ===== parts/vitamins/insert_*.* ====================================================================================
+
+/**
+ * Provides the pre-rendered threaded insert.
+ * The insert is centered along the X axis with the body extending into positive X.
+ */
+module insert(size, length) {
+	_size = (size == M3) ? 3 : -1;
+	if (_size < 0) {
+		echo(str("ERROR: Unknown threaded insert size '", size, "'."));
+	} else {
+		_length = (length == 7) ? 7 : -1;
+		if (_size < 0) {
+			echo(str("ERROR: Unknown threaded insert length '", length, "'."));
+		} else {
+			bom_entry(section = "General Hardware", 
+				description = "Threaded Insert", 
+				size = str("M", _size, " x ", _length, " mm"));
+			color_hardware()
+				import(file = str("insert_M", _size, "x", _length, ".stl")); 
+		}
+	}
+}
+
 // ===== parts/vitamins/screw_*.* =====================================================================================
 
 /**
@@ -357,12 +381,26 @@ module washer(size) {
 	        (size == M4) ? 4 :
 	        (size == M5) ? 5 : -1;
 	if (_size < 0) {
-		echo(str("ERROR: Unknown screw size '", size, "'."));
+		echo(str("ERROR: Unknown washer size '", size, "'."));
 	} else {
 		bom_entry(section = "General Hardware", 
 			description = "Washer (DIN 125A / ISO 7089)", 
 			size = str("M", _size));
 		color_hardware()
 			import(file = str("washer_M", _size, ".stl")); 
+	}
+}
+module washer_large(size) {
+	_size = (size == M3) ? 3 :
+	        (size == M4) ? 4 :
+	        (size == M5) ? 5 : -1;
+	if (_size < 0) {
+		echo(str("ERROR: Unknown washer size '", size, "'."));
+	} else {
+		bom_entry(section = "General Hardware", 
+			description = "Large Washer (DIN 9021 / ISO 7093)", 
+			size = str("M", _size));
+		color_hardware()
+			import(file = str("washer_large_M", _size, ".stl")); 
 	}
 }

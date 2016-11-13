@@ -90,6 +90,9 @@ function makerslide_slot_offset() = 10;
 function washer_thickness_m3() = 0.5;
 function washer_thickness_m4() = 0.8;
 function washer_thickness_m5() = 1.0;
+function washer_thickness_large_m3() = 0.8;
+function washer_thickness_large_m4() = 1.0;
+function washer_thickness_large_m5() = 1.2;
 
 /**
  * The thickness of washers of various dimensions.
@@ -97,6 +100,12 @@ function washer_thickness_m5() = 1.0;
 function nut_thickness_m3() = 2.4;
 function nut_thickness_m4() = 3.2;
 function nut_thickness_m5() = 4.7;
+
+/**
+ * The dimensions of a threaded insert, M3x7mm.
+ */
+function insert_outer_diameter_m3() = 5.0; // TODO validate this value
+function insert_inner_diameter_m3() = 3.0;
 
 // ===== VERTICAL AXIS NEMA 17 STEPPER MOTORS ==========================================================================
 

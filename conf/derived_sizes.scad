@@ -123,6 +123,45 @@ function carriage_wheel2_hole_diameter() = bearing_625_bore_diameter();
 function carriage_wheel3_hole_diameter() = 8; // TODO adjust to the excenter size
 function carriage_wheel_hole_resolution() = 16;
 
+/** 
+ * The dimensions of the set of blocks on the carriage that hold the belt.
+ */
+function carriage_belt_holder_depth() = 7.0; // gt2_belt_width() + 1
+function carriage_belt_holder_height() = 25;
+function carriage_belt_holder_width() = 35;
+function carriage_belt_holder_center_offset() = 7.5;
+function carriage_belt_holder_outer_width() = 6;
+function carriage_belt_holder_channel_height() = 15;
+function carriage_belt_holder_channel_width() = 2.5;
+function carriage_belt_holder_path_width() = 1.75;
+function carriage_belt_holder_center_height() = 10;
+function carriage_belt_holder_edge_radius() = 2;
+function carriage_belt_holder_small_edge_radius() = 0.2;
+function carriage_belt_holder_edge_resolution() = 16;
+
+function carriage_lower_belt_holder_z() = carriage_plate_height()/2 - 
+                                          carriage_belt_holder_height() - 
+                                          carriage_belt_holder_center_offset();
+function carriage_upper_belt_holder_z() = carriage_plate_height()/2 +
+                                          carriage_belt_holder_height() +
+                                          carriage_belt_holder_center_offset();
+
+/**
+ * The location and dimension of the threaded insert to lock the belt in the carriage holder.
+ * The position is relative to the origin of the result of carriage_belt_holder().
+ */
+function carriage_belt_holder_insert_hole_diameter() = 5.0;
+function carriage_belt_holder_insert_hole_distance() = 0.5;
+function carriage_belt_holder_insert_x() = -carriage_belt_holder_channel_width() / 2 -
+                                           carriage_belt_holder_insert_hole_distance() - 
+                                           carriage_belt_holder_insert_hole_diameter() / 2;
+function carriage_belt_holder_insert_y() = carriage_belt_holder_height() - 
+                                           carriage_belt_holder_path_width() - 
+                                           carriage_belt_holder_center_height()-
+                                           carriage_belt_holder_path_width() - 
+                                           carriage_belt_holder_insert_hole_distance() - 
+                                           carriage_belt_holder_insert_hole_diameter() / 2;
+
 // ===== SCREWS, NUTS, BOLTS AND OTHER HARDWARE =======================================================================
 
 /**
@@ -185,18 +224,28 @@ function motor_bracket_z_offset() = vertical_recess_depth();
  * The nominal length of the axis is 24 mm. The value of frame_wall_thickness() (default 3mm) is irrelevant here 
  * because it applies to both the inner wall of the bracket and the motor mounting plate in the same direction.
  */
-function vmotor_rail_distance() = vmotor_shaft_length();
+function vmotor_rail_distance() = 30; // must be greater than vmotor_shaft_length();
 
 /**
  * The height at which the motor is mounted. 
  */
 function vmotor_z_offset() = motor_bracket_z_offset() + motor_bracket_height() / 2;
 
+/**
+ * Whether to place the pulley bevel-first on the motor (false) or gear-first (false).
+ */
+function vmotor_gt2_pulley_reversed() = false; 
+
 /** 
  * The distance of the pulleys and belts from the inward face of the vertical MakerSlide extrusion.
  */
-function vmotor_gt2_pulley_rail_distance() = vmotor_rail_distance() - 3 - gt2_pulley_depth();
-function vmotor_gt2_belt_rail_distance() = vmotor_gt2_pulley_rail_distance() + gt2_pulley_base_depth() + 1;
+function vmotor_gt2_pulley_rail_distance() = vmotor_gt2_pulley_reversed() ?
+  vmotor_rail_distance() - 3 - gt2_pulley_depth() : // reversed
+  vmotor_rail_distance() - 4.5; // normal
+
+function vmotor_gt2_belt_rail_distance() = vmotor_gt2_pulley_reversed() ?
+  vmotor_gt2_pulley_rail_distance() + gt2_pulley_base_depth() + 1.5 : // reversed
+  vmotor_gt2_pulley_rail_distance() - gt2_pulley_base_depth() - gt2_belt_width() - 1.5; // normal
 
 /**
  * The inward offset of the carriage from the rail origin (+X in the vertical assembly).

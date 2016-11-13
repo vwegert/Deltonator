@@ -38,7 +38,8 @@ Hex Nut (DIN 934 / ISO 4032)
     vertical_axis_assembly >> carriage_hardware                              (9)
 
 Hex Socket Head Cap Screw (DIN 912 / ISO 4762)
-  M3 x 6 mm....................................................................... 12
+  M3 x 6 mm....................................................................... 18
+    vertical_axis_assembly >> carriage_hardware >> screw                     (6)
     vertical_axis_assembly >> motor_bracket_stepper_hardware >> screw        (12)
   M5 x 12 mm...................................................................... 12
     vertical_axis_assembly >> foot_hardware >> screw                         (6)
@@ -51,10 +52,18 @@ Hex Socket Head Cap Screw (DIN 912 / ISO 4762)
     vertical_axis_assembly >> foot_hardware >> screw                         (18)
     vertical_axis_assembly >> motor_bracket_hardware >> screw                (6)
 
+Large Washer (DIN 9021 / ISO 7093)
+  M3.............................................................................. 6
+    vertical_axis_assembly >> carriage_hardware                              (6)
+
 T-Slot Nut
   M5.............................................................................. 36
     vertical_axis_assembly >> foot_hardware                                  (24)
     vertical_axis_assembly >> motor_bracket_hardware                         (12)
+
+Threaded Insert
+  M3 x 7 mm....................................................................... 6
+    vertical_axis_assembly >> carriage_hardware                              (6)
 
 Washer (DIN 125A / ISO 7089)
   M5.............................................................................. 27

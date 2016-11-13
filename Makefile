@@ -95,6 +95,7 @@ extrusions: \
 vitamins: \
 	parts/vitamins/bearing_625.stl \
 	parts/vitamins/gt2_pulley_20t_5mm.stl \
+	parts/vitamins/insert_M3x7.stl \
 	parts/vitamins/nut_M3.stl \
 	parts/vitamins/nut_M4.stl \
 	parts/vitamins/nut_M5.stl \
@@ -137,7 +138,10 @@ vitamins: \
 	parts/vitamins/vwheel_spacer.stl \
 	parts/vitamins/washer_M3.stl \
 	parts/vitamins/washer_M4.stl \
-	parts/vitamins/washer_M5.stl
+	parts/vitamins/washer_M5.stl \
+	parts/vitamins/washer_large_M3.stl \
+	parts/vitamins/washer_large_M4.stl \
+	parts/vitamins/washer_large_M5.stl
 
 #
 # Rules to assemble the BOM

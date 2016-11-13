@@ -169,7 +169,7 @@ module motor_bracket_stepper(with_pulley = true) {
 			stepper_medium(NEMA17);
 	if (with_pulley) {
 		translate([makerslide_depth() + vmotor_gt2_pulley_rail_distance(), 0, motor_bracket_height() / 2]) 
-			rotate([0, 0, 0])
+			rotate([0, 0, vmotor_gt2_pulley_reversed() ? 0 : 180])
 				gt2_pulley_20t_5mm();
 	}
 }
