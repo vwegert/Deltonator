@@ -106,6 +106,23 @@ module nut(size) {
 }
 
 /**
+ * Provides a pre-rendered nut shaped used to form a recess.
+ * The nut is centered along the X axis with the thread extending into positive X.
+ * This is similar to nut(size), the only difference being that the nut will not be colored and counted in the BOM.
+ */
+module nut_recess(size) {
+	_size = (size == M3) ? 3 :
+	        (size == M4) ? 4 :
+	        (size == M5) ? 5 : -1;
+	if (_size < 0) {
+		echo(str("ERROR: Unknown nut size '", size, "'."));
+	} else {
+		color_punch()
+			import(file = str("nut_M", _size, ".stl")); 
+	}
+}
+
+/**
  * Provides a pre-rendered T-slot nut.
  * Well, actually it doesn't. We can live without it since in most cases the nut will be hidden by some
  * frame part. What this module does, however, is create a 
@@ -189,7 +206,9 @@ module _screw_exact_length(size, length) {
 				(length == 20) ? 20 :
 				(length == 25) ? 25 :
 				(length == 30) ? 30 :
-				(length == 35) ? 35 : -1
+				(length == 35) ? 35 : 
+				(length == 45) ? 45 :
+				(length == 55) ? 55 : -1
 	        : (size == M5) ?
 				(length ==  8) ?  8 :
 				(length == 10) ? 10 :
@@ -226,8 +245,9 @@ module _screw_min_length(size, min_length) {
 				(min_length <= 16) ? 16 :
 				(min_length <= 20) ? 20 :
 				(min_length <= 25) ? 25 :
-				(min_length <= 30) ? 30 :
-				(min_length <= 35) ? 35 : -1
+				(min_length == 35) ? 35 : 
+				(min_length == 45) ? 45 :
+				(min_length == 55) ? 55 : -1
 	        : (size == M5) ? 
 				(min_length <=  8) ?  8 :
 				(min_length <= 10) ? 10 :
@@ -265,7 +285,9 @@ module _screw_ranged_length(size, min_length, max_length) {
 				(min_length <= 20) ? 20 :
 				(min_length <= 25) ? 25 :
 				(min_length <= 30) ? 30 :
-				(min_length <= 35) ? 35 : -1
+				(min_length == 35) ? 35 : 
+				(min_length == 45) ? 45 :
+				(min_length == 55) ? 55 : -1
 	        : (size == M5) ? 
 				(min_length <=  8) ?  8 :
 				(min_length <= 10) ? 10 :
