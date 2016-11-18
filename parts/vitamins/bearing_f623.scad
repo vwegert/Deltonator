@@ -11,7 +11,7 @@
 
 $fn = 96;
 rotate([0, 90, 0]) 
- 		rotate_extrude($fn = bearing_resolution())
+	rotate_extrude()
 		rotate([0, 0, 90])
 		  	polygon(points = [
 				[ 0.00, 1.50],
