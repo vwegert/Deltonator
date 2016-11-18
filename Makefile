@@ -28,7 +28,7 @@ endif
 #
 # default targets all and clean
 #
-all: extrusions vitamins printed bom # assemblies printer
+all: extrusions vitamins printed bom bom-clean # assemblies printer
 
 clean:
 	$(RM) assemblies/*.deps
@@ -146,13 +146,16 @@ vitamins: \
 #
 # Rules to assemble the BOM
 #
-bom: bom/bom.txt printed
+bom: printed bom-clean bom/bom.txt 
 
 bom/bom_raw_data.echo: printer/printer_default.scad bom/bom.scad
 	$(OPENSCAD) -m make -o $@ -D WRITE_BOM=true printer/printer_default.scad 
 
 bom/bom.txt: bom/bom_raw_data.echo bom/make_bom.pl 
 	$(PERL) bom/make_bom.pl < $< > $@
+
+bom-clean:
+	$(RM) bom/bom.txt bom/bom_raw_data.echo
 
 # 
 # Rules to fetch external libraries.
