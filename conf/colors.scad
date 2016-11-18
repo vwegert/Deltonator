@@ -39,6 +39,14 @@ module color_printed_carriage() {
 } 
 
 /**
+ * The color of the printed tensioners.
+ */
+module color_printed_tensioner() {
+	color("PowderBlue")
+		children();
+} 
+
+/**
  * The color of the stock hardware parts like nuts, bolts and screws.
  */
 module color_hardware() {

@@ -162,6 +162,16 @@ function carriage_belt_holder_insert_y() = carriage_belt_holder_height() -
                                            carriage_belt_holder_insert_hole_distance() - 
                                            carriage_belt_holder_insert_hole_diameter() / 2;
 
+/**
+ * The dimensions of the tensioners that hold the upper end of the belt.
+ */
+function tensioner_idler_gap_depth() = 2 * bearing_f623_width() + 2 * washer_thickness(M3);
+function tensioner_flange_width() = 2;
+function tensioner_separator_thickness() = 2; 
+function tensioner_vertical_screw_length() = 35;
+function tensioner_depth() = tensioner_idler_gap_depth() + 2 * frame_wall_thickness();
+function tensioner_width() = bearing_f623_flange_diameter() + 2 * tensioner_flange_width();
+
 // ===== SCREWS, NUTS, BOLTS AND OTHER HARDWARE =======================================================================
 
 /**

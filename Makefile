@@ -80,8 +80,8 @@ assemblies: printed vitamins \
 printed: vitamins \
 	parts/printed/carriage.stl \
 	parts/printed/foot.stl \
-	parts/printed/motor_bracket.stl 
-#	parts/printed/tensioner.stl
+	parts/printed/motor_bracket.stl \
+	parts/printed/tensioner.stl
 
 #
 # Rule to build the extruded parts
