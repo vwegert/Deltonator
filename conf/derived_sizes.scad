@@ -178,13 +178,13 @@ function tensioner_width() = bearing_f623_flange_diameter() + 2 * tensioner_flan
  * The diameter of the screws used to assemble the frame. Not configurable because that would introduce weird 
  * dependency tracing issues with the rendered screws.
  */
-function frame_screw_size() = 5;
+function frame_screw_size() = M4;
 
 /**
  * The diameter of the heads of the screws used to assemble the frame. Actually, this is the size of the inset flange.
 * The screw head of a M5 hex screw is 8.5 mm in diameter, so 10 mm should leave enough clearance.
  */
-function frame_screw_head_size() = 10;
+function frame_screw_head_size() = washer_diameter(frame_screw_size() + 1);
 
 /**
  * The rendering resolution of the screw holes. Not configurable at the moment.

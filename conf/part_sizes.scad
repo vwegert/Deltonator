@@ -85,7 +85,7 @@ function makerslide_slot_offset() = 10;
 // ===== SCREWS, NUTS, BOLTS AND OTHER HARDWARE =======================================================================
 
 /**
- * The thickness of washers of various dimensions.
+ * The thickness of washers of various dimensions (normal = ISO 7089, large = ISO 7093)
  */
 function washer_thickness(size = M4) =
 			(size == M3) ? 0.5 :
@@ -95,6 +95,18 @@ function washer_thickness_large(size = M4) =
 			(size == M3) ? 0.8 :
 	        (size == M4) ? 1.0 :
 	        (size == M5) ? 1.2 : -1;	
+
+/**
+ * The diameter of washers of various dimensions (normal = ISO 7089, large = ISO 7093)
+ */
+function washer_diameter(size = M4) =
+			(size == M3) ?  7 :
+	        (size == M4) ?  9 :
+	        (size == M5) ? 10 : -1;	
+function washer_diameter_large(size = M4) =
+			(size == M3) ?  9 :
+	        (size == M4) ? 12 :
+	        (size == M5) ? 15 : -1;	
 
 /**
  * The thickness of nuts of various dimensions.

@@ -63,16 +63,34 @@ module _foot_horizontal_leg(right = false) {
 module _foot_horizontal_leg_hardware(right = false) { 
 	_screw_x = _foot_horizontal_depth()-horizontal_screw_distance();
 	// inner screw
-	translate([_screw_x, right ? _foot_horizontal_width() : 0, vslot_2020_depth()/2])
+	translate([_screw_x, 
+		       right ? _foot_horizontal_width() + epsilon() + washer_thickness(M4) 
+		             : -epsilon() - washer_thickness(M4), 
+		       vslot_2020_depth()/2])
 		rotate([0, 0, right ? -90 : 90]) {
-			screw(size = M5, length = 8);
-			nut_tslot(M5);
+			washer(M4);
+		}
+	translate([_screw_x, 
+		       right ? _foot_horizontal_width() + epsilon() + washer_thickness(M4) + epsilon() 
+		             : -epsilon() - washer_thickness(M4) - epsilon(), 
+		       vslot_2020_depth()/2])
+		rotate([0, 0, right ? -90 : 90]) {
+			screw(size = M4, length = 8);
+			nut_tslot(M4);
 		}
 	// top screw
-	translate([_screw_x, vslot_2020_depth()/2 + (right ? 0 : frame_wall_thickness()), _foot_horizontal_height()])
+	translate([_screw_x, 
+		       vslot_2020_depth()/2 + (right ? 0 : frame_wall_thickness()), 
+		       _foot_horizontal_height() + epsilon() + washer_thickness(M4) ])
 		rotate([0, 90, 0]) {
-			screw(size = M5, length = 8);
-			nut_tslot(M5);
+			washer(size = M4);
+		}
+	translate([_screw_x, 
+		       vslot_2020_depth()/2 + (right ? 0 : frame_wall_thickness()), 
+		       _foot_horizontal_height() + epsilon() + washer_thickness(M4) + epsilon()])
+		rotate([0, 90, 0]) {
+			screw(size = M4, length = 8);
+			nut_tslot(M4);
 		}
 }
 
@@ -148,26 +166,56 @@ module foot() {
 module foot_hardware() {
 
 	// vertical MakerSlide rail -- back 
-	translate([-frame_wall_thickness(), -makerslide_slot_offset(), _foot_vertical_back_screw_height()]) {
-		screw(size = M5, length = 8);
-		nut_tslot(M5);
+	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4), 
+		       -makerslide_slot_offset(), 
+		       _foot_vertical_back_screw_height()]) {
+		washer(size = M4);
 	}
-	translate([-frame_wall_thickness(), makerslide_slot_offset(), _foot_vertical_back_screw_height()]) {
-		screw(size = M5, length = 8);
-		nut_tslot(M5);
+	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(), 
+		       -makerslide_slot_offset(), 
+		       _foot_vertical_back_screw_height()]) {
+		screw(size = M4, length = 8);
+		nut_tslot(M4);
+	}
+	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4),
+	           makerslide_slot_offset(), 
+	           _foot_vertical_back_screw_height()]) {
+		washer(size = M4);
+	}
+	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(),
+	           makerslide_slot_offset(), 
+	           _foot_vertical_back_screw_height()]) {
+		screw(size = M4, length = 8);
+		nut_tslot(M4);
 	}
 
 	// vertical MakerSlide rail -- sides
-	_side_screw_y = _foot_vertical_side_screw_y_offset();
-	translate([makerslide_slot_offset(), _side_screw_y, _foot_vertical_side_screw_height()]) 
+	_side_screw_y = _foot_vertical_side_screw_y_offset() + epsilon();
+	translate([makerslide_slot_offset(), 
+		       _side_screw_y + washer_thickness(M4), 
+		       _foot_vertical_side_screw_height()]) 
 		rotate([0, 0, -90]) {
-			screw(size = M5, length = 12);
-			nut_tslot(M5);
+			washer(size = M4);
 		}
-	translate([makerslide_slot_offset(), -_side_screw_y, _foot_vertical_side_screw_height()]) 
+	translate([makerslide_slot_offset(), 
+		       _side_screw_y + washer_thickness(M4) + epsilon(), 
+		       _foot_vertical_side_screw_height()]) 
+		rotate([0, 0, -90]) {
+			screw(size = M4, length = 12);
+			nut_tslot(M4);
+		}
+	translate([makerslide_slot_offset(), 
+		       -_side_screw_y - washer_thickness(M4) - epsilon(), 
+		       _foot_vertical_side_screw_height()]) 
 		rotate([0, 0, 90]) {
-			screw(size = M5, length = 12);
-			nut_tslot(M5);
+			screw(size = M4, length = 12);
+			nut_tslot(M4);
+		}
+	translate([makerslide_slot_offset(), 
+		       -_side_screw_y - washer_thickness(M4), 
+		       _foot_vertical_side_screw_height()]) 
+		rotate([0, 0, 90]) {
+			washer(size = M4);
 		}
 
 	// left horizontal leg

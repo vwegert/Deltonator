@@ -179,25 +179,47 @@ module motor_bracket_stepper(with_pulley = true) {
  */
 module motor_bracket_hardware() {
 	// vertical MakerSlide rail -- back 
-	translate([-frame_wall_thickness(), -makerslide_slot_offset(), _motor_bracket_screw_z()]) {
-		screw(size = M5, length = 8);
-		nut_tslot(M5);
+	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4),
+			   -makerslide_slot_offset(), 
+			   _motor_bracket_screw_z()]) {
+		washer(size = M4);
 	}
-	translate([-frame_wall_thickness(), makerslide_slot_offset(), _motor_bracket_screw_z()]) {
-		screw(size = M5, length = 8);
-		nut_tslot(M5);
+	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(),
+			   -makerslide_slot_offset(), 
+			   _motor_bracket_screw_z()]) {
+		screw(size = M4, length = 8);
+		nut_tslot(M4);
+	}
+	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4),
+			   makerslide_slot_offset(), 
+			   _motor_bracket_screw_z()]) {
+		washer(size = M4);
+	}
+	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(), 
+		       makerslide_slot_offset(), 
+		       _motor_bracket_screw_z()]) {
+		screw(size = M4, length = 8);
+		nut_tslot(M4);
 	}
 	// vertical MakerSlide rail -- sides
-	_side_screw_y = makerslide_width() / 2 + frame_wall_thickness();
-	translate([makerslide_slot_offset(), _side_screw_y, _motor_bracket_screw_z()]) 
+	_side_screw_y = makerslide_width() / 2 + frame_wall_thickness() + epsilon();
+	translate([makerslide_slot_offset(), _side_screw_y + washer_thickness(M4), _motor_bracket_screw_z()]) 
 		rotate([0, 0, -90]) {
-			screw(size = M5, length = 12);
-			nut_tslot(M5);
+			washer(size = M4);
 		}
-	translate([makerslide_slot_offset(), -_side_screw_y, _motor_bracket_screw_z()]) 
+	translate([makerslide_slot_offset(), _side_screw_y + washer_thickness(M4) + epsilon(), _motor_bracket_screw_z()]) 
+		rotate([0, 0, -90]) {
+			screw(size = M4, length = 12);
+			nut_tslot(M4);
+		}
+	translate([makerslide_slot_offset(), -_side_screw_y - washer_thickness(M4), _motor_bracket_screw_z()]) 
 		rotate([0, 0, 90]) {
-			screw(size = M5, length = 12);
-			nut_tslot(M5);
+			washer(size = M4);
+		}
+	translate([makerslide_slot_offset(), -_side_screw_y - washer_thickness(M4) - epsilon(), _motor_bracket_screw_z()]) 
+		rotate([0, 0, 90]) {
+			screw(size = M4, length = 12);
+			nut_tslot(M4);
 		}
 }
 
@@ -205,14 +227,25 @@ module motor_bracket_hardware() {
  * Renders the hardware (nuts, bolts, screws) that are used to fixed the stepper motor to the bracket.
  */
 module motor_bracket_stepper_hardware() {
-	translate([_motor_bracket_plate_x(), _motor_bracket_plate_y(), _motor_bracket_plate_z()]) {
-		translate([0, _motor_bracket_plate_screw_dist_y(), _motor_bracket_plate_screw_dist_z()])
+	translate([_motor_bracket_plate_x() - epsilon(), _motor_bracket_plate_y(), _motor_bracket_plate_z()]) {
+		// the washers
+		translate([-washer_thickness(M3), _motor_bracket_plate_screw_dist_y(), _motor_bracket_plate_screw_dist_z()])
+			washer(size = M3);
+		translate([-washer_thickness(M3), vmotor_width() - _motor_bracket_plate_screw_dist_y(), _motor_bracket_plate_screw_dist_z()])
+			washer(size = M3);
+		translate([-washer_thickness(M3), _motor_bracket_plate_screw_dist_y(), vmotor_height() - _motor_bracket_plate_screw_dist_z()])
+			washer(size = M3);
+		translate([-washer_thickness(M3), vmotor_width() - _motor_bracket_plate_screw_dist_y(), vmotor_height() - _motor_bracket_plate_screw_dist_z()])
+			washer(size = M3);
+
+		// the screws
+		translate([-washer_thickness(M3) - epsilon(), _motor_bracket_plate_screw_dist_y(), _motor_bracket_plate_screw_dist_z()])
 			screw(size = M3, length = 6);
-		translate([0, vmotor_width() - _motor_bracket_plate_screw_dist_y(), _motor_bracket_plate_screw_dist_z()])
+		translate([-washer_thickness(M3) - epsilon(), vmotor_width() - _motor_bracket_plate_screw_dist_y(), _motor_bracket_plate_screw_dist_z()])
 			screw(size = M3, length = 6);
-		translate([0, _motor_bracket_plate_screw_dist_y(), vmotor_height() - _motor_bracket_plate_screw_dist_z()])
+		translate([-washer_thickness(M3) - epsilon(), _motor_bracket_plate_screw_dist_y(), vmotor_height() - _motor_bracket_plate_screw_dist_z()])
 			screw(size = M3, length = 6);
-		translate([0, vmotor_width() - _motor_bracket_plate_screw_dist_y(), vmotor_height() - _motor_bracket_plate_screw_dist_z()])
+		translate([-washer_thickness(M3) - epsilon(), vmotor_width() - _motor_bracket_plate_screw_dist_y(), vmotor_height() - _motor_bracket_plate_screw_dist_z()])
 			screw(size = M3, length = 6);
 	}
 }
