@@ -79,6 +79,14 @@ module color_motor() {
 } 
 
 /**
+ * The color of the end switches.
+ */
+module color_switch() {
+	color([0.15, 0.15, 0.15])
+		children();
+} 
+
+/**
  * The color of the V-Wheels.
  */
 module color_vwheels() {
