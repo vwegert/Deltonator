@@ -80,7 +80,8 @@ assemblies: printed vitamins \
 printed: vitamins \
 	parts/printed/carriage.stl \
 	parts/printed/foot.stl \
-	parts/printed/motor_bracket.stl
+	parts/printed/motor_bracket.stl 
+#	parts/printed/tensioner.stl
 
 #
 # Rule to build the extruded parts
@@ -114,6 +115,8 @@ vitamins: \
 	parts/vitamins/screw_M4x25.stl \
 	parts/vitamins/screw_M4x30.stl \
 	parts/vitamins/screw_M4x35.stl \
+	parts/vitamins/screw_M4x45.stl \
+	parts/vitamins/screw_M4x55.stl \
 	parts/vitamins/screw_M5x8.stl \
 	parts/vitamins/screw_M5x10.stl \
 	parts/vitamins/screw_M5x12.stl \
