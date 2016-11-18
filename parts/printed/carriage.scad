@@ -274,7 +274,7 @@ module _render_carriage() {
  */
 module carriage() {
 	bom_entry(section = "Printed Parts", description = "Arm", size = "Outer Carriage");
-	color_printed_outer_frame()
+	color_printed_carriage()
 		import(file = "carriage.stl");
 }
 
