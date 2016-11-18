@@ -87,19 +87,22 @@ function makerslide_slot_offset() = 10;
 /**
  * The thickness of washers of various dimensions.
  */
-function washer_thickness_m3() = 0.5;
-function washer_thickness_m4() = 0.8;
-function washer_thickness_m5() = 1.0;
-function washer_thickness_large_m3() = 0.8;
-function washer_thickness_large_m4() = 1.0;
-function washer_thickness_large_m5() = 1.2;
+function washer_thickness(size = M4) =
+			(size == M3) ? 0.5 :
+	        (size == M4) ? 0.8 :
+	        (size == M5) ? 1.0 : -1;	
+function washer_thickness_large(size = M4) =
+			(size == M3) ? 0.8 :
+	        (size == M4) ? 1.0 :
+	        (size == M5) ? 1.2 : -1;	
 
 /**
- * The thickness of washers of various dimensions.
+ * The thickness of nuts of various dimensions.
  */
-function nut_thickness_m3() = 2.4;
-function nut_thickness_m4() = 3.2;
-function nut_thickness_m5() = 4.7;
+function nut_thickness(size = M4) =
+			(size == M3) ? 2.4 :
+	        (size == M4) ? 3.2 :
+	        (size == M5) ? 4.7 : -1;	
 
 /**
  * The dimensions of a threaded insert, M3x7mm.

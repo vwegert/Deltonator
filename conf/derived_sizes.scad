@@ -250,7 +250,7 @@ function vmotor_gt2_belt_rail_distance() = vmotor_gt2_pulley_reversed() ?
 /**
  * The inward offset of the carriage from the rail origin (+X in the vertical assembly).
  */
-function carriage_x_offset() = washer_thickness_m5() + epsilon() + 
+function carriage_x_offset() = washer_thickness(M5) + epsilon() + 
 		                       vwheel_assembly_thickness() / 2 + 
 		                       makerslide_base_depth();
 

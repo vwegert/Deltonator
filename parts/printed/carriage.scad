@@ -286,23 +286,23 @@ module _carriage_hardware_fixed_wheel() {
 	translate([carriage_plate_thickness() + epsilon(), 0, 0])
 		washer(M5);
 	// washer between the plate and the wheel
-	translate([-(washer_thickness_m5() + epsilon()), 0, 0])
+	translate([-(washer_thickness(M5) + epsilon()), 0, 0])
 		washer(M5);
 	// wheel assembly
-	_vwheel_x = -(washer_thickness_m5() + epsilon() + 
+	_vwheel_x = -(washer_thickness(M5) + epsilon() + 
 		          vwheel_assembly_thickness() - vwheel_assembly_overhang() + epsilon()); 
 	translate([_vwheel_x, 0, 0])
 		vslot_wheel(include_bearings = true);
 	// washer on the outer side of the wheel
-	_outer_washer_x = _vwheel_x - vwheel_assembly_overhang() - epsilon() - washer_thickness_m5();
+	_outer_washer_x = _vwheel_x - vwheel_assembly_overhang() - epsilon() - washer_thickness(M5);
 	translate([_outer_washer_x, 0, 0])
 		washer(M5);
 	// screw
-	_screw_min_length = 3 * washer_thickness_m5() + carriage_plate_thickness() + 
-	                    vwheel_assembly_thickness() + nut_thickness_m5();
-	_screw_max_length = 2 * washer_thickness_m5() + carriage_plate_thickness() + 
+	_screw_min_length = 3 * washer_thickness(M5) + carriage_plate_thickness() + 
+	                    vwheel_assembly_thickness() + nut_thickness(M5);
+	_screw_max_length = 2 * washer_thickness(M5) + carriage_plate_thickness() + 
 	                    vwheel_assembly_thickness()/2 + makerslide_base_depth();
-	translate([carriage_plate_thickness() + epsilon() + washer_thickness_m5() + epsilon(), 0, 0])
+	translate([carriage_plate_thickness() + epsilon() + washer_thickness(M5) + epsilon(), 0, 0])
 		rotate([0, 180, 0])
 			screw(size = M5, min_length = _screw_min_length, max_length = _screw_max_length); 
 	// nut
@@ -324,23 +324,23 @@ module _carriage_hardware_adjustable_wheel() {
 	translate([_inner_washer_x, 0, 0])
 		washer(M5);
 	// washer between the plate and the wheel
-	translate([-(washer_thickness_m5() + epsilon()), 0, 0])
+	translate([-(washer_thickness(M5) + epsilon()), 0, 0])
 		washer(M5);
 	// wheel assembly
-	_vwheel_x = -(washer_thickness_m5() + epsilon() + 
+	_vwheel_x = -(washer_thickness(M5) + epsilon() + 
 		          vwheel_assembly_thickness() - vwheel_assembly_overhang() + epsilon()); 
 	translate([_vwheel_x, 0, 0])
 		vslot_wheel(include_bearings = true);
 	// washer on the outer side of the wheel
-	_outer_washer_x = _vwheel_x - vwheel_assembly_overhang() - epsilon() - washer_thickness_m5();
+	_outer_washer_x = _vwheel_x - vwheel_assembly_overhang() - epsilon() - washer_thickness(M5);
 	translate([_outer_washer_x, 0, 0])
 		washer(M5);
 	// screw
-	_screw_min_length = 3 * washer_thickness_m5() + vwheel_spacer_hex_height() + carriage_plate_thickness() + 
-	                    vwheel_assembly_thickness() + nut_thickness_m5();
-	_screw_max_length = 2 * washer_thickness_m5() + vwheel_spacer_hex_height() + carriage_plate_thickness() +
+	_screw_min_length = 3 * washer_thickness(M5) + vwheel_spacer_hex_height() + carriage_plate_thickness() + 
+	                    vwheel_assembly_thickness() + nut_thickness(M5);
+	_screw_max_length = 2 * washer_thickness(M5) + vwheel_spacer_hex_height() + carriage_plate_thickness() +
 					    vwheel_assembly_thickness()/2 + makerslide_base_depth();
-	translate([_inner_washer_x + epsilon() + washer_thickness_m5() + epsilon(), 0, 0])
+	translate([_inner_washer_x + epsilon() + washer_thickness(M5) + epsilon(), 0, 0])
 		rotate([0, 180, 0])
 			screw(size = M5, min_length = _screw_min_length, max_length = _screw_max_length); 
 	// nut
@@ -362,14 +362,13 @@ module _carriage_hardware_belt_fixation() {
 		translate([carriage_belt_holder_depth() + epsilon(), 0, 0])
 			washer_large(size = M3);
 		// the screw to hold everything in place
-		translate([carriage_belt_holder_depth() + epsilon() + washer_thickness_large_m3() + epsilon(), 0, 0])
+		translate([carriage_belt_holder_depth() + epsilon() + washer_thickness_large(M3) + epsilon(), 0, 0])
 			rotate(180, 0, 0)
 				screw(size = M3, 
-					min_length = washer_thickness_large_m3(), 
-					max_length = washer_thickness_large_m3() + _insert_size);
+					min_length = washer_thickness_large(M3), 
+					max_length = washer_thickness_large(M3) + _insert_size);
 	}
 }
-
 
 /** 
  * Renders the hardware (nuts, bolts, screws) that are used to fixed the printed part to the surrounding parts.
