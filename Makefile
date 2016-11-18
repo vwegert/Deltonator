@@ -93,6 +93,7 @@ extrusions: \
 # Rules to buld the parts provided by the external libraries
 #
 vitamins: \
+	parts/vitamins/bearing_f623.stl \
 	parts/vitamins/bearing_625.stl \
 	parts/vitamins/gt2_pulley_20t_5mm.stl \
 	parts/vitamins/insert_M3x7.stl \

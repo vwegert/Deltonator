@@ -173,6 +173,14 @@ function bearing_625_bore_diameter() = 5;
 function bearing_625_outer_diameter() = 16;
 function bearing_625_width() = 5;
 
+/**
+ * The size of a F623ZZ ball bearing.
+ */
+function bearing_f623_bore_diameter() = 3;
+function bearing_f623_outer_diameter() = 10;
+function bearing_f623_flange_diameter() = 11.75;
+function bearing_f623_width() = 4;
+
 /** 
  * The dimensions of the eccentric spacer.
  */
