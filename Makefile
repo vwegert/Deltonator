@@ -83,6 +83,7 @@ assemblies: printed vitamins \
 printed: vitamins \
 	parts/printed/carriage.stl \
 	parts/printed/foot.stl \
+	parts/printed/head.stl \
 	parts/printed/motor_bracket.stl \
 	parts/printed/tensioner.stl
 

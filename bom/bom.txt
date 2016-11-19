@@ -6,10 +6,10 @@ MakerSlide Extrusion
     vertical_axis_assembly                                                   (3)
 
 V-Slot Extrusion
-  400x20x20 mm.................................................................... 3
-    horizontal_front_assembly                                                (1)
-    horizontal_left_assembly                                                 (1)
-    horizontal_right_assembly                                                (1)
+  400x20x20 mm.................................................................... 6
+    horizontal_front_assembly                                                (2)
+    horizontal_left_assembly                                                 (2)
+    horizontal_right_assembly                                                (2)
 
 ===== Bearings and Wheels =============================================================
 
@@ -41,11 +41,13 @@ Hex Socket Head Cap Screw (DIN 912 / ISO 4762)
   M3 x 6 mm....................................................................... 18
     vertical_axis_assembly >> carriage_hardware >> screw                     (6)
     vertical_axis_assembly >> motor_bracket_stepper_hardware >> screw        (12)
-  M4 x 12 mm...................................................................... 12
+  M4 x 12 mm...................................................................... 18
     vertical_axis_assembly >> foot_hardware >> screw                         (6)
+    vertical_axis_assembly >> head_hardware >> screw                         (6)
     vertical_axis_assembly >> motor_bracket_hardware >> screw                (6)
-  M4 x 8 mm....................................................................... 24
+  M4 x 8 mm....................................................................... 42
     vertical_axis_assembly >> foot_hardware >> screw                         (18)
+    vertical_axis_assembly >> head_hardware >> screw                         (18)
     vertical_axis_assembly >> motor_bracket_hardware >> screw                (6)
   M5 x 25 mm...................................................................... 6
     vertical_axis_assembly >> carriage_hardware >> screw                     (6)
@@ -57,8 +59,9 @@ Large Washer (DIN 9021 / ISO 7093)
     vertical_axis_assembly >> carriage_hardware                              (6)
 
 T-Slot Nut
-  M4.............................................................................. 36
+  M4.............................................................................. 60
     vertical_axis_assembly >> foot_hardware                                  (24)
+    vertical_axis_assembly >> head_hardware                                  (24)
     vertical_axis_assembly >> motor_bracket_hardware                         (12)
 
 Threaded Insert
@@ -68,8 +71,9 @@ Threaded Insert
 Washer (DIN 125A / ISO 7089)
   M3.............................................................................. 12
     vertical_axis_assembly >> motor_bracket_stepper_hardware                 (12)
-  M4.............................................................................. 36
+  M4.............................................................................. 60
     vertical_axis_assembly >> foot_hardware                                  (24)
+    vertical_axis_assembly >> head_hardware                                  (24)
     vertical_axis_assembly >> motor_bracket_hardware                         (12)
   M5.............................................................................. 27
     vertical_axis_assembly >> carriage_hardware                              (27)
@@ -82,6 +86,8 @@ Arm
 
 Frame
   Foot............................................................................ 3
+    vertical_axis_assembly                                                   (3)
+  Head............................................................................ 3
     vertical_axis_assembly                                                   (3)
   Motor Bracket................................................................... 3
     vertical_axis_assembly                                                   (3)

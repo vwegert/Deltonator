@@ -16,6 +16,7 @@ include <../conf/part_sizes.scad>
 use <../parts/extrusions/makerslide.scad>
 use <../parts/printed/carriage.scad>
 use <../parts/printed/foot.scad>
+use <../parts/printed/head.scad>
 use <../parts/printed/motor_bracket.scad>
 use <../parts/vitamins/vitamins.scad>
 
@@ -35,15 +36,23 @@ module vertical_axis_assembly(position = [0, 0, 0], angle = 0) {
 module _vertical_axis_assembly() {
 	// the vertical MakerSlide extrusion
 	makerslide_vertical_rail();
-	// the lower foot with associated hardware
+
+	// the foot with associated hardware
 	foot();
 	foot_hardware();
+
 	// the motor bracket with the stepper and the associated hardware
 	translate([0, 0, motor_bracket_z_offset()]) {
 		motor_bracket();
 		motor_bracket_hardware();
 		motor_bracket_stepper(with_pulley = true);
 		motor_bracket_stepper_hardware();
+	}
+
+	// the head with associated hardware
+	translate([0, 0, head_z_offset()]) {
+		head();
+		head_hardware();
 	}
 
 	// TODO add the upper end and determine the length of the belt
@@ -62,7 +71,6 @@ module _vertical_axis_assembly() {
 		carriage();
 		carriage_hardware();
 	}
-
 
 }
 

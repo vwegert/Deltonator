@@ -2,7 +2,7 @@
  **
  ** parts/printed/foot.scad
  **
- ** This file constructs the lower foot of the printer frame. To assemble the printer, you need three of these parts.
+ ** This file constructs the foot of the printer frame. To assemble the printer, you need three of these parts.
  **
  **********************************************************************************************************************/
 
@@ -26,7 +26,7 @@ function _foot_horizontal_right_y_offset() = -_foot_horizontal_width() - horizon
 function _foot_vertical_height() = vertical_recess_depth();
 function _foot_vertical_width()  = frame_wall_thickness() + makerslide_width() + frame_wall_thickness();
 function _foot_vertical_depth()  = frame_wall_thickness() + makerslide_depth() + frame_wall_thickness();
-function _foot_vertical_back_screw_height() = frame_wall_thickness() + vertical_recess_depth()/2;
+function _foot_vertical_back_screw_height() = vertical_recess_depth()/2;
 function _foot_vertical_side_screw_height() = _foot_horizontal_height()/2; // align with other screw
 function _foot_vertical_side_screw_y_offset() = _foot_vertical_width()/2 + 1;
 

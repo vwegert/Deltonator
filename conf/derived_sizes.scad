@@ -230,6 +230,11 @@ function position_right_assembly() = [-horizontal_extrusion_outward_offset() - v
 function motor_bracket_z_offset() = vertical_recess_depth();
 
 /**
+ * The position of the head piece on the vertical rail.
+ */
+function head_z_offset() = vertical_extrusion_length() - vertical_recess_depth();
+
+/**
  * The distance of the motor front face to the inward face of the vertical MakerSlide extrusion.
  * The nominal length of the axis is 24 mm. The value of frame_wall_thickness() (default 3mm) is irrelevant here 
  * because it applies to both the inner wall of the bracket and the motor mounting plate in the same direction.
