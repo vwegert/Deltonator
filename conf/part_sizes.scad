@@ -196,12 +196,12 @@ function bearing_f623_width() = 4;
 /** 
  * The dimensions of the eccentric spacer.
  */
-function vwheel_spacer_hex_height() = 6;
-function vwheel_spacer_inset_height() = 2; // TODO validate this number
-function vwheel_spacer_total_height() = vwheel_spacer_hex_height() + vwheel_spacer_inset_height();
-function vwheel_spacer_hex_size() = 8; // the wrench size in mm
-function vwheel_spacer_inset_diameter() = 7.12; // TODO validate this number
-function vwheel_spacer_bore_diameter() = 5;
+function vwheel_spacer_hex_height()     = 6;
+function vwheel_spacer_inset_height()   = 1.5; 
+function vwheel_spacer_total_height()   = vwheel_spacer_hex_height() + vwheel_spacer_inset_height();
+function vwheel_spacer_hex_size()       = 8; // the wrench size in mm
+function vwheel_spacer_inset_diameter() = 6.9;
+function vwheel_spacer_bore_diameter()  = 5;
 
 /**
  * Some of the dimensions of a V-Wheel for the MakerSlide rails.
