@@ -12,7 +12,63 @@ include <../../conf/part_sizes.scad>
 
 use <../../bom/bom.scad>
 
-// ===== parts/vitamins/bearing_*.* ===================================================================================
+// ===== parts/vitamins/electromechanic/stepper_*.* ====================================================================
+
+/**
+ * Provides the pre-rendered stepper motors.
+ * The motor is centered along the X axis with the shaft extending into positive X.
+ */
+module stepper_short(size) {
+	_size = (size == NEMA14) ? 14 :
+	        (size == NEMA17) ? 17 :
+	        (size == NEMA23) ? 23 : -1;
+	if (_size < 0) {
+		echo(str("ERROR: Unknown stepper size size '", size, "'."));
+	} else {	
+		bom_entry(section = "Electronic Components", description = "Stepper Motor", size = str("NEMA ", _size, " short"));
+		color_motor()
+			import(file = str("electromechanic/stepper_nema", _size, "_short.stl")); 
+	}
+}
+module stepper_medium(size = 17) {
+	_size = (size == NEMA14) ? 14 :
+	        (size == NEMA17) ? 17 :
+	        (size == NEMA23) ? 23 : -1;
+	if (_size < 0) {
+		echo(str("ERROR: Unknown stepper size size '", size, "'."));
+	} else {	
+		bom_entry(section = "Electronic Components", description = "Stepper Motor", size = str("NEMA ", _size, " medium"));
+		color_motor()
+			import(file = str("electromechanic/stepper_nema", _size, "_medium.stl")); 
+	}
+}
+module stepper_long(size = 17) {
+	_size = (size == NEMA14) ? 14 :
+	        (size == NEMA17) ? 17 :
+	        (size == NEMA23) ? 23 : -1;
+	if (_size < 0) {
+		echo(str("ERROR: Unknown stepper size size '", size, "'."));
+	} else {	
+		bom_entry(section = "Electronic Components", escription = "Stepper Motor", size = str("NEMA ", _size, " long"));
+		color_motor()
+			import(file = str("electromechanic/stepper_nema", _size, "_long.stl")); 
+	}
+}
+
+// ===== parts/vitamins/electromechanic/switch_*.* =====================================================================
+
+/**
+ * Provides a pre-rendered SS-5GL end switch.
+ * The switch is aligned to the XY plane with the Z axis going straight through the screw hole at the far end of the 
+ * lever.
+ */
+module switch_ss05gl() {
+	bom_entry(section = "Electronic Components", escription = "End Switch", size = "SS-5GL");
+	color_switch()
+		import(file = "electromechanic/switch_ss5gl.stl"); 
+}
+
+// ===== parts/vitamins/mechanic/bearing_*.* ===========================================================================
 
 /**
  * Provides the pre-rendered ball bearings.
@@ -21,10 +77,10 @@ use <../../bom/bom.scad>
 module bearing(size, prefix = "", suffix = "") {
 	bom_entry(section = "Bearings and Wheels", description = "Ball Bearing", size = str(prefix, size, suffix));
 	color_gears()
-		import(file = str("bearing_", size, ".stl")); 
+		import(file = str("mechanic/bearing_", size, ".stl")); 
 }
 
-// ===== parts/vitamins/gt2_*.* =======================================================================================
+// ===== parts/vitamins/mechanic/gt2_*.* ===============================================================================
 
 /**
  * Creates an approximation of a GT2 pulley with 20 teeth and a 5mm bore. The pulley is oriented with the bore 
@@ -33,7 +89,7 @@ module bearing(size, prefix = "", suffix = "") {
 module gt2_pulley_20t_5mm() {
 	bom_entry(section = "Timing Belts and Pulleys", description = "GT2 Pulley", size = "20 Teeth x 5 mm Bore");
 	color_gears()
-		import(file = "gt2_pulley_20t_5mm.stl"); 
+		import(file = "mechanic/gt2_pulley_20t_5mm.stl"); 
 }
 
 
@@ -84,7 +140,31 @@ module gt2_belt_loop(length, inner_diameter_end1, inner_diameter_end2) {
 		}
 }
 
-// ===== parts/vitamins/nut_*.* =======================================================================================
+// ===== parts/vitamins/mechanic/insert_*.* ============================================================================
+
+/**
+ * Provides the pre-rendered threaded insert.
+ * The insert is centered along the X axis with the body extending into positive X.
+ */
+module insert(size, length) {
+	_size = (size == M3) ? 3 : -1;
+	if (_size < 0) {
+		echo(str("ERROR: Unknown threaded insert size '", size, "'."));
+	} else {
+		_length = (length == 7) ? 7 : -1;
+		if (_size < 0) {
+			echo(str("ERROR: Unknown threaded insert length '", length, "'."));
+		} else {
+			bom_entry(section = "General Hardware", 
+				description = "Threaded Insert", 
+				size = str("M", _size, " x ", _length, " mm"));
+			color_hardware()
+				import(file = str("mechanic/insert_M", _size, "x", _length, ".stl")); 
+		}
+	}
+}
+
+// ===== parts/vitamins/mechanic/nut_*.* ===============================================================================
 
 /**
  * Provides the pre-rendered nuts.
@@ -101,7 +181,7 @@ module nut(size) {
 			description = "Hex Nut (DIN 934 / ISO 4032)", 
 			size = str("M", _size));
 		color_hardware()
-			import(file = str("nut_M", _size, ".stl")); 
+			import(file = str("mechanic/nut_M", _size, ".stl")); 
 	}
 }
 
@@ -118,7 +198,7 @@ module nut_recess(size) {
 		echo(str("ERROR: Unknown nut size '", size, "'."));
 	} else {
 		color_punch()
-			import(file = str("nut_M", _size, ".stl")); 
+			import(file = str("mechanic/nut_M", _size, ".stl")); 
 	}
 }
 
@@ -140,31 +220,7 @@ module nut_tslot(size) {
 	}
 }
 
-// ===== parts/vitamins/insert_*.* ====================================================================================
-
-/**
- * Provides the pre-rendered threaded insert.
- * The insert is centered along the X axis with the body extending into positive X.
- */
-module insert(size, length) {
-	_size = (size == M3) ? 3 : -1;
-	if (_size < 0) {
-		echo(str("ERROR: Unknown threaded insert size '", size, "'."));
-	} else {
-		_length = (length == 7) ? 7 : -1;
-		if (_size < 0) {
-			echo(str("ERROR: Unknown threaded insert length '", length, "'."));
-		} else {
-			bom_entry(section = "General Hardware", 
-				description = "Threaded Insert", 
-				size = str("M", _size, " x ", _length, " mm"));
-			color_hardware()
-				import(file = str("insert_M", _size, "x", _length, ".stl")); 
-		}
-	}
-}
-
-// ===== parts/vitamins/screw_*.* =====================================================================================
+// ===== parts/vitamins/mechanic/screw_*.* =============================================================================
 
 /**
  * Provides the pre-rendered screws.
@@ -316,66 +372,10 @@ module _screw(size, length) {
 		description = "Hex Socket Head Cap Screw (DIN 912 / ISO 4762)", 
 		size = str("M", size, " x ", length, " mm"));
 	color_hardware()
-		import(file = str("screw_M", size, "x", length, ".stl")); 
+		import(file = str("mechanic/screw_M", size, "x", length, ".stl")); 
 }
 
-// ===== parts/vitamins/stepper_*.* ===================================================================================
-
-/**
- * Provides the pre-rendered stepper motors.
- * The motor is centered along the X axis with the shaft extending into positive X.
- */
-module stepper_short(size) {
-	_size = (size == NEMA14) ? 14 :
-	        (size == NEMA17) ? 17 :
-	        (size == NEMA23) ? 23 : -1;
-	if (_size < 0) {
-		echo(str("ERROR: Unknown stepper size size '", size, "'."));
-	} else {	
-		bom_entry(section = "Electronic Components", description = "Stepper Motor", size = str("NEMA ", _size, " short"));
-		color_motor()
-			import(file = str("stepper_nema", _size, "_short.stl")); 
-	}
-}
-module stepper_medium(size = 17) {
-	_size = (size == NEMA14) ? 14 :
-	        (size == NEMA17) ? 17 :
-	        (size == NEMA23) ? 23 : -1;
-	if (_size < 0) {
-		echo(str("ERROR: Unknown stepper size size '", size, "'."));
-	} else {	
-		bom_entry(section = "Electronic Components", description = "Stepper Motor", size = str("NEMA ", _size, " medium"));
-		color_motor()
-			import(file = str("stepper_nema", _size, "_medium.stl")); 
-	}
-}
-module stepper_long(size = 17) {
-	_size = (size == NEMA14) ? 14 :
-	        (size == NEMA17) ? 17 :
-	        (size == NEMA23) ? 23 : -1;
-	if (_size < 0) {
-		echo(str("ERROR: Unknown stepper size size '", size, "'."));
-	} else {	
-		bom_entry(section = "Electronic Components", escription = "Stepper Motor", size = str("NEMA ", _size, " long"));
-		color_motor()
-			import(file = str("stepper_nema", _size, "_long.stl")); 
-	}
-}
-
-// ===== parts/vitamins/switch_*.* ====================================================================================
-
-/**
- * Provides a pre-rendered SS-5GL end switch.
- * The switch is aligned to the XY plane with the Z axis going straight through the screw hole at the far end of the 
- * lever.
- */
-module switch_ss05gl() {
-	bom_entry(section = "Electronic Components", escription = "End Switch", size = "SS-5GL");
-	color_switch()
-		import(file = "switch_ss5gl.stl"); 
-}
-
-// ===== parts/vitamins/vwheel_*.* ====================================================================================
+// ===== parts/vitamins/mechanic/vwheel_*.* ============================================================================
 
 /**
  * Provides a pre-rendered V-Wheel used on the MakerSlide Rails.
@@ -386,7 +386,7 @@ module switch_ss05gl() {
 module vslot_wheel(include_bearings = true) {
 	bom_entry(section = "Bearings and Wheels", description = "V-Wheel for MakerSlide", size = "");
 	color_vwheels()
-		import(file = "vwheel_dbl_bearing.stl"); 
+		import(file = "mechanic/vwheel_dbl_bearing.stl"); 
 	if (include_bearings) {
 		translate([vwheel_width() - vwheel_bearing_inset(), 0, 0])
 			bearing(size = 625, suffix="RS");
@@ -402,10 +402,10 @@ module vslot_wheel(include_bearings = true) {
 module vslot_wheel_spacer() {
 	bom_entry(section = "Bearings and Wheels", description = "Eccentric Spacer for V-Wheel", size = "");
 	color_hardware()
-		import(file = "vwheel_spacer.stl"); 
+		import(file = "mechanic/vwheel_spacer.stl"); 
 }
 
-// ===== parts/vitamins/washer_*.* ====================================================================================
+// ===== parts/vitamins/mechanic/washer_*.* ============================================================================
 
 /**
  * Provides the pre-rendered washers.
@@ -422,7 +422,7 @@ module washer(size) {
 			description = "Washer (DIN 125A / ISO 7089)", 
 			size = str("M", _size));
 		color_hardware()
-			import(file = str("washer_M", _size, ".stl")); 
+			import(file = str("mechanic/washer_M", _size, ".stl")); 
 	}
 }
 module washer_large(size) {
@@ -436,6 +436,6 @@ module washer_large(size) {
 			description = "Large Washer (DIN 9021 / ISO 7093)", 
 			size = str("M", _size));
 		color_hardware()
-			import(file = str("washer_large_M", _size, ".stl")); 
+			import(file = str("mechanic/washer_large_M", _size, ".stl")); 
 	}
 }

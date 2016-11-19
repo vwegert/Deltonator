@@ -40,6 +40,9 @@ clean:
 	$(RM) parts/printed/*.stl
 # do NOT clean the STL files in the vitamins directories because not all of them are built automatically!
 	$(RM) parts/vitamins/*.deps
+	$(RM) parts/vitamins/electromechanic/*.deps
+	$(RM) parts/vitamins/electronic/*.deps
+	$(RM) parts/vitamins/mechanic/*.deps
 	$(RM) printer/*.deps
 	$(RM) printer/*.stl
 # TODO the clean target does not work on Windows systems 
@@ -94,58 +97,58 @@ extrusions: \
 # Rules to buld the parts provided by the external libraries
 #
 vitamins: \
-	parts/vitamins/bearing_f623.stl \
-	parts/vitamins/bearing_625.stl \
-	parts/vitamins/gt2_pulley_20t_5mm.stl \
-	parts/vitamins/insert_M3x7.stl \
-	parts/vitamins/nut_M3.stl \
-	parts/vitamins/nut_M4.stl \
-	parts/vitamins/nut_M5.stl \
-	parts/vitamins/screw_M3x6.stl \
-	parts/vitamins/screw_M3x8.stl \
-	parts/vitamins/screw_M3x10.stl \
-	parts/vitamins/screw_M3x12.stl \
-	parts/vitamins/screw_M3x16.stl \
-	parts/vitamins/screw_M3x20.stl \
-	parts/vitamins/screw_M4x8.stl \
-	parts/vitamins/screw_M4x10.stl \
-	parts/vitamins/screw_M4x12.stl \
-	parts/vitamins/screw_M4x16.stl \
-	parts/vitamins/screw_M4x20.stl \
-	parts/vitamins/screw_M4x25.stl \
-	parts/vitamins/screw_M4x30.stl \
-	parts/vitamins/screw_M4x35.stl \
-	parts/vitamins/screw_M4x45.stl \
-	parts/vitamins/screw_M4x55.stl \
-	parts/vitamins/screw_M5x8.stl \
-	parts/vitamins/screw_M5x10.stl \
-	parts/vitamins/screw_M5x12.stl \
-	parts/vitamins/screw_M5x16.stl \
-	parts/vitamins/screw_M5x20.stl \
-	parts/vitamins/screw_M5x25.stl \
-	parts/vitamins/screw_M5x30.stl \
-	parts/vitamins/screw_M5x35.stl \
-	parts/vitamins/screw_M5x40.stl \
-	parts/vitamins/screw_M5x45.stl \
-	parts/vitamins/screw_M5x55.stl \
-	parts/vitamins/screw_M5x65.stl \
-	parts/vitamins/stepper_nema14_long.stl \
-	parts/vitamins/stepper_nema14_medium.stl \
-	parts/vitamins/stepper_nema14_short.stl \
-	parts/vitamins/stepper_nema17_long.stl \
-	parts/vitamins/stepper_nema17_medium.stl \
-	parts/vitamins/stepper_nema17_short.stl \
-	parts/vitamins/stepper_nema23_long.stl \
-	parts/vitamins/stepper_nema23_medium.stl \
-	parts/vitamins/stepper_nema23_short.stl \
-	parts/vitamins/vwheel_dbl_bearing.stl \
-	parts/vitamins/vwheel_spacer.stl \
-	parts/vitamins/washer_M3.stl \
-	parts/vitamins/washer_M4.stl \
-	parts/vitamins/washer_M5.stl \
-	parts/vitamins/washer_large_M3.stl \
-	parts/vitamins/washer_large_M4.stl \
-	parts/vitamins/washer_large_M5.stl
+	parts/vitamins/electromechanic/stepper_nema14_long.stl \
+	parts/vitamins/electromechanic/stepper_nema14_medium.stl \
+	parts/vitamins/electromechanic/stepper_nema14_short.stl \
+	parts/vitamins/electromechanic/stepper_nema17_long.stl \
+	parts/vitamins/electromechanic/stepper_nema17_medium.stl \
+	parts/vitamins/electromechanic/stepper_nema17_short.stl \
+	parts/vitamins/electromechanic/stepper_nema23_long.stl \
+	parts/vitamins/electromechanic/stepper_nema23_medium.stl \
+	parts/vitamins/electromechanic/stepper_nema23_short.stl \
+	parts/vitamins/mechanic/bearing_f623.stl \
+	parts/vitamins/mechanic/bearing_625.stl \
+	parts/vitamins/mechanic/gt2_pulley_20t_5mm.stl \
+	parts/vitamins/mechanic/insert_M3x7.stl \
+	parts/vitamins/mechanic/nut_M3.stl \
+	parts/vitamins/mechanic/nut_M4.stl \
+	parts/vitamins/mechanic/nut_M5.stl \
+	parts/vitamins/mechanic/screw_M3x6.stl \
+	parts/vitamins/mechanic/screw_M3x8.stl \
+	parts/vitamins/mechanic/screw_M3x10.stl \
+	parts/vitamins/mechanic/screw_M3x12.stl \
+	parts/vitamins/mechanic/screw_M3x16.stl \
+	parts/vitamins/mechanic/screw_M3x20.stl \
+	parts/vitamins/mechanic/screw_M4x8.stl \
+	parts/vitamins/mechanic/screw_M4x10.stl \
+	parts/vitamins/mechanic/screw_M4x12.stl \
+	parts/vitamins/mechanic/screw_M4x16.stl \
+	parts/vitamins/mechanic/screw_M4x20.stl \
+	parts/vitamins/mechanic/screw_M4x25.stl \
+	parts/vitamins/mechanic/screw_M4x30.stl \
+	parts/vitamins/mechanic/screw_M4x35.stl \
+	parts/vitamins/mechanic/screw_M4x45.stl \
+	parts/vitamins/mechanic/screw_M4x55.stl \
+	parts/vitamins/mechanic/screw_M5x8.stl \
+	parts/vitamins/mechanic/screw_M5x10.stl \
+	parts/vitamins/mechanic/screw_M5x12.stl \
+	parts/vitamins/mechanic/screw_M5x16.stl \
+	parts/vitamins/mechanic/screw_M5x20.stl \
+	parts/vitamins/mechanic/screw_M5x25.stl \
+	parts/vitamins/mechanic/screw_M5x30.stl \
+	parts/vitamins/mechanic/screw_M5x35.stl \
+	parts/vitamins/mechanic/screw_M5x40.stl \
+	parts/vitamins/mechanic/screw_M5x45.stl \
+	parts/vitamins/mechanic/screw_M5x55.stl \
+	parts/vitamins/mechanic/screw_M5x65.stl \
+	parts/vitamins/mechanic/vwheel_dbl_bearing.stl \
+	parts/vitamins/mechanic/vwheel_spacer.stl \
+	parts/vitamins/mechanic/washer_M3.stl \
+	parts/vitamins/mechanic/washer_M4.stl \
+	parts/vitamins/mechanic/washer_M5.stl \
+	parts/vitamins/mechanic/washer_large_M3.stl \
+	parts/vitamins/mechanic/washer_large_M4.stl \
+	parts/vitamins/mechanic/washer_large_M5.stl
 
 #
 # Rules to assemble the BOM
