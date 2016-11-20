@@ -16,6 +16,8 @@ V-Slot Extrusion
 Ball Bearing
   625RS........................................................................... 18
     vertical_axis_assembly >> carriage_hardware >> vslot_wheel               (18)
+  F623............................................................................ 6
+    vertical_axis_assembly >> tensioner_hardware                             (6)
 
 Eccentric Spacer for V-Wheel
   ................................................................................ 3
@@ -34,10 +36,16 @@ Stepper Motor
 ===== General Hardware ================================================================
 
 Hex Nut (DIN 934 / ISO 4032)
+  M3.............................................................................. 3
+    vertical_axis_assembly >> tensioner_hardware                             (3)
+  M4.............................................................................. 3
+    vertical_axis_assembly >> tensioner_hardware                             (3)
   M5.............................................................................. 9
     vertical_axis_assembly >> carriage_hardware                              (9)
 
 Hex Socket Head Cap Screw (DIN 912 / ISO 4762)
+  M3 x 20 mm...................................................................... 3
+    vertical_axis_assembly >> tensioner_hardware >> screw                    (3)
   M3 x 6 mm....................................................................... 18
     vertical_axis_assembly >> carriage_hardware >> screw                     (6)
     vertical_axis_assembly >> motor_bracket_stepper_hardware >> screw        (12)
@@ -45,6 +53,8 @@ Hex Socket Head Cap Screw (DIN 912 / ISO 4762)
     vertical_axis_assembly >> foot_hardware >> screw                         (6)
     vertical_axis_assembly >> head_hardware >> screw                         (6)
     vertical_axis_assembly >> motor_bracket_hardware >> screw                (6)
+  M4 x 35 mm...................................................................... 3
+    vertical_axis_assembly >> tensioner_hardware >> screw                    (3)
   M4 x 8 mm....................................................................... 42
     vertical_axis_assembly >> foot_hardware >> screw                         (18)
     vertical_axis_assembly >> head_hardware >> screw                         (18)
@@ -69,12 +79,14 @@ Threaded Insert
     vertical_axis_assembly >> carriage_hardware                              (6)
 
 Washer (DIN 125A / ISO 7089)
-  M3.............................................................................. 12
+  M3.............................................................................. 24
     vertical_axis_assembly >> motor_bracket_stepper_hardware                 (12)
-  M4.............................................................................. 60
+    vertical_axis_assembly >> tensioner_hardware                             (12)
+  M4.............................................................................. 63
     vertical_axis_assembly >> foot_hardware                                  (24)
     vertical_axis_assembly >> head_hardware                                  (24)
     vertical_axis_assembly >> motor_bracket_hardware                         (12)
+    vertical_axis_assembly >> tensioner_hardware                             (3)
   M5.............................................................................. 27
     vertical_axis_assembly >> carriage_hardware                              (27)
 
@@ -92,10 +104,14 @@ Frame
   Motor Bracket................................................................... 3
     vertical_axis_assembly                                                   (3)
 
+Small Parts
+  Belt Tensioner.................................................................. 3
+    vertical_axis_assembly                                                   (3)
+
 ===== Timing Belts and Pulleys ========================================================
 
 GT2 Belt
-  approx. 1572.07 mm.............................................................. 3
+  approx. 1440.82 mm.............................................................. 3
     vertical_axis_assembly                                                   (3)
 
 GT2 Pulley

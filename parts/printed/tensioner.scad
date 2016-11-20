@@ -20,16 +20,11 @@ use <../../parts/vitamins/vitamins.scad>
 function _tensioner_screw_bracket_base_z() = (bearing_f623_flange_diameter() - bearing_f623_outer_diameter())/2 + 
 	                  tensioner_flange_width() + tensioner_separator_thickness();
 
-/** 
- * The height of the empty space inside the upper bracket.
- */
-function _tensioner_screw_bracket_inner_height() = tensioner_vertical_screw_length() - 2 * frame_wall_thickness();
-
 /**
  * The Z position of the fastener nut.
  */
 function _tensioner_screw_fastener_nut_z() = _tensioner_screw_bracket_base_z() + 
-                                             _tensioner_screw_bracket_inner_height() + 
+                                             tensioner_screw_bracket_inner_height() + 
                                              frame_wall_thickness()/3;
 
 /**
@@ -37,15 +32,14 @@ function _tensioner_screw_fastener_nut_z() = _tensioner_screw_bracket_base_z() +
  */
 module _tensioner_idler_bracket() {
 	_base_height = tensioner_width() + tensioner_separator_thickness();
-	_space_offset = (bearing_f623_flange_diameter() - bearing_f623_outer_diameter())/2 + tensioner_flange_width();
 	difference() {
 		// the block of the base
-		translate([-tensioner_depth()/2, -tensioner_width()/2, -(tensioner_width() - _space_offset)])
+		translate([-tensioner_depth()/2, -tensioner_width()/2, -(tensioner_width() - tensioner_idler_z_offset())])
 			cube([tensioner_depth(), tensioner_width(), _base_height]);
 		// minus the space where the idler sits
 		translate([-tensioner_idler_gap_depth()/2,
 		           -tensioner_width()/2, 
-				   -(tensioner_width() - _space_offset)])
+				   -(tensioner_width() - tensioner_idler_z_offset())])
 			cube([tensioner_idler_gap_depth(), tensioner_width(), tensioner_width()]);
 		// minus the hole to mount the idler
 		translate([-tensioner_depth()/2 - epsilon(), 0, -bearing_f623_outer_diameter()/2])
@@ -62,16 +56,16 @@ module _tensioner_screw_bracket() {
 		union() {
 			// the "front" wall
 			translate([tensioner_depth()/2 - frame_wall_thickness(), -tensioner_width()/2, _tensioner_screw_bracket_base_z()])
-				cube([frame_wall_thickness(), tensioner_width(), _tensioner_screw_bracket_inner_height()]);
+				cube([frame_wall_thickness(), tensioner_width(), tensioner_screw_bracket_inner_height()]);
 			// the "back" wall
 			translate([-tensioner_depth()/2, -tensioner_width()/2, _tensioner_screw_bracket_base_z()])
-				cube([frame_wall_thickness(), tensioner_width(), _tensioner_screw_bracket_inner_height()]);
+				cube([frame_wall_thickness(), tensioner_width(), tensioner_screw_bracket_inner_height()]);
 			// the top plate
-			translate([-tensioner_depth()/2, -tensioner_width()/2, _tensioner_screw_bracket_base_z() + _tensioner_screw_bracket_inner_height()])
+			translate([-tensioner_depth()/2, -tensioner_width()/2, _tensioner_screw_bracket_base_z() + tensioner_screw_bracket_inner_height()])
 				cube([tensioner_depth(), tensioner_width(), frame_wall_thickness()]);
 		}
 		// minus the screw hole in the top plate
-		translate([0, 0, _tensioner_screw_bracket_base_z() + _tensioner_screw_bracket_inner_height() - epsilon()])
+		translate([0, 0, _tensioner_screw_bracket_base_z() + tensioner_screw_bracket_inner_height() - epsilon()])
 			cylinder(d = M4, h = frame_wall_thickness() + 2 * epsilon(), $fn = frame_screw_hole_resolution());
 		// minus a recess to hold the screw in place
 		translate([0, 0, _tensioner_screw_fastener_nut_z()])
@@ -168,7 +162,7 @@ module tensioner_hardware(screw_position = 15) {
 
 	// the screw: variable position
 	translate([0, 0, screw_position]) {
-		_screw_base_z = _tensioner_screw_bracket_base_z() + _tensioner_screw_bracket_inner_height() + frame_wall_thickness() + epsilon();
+		_screw_base_z = _tensioner_screw_bracket_base_z() + tensioner_screw_bracket_inner_height() + frame_wall_thickness() + epsilon();
 		translate([0, 0, _screw_base_z + epsilon() + washer_thickness(M4)])
 			rotate([0, 90, 0])
 				washer(size = M4);

@@ -18,6 +18,7 @@ use <../parts/printed/carriage.scad>
 use <../parts/printed/foot.scad>
 use <../parts/printed/head.scad>
 use <../parts/printed/motor_bracket.scad>
+use <../parts/printed/tensioner.scad>
 use <../parts/vitamins/vitamins.scad>
 
 /**
@@ -55,10 +56,14 @@ module _vertical_axis_assembly() {
 		head_hardware();
 	}
 
-	// TODO add the upper end and determine the length of the belt
-	_belt_length = 750;
+	// TODO determine the exact tensioner position
+	translate([tensioner_x_offset(), 0, vertical_extrusion_length() - tensioner_z_offset()]) {
+		tensioner();
+		tensioner_hardware(screw_position = tensioner_screw_position());
+	}
 
 	// the belt for this axis
+	_belt_length = belt_center_distance();
 	translate([makerslide_depth() + vmotor_gt2_belt_rail_distance(), 0, vmotor_z_offset() + _belt_length])
 			rotate([0, 90, 0])
 				gt2_belt_loop(length = _belt_length, 

@@ -13,7 +13,11 @@ include <../../conf/part_sizes.scad>
 use <../../bom/bom.scad>
 use <../../parts/extrusions/makerslide.scad>
 use <../../parts/extrusions/vslot_2020.scad>
+use <../../parts/printed/tensioner.scad>
 use <../../parts/vitamins/vitamins.scad>
+
+// set this to true to show the tensioner for positioning - set to false to render the part only
+_DEBUG_TENSIONER = false;
 
 // The dimensions of the horizontal parts that hold the V-Slot extrusions.
 function _head_horizontal_height() = vslot_2020_depth() + frame_wall_thickness();
@@ -26,7 +30,7 @@ function _head_horizontal_z_offset()  = vertical_recess_depth() - frame_wall_thi
 // The dimensions of the vertical part that holds the MakerSlide extrusion.
 function _head_vertical_height() = vertical_recess_depth();
 function _head_vertical_width()  = frame_wall_thickness() + makerslide_width() + frame_wall_thickness();
-function _head_vertical_depth()  = frame_wall_thickness() + makerslide_depth() + frame_wall_thickness();
+function _head_vertical_depth()  = frame_wall_thickness() + tensioner_x_offset() - tensioner_depth()/2;
 function _head_vertical_back_screw_height() = vertical_recess_depth()/2;
 function _head_vertical_side_screw_height() = _head_vertical_height() - _head_horizontal_height()/2; // align with other screw
 function _head_vertical_side_screw_y_offset() = _head_vertical_width()/2 + 1;
@@ -99,6 +103,47 @@ module _head_horizontal_leg_hardware(right = false) {
 }
 
 /**
+ * Creates the vertical guides to the left an right of the tensioner.
+ */
+module _head_tensioner_guides() {
+	translate([_head_vertical_depth() - frame_wall_thickness(), 
+		       tensioner_width()/2 + tensioner_guide_clearance(), 0])
+		cube([frame_wall_thickness(), frame_wall_thickness(), _head_vertical_height()]);
+	translate([_head_vertical_depth() - frame_wall_thickness(), 
+		       -tensioner_width()/2 - frame_wall_thickness() - tensioner_guide_clearance(), 0])
+		cube([frame_wall_thickness(), frame_wall_thickness(), _head_vertical_height()]);
+}
+
+/**
+ * Creates the head plate that the tensioner screw and the top screws will feed through.
+ */
+module _head_top_plate() {
+
+	_base_width = makerslide_width();	
+	_plate_depth = tensioner_depth() + frame_wall_thickness();
+	_edge_width = _base_width + 2 * (_plate_depth * tan(30));
+	translate([_head_vertical_depth() - frame_wall_thickness(), 
+		       0, 
+		       _head_vertical_height() - frame_wall_thickness()]) {
+		difference() {
+			// the plate itself
+			linear_extrude(height = frame_wall_thickness(), center = false) {
+				polygon(points = [
+					[ 0, -_base_width/2],
+					[ 0, _base_width/2],
+					[ _plate_depth, _edge_width/2],
+					[ _plate_depth, -_edge_width/2]
+				]);
+			}
+			// minus the screw hole for the tensioner
+			translate([tensioner_depth()/2, 0, 0])
+				cylinder(d = M4, h = frame_wall_thickness() + 2 * epsilon(), $fn = frame_screw_hole_resolution());
+		}
+	}
+
+}
+
+/**
  * Creates the lower head assembly by rendering it from scratch. This module is not to be called externally, use 
  * head() instead.
  */
@@ -151,6 +196,10 @@ module _render_head() {
 						cylinder(d = frame_screw_head_size(), h = _inset_depth, 
 								 center = true, $fn = frame_screw_hole_resolution());				
 			}
+			// add the vertical guide blocks for the tensioner
+			_head_tensioner_guides();
+			// add the top plate
+			_head_top_plate();
 		} 
 }
 
@@ -236,3 +285,10 @@ module head_hardware() {
 }
 
 _render_head();
+if (_DEBUG_TENSIONER) {
+	translate([tensioner_x_offset(), 0, -10]) {
+		tensioner();
+		tensioner_hardware();
+	}
+}
+

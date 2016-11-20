@@ -172,6 +172,22 @@ function tensioner_vertical_screw_length() = 35;
 function tensioner_depth() = tensioner_idler_gap_depth() + 2 * frame_wall_thickness();
 function tensioner_width() = bearing_f623_flange_diameter() + 2 * tensioner_flange_width();
 
+/**
+ * The height of the free space between the running surface of the idler and the tensioner plate.
+ */
+function tensioner_idler_z_offset() = (bearing_f623_flange_diameter() - bearing_f623_outer_diameter())/2 + 
+                                      tensioner_flange_width();
+
+/** 
+ * The height of the empty space inside the upper bracket.
+ */
+function tensioner_screw_bracket_inner_height() = tensioner_vertical_screw_length() - 2 * frame_wall_thickness();
+
+/**
+ * The clearance between the tensioner and its guide blocks on either side.
+ */
+function tensioner_guide_clearance() = 0.2;
+
 // ===== SCREWS, NUTS, BOLTS AND OTHER HARDWARE =======================================================================
 
 /**
@@ -235,6 +251,26 @@ function motor_bracket_z_offset() = vertical_recess_depth();
 function head_z_offset() = vertical_extrusion_length() - vertical_recess_depth();
 
 /**
+ * The X position of the tensioners relative to the back side (origin) of the MakerSlide rail.
+ */
+function tensioner_x_offset() = makerslide_depth() + vmotor_gt2_belt_rail_distance() + gt2_belt_width()/2;
+
+/**
+ * The default position of the tensioner screws. Defaults to 3/4 of the screw length, so that 1/4 of the screw is
+ * screwed in, the remaining 3/4 can still be used to tighten the tensioner.
+ */
+function tensioner_screw_position() = 0.75 * tensioner_vertical_screw_length();
+
+/**
+ * The distance between the tensioner screw/washer and the idler running surface (the "origin" of the tensioner).
+ */
+function tensioner_z_offset() = tensioner_screw_position() + 
+                                frame_wall_thickness() + 
+                                tensioner_screw_bracket_inner_height() +
+                                tensioner_separator_thickness() + 
+                                tensioner_idler_z_offset();
+
+/**
  * The distance of the motor front face to the inward face of the vertical MakerSlide extrusion.
  * The nominal length of the axis is 24 mm. The value of frame_wall_thickness() (default 3mm) is irrelevant here 
  * because it applies to both the inner wall of the bracket and the motor mounting plate in the same direction.
@@ -261,6 +297,13 @@ function vmotor_gt2_pulley_rail_distance() = vmotor_gt2_pulley_reversed() ?
 function vmotor_gt2_belt_rail_distance() = vmotor_gt2_pulley_reversed() ?
   vmotor_gt2_pulley_rail_distance() + gt2_pulley_base_depth() + 1.5 : // reversed
   vmotor_gt2_pulley_rail_distance() - gt2_pulley_base_depth() - gt2_belt_width() - 1.5; // normal
+
+/**
+ * The length of the belt - or more precisely the distance between the centers of the two bearings.
+ */
+function belt_center_distance() = vertical_extrusion_length() 
+                                  - vmotor_z_offset() // bottom distance
+                                  - (tensioner_z_offset() + bearing_f623_outer_diameter() / 2); // top distance
 
 /**
  * The inward offset of the carriage from the rail origin (+X in the vertical assembly).
