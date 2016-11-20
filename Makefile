@@ -82,6 +82,7 @@ assemblies: printed vitamins \
 #
 printed: vitamins \
 	parts/printed/carriage.stl \
+	parts/printed/end_switch_bracket.stl \
 	parts/printed/foot.stl \
 	parts/printed/head.stl \
 	parts/printed/motor_bracket.stl \

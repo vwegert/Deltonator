@@ -59,13 +59,15 @@ module stepper_long(size = 17) {
 
 /**
  * Provides a pre-rendered SS-5GL end switch.
- * The switch is aligned to the XY plane with the Z axis going straight through the screw hole at the far end of the 
+ * The switch is aligned to the YZ plane with the X axis going straight through the screw hole at the far end of the 
  * lever.
  */
-module switch_ss05gl() {
-	bom_entry(section = "Electronic Components", escription = "End Switch", size = "SS-5GL");
+module switch_ss5gl() {
+	bom_entry(section = "Electronic Components", description = "End Switch", size = "SS-5GL");
 	color_switch()
-		import(file = "electromechanic/switch_ss5gl.stl"); 
+		translate([switch_ss5gl_thickness()/2, 0, 0])
+			rotate([270, 0, 270])
+				import(file = "electromechanic/switch_ss5gl.stl"); 
 }
 
 // ===== parts/vitamins/mechanic/bearing_*.* ===========================================================================

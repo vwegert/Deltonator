@@ -29,6 +29,10 @@ V-Wheel for MakerSlide
 
 ===== Electronic Components ===========================================================
 
+End Switch
+  SS-5GL.......................................................................... 3
+    vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
+
 Stepper Motor
   NEMA 17 medium.................................................................. 3
     vertical_axis_assembly >> motor_bracket_stepper                          (3)
@@ -38,7 +42,8 @@ Stepper Motor
 Hex Nut (DIN 934 / ISO 4032)
   M3.............................................................................. 3
     vertical_axis_assembly >> tensioner_hardware                             (3)
-  M4.............................................................................. 3
+  M4.............................................................................. 6
+    vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
     vertical_axis_assembly >> tensioner_hardware                             (3)
   M5.............................................................................. 9
     vertical_axis_assembly >> carriage_hardware                              (9)
@@ -106,6 +111,8 @@ Frame
 
 Small Parts
   Belt Tensioner.................................................................. 3
+    vertical_axis_assembly                                                   (3)
+  End Switch Bracket.............................................................. 3
     vertical_axis_assembly                                                   (3)
 
 ===== Timing Belts and Pulleys ========================================================

@@ -79,7 +79,7 @@ module _tensioner_screw_bracket() {
  * tensioner() instead.
  */
 module _render_tensioner() {
-	color_printed_tensioner()
+	color_printed_head_parts()
 		render() {
 			// the lower part that holds the idler
 			_tensioner_idler_bracket();
@@ -95,7 +95,7 @@ module _render_tensioner() {
  */
 module tensioner() {
 	bom_entry(section = "Printed Parts", description = "Small Parts", size = "Belt Tensioner");
-	color_printed_tensioner()
+	color_printed_head_parts()
 		import(file = "tensioner.stl");
 }
 

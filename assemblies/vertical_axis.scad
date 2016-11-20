@@ -15,6 +15,7 @@ include <../conf/part_sizes.scad>
 
 use <../parts/extrusions/makerslide.scad>
 use <../parts/printed/carriage.scad>
+use <../parts/printed/end_switch_bracket.scad>
 use <../parts/printed/foot.scad>
 use <../parts/printed/head.scad>
 use <../parts/printed/motor_bracket.scad>
@@ -62,6 +63,13 @@ module _vertical_axis_assembly() {
 		tensioner_hardware(screw_position = tensioner_screw_position());
 	}
 
+	// the end switch assembly
+	translate([end_switch_bracket_x_offset(), end_switch_bracket_y_offset(), 
+		       vertical_extrusion_length() - end_switch_bracket_z_offset()]) {
+		end_switch_bracket();
+		end_switch_bracket_hardware(screw_position = 15);
+	}
+
 	// the belt for this axis
 	_belt_length = belt_center_distance();
 	translate([makerslide_depth() + vmotor_gt2_belt_rail_distance(), 0, vmotor_z_offset() + _belt_length])
@@ -71,7 +79,7 @@ module _vertical_axis_assembly() {
 					inner_diameter_end1 = gt2_pulley_inner_diameter_min());// bearing_f623zz_outer_diameter());
 
 	// TODO make the carriage position dynamic
-	_carriage_z = 665;
+	_carriage_z = 640;
 	translate([carriage_x_offset(), 0, _carriage_z]) {
 		carriage();
 		carriage_hardware();

@@ -39,9 +39,9 @@ module color_printed_carriage() {
 } 
 
 /**
- * The color of the printed tensioners.
+ * The color of the printed tensioners and end switch brackets.
  */
-module color_printed_tensioner() {
+module color_printed_head_parts() {
 	color("PowderBlue")
 		children();
 } 

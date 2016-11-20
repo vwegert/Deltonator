@@ -258,4 +258,17 @@ function vwheel_width_offset() = vwheel_pair_center_distance() / 2;
 
 function vwheel_max_mounting_hole_size() = 8; // TODO derive this from the excentrical nut size!
 
+// ===== SWITCHES =====================================================================================================
+
+/**
+ * The dimensions of the end switch used here. 
+ * The values were taken from https://www.omron.com/ecb/products/sw/12/ss.html.
+ */
+function switch_ss5gl_thickness()            =  6.4;
+function switch_ss5gl_width()                = 19.8;
+function switch_ss5gl_body_height()          = 10.2;
+function switch_ss5gl_hole_edge_distance()   =  5.15;
+function switch_ss5gl_hole_bottom_distance() =  2.9;
+function switch_ss5gl_hole_distance()        =  9.5;
+function switch_ss5gl_hole_diameter()        =  2.35;
 
