@@ -74,7 +74,7 @@ function makerslide_rail_edge_distance() = sqrt(pow(makerslide_width() / 2, 2) +
 /**
  * The edge radius of the back side and the resolution used to render the curve.
  */
-function makerslide_edge_radius() = 1;
+function makerslide_edge_radius() = 0.5;
 function makerslide_edge_resolution() = 64;
 
 /**

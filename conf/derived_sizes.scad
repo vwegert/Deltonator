@@ -33,6 +33,11 @@ function horizontal_extrusion_offset() = makerslide_rail_edge_distance() + horiz
  */
 function horizontal_base_length() = horizontal_extrusion_length() + 2 * horizontal_extrusion_offset();
 
+/**
+ * The additional clearance to leave around the MakerSlide extrusion.
+ */
+function makerslide_clearance() = MAKERSLIDE_CLEARANCE;
+
 // ===== FABRICATED PART DIMENSIONS ===================================================================================
 
 /**
@@ -163,6 +168,11 @@ function carriage_belt_holder_insert_y() = carriage_belt_holder_height() -
                                            carriage_belt_holder_insert_hole_diameter() / 2;
 
 /**
+ * The range by which the vertical belt tensioner can be adjusted.
+ */
+function tensioner_range() = TENSIONER_RANGE;
+
+/**
  * The dimensions of the tensioners that hold the upper end of the belt.
  */
 function tensioner_idler_gap_depth() = 2 * bearing_f623_width() + 2 * washer_thickness(M3);
@@ -175,7 +185,7 @@ function tensioner_width() = bearing_f623_flange_diameter() + 2 * tensioner_flan
  * The length of the tensioner screw is determined from the desired tensioner range.
  */
 function tensioner_vertical_screw_min_length() = washer_thickness(M4) + 
-                                                     TENSIONER_RANGE + 
+                                                     tensioner_range() + 
                                                      (2*frame_wall_thickness()/3) + 
                                                      nut_thickness(M4);
 function tensioner_vertical_screw_length() = select_next_screw_length(

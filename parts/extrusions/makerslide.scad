@@ -19,7 +19,9 @@ use <../../bom/bom.scad>
  * The extrusion will reach into positive X and Z space while being centered on the Y axis.
  */
 module makerslide_vertical_rail() {
-	bom_entry(section = "Aluminium Extrusions", description = "MakerSlide Extrusion", size = str(vertical_extrusion_length(), " mm"));
+	bom_entry(section = "Aluminium Extrusions", 
+		      description = "MakerSlide Extrusion", 
+		      size = str(vertical_extrusion_length(), " mm"));
 	color_extrusion()
 		import(file = "makerslide_rail.stl"); 
 }
@@ -35,19 +37,21 @@ module makerslide_punch(length) {
 			union() {
 				hull() {
 					// use two circles for the back sides
-					_y_offset = makerslide_base_width()/2 - makerslide_edge_radius();
-					translate([makerslide_edge_radius(), -_y_offset, 0])
+					_y_offset = makerslide_base_width()/2 - makerslide_edge_radius() + makerslide_clearance();
+					translate([makerslide_edge_radius() - makerslide_clearance(), -_y_offset, 0])
 						circle(r = makerslide_edge_radius(), $fn = makerslide_edge_resolution());
-					translate([makerslide_edge_radius(), _y_offset, 0])
+					translate([makerslide_edge_radius() - makerslide_clearance(), _y_offset, 0])
 						circle(r = makerslide_edge_radius(), $fn = makerslide_edge_resolution());
 					// use a rectangle to shape the front side
-					translate([makerslide_base_depth() - 1, -makerslide_base_width()/2, 0])
-						square([1, makerslide_base_width()]);
+					translate([makerslide_base_depth() - 1 + makerslide_clearance(), 
+						       -makerslide_base_width()/2 - makerslide_clearance(), 0])
+						square([1, makerslide_base_width() + 2 * makerslide_clearance()]);
 				}
-				_rail_base_x = makerslide_base_depth() - makerslide_edge_radius() - makerslide_rail_depth();
-				_rail_offset_y = makerslide_base_width()/2;
-				_rail_punch_width = makerslide_rail_width();
-				_rail_punch_depth = 2*makerslide_rail_depth() + makerslide_edge_radius();
+				_rail_base_x = makerslide_base_depth() - makerslide_edge_radius() - 
+				               makerslide_rail_depth() - makerslide_clearance();
+				_rail_offset_y = makerslide_base_width()/2 - makerslide_clearance();
+				_rail_punch_width = makerslide_rail_width() + 2 * makerslide_clearance();
+				_rail_punch_depth = 2*makerslide_rail_depth() + makerslide_edge_radius() + 2 * makerslide_clearance();
 				translate([_rail_base_x, -_rail_offset_y - _rail_punch_width, 0])
 					square([_rail_punch_depth, _rail_punch_width]);
 				translate([_rail_base_x, _rail_offset_y, 0])

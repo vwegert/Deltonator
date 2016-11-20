@@ -22,6 +22,9 @@ FRAME_H_RAIL_LENGTH = 400;
 
 // ===== FABRICATED PART DIMENSIONS ===================================================================================
 
+// The additional clearance to leave around the MakerSlide extrusion.
+MAKERSLIDE_CLEARANCE = 0.05;
+
 // The thickness of the walls outside the extruded parts.
 FRAME_PART_WALL_THICKNESS = 3;
 
@@ -45,6 +48,5 @@ CARRIAGE_PLATE_THICKNESS = 6;
 // The width of the border around the holes in the carriage base plate that hold the V-Wheels. 
 CARRIAGE_PLATE_BORDER_WIDTH = 8;
 
-// The range by which the vertical belt tensioner can be adjusted. Be aware that if you lower this too much,
-// the idler axis might collide with the head piece.
+// The range by which the vertical belt tensioner can be adjusted.
 TENSIONER_RANGE = 15;
