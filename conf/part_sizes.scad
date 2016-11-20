@@ -85,6 +85,42 @@ function makerslide_slot_offset() = 10;
 // ===== SCREWS, NUTS, BOLTS AND OTHER HARDWARE =======================================================================
 
 /**
+ * Determines the next available screw length for a given size.
+ */
+function select_next_screw_length(size, min_length) =
+	(size == M3) ?
+		(min_length <=  6) ?  6 :
+		(min_length <=  8) ?  8 :
+		(min_length <= 10) ? 10 :
+		(min_length <= 12) ? 12 :
+		(min_length <= 16) ? 16 :
+		(min_length <= 20) ? 20 : -1
+	: (size == M4) ? 
+		(min_length <=  8) ?  8 :
+		(min_length <= 10) ? 10 :
+		(min_length <= 12) ? 12 :
+		(min_length <= 16) ? 16 :
+		(min_length <= 20) ? 20 :
+		(min_length <= 25) ? 25 :
+		(min_length <= 35) ? 35 : 
+		(min_length <= 45) ? 45 :
+		(min_length <= 55) ? 55 : -1
+	: (size == M5) ? 
+		(min_length <=  8) ?  8 :
+		(min_length <= 10) ? 10 :
+		(min_length <= 12) ? 12 :
+		(min_length <= 16) ? 16 :
+		(min_length <= 20) ? 20 :
+		(min_length <= 25) ? 25 :
+		(min_length <= 30) ? 30 :
+		(min_length <= 35) ? 35 :
+		(min_length <= 40) ? 40 :
+		(min_length <= 45) ? 45 :
+		(min_length <= 55) ? 55 :
+		(min_length <= 65) ? 65 : -1
+	: -1;
+
+/**
  * The thickness of washers of various dimensions (normal = ISO 7089, large = ISO 7093)
  */
 function washer_thickness(size = M4) =

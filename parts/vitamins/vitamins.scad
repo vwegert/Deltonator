@@ -247,39 +247,8 @@ module screw(size, length = -1, min_length = -1, max_length = -1) {
 }
 
 module _screw_exact_length(size, length) {
-	_length = (size == M3) ? 
-				(length ==  6) ?  6 :
-				(length ==  8) ?  8 :
-				(length == 10) ? 10 :
-				(length == 12) ? 12 :
-				(length == 16) ? 16 :
-				(length == 20) ? 20 : -1
-	        : (size == M4) ?
-				(length ==  8) ?  8 :
-				(length == 10) ? 10 :
-				(length == 12) ? 12 :
-				(length == 16) ? 16 :
-				(length == 20) ? 20 :
-				(length == 25) ? 25 :
-				(length == 30) ? 30 :
-				(length == 35) ? 35 : 
-				(length == 45) ? 45 :
-				(length == 55) ? 55 : -1
-	        : (size == M5) ?
-				(length ==  8) ?  8 :
-				(length == 10) ? 10 :
-				(length == 12) ? 12 :
-				(length == 16) ? 16 :
-				(length == 20) ? 20 :
-				(length == 25) ? 25 :
-				(length == 30) ? 30 :
-				(length == 35) ? 35 :
-				(length == 40) ? 40 :
-				(length == 45) ? 45 :
-				(length == 55) ? 55 :
-				(length == 65) ? 65 : -1
-	        : -1;
-	if (_length < 0) {
+	_length = select_next_screw_length(size = size, min_length = length);
+	if ((_length < 0) || (_length != length)) {
 		echo(str("ERROR: Unsupported screw length '", length, "' for M", size, " screws."));
 	} else {
 		_screw(size = size, length = _length);
@@ -287,37 +256,7 @@ module _screw_exact_length(size, length) {
 }
 
 module _screw_min_length(size, min_length) {
-	_length = (size == M3) ?
-				(min_length <=  6) ?  6 :
-				(min_length <=  8) ?  8 :
-				(min_length <= 10) ? 10 :
-				(min_length <= 12) ? 12 :
-				(min_length <= 16) ? 16 :
-				(min_length <= 20) ? 20 : -1
-	        : (size == M4) ? 
-				(min_length <=  8) ?  8 :
-				(min_length <= 10) ? 10 :
-				(min_length <= 12) ? 12 :
-				(min_length <= 16) ? 16 :
-				(min_length <= 20) ? 20 :
-				(min_length <= 25) ? 25 :
-				(min_length == 35) ? 35 : 
-				(min_length == 45) ? 45 :
-				(min_length == 55) ? 55 : -1
-	        : (size == M5) ? 
-				(min_length <=  8) ?  8 :
-				(min_length <= 10) ? 10 :
-				(min_length <= 12) ? 12 :
-				(min_length <= 16) ? 16 :
-				(min_length <= 20) ? 20 :
-				(min_length <= 25) ? 25 :
-				(min_length <= 30) ? 30 :
-				(min_length <= 35) ? 35 :
-				(min_length <= 40) ? 40 :
-				(min_length <= 45) ? 45 :
-				(min_length <= 55) ? 55 :
-				(min_length <= 65) ? 65 : -1
-	        : -1;
+	_length = select_next_screw_length(size = size, min_length = min_length);
 	if (_length < 0) {
 		echo(str("ERROR: Unsupported minimal screw length '", min_length, "' for M", size, " screws."));
 	} else {
@@ -326,38 +265,7 @@ module _screw_min_length(size, min_length) {
 }
 
 module _screw_ranged_length(size, min_length, max_length) {
-	_length = (size == M3) ?
-				(min_length <=  6) ?  6 :
-				(min_length <=  8) ?  8 :
-				(min_length <= 10) ? 10 :
-				(min_length <= 12) ? 12 :
-				(min_length <= 16) ? 16 :
-				(min_length <= 20) ? 20 : -1
-	        : (size == M4) ? 
-				(min_length <=  8) ?  8 :
-				(min_length <= 10) ? 10 :
-				(min_length <= 12) ? 12 :
-				(min_length <= 16) ? 16 :
-				(min_length <= 20) ? 20 :
-				(min_length <= 25) ? 25 :
-				(min_length <= 30) ? 30 :
-				(min_length == 35) ? 35 : 
-				(min_length == 45) ? 45 :
-				(min_length == 55) ? 55 : -1
-	        : (size == M5) ? 
-				(min_length <=  8) ?  8 :
-				(min_length <= 10) ? 10 :
-				(min_length <= 12) ? 12 :
-				(min_length <= 16) ? 16 :
-				(min_length <= 20) ? 20 :
-				(min_length <= 25) ? 25 :
-				(min_length <= 30) ? 30 :
-				(min_length <= 35) ? 35 :
-				(min_length <= 40) ? 40 :
-				(min_length <= 45) ? 45 :
-				(min_length <= 55) ? 55 :
-				(min_length <= 65) ? 65 : -1
-	        : -1;
+	_length = select_next_screw_length(size = size, min_length = min_length);
 	if (_length < 0) {
 		echo(str("ERROR: Unsupported minimal screw length '", min_length, "' for M", size, " screws."));
 	} else if (_length > max_length) {

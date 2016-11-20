@@ -45,3 +45,6 @@ CARRIAGE_PLATE_THICKNESS = 6;
 // The width of the border around the holes in the carriage base plate that hold the V-Wheels. 
 CARRIAGE_PLATE_BORDER_WIDTH = 8;
 
+// The range by which the vertical belt tensioner can be adjusted. Be aware that if you lower this too much,
+// the idler axis might collide with the head piece.
+TENSIONER_RANGE = 15;

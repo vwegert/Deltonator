@@ -168,9 +168,19 @@ function carriage_belt_holder_insert_y() = carriage_belt_holder_height() -
 function tensioner_idler_gap_depth() = 2 * bearing_f623_width() + 2 * washer_thickness(M3);
 function tensioner_flange_width() = 2;
 function tensioner_separator_thickness() = 2; 
-function tensioner_vertical_screw_length() = 35;
 function tensioner_depth() = tensioner_idler_gap_depth() + 2 * frame_wall_thickness();
 function tensioner_width() = bearing_f623_flange_diameter() + 2 * tensioner_flange_width();
+
+/** 
+ * The length of the tensioner screw is determined from the desired tensioner range.
+ */
+function tensioner_vertical_screw_min_length() = washer_thickness(M4) + 
+                                                     TENSIONER_RANGE + 
+                                                     (2*frame_wall_thickness()/3) + 
+                                                     nut_thickness(M4);
+function tensioner_vertical_screw_length() = select_next_screw_length(
+                                               size = M4, 
+                                               min_length = tensioner_vertical_screw_min_length());
 
 /**
  * The height of the free space between the running surface of the idler and the tensioner plate.
@@ -187,6 +197,13 @@ function tensioner_screw_bracket_inner_height() = tensioner_vertical_screw_lengt
  * The clearance between the tensioner and its guide blocks on either side.
  */
 function tensioner_guide_clearance() = 0.2;
+
+/**
+ * The dimensions of the groove to leave out of the head piece to leave room for the tensioner idler axle.
+ */
+function head_tensioner_groove_width()  = washer_diameter(M4) + 2;
+function head_tensioner_groove_depth()  = nut_thickness(M4) * 2;
+function head_tensioner_groove_height() = vertical_recess_depth() / 2;
 
 // ===== SCREWS, NUTS, BOLTS AND OTHER HARDWARE =======================================================================
 
@@ -260,6 +277,7 @@ function tensioner_x_offset() = makerslide_depth() + vmotor_gt2_belt_rail_distan
  * screwed in, the remaining 3/4 can still be used to tighten the tensioner.
  */
 function tensioner_screw_position() = 0.75 * tensioner_vertical_screw_length();
+// function tensioner_screw_position() = frame_wall_thickness(); 
 
 /**
  * The distance between the tensioner screw/washer and the idler running surface (the "origin" of the tensioner).

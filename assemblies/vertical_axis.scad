@@ -56,7 +56,7 @@ module _vertical_axis_assembly() {
 		head_hardware();
 	}
 
-	// TODO determine the exact tensioner position
+	// the tensioner and the associated hardware
 	translate([tensioner_x_offset(), 0, vertical_extrusion_length() - tensioner_z_offset()]) {
 		tensioner();
 		tensioner_hardware(screw_position = tensioner_screw_position());

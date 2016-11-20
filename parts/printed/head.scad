@@ -153,7 +153,7 @@ module _render_head() {
 			difference() {
 				union() {
 					// add a block to hold the MakerSlide extrusion, but without the holes for now
-					translate([-frame_wall_thickness(), -_head_vertical_width()/2, ])
+					translate([-frame_wall_thickness(), -_head_vertical_width()/2, 0])
 						cube([_head_vertical_depth(), _head_vertical_width(), _head_vertical_height()]);
 					// add blocks to hold the V-Slot extrusions, restricted to the specified wall depth in negative Y
 					difference() {
@@ -169,8 +169,15 @@ module _render_head() {
 							cube([vslot_2020_depth(), 2*makerslide_width(), _head_horizontal_height()]);
 					}
 				}
+
 				// minus the hole for the MakerSlide extrusion
 				makerslide_punch(vertical_recess_depth());
+
+				// minus the groove for the tensioner axle nut
+				translate([_head_vertical_depth() - frame_wall_thickness() - head_tensioner_groove_depth(), 
+					       -head_tensioner_groove_width()/2, 0])
+					cube([head_tensioner_groove_depth(), head_tensioner_groove_width(), head_tensioner_groove_height()]);
+
 				// minus the screw holes on the back
 				translate([-frame_wall_thickness()/2, -makerslide_slot_offset(), _head_vertical_back_screw_height()])
 					rotate([0, 90, 0])
@@ -180,11 +187,13 @@ module _render_head() {
 					rotate([0, 90, 0])
 						cylinder(d = frame_screw_size(), h = 2*frame_wall_thickness(), 
 								 center = true, $fn = frame_screw_hole_resolution());
+
 				// minus the screw holes on the side
 				translate([makerslide_slot_offset(), 0, _head_vertical_side_screw_height()])
 					rotate([90, 0, 0])
 						cylinder(d = frame_screw_size(), h = 2*_head_vertical_width(), 
 								 center = true, $fn = frame_screw_hole_resolution());
+
 				// minus an additional inset so that the side screws can rest on a perpendicular surface
 				_inset_depth = 100;
 				translate([makerslide_slot_offset(), _head_vertical_side_screw_y_offset() + _inset_depth/2, _head_vertical_side_screw_height()])
@@ -196,6 +205,8 @@ module _render_head() {
 						cylinder(d = frame_screw_head_size(), h = _inset_depth, 
 								 center = true, $fn = frame_screw_hole_resolution());				
 			}
+
+
 			// add the vertical guide blocks for the tensioner
 			_head_tensioner_guides();
 			// add the top plate
@@ -286,9 +297,9 @@ module head_hardware() {
 
 _render_head();
 if (_DEBUG_TENSIONER) {
-	translate([tensioner_x_offset(), 0, -10]) {
+	translate([tensioner_x_offset(), 0, _head_vertical_height() - tensioner_z_offset()]) {
 		tensioner();
-		tensioner_hardware();
+		tensioner_hardware(screw_position = tensioner_screw_position());
 	}
 }
 
