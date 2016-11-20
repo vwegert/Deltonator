@@ -53,6 +53,7 @@ module _carriage_lower_base_plate() {
 						     h = carriage_plate_thickness(),
 						     $fn = carriage_plate_edge_resolution());
 		}
+
 		// minus the three holes for the V-Wheel mounts
 		translate([0, carriage_wheel1_y(), carriage_wheel1_z()])
 			rotate([0, 90, 0])
@@ -69,6 +70,15 @@ module _carriage_lower_base_plate() {
 				cylinder(d = carriage_wheel3_hole_diameter(),
 			    		 h = carriage_plate_thickness() + epsilon(),
 					     $fn = carriage_wheel_hole_resolution());
+
+		// minus the gap for the belt tensioner
+		translate([0, -carriage_tensioner_gap_width()/2, carriage_plate_height() - carriage_tensioner_gap_height()])
+			cube([carriage_plate_thickness(), carriage_tensioner_gap_width(), carriage_tensioner_gap_height()]);
+
+// function carriage_tensioner_gap_width()  = tensioner_width() + 6;
+// function carriage_tensioner_gap_height() = carriage_plate_height() - (carriage_lower_belt_holder_z() + 
+//                                                                       carriage_belt_holder_height());
+
 	}
 }
 

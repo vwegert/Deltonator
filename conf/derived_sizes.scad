@@ -134,7 +134,7 @@ function carriage_wheel_hole_resolution() = 16;
 function carriage_belt_holder_depth() = 7.0; // gt2_belt_width() + 1
 function carriage_belt_holder_height() = 25;
 function carriage_belt_holder_width() = 35;
-function carriage_belt_holder_center_offset() = 7.5;
+function carriage_belt_holder_center_offset() = 5;
 function carriage_belt_holder_outer_width() = 6;
 function carriage_belt_holder_channel_height() = 15;
 function carriage_belt_holder_channel_width() = 2.5;
@@ -166,6 +166,12 @@ function carriage_belt_holder_insert_y() = carriage_belt_holder_height() -
                                            carriage_belt_holder_path_width() - 
                                            carriage_belt_holder_insert_hole_distance() - 
                                            carriage_belt_holder_insert_hole_diameter() / 2;
+
+/** 
+ * The size of the gap that is left in the carriage to leave room for the tensioner.
+ */
+function carriage_tensioner_gap_width()  = tensioner_width() + 6;
+function carriage_tensioner_gap_height() = carriage_plate_height() - carriage_upper_belt_holder_z();
 
 /**
  * The range by which the vertical belt tensioner can be adjusted.

@@ -71,7 +71,7 @@ module _vertical_axis_assembly() {
 					inner_diameter_end1 = gt2_pulley_inner_diameter_min());// bearing_f623zz_outer_diameter());
 
 	// TODO make the carriage position dynamic
-	_carriage_z = 250;
+	_carriage_z = 665;
 	translate([carriage_x_offset(), 0, _carriage_z]) {
 		carriage();
 		carriage_hardware();
