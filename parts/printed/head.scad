@@ -103,15 +103,23 @@ module _head_horizontal_leg_hardware(right = false) {
 }
 
 /**
- * Creates the vertical guides to the left an right of the tensioner.
+ * Creates the vertical guides to the left an right of the tensioner and the end switch bracket.
  */
-module _head_tensioner_guides() {
-	translate([_head_vertical_depth() - frame_wall_thickness(), 
-		       tensioner_width()/2 + tensioner_guide_clearance(), 0])
-		cube([frame_wall_thickness(), frame_wall_thickness(), _head_vertical_height()]);
-	translate([_head_vertical_depth() - frame_wall_thickness(), 
-		       -tensioner_width()/2 - frame_wall_thickness() - tensioner_guide_clearance(), 0])
-		cube([frame_wall_thickness(), frame_wall_thickness(), _head_vertical_height()]);
+module _head_guides() {
+	_guide_x = _head_vertical_depth() - frame_wall_thickness();
+	_left_guide_y = -tensioner_width()/2 - head_guide_width() - head_guide_clearance();
+	_center_guide_y = tensioner_width()/2 + head_guide_clearance();
+	_right_guide_y = tensioner_width()/2 + 3*head_guide_clearance() + head_guide_width() + end_switch_bracket_top_width();
+
+	translate([_guide_x, _left_guide_y, 0])
+		cube([head_guide_depth(), head_guide_width(), _head_vertical_height()]);
+
+	translate([_guide_x, _center_guide_y, 0])
+		cube([head_guide_depth(), head_guide_width(), _head_vertical_height()]);
+
+	translate([_guide_x, _right_guide_y, 0])
+		cube([head_guide_depth(), head_guide_width(), _head_vertical_height()]);
+
 }
 
 /**
@@ -207,8 +215,8 @@ module _render_head() {
 			}
 
 
-			// add the vertical guide blocks for the tensioner
-			_head_tensioner_guides();
+			// add the vertical guide blocks for the tensioner and bracket
+			_head_guides();
 			// add the top plate
 			_head_top_plate();
 		} 

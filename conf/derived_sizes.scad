@@ -77,6 +77,17 @@ function motor_bracket_edge_radius() = 5;
 function motor_bracket_edge_resolution() = 16;
 
 /**
+ * The width and depth of the guides in the head piece that hold the tensioner and the end switch bracket in place.
+ */
+function head_guide_width() = 2;
+function head_guide_depth() = 6;
+
+/**
+ * The clearance between the tensioner / bracket and its guide blocks on either side.
+ */
+function head_guide_clearance() = 0.2;
+
+/**
  * The thickness of the carriage base plate.
  */
 function carriage_plate_thickness() = CARRIAGE_PLATE_THICKNESS;
@@ -210,11 +221,6 @@ function tensioner_idler_z_offset() = (bearing_f623_flange_diameter() - bearing_
 function tensioner_screw_bracket_inner_height() = tensioner_vertical_screw_length() - 2 * frame_wall_thickness();
 
 /**
- * The clearance between the tensioner and its guide blocks on either side.
- */
-function tensioner_guide_clearance() = 0.2;
-
-/**
  * The dimensions of the groove to leave out of the head piece to leave room for the tensioner idler axle.
  */
 function head_tensioner_groove_width()  = washer_diameter(M4) + 2;
@@ -224,19 +230,27 @@ function head_tensioner_groove_height() = vertical_recess_depth() / 2;
 /** 
  * The dimensions of the bracket that hold the end switch.
  */
-function end_switch_bracket_thickness()       =  4;
-function end_switch_bracket_foot_depth()      = 20;
-function end_switch_bracket_foot_height()     = 10;
-function end_switch_bracket_screw_hole_diameter() = 1.5;
+function end_switch_bracket_thickness()             =  3;
+function end_switch_bracket_foot_depth()            = 20;
+function end_switch_bracket_foot_height()           = 10;
+function end_switch_bracket_screw_hole_diameter()   =  2;
 
-function end_switch_bracket_top_height()      = 30;
-function end_switch_bracket_top_depth()       = 10;
+function end_switch_bracket_top_height()          = 17.5;
+function end_switch_bracket_top_depth()           = 10;
+function end_switch_bracket_top_width()           = 10;
+function end_switch_bracket_top_nutcatch_height() = 7.5;
 
 function end_switch_bracket_edge_radius()     =  2;
 function end_switch_bracket_edge_resolution() = 16;
 
 function end_switch_bracket_total_height()    = end_switch_bracket_foot_height() + end_switch_bracket_top_height();
 
+function end_switch_bracket_spring_height() = 20;
+function end_switch_bracket_screw_length() = select_next_screw_length(size = M3, min_length = 
+                                               washer_thickness(M3) + 
+                                               frame_wall_thickness() +
+                                               end_switch_bracket_spring_height() + 
+                                               (end_switch_bracket_top_nutcatch_height() - nut_thickness(M3))/2);
 
 // ===== SCREWS, NUTS, BOLTS AND OTHER HARDWARE =======================================================================
 
@@ -325,8 +339,10 @@ function tensioner_z_offset() = tensioner_screw_position() +
  * The position of the end switch bracket.
  */
 function end_switch_bracket_x_offset() = tensioner_x_offset() - tensioner_depth()/2;
-function end_switch_bracket_y_offset() = tensioner_width() / 2 + frame_wall_thickness() + 2 * tensioner_guide_clearance();
-function end_switch_bracket_z_offset() = frame_wall_thickness() + 20 + end_switch_bracket_total_height(); // TODO!
+function end_switch_bracket_y_offset() = tensioner_width() / 2 + head_guide_width() + 2 * head_guide_clearance();
+function end_switch_bracket_z_offset() = frame_wall_thickness() + 
+                                         end_switch_bracket_spring_height() + 
+                                         end_switch_bracket_total_height(); 
 
 /**
  * The distance of the motor front face to the inward face of the vertical MakerSlide extrusion.

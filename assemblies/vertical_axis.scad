@@ -67,7 +67,7 @@ module _vertical_axis_assembly() {
 	translate([end_switch_bracket_x_offset(), end_switch_bracket_y_offset(), 
 		       vertical_extrusion_length() - end_switch_bracket_z_offset()]) {
 		end_switch_bracket();
-		end_switch_bracket_hardware(screw_position = 15);
+		end_switch_bracket_hardware();
 	}
 
 	// the belt for this axis
@@ -79,7 +79,7 @@ module _vertical_axis_assembly() {
 					inner_diameter_end1 = gt2_pulley_inner_diameter_min());// bearing_f623zz_outer_diameter());
 
 	// TODO make the carriage position dynamic
-	_carriage_z = 640;
+	_carriage_z = 655;
 	translate([carriage_x_offset(), 0, _carriage_z]) {
 		carriage();
 		carriage_hardware();

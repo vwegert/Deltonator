@@ -14,19 +14,6 @@ include <../../conf/part_sizes.scad>
 use <../../bom/bom.scad>
 use <../../parts/vitamins/vitamins.scad>
 
-// /**
-//  * The Z position of the upper bracket - that is also the top position of the separator surface.
-//  */
-// function _end_switch_bracket_screw_bracket_base_z() = (bearing_f623_flange_diameter() - bearing_f623_outer_diameter())/2 + 
-// 	                  end_switch_bracket_flange_width() + end_switch_bracket_separator_thickness();
-
-// /**
-//  * The Z position of the fastener nut.
-//  */
-// function _end_switch_bracket_screw_fastener_nut_z() = _end_switch_bracket_screw_bracket_base_z() + 
-//                                              end_switch_bracket_screw_bracket_inner_height() + 
-//                                              frame_wall_thickness()/3;
-
 /**
  * Renders the lower part of the bracket that holds the switch.
  */
@@ -55,19 +42,25 @@ module _render_end_switch_bracket_lower() {
 			translate([0, 0, end_switch_bracket_foot_height() - end_switch_bracket_edge_radius()])
 				cube([end_switch_bracket_edge_radius(), end_switch_bracket_thickness(), end_switch_bracket_edge_radius()]);
 		}
-		// minus the screw holes to attach the switch
+		// minus the screw holes and recesses to attach the switch
 		translate([end_switch_bracket_foot_depth() - switch_ss5gl_hole_edge_distance(), 
-			       0, end_switch_bracket_foot_height() - switch_ss5gl_hole_bottom_distance()])
-			rotate([270, 0, 0])
+			       0, end_switch_bracket_foot_height() - switch_ss5gl_hole_bottom_distance()]) {
+			rotate([270, 0, 0]) 
 				cylinder(d = end_switch_bracket_screw_hole_diameter(),
 					     h = end_switch_bracket_thickness(),
 			    		 $fn = frame_screw_hole_resolution());
+			rotate([270, 0, 90])
+				nut_recess(M2);
+		}
 		translate([end_switch_bracket_foot_depth() - switch_ss5gl_hole_edge_distance() - switch_ss5gl_hole_distance(), 
-			       0, end_switch_bracket_foot_height() - switch_ss5gl_hole_bottom_distance()])
+			       0, end_switch_bracket_foot_height() - switch_ss5gl_hole_bottom_distance()]) {
 			rotate([270, 0, 0])
 				cylinder(d = end_switch_bracket_screw_hole_diameter(),
 					     h = end_switch_bracket_thickness(),
 			    		 $fn = frame_screw_hole_resolution());
+			rotate([270, 0, 90])
+				nut_recess(M2);
+		}
 	}
 }
 
@@ -76,39 +69,29 @@ module _render_end_switch_bracket_lower() {
  */
 module _render_end_switch_bracket_upper() {
 
-	// the vertical block
-	translate([0, 0, end_switch_bracket_foot_height()]) 
-		cube([end_switch_bracket_top_depth(), end_switch_bracket_thickness(), end_switch_bracket_top_height()]);
-
-	// the horizontal block that will hold the nut
 	difference() {
-		translate([0, end_switch_bracket_thickness(), end_switch_bracket_total_height() - end_switch_bracket_thickness()]) 
-			cube([end_switch_bracket_top_depth(), end_switch_bracket_top_depth(), end_switch_bracket_thickness()]);
-		// minus the screw hole in the top plate
+		union() {
+			// the vertical block
+			translate([0, 0, end_switch_bracket_foot_height()]) 
+				cube([end_switch_bracket_top_depth(), end_switch_bracket_thickness(), end_switch_bracket_top_height()]);
+			// the horizontal block that will hold the nut
+			translate([0, 0, end_switch_bracket_total_height() - end_switch_bracket_top_nutcatch_height()]) 
+				cube([end_switch_bracket_top_depth(), end_switch_bracket_top_width(), end_switch_bracket_top_nutcatch_height()]);
+		}				
+		// minus the vertical screw hole
 		translate([end_switch_bracket_top_depth()/2, 
-			       end_switch_bracket_thickness() + end_switch_bracket_top_depth()/2, 
-			       end_switch_bracket_total_height() - end_switch_bracket_thickness() - epsilon()])
-			cylinder(d = M4, h = end_switch_bracket_thickness() + 2 * epsilon(), $fn = frame_screw_hole_resolution());
-		// minus a recess to hold the screw in place
-		translate([end_switch_bracket_top_depth()/2, 
-			       end_switch_bracket_thickness() + end_switch_bracket_top_depth()/2, 
-			       end_switch_bracket_total_height() - 2*end_switch_bracket_thickness()/3])
-			rotate([0, 90, 0])
-				nut_recess(M4);
-
+			       end_switch_bracket_top_width()/2, 
+			       end_switch_bracket_total_height() - end_switch_bracket_top_nutcatch_height() - epsilon()])
+			cylinder(d = M3, h = end_switch_bracket_top_nutcatch_height() + 2 * epsilon(), $fn = frame_screw_hole_resolution());
+		// minus a recess to hold the nut (the width is the Y direction - might also be called the depth of the hole)
+		_nut_recess_width = nut_key_outer_diameter(M3)/2 + end_switch_bracket_top_width()/2;
+		translate([(end_switch_bracket_top_depth() - nut_key_width(M3))/2, 
+			       end_switch_bracket_top_width() - _nut_recess_width, 
+			       end_switch_bracket_total_height() - 
+			          end_switch_bracket_top_nutcatch_height()/2 - nut_thickness(M3)/2])
+			cube([nut_key_width(M3), _nut_recess_width + epsilon(), nut_thickness(M3)]);
+		
 	}
-
-// function end_switch_bracket_thickness()       =  4;
-// function end_switch_bracket_foot_depth()      = 20;
-// function end_switch_bracket_foot_height()     = 10;
-// function end_switch_bracket_screw_hole_diameter() = 1.5;
-
-// function end_switch_bracket_top_height()      = 30;
-// function end_switch_bracket_top_depth()       = 10;
-
-// function end_switch_bracket_edge_radius()     =  2;
-// function end_switch_bracket_edge_resolution() = 16;
-
 }
 
 /**
@@ -138,11 +121,8 @@ module end_switch_bracket() {
 
 /** 
  * Renders the hardware (nuts, bolts, screws) that are used to fixed the printed part to the surrounding parts.
- * The parameter screw_position determines how far the screw will be moved outwards - with screw_position = 0,
- * the screw and washer will lie exactly flush with the upper surface of the bracket. In reality, that will never 
- * happen - screw_position should always be at least frame_wall_thickness().
  */
-module end_switch_bracket_hardware(screw_position = 15) {
+module end_switch_bracket_hardware() {
 
 	// the switch
 	translate([end_switch_bracket_foot_depth() - switch_ss5gl_width() + switch_ss5gl_hole_edge_distance(), 
@@ -151,15 +131,55 @@ module end_switch_bracket_hardware(screw_position = 15) {
 		rotate([0, 0, 270])
 			switch_ss5gl();
 
+	// the nuts to hold the switch
+	translate([end_switch_bracket_foot_depth() - switch_ss5gl_hole_edge_distance(), 
+		       0, end_switch_bracket_foot_height() - switch_ss5gl_hole_bottom_distance()]) 
+		rotate([270, 0, 90])
+			nut(M2);
+	translate([end_switch_bracket_foot_depth() - switch_ss5gl_hole_edge_distance() - switch_ss5gl_hole_distance(), 
+		       0, end_switch_bracket_foot_height() - switch_ss5gl_hole_bottom_distance()]) 
+		rotate([270, 0, 90])
+			nut(M2);
+
+	// the screws to hold the switch
+	_screw_length = switch_ss5gl_thickness() + end_switch_bracket_thickness() - nut_thickness(M2)/2;
+	translate([end_switch_bracket_foot_depth() - switch_ss5gl_hole_edge_distance(), 
+		       end_switch_bracket_thickness() + switch_ss5gl_thickness(), 
+		       end_switch_bracket_foot_height() - switch_ss5gl_hole_bottom_distance()]) 
+		rotate([90, 0, 270])
+			screw(size = M2, min_length = _screw_length);
+	translate([end_switch_bracket_foot_depth() - switch_ss5gl_hole_edge_distance() - switch_ss5gl_hole_distance(), 
+		       end_switch_bracket_thickness() + switch_ss5gl_thickness(), 
+		       end_switch_bracket_foot_height() - switch_ss5gl_hole_bottom_distance()]) 
+		rotate([90, 0, 270])
+			screw(size = M2, min_length = _screw_length);
+
 	// the top level fastener stuff
-	translate([end_switch_bracket_top_depth()/2, end_switch_bracket_thickness() + end_switch_bracket_top_depth()/2,  0]) {
+	translate([end_switch_bracket_top_depth()/2, end_switch_bracket_top_width()/2, 0]) {
 
-		translate([0, 0, end_switch_bracket_total_height() - 2*end_switch_bracket_thickness()/3])
+		// the screw
+		translate([0, 0, end_switch_bracket_total_height() + end_switch_bracket_spring_height() + 
+			             frame_wall_thickness() + washer_thickness(M3) + 2*epsilon()])
 			rotate([0, 90, 0])
-				nut(M4);
+				screw(size = M3, length = end_switch_bracket_screw_length());
+
+		// the washer on top
+		translate([0, 0, end_switch_bracket_total_height() + end_switch_bracket_spring_height() + 
+			             frame_wall_thickness() + washer_thickness(M3) + epsilon()])
+			rotate([0, 90, 0])
+				washer(M3);
+
+	 	// the spring above the bracket
+		translate([0, 0, end_switch_bracket_total_height() + epsilon()])
+			spring(inner_diameter = 5, length = end_switch_bracket_spring_height());
+
+		// the nut
+		translate([0, 0, end_switch_bracket_total_height() - 
+			          end_switch_bracket_top_nutcatch_height()/2 + nut_thickness(M3)/2])
+			rotate([0, 90, 90])
+				nut(M3);
+
 	}
-
-
 }
 
 _render_end_switch_bracket();
