@@ -173,7 +173,8 @@ module insert(size, length) {
  * The nut is centered along the X axis with the thread extending into positive X.
  */
 module nut(size) {
-	_size = (size == M3) ? 3 :
+	_size = (size == M2) ? 2 :
+	        (size == M3) ? 3 :
 	        (size == M4) ? 4 :
 	        (size == M5) ? 5 : -1;
 	if (_size < 0) {
@@ -193,7 +194,8 @@ module nut(size) {
  * This is similar to nut(size), the only difference being that the nut will not be colored and counted in the BOM.
  */
 module nut_recess(size) {
-	_size = (size == M3) ? 3 :
+	_size = (size == M2) ? 2 :
+	        (size == M3) ? 3 :
 	        (size == M4) ? 4 :
 	        (size == M5) ? 5 : -1;
 	if (_size < 0) {
@@ -229,7 +231,8 @@ module nut_tslot(size) {
  * The screw is centered along the X axis with the thread extending into positive X.
  */
 module screw(size, length = -1, min_length = -1, max_length = -1) {
-	_size = (size == M3) ? 3 :
+	_size = (size == M2) ? 2 :
+	        (size == M3) ? 3 :
 	        (size == M4) ? 4 :
 	        (size == M5) ? 5 : -1;
 	if (_size < 0) {

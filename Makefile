@@ -112,15 +112,18 @@ vitamins: \
 	parts/vitamins/mechanic/bearing_625.stl \
 	parts/vitamins/mechanic/gt2_pulley_20t_5mm.stl \
 	parts/vitamins/mechanic/insert_M3x7.stl \
+	parts/vitamins/mechanic/nut_M2.stl \
 	parts/vitamins/mechanic/nut_M3.stl \
 	parts/vitamins/mechanic/nut_M4.stl \
 	parts/vitamins/mechanic/nut_M5.stl \
+	parts/vitamins/mechanic/screw_M2x10.stl \
 	parts/vitamins/mechanic/screw_M3x6.stl \
 	parts/vitamins/mechanic/screw_M3x8.stl \
 	parts/vitamins/mechanic/screw_M3x10.stl \
 	parts/vitamins/mechanic/screw_M3x12.stl \
 	parts/vitamins/mechanic/screw_M3x16.stl \
 	parts/vitamins/mechanic/screw_M3x20.stl \
+	parts/vitamins/mechanic/screw_M3x30.stl \
 	parts/vitamins/mechanic/screw_M4x8.stl \
 	parts/vitamins/mechanic/screw_M4x10.stl \
 	parts/vitamins/mechanic/screw_M4x12.stl \

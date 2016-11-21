@@ -9,6 +9,7 @@
 
 // ===== ALIAS CONSTANTS FOR VARIOUS SIZES =============================================================================
 
+M2 = 2;
 M3 = 3;
 M4 = 4;
 M5 = 5;
@@ -88,13 +89,16 @@ function makerslide_slot_offset() = 10;
  * Determines the next available screw length for a given size.
  */
 function select_next_screw_length(size, min_length) =
-	(size == M3) ?
+	(size == M2) ?
+		(min_length <= 10) ? 10 : -min_length
+	: (size == M3) ?
 		(min_length <=  6) ?  6 :
 		(min_length <=  8) ?  8 :
 		(min_length <= 10) ? 10 :
 		(min_length <= 12) ? 12 :
 		(min_length <= 16) ? 16 :
-		(min_length <= 20) ? 20 : -1
+		(min_length <= 20) ? 20 : 
+		(min_length <= 30) ? 30 : -min_length
 	: (size == M4) ? 
 		(min_length <=  8) ?  8 :
 		(min_length <= 10) ? 10 :
@@ -104,7 +108,7 @@ function select_next_screw_length(size, min_length) =
 		(min_length <= 25) ? 25 :
 		(min_length <= 35) ? 35 : 
 		(min_length <= 45) ? 45 :
-		(min_length <= 55) ? 55 : -1
+		(min_length <= 55) ? 55 : -min_length
 	: (size == M5) ? 
 		(min_length <=  8) ?  8 :
 		(min_length <= 10) ? 10 :
@@ -117,8 +121,8 @@ function select_next_screw_length(size, min_length) =
 		(min_length <= 40) ? 40 :
 		(min_length <= 45) ? 45 :
 		(min_length <= 55) ? 55 :
-		(min_length <= 65) ? 65 : -1
-	: -1;
+		(min_length <= 65) ? 65 : -min_length
+	: -1000;
 
 /**
  * The thickness of washers of various dimensions (normal = ISO 7089, large = ISO 7093)
@@ -148,9 +152,24 @@ function washer_diameter_large(size = M4) =
  * The thickness of nuts of various dimensions.
  */
 function nut_thickness(size = M4) =
+			(size == M2) ? 1.6 :
 			(size == M3) ? 2.4 :
 	        (size == M4) ? 3.2 :
 	        (size == M5) ? 4.7 : -1;	
+
+/**
+ * The key width of nuts of various dimensions.
+ */
+function nut_key_width(size = M4) =
+			(size == M2) ? 4.0 :
+			(size == M3) ? 5.5 :
+	        (size == M4) ? 7.0 :
+	        (size == M5) ? 8.0 : -1;	
+
+/**
+ * The outer (subscribing) diameter of nuts of various dimensions.
+ */
+function nut_key_outer_diameter(size = M4) = (nut_key_width(size) / sqrt(3)) * 2;
 
 /**
  * The dimensions of a threaded insert, M3x7mm.
