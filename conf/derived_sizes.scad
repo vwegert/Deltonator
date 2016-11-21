@@ -75,7 +75,7 @@ function foot_makerslide_recess_depth() = FRAME_FOOT_MAKERSLIDE_DEPTH;
 /**
  * The height of the bracket that holds the motor (only of the part that holds the rail).
  */
-function motor_bracket_height() = FRAME_PART_BRACKET_HEIGHT;
+function motor_bracket_height() = FRAME_MOTOR_BRACKET_HEIGHT;
 
 /**
  * The radius and resolution of the rounded edges of the motor bracket.
@@ -83,9 +83,9 @@ function motor_bracket_height() = FRAME_PART_BRACKET_HEIGHT;
 function motor_bracket_edge_radius() = 5;
 function motor_bracket_edge_resolution() = 16;
 
-
 // ----- build surface holder -----------------------------------------------------------------------------------------
 
+function bed_bracket_height() = FRAME_BED_BRACKET_HEIGHT;
 
 // ----- head ---------------------------------------------------------------------------------------------------------
 
@@ -104,7 +104,6 @@ function head_guide_depth() = 6;
  * The clearance between the tensioner / bracket and its guide blocks on either side.
  */
 function head_guide_clearance() = 0.2;
-
 
 // ----- carriage -----------------------------------------------------------------------------------------------------
 
@@ -333,6 +332,11 @@ function position_right_assembly() = [-horizontal_extrusion_outward_offset() - v
  * see also: lower_foot_vertical_height() 
  */
 function motor_bracket_z_offset() = foot_makerslide_recess_depth();
+
+/**
+ * The position of the bed bracket on the vertical rail.
+ */
+function bed_bracket_z_offset() = motor_bracket_z_offset() + motor_bracket_height();
 
 /**
  * The position of the head piece on the vertical rail.

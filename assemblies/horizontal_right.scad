@@ -34,6 +34,10 @@ module _horizontal_right_assembly(with_connectors = false) {
 	translate([vslot_2020_depth(), 0, 0])
 		rotate([0, 0, 90])
 			vslot_2020_side();
+	// the bed-level extrusion
+	translate([vslot_2020_depth(), 0, bed_bracket_z_offset() + bed_bracket_height() - vslot_2020_width()])
+		rotate([0, 0, 90])
+			vslot_2020_side();
 	// the top extrusion
 	translate([vslot_2020_depth(), 0, vertical_extrusion_length() - vslot_2020_width()])
 		rotate([0, 0, 90])

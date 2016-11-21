@@ -81,6 +81,7 @@ assemblies: printed vitamins \
 # Rule to build the printed parts
 #
 printed: vitamins \
+	parts/printed/bed_bracket.stl \
 	parts/printed/carriage.stl \
 	parts/printed/end_switch_bracket.stl \
 	parts/printed/foot.stl \

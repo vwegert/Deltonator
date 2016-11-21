@@ -14,6 +14,7 @@ include <../conf/derived_sizes.scad>
 include <../conf/part_sizes.scad>
 
 use <../parts/extrusions/makerslide.scad>
+use <../parts/printed/bed_bracket.scad>
 use <../parts/printed/carriage.scad>
 use <../parts/printed/end_switch_bracket.scad>
 use <../parts/printed/foot.scad>
@@ -49,6 +50,12 @@ module _vertical_axis_assembly() {
 		motor_bracket_hardware();
 		motor_bracket_stepper(with_pulley = true);
 		motor_bracket_stepper_hardware();
+	}
+
+	// the bed bracket with the associated hardware
+	translate([0, 0, bed_bracket_z_offset()]) {
+		bed_bracket();
+		bed_bracket_hardware();
 	}
 
 	// the head with associated hardware

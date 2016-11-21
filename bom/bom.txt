@@ -6,10 +6,10 @@ MakerSlide Extrusion
     vertical_axis_assembly                                                   (3)
 
 V-Slot Extrusion
-  400x20x20 mm.................................................................... 6
-    horizontal_front_assembly                                                (2)
-    horizontal_left_assembly                                                 (2)
-    horizontal_right_assembly                                                (2)
+  400x20x20 mm.................................................................... 9
+    horizontal_front_assembly                                                (3)
+    horizontal_left_assembly                                                 (3)
+    horizontal_right_assembly                                                (3)
 
 ===== Bearings and Wheels =============================================================
 
@@ -60,13 +60,15 @@ Hex Socket Head Cap Screw (DIN 912 / ISO 4762)
   M3 x 6 mm....................................................................... 18
     vertical_axis_assembly >> carriage_hardware >> screw                     (6)
     vertical_axis_assembly >> motor_bracket_stepper_hardware >> screw        (12)
-  M4 x 12 mm...................................................................... 18
+  M4 x 12 mm...................................................................... 24
+    vertical_axis_assembly >> bed_bracket_hardware >> screw                  (6)
     vertical_axis_assembly >> foot_hardware >> screw                         (6)
     vertical_axis_assembly >> head_hardware >> screw                         (6)
     vertical_axis_assembly >> motor_bracket_hardware >> screw                (6)
   M4 x 25 mm...................................................................... 3
     vertical_axis_assembly >> tensioner_hardware >> screw                    (3)
-  M4 x 8 mm....................................................................... 42
+  M4 x 8 mm....................................................................... 60
+    vertical_axis_assembly >> bed_bracket_hardware >> screw                  (18)
     vertical_axis_assembly >> foot_hardware >> screw                         (18)
     vertical_axis_assembly >> head_hardware >> screw                         (18)
     vertical_axis_assembly >> motor_bracket_hardware >> screw                (6)
@@ -84,7 +86,8 @@ Spring
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
 
 T-Slot Nut
-  M4.............................................................................. 60
+  M4.............................................................................. 84
+    vertical_axis_assembly >> bed_bracket_hardware                           (24)
     vertical_axis_assembly >> foot_hardware                                  (24)
     vertical_axis_assembly >> head_hardware                                  (24)
     vertical_axis_assembly >> motor_bracket_hardware                         (12)
@@ -98,7 +101,8 @@ Washer (DIN 125A / ISO 7089)
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
     vertical_axis_assembly >> motor_bracket_stepper_hardware                 (12)
     vertical_axis_assembly >> tensioner_hardware                             (12)
-  M4.............................................................................. 63
+  M4.............................................................................. 87
+    vertical_axis_assembly >> bed_bracket_hardware                           (24)
     vertical_axis_assembly >> foot_hardware                                  (24)
     vertical_axis_assembly >> head_hardware                                  (24)
     vertical_axis_assembly >> motor_bracket_hardware                         (12)
@@ -113,6 +117,8 @@ Arm
     vertical_axis_assembly                                                   (3)
 
 Frame
+  Bed Bracket..................................................................... 3
+    vertical_axis_assembly                                                   (3)
   Foot............................................................................ 3
     vertical_axis_assembly                                                   (3)
   Head............................................................................ 3

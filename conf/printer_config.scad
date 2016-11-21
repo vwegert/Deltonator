@@ -37,12 +37,15 @@ FRAME_PART_VSLOT_DEPTH = 30;
 // The depth of the holes in the foot that hold the MakerSlide extrusions.
 FRAME_FOOT_MAKERSLIDE_DEPTH = 25; 
 
-// The depth of the holes in the head that hold the MakerSlide extrusions.
-FRAME_HEAD_MAKERSLIDE_DEPTH = 35; 
-
 // The height of the bracket that holds the motor. WARNING: Increasing this might make it difficult to 
 // turn the screws that hold the motor.
-FRAME_PART_BRACKET_HEIGHT = 25;
+FRAME_MOTOR_BRACKET_HEIGHT = 25;
+
+// The height of the bracket that holds the intermediate level with the working surface (print bed).
+FRAME_BED_BRACKET_HEIGHT = 25; 
+
+// The depth of the holes in the head that hold the MakerSlide extrusions.
+FRAME_HEAD_MAKERSLIDE_DEPTH = 35; 
 
 // The thickness of the carriage base plate. A thicker plate will make the carriage stiffer, but cost more
 // material to print and take away space from the working area.
