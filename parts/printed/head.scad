@@ -25,13 +25,13 @@ function _head_horizontal_width()  = vslot_2020_width() + frame_wall_thickness()
 function _head_horizontal_depth()  = horizontal_extrusion_offset() + horizontal_recess_depth();
 function _head_horizontal_left_y_offset()  = -frame_wall_thickness() + horizontal_extrusion_outward_offset();
 function _head_horizontal_right_y_offset() = -_head_horizontal_width() - horizontal_extrusion_outward_offset() + frame_wall_thickness();
-function _head_horizontal_z_offset()  = vertical_recess_depth() - frame_wall_thickness() - vslot_2020_width();
+function _head_horizontal_z_offset()  = head_makerslide_recess_depth() - frame_wall_thickness() - vslot_2020_width();
 
 // The dimensions of the vertical part that holds the MakerSlide extrusion.
-function _head_vertical_height() = vertical_recess_depth();
+function _head_vertical_height() = head_makerslide_recess_depth();
 function _head_vertical_width()  = frame_wall_thickness() + makerslide_width() + frame_wall_thickness();
 function _head_vertical_depth()  = frame_wall_thickness() + tensioner_x_offset() - tensioner_depth()/2;
-function _head_vertical_back_screw_height() = vertical_recess_depth()/2;
+function _head_vertical_back_screw_height() = head_makerslide_recess_depth()/2;
 function _head_vertical_side_screw_height() = _head_vertical_height() - _head_horizontal_height()/2; // align with other screw
 function _head_vertical_side_screw_y_offset() = _head_vertical_width()/2 + 1;
 
@@ -179,7 +179,7 @@ module _render_head() {
 				}
 
 				// minus the hole for the MakerSlide extrusion
-				makerslide_punch(vertical_recess_depth());
+				makerslide_punch(head_makerslide_recess_depth());
 
 				// minus the groove for the tensioner axle nut
 				translate([_head_vertical_depth() - frame_wall_thickness() - head_tensioner_groove_depth(), 

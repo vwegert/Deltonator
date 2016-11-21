@@ -34,8 +34,11 @@ FRAME_V_H_RAIL_SEPARATION = 8;
 // The depth of the holes that hold the V-Slot extrusions.
 FRAME_PART_VSLOT_DEPTH = 30;
 
-// The depth of the holes that hold the MakerSlide extrusions.
-FRAME_PART_HSLOT_DEPTH = 35;
+// The depth of the holes in the foot that hold the MakerSlide extrusions.
+FRAME_FOOT_MAKERSLIDE_DEPTH = 25; 
+
+// The depth of the holes in the head that hold the MakerSlide extrusions.
+FRAME_HEAD_MAKERSLIDE_DEPTH = 35; 
 
 // The height of the bracket that holds the motor. WARNING: Increasing this might make it difficult to 
 // turn the screws that hold the motor.

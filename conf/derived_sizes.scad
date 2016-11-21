@@ -40,6 +40,9 @@ function makerslide_clearance() = MAKERSLIDE_CLEARANCE;
 
 // ===== FABRICATED PART DIMENSIONS ===================================================================================
 
+
+// ----- general frame parts ------------------------------------------------------------------------------------------
+
 /**
  * The thickness of the wall that separates the vertical rails from the horizontal extrusions.
  */
@@ -60,10 +63,14 @@ function horizontal_recess_depth() = FRAME_PART_VSLOT_DEPTH;
  */
 function horizontal_screw_distance() = FRAME_PART_VSLOT_DEPTH/2;
 
+// ----- foot ---------------------------------------------------------------------------------------------------------
+
 /**
  * The depth of the holes that hold the V-Slot extrusions.
  */
-function vertical_recess_depth() = FRAME_PART_HSLOT_DEPTH;
+function foot_makerslide_recess_depth() = FRAME_FOOT_MAKERSLIDE_DEPTH; 
+
+// ----- motor bracket ------------------------------------------------------------------------------------------------
 
 /**
  * The height of the bracket that holds the motor (only of the part that holds the rail).
@@ -76,6 +83,17 @@ function motor_bracket_height() = FRAME_PART_BRACKET_HEIGHT;
 function motor_bracket_edge_radius() = 5;
 function motor_bracket_edge_resolution() = 16;
 
+
+// ----- build surface holder -----------------------------------------------------------------------------------------
+
+
+// ----- head ---------------------------------------------------------------------------------------------------------
+
+/**
+ * The depth of the holes that hold the V-Slot extrusions.
+ */
+function head_makerslide_recess_depth() = FRAME_HEAD_MAKERSLIDE_DEPTH; 
+
 /**
  * The width and depth of the guides in the head piece that hold the tensioner and the end switch bracket in place.
  */
@@ -86,6 +104,9 @@ function head_guide_depth() = 6;
  * The clearance between the tensioner / bracket and its guide blocks on either side.
  */
 function head_guide_clearance() = 0.2;
+
+
+// ----- carriage -----------------------------------------------------------------------------------------------------
 
 /**
  * The thickness of the carriage base plate.
@@ -184,6 +205,8 @@ function carriage_belt_holder_insert_y() = carriage_belt_holder_height() -
 function carriage_tensioner_gap_width()  = tensioner_width() + 6;
 function carriage_tensioner_gap_height() = carriage_plate_height() - carriage_upper_belt_holder_z();
 
+// ----- belt tensioner -----------------------------------------------------------------------------------------------
+
 /**
  * The range by which the vertical belt tensioner can be adjusted.
  */
@@ -225,7 +248,9 @@ function tensioner_screw_bracket_inner_height() = tensioner_vertical_screw_lengt
  */
 function head_tensioner_groove_width()  = washer_diameter(M4) + 2;
 function head_tensioner_groove_depth()  = nut_thickness(M4) * 2;
-function head_tensioner_groove_height() = vertical_recess_depth() / 2;
+function head_tensioner_groove_height() = head_makerslide_recess_depth() / 2;
+
+// ----- end switch bracket -------------------------------------------------------------------------------------------
 
 /** 
  * The dimensions of the bracket that hold the end switch.
@@ -307,12 +332,12 @@ function position_right_assembly() = [-horizontal_extrusion_outward_offset() - v
  * The height at which the bracket is mounted. At the moment, it is placed directly above the lower foot.
  * see also: lower_foot_vertical_height() 
  */
-function motor_bracket_z_offset() = vertical_recess_depth();
+function motor_bracket_z_offset() = foot_makerslide_recess_depth();
 
 /**
  * The position of the head piece on the vertical rail.
  */
-function head_z_offset() = vertical_extrusion_length() - vertical_recess_depth();
+function head_z_offset() = vertical_extrusion_length() - head_makerslide_recess_depth();
 
 /**
  * The X position of the tensioners relative to the back side (origin) of the MakerSlide rail.

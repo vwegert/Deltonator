@@ -23,10 +23,10 @@ function _foot_horizontal_left_y_offset() = -frame_wall_thickness() + horizontal
 function _foot_horizontal_right_y_offset() = -_foot_horizontal_width() - horizontal_extrusion_outward_offset() + frame_wall_thickness();
 
 // The dimensions of the vertical part that holds the MakerSlide extrusion.
-function _foot_vertical_height() = vertical_recess_depth();
+function _foot_vertical_height() = foot_makerslide_recess_depth();
 function _foot_vertical_width()  = frame_wall_thickness() + makerslide_width() + frame_wall_thickness();
 function _foot_vertical_depth()  = frame_wall_thickness() + makerslide_depth() + frame_wall_thickness();
-function _foot_vertical_back_screw_height() = vertical_recess_depth()/2;
+function _foot_vertical_back_screw_height() = foot_makerslide_recess_depth()/2;
 function _foot_vertical_side_screw_height() = _foot_horizontal_height()/2; // align with other screw
 function _foot_vertical_side_screw_y_offset() = _foot_vertical_width()/2 + 1;
 
@@ -121,7 +121,7 @@ module _render_foot() {
 					}
 				}
 				// minus the hole for the MakerSlide extrusion
-				makerslide_punch(vertical_recess_depth());
+				makerslide_punch(foot_makerslide_recess_depth());
 				// minus the screw holes on the back
 				translate([-frame_wall_thickness()/2, -makerslide_slot_offset(), _foot_vertical_back_screw_height()])
 					rotate([0, 90, 0])
