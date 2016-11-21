@@ -285,6 +285,18 @@ module _screw(size, length) {
 		import(file = str("mechanic/screw_M", size, "x", length, ".stl")); 
 }
 
+// ===== parts/vitamins/mechanic/spring_*.* ============================================================================
+
+/**
+ * Provides a pre-rendered spring.
+ * The spring is centered at the XY origin and rises along the Z axis.
+ */
+module spring(inner_diameter, length) {
+ 	bom_entry(section = "General Hardware", description = "Spring", size = str(inner_diameter, "x", length, " mm"));
+ 	color_hardware()
+ 		import(file = str("mechanic/spring_", inner_diameter, "x", length, ".stl")); 
+}
+
 // ===== parts/vitamins/mechanic/vwheel_*.* ============================================================================
 
 /**

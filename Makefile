@@ -143,6 +143,7 @@ vitamins: \
 	parts/vitamins/mechanic/screw_M5x45.stl \
 	parts/vitamins/mechanic/screw_M5x55.stl \
 	parts/vitamins/mechanic/screw_M5x65.stl \
+	parts/vitamins/mechanic/spring_5x20.stl \
 	parts/vitamins/mechanic/vwheel_dbl_bearing.stl \
 	parts/vitamins/mechanic/vwheel_spacer.stl \
 	parts/vitamins/mechanic/washer_M3.stl \
