@@ -217,6 +217,7 @@ module _render_head() {
 
 			// add the vertical guide blocks for the tensioner and bracket
 			_head_guides();
+			
 			// add the top plate
 			_head_top_plate();
 		} 

@@ -38,6 +38,11 @@ function horizontal_base_length() = horizontal_extrusion_length() + 2 * horizont
  */
 function makerslide_clearance() = MAKERSLIDE_CLEARANCE;
 
+/**
+ * The distance between the rods that hold the effector.
+ */
+function rod_distance() = ROD_DISTANCE;
+
 // ===== FABRICATED PART DIMENSIONS ===================================================================================
 
 
@@ -116,6 +121,22 @@ function carriage_plate_thickness() = CARRIAGE_PLATE_THICKNESS;
  * The width of the border around the holes in the carriage base plate that hold the V-Wheels. 
  */
 function carriage_plate_border_width() = CARRIAGE_PLATE_BORDER_WIDTH; 
+
+/**
+ * The downward angle of the magnets in the carriage.
+ */
+function carriage_magnet_angle() = CARRIAGE_MAGNET_ANGLE;
+
+/**
+ * The outer diameter and depth of the magnets in the carriage.
+ */
+function carriage_magnet_diameter() = CARRIAGE_MAGNET_DIAMETER;
+function carriage_magnet_depth() = CARRIAGE_MAGNET_DEPTH;
+
+/**
+ * The thickness of the walls around the magnet.
+ */
+function carriage_magnet_wall_thickness() = CARRIAGE_MAGNET_WALL_THICKNESS;
 
 /** 
  * The horizontal and vertical distance of the center points of the carriage wheels.
@@ -203,6 +224,14 @@ function carriage_belt_holder_insert_y() = carriage_belt_holder_height() -
  */
 function carriage_tensioner_gap_width()  = tensioner_width() + 6;
 function carriage_tensioner_gap_height() = carriage_plate_height() - carriage_upper_belt_holder_z();
+
+/**
+ * The sizes and positions of the magnet holders.
+ */
+function carriage_magnet_holder_width() = carriage_magnet_diameter() + 2 * carriage_magnet_wall_thickness();
+function carriage_magnet_holder_height() = carriage_magnet_diameter() + 2 * carriage_magnet_wall_thickness();
+function carriage_magnet_holder_depth() = carriage_magnet_depth() + carriage_magnet_wall_thickness();
+
 
 // ----- belt tensioner -----------------------------------------------------------------------------------------------
 

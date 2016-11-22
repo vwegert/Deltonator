@@ -17,7 +17,7 @@ use <../../parts/vitamins/vitamins.scad>
 /**
  * Renders the lower part of the base plate of the carriage that holds the wheels.
  */
-module _carriage_lower_base_plate() {
+module _carriage_base_plate() {
 	difference() {
 		// the plate
 		hull() {
@@ -75,18 +75,7 @@ module _carriage_lower_base_plate() {
 		translate([0, -carriage_tensioner_gap_width()/2, carriage_plate_height() - carriage_tensioner_gap_height()])
 			cube([carriage_plate_thickness(), carriage_tensioner_gap_width(), carriage_tensioner_gap_height()]);
 
-// function carriage_tensioner_gap_width()  = tensioner_width() + 6;
-// function carriage_tensioner_gap_height() = carriage_plate_height() - (carriage_lower_belt_holder_z() + 
-//                                                                       carriage_belt_holder_height());
-
 	}
-}
-
-/**
- * Renders the upper part of the base plate of the carriage that holds the magnets.
- */
-module _carriage_upper_base_plate() {
-	// TODO 
 }
 
 /**
@@ -245,13 +234,24 @@ module _carriage_belt_holder() {
 }
 
 /**
- * Renders the lower part of the base plate of the carriage that holds the wheels.
+ * Creates a magnet holder. The holder is placed at the origin so that it can be translated easily.
  */
-module _carriage_base_plate() {
-	union() {
-		_carriage_lower_base_plate();
-		_carriage_upper_base_plate();
-	}
+module _carriage_magnet_holder() {
+	rotate([0, carriage_magnet_angle(), 0])
+		difference() {
+			// the base shape of the magnet holder
+			union() {
+				translate([0, -carriage_magnet_holder_width()/2, 0])
+					cube([carriage_magnet_holder_depth(), carriage_magnet_holder_width(), carriage_magnet_holder_height()/2]);
+				translate([0, 0, carriage_magnet_holder_height()/2])
+					rotate([0, 90, 0])
+						cylinder(d = carriage_magnet_holder_width(), h = carriage_magnet_holder_depth());
+			}
+			// minus the hole for the magnet
+			translate([carriage_magnet_wall_thickness(), 0, carriage_magnet_holder_height()/2])
+				rotate([0, 90, 0])
+					cylinder(d = carriage_magnet_diameter() + epsilon(), h = carriage_magnet_depth() + epsilon());
+		}
 }
 
 /**
@@ -273,7 +273,11 @@ module _render_carriage() {
 				mirror([0, 0, 1])
 					_carriage_belt_holder();
 
-			// TODO add magnet holders
+			// the magnet holders
+			translate([0, -rod_distance()/2, carriage_plate_height()])
+				_carriage_magnet_holder();
+			translate([0, rod_distance()/2, carriage_plate_height()])
+				_carriage_magnet_holder();
 
 		} 
 }
@@ -380,6 +384,15 @@ module _carriage_hardware_belt_fixation() {
 	}
 }
 
+/**
+ * Used to position the magnet in the holder.
+ */
+module _carriage_magnet() {
+	rotate([0, carriage_magnet_angle(), 0])
+		translate([carriage_magnet_wall_thickness(), 0, carriage_magnet_holder_height()/2])
+			magnet_ring(diameter = 15, thickness = 3);
+}
+
 /** 
  * Renders the hardware (nuts, bolts, screws) that are used to fixed the printed part to the surrounding parts.
  * This also includes the V-Wheels and their supporting material.
@@ -403,6 +416,11 @@ module carriage_hardware() {
 		mirror([0, 0, 1])
 			_carriage_hardware_belt_fixation();
 
+	// the magnets inside the holders
+	translate([0, -rod_distance()/2, carriage_plate_height()])
+		_carriage_magnet();
+	translate([0, rod_distance()/2, carriage_plate_height()])
+		_carriage_magnet();
 }
 
 _render_carriage();
