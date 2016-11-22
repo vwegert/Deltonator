@@ -113,6 +113,8 @@ vitamins: \
 	parts/vitamins/mechanic/bearing_625.stl \
 	parts/vitamins/mechanic/gt2_pulley_20t_5mm.stl \
 	parts/vitamins/mechanic/insert_M3x7.stl \
+	parts/vitamins/mechanic/magnet_ring_10x5.stl \
+	parts/vitamins/mechanic/magnet_ring_15x3.stl \
 	parts/vitamins/mechanic/nut_M2.stl \
 	parts/vitamins/mechanic/nut_M3.stl \
 	parts/vitamins/mechanic/nut_M4.stl \

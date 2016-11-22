@@ -166,6 +166,20 @@ module insert(size, length) {
 	}
 }
 
+// ===== parts/vitamins/mechanic/magnet_ring_*.* =======================================================================
+
+/**
+ * Provides the pre-rendered magnet rings
+ * The magnet is centered along the X axis with the body extending into positive X.
+ */
+module magnet_ring(diameter, thickness) {
+	bom_entry(section = "General Hardware", 
+		description = "Magnet Ring", 
+		size = str(diameter, "x", thickness, " mm"));
+	color_magnets_balls()
+		import(file = str("mechanic/magnet_ring_", diameter, "x", thickness, ".stl")); 
+}
+
 // ===== parts/vitamins/mechanic/nut_*.* ===============================================================================
 
 /**

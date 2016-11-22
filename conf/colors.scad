@@ -55,6 +55,14 @@ module color_hardware() {
 } 
 
 /**
+ * The color of the magnets and steel balls.
+ */
+module color_magnets_balls() {
+	color("Silver")
+		children();
+} 
+
+/**
  * The color of the gears and ball bearings.
  */
 module color_gears() {
