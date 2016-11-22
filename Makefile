@@ -7,7 +7,7 @@
 #
 # phony target definitions (targets that are no files)
 #
-.PHONY: all clean assemblies printer bom vitamins
+.PHONY: all clean assemblies printer vitamins bom bom-clean sizes sizes-clean
 
 #
 # OS detection and inclusion of OS-specific configuration files
@@ -28,7 +28,7 @@ endif
 #
 # default targets all and clean
 #
-all: extrusions vitamins printed bom bom-clean # assemblies printer
+all: extrusions vitamins printed bom sizes # assemblies printer
 
 clean:
 	$(RM) assemblies/*.deps
@@ -170,6 +170,23 @@ bom/bom.txt: bom/bom_raw_data.echo bom/make_bom.pl
 
 bom-clean:
 	$(RM) bom/bom.txt bom/bom_raw_data.echo
+
+#
+# Rules to generate the sizes table
+#
+sizes: sizes-clean tools/sizes/dump_sizes.echo
+
+sizes-clean:
+	$(RM) tools/sizes/dump_sizes.echo
+
+tools/sizes/dump_sizes.scad: tools/sizes/generate_sizes_scad.pl \
+	                         conf/printer_config.scad \
+	                         conf/part_sizes.scad \
+	                         conf/derived_sizes.scad
+	$(PERL) tools/sizes/generate_sizes_scad.pl > $@
+
+tools/sizes/dump_sizes.echo: tools/sizes/dump_sizes.scad
+	$(OPENSCAD) -m make -o $@ -D WRITE_BOM=false $<
 
 # 
 # Rules to fetch external libraries.

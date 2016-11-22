@@ -328,6 +328,11 @@ function position_right_assembly() = [-horizontal_extrusion_outward_offset() - v
                                       horizontal_extrusion_offset(), 0];
 
 /**
+ * The X position of the center of the build area.
+ */
+function printer_center_x() = front_plane_offset() - (tan(30) * (horizontal_base_length() / 2));
+
+/**
  * The height at which the bracket is mounted. At the moment, it is placed directly above the lower foot.
  * see also: lower_foot_vertical_height() 
  */
@@ -337,6 +342,11 @@ function motor_bracket_z_offset() = foot_makerslide_recess_depth();
  * The position of the bed bracket on the vertical rail.
  */
 function bed_bracket_z_offset() = motor_bracket_z_offset() + motor_bracket_height();
+
+/**
+ * The upper edge of the bed bracket.
+ */
+function bed_bracket_top_level() = bed_bracket_z_offset() + bed_bracket_height();
 
 /**
  * The position of the head piece on the vertical rail.
