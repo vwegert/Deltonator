@@ -229,8 +229,12 @@ function carriage_tensioner_gap_height() = carriage_plate_height() - carriage_up
  * The sizes and positions of the magnet holders.
  */
 function carriage_magnet_holder_width() = carriage_magnet_diameter() + 2 * carriage_magnet_wall_thickness();
-function carriage_magnet_holder_height() = carriage_magnet_diameter() + 2 * carriage_magnet_wall_thickness();
+function carriage_magnet_holder_height() = carriage_magnet_diameter() + 
+                                           carriage_magnet_holder_additional_height() + 
+                                           2 * carriage_magnet_wall_thickness();
 function carriage_magnet_holder_depth() = carriage_magnet_depth() + carriage_magnet_wall_thickness();
+
+function carriage_magnet_holder_additional_height() = 10;
 
 
 // ----- belt tensioner -----------------------------------------------------------------------------------------------

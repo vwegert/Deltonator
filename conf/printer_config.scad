@@ -58,16 +58,16 @@ CARRIAGE_PLATE_BORDER_WIDTH = 8;
 TENSIONER_RANGE = 15;
 
 // The distance between the rods that hold the effector.
-ROD_DISTANCE = 60;
+ROD_DISTANCE = 65;
 
 // The downward angle of the magnets in the carriage.
-CARRIAGE_MAGNET_ANGLE = 30;
+CARRIAGE_MAGNET_ANGLE = 45;
 
 // The outer diameter of the magnets in the carriage.
-CARRIAGE_MAGNET_DIAMETER = 15;
+CARRIAGE_MAGNET_DIAMETER = 10;
 
 // The depth of the magnets in the carriage.
-CARRIAGE_MAGNET_DEPTH = 3;
+CARRIAGE_MAGNET_DEPTH = 5;
 
 // The thickness of the walls around the magnet.
 CARRIAGE_MAGNET_WALL_THICKNESS = 4;

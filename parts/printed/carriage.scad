@@ -390,7 +390,7 @@ module _carriage_hardware_belt_fixation() {
 module _carriage_magnet() {
 	rotate([0, carriage_magnet_angle(), 0])
 		translate([carriage_magnet_wall_thickness(), 0, carriage_magnet_holder_height()/2])
-			magnet_ring(diameter = 15, thickness = 3);
+			magnet_ring(diameter = carriage_magnet_diameter(), thickness = carriage_magnet_depth());
 }
 
 /** 

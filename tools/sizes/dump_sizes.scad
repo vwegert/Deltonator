@@ -128,6 +128,7 @@ echo(carriage_tensioner_gap_height = carriage_tensioner_gap_height());
 echo(carriage_magnet_holder_width = carriage_magnet_holder_width());
 echo(carriage_magnet_holder_height = carriage_magnet_holder_height());
 echo(carriage_magnet_holder_depth = carriage_magnet_holder_depth());
+echo(carriage_magnet_holder_additional_height = carriage_magnet_holder_additional_height());
 echo(tensioner_range = tensioner_range());
 echo(tensioner_idler_gap_depth = tensioner_idler_gap_depth());
 echo(tensioner_flange_width = tensioner_flange_width());
