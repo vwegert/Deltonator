@@ -147,12 +147,16 @@ function carriage_wheel_distance_y() = vwheel_pair_center_distance();
 /**
  * The outer dimensions of the carriage base plate.
  */
-function carriage_plate_width()  = carriage_wheel_distance_x() 
-                                 + vwheel_max_mounting_hole_size() 
-                                 + 2 * carriage_plate_border_width();
-function carriage_plate_height() = carriage_wheel_distance_y() 
-                                 + vwheel_max_mounting_hole_size() 
-                                 + 2 * carriage_plate_border_width();
+function carriage_plate_width()  = ceil(
+    carriage_wheel_distance_x() +
+    vwheel_max_mounting_hole_size() +
+    2 * carriage_plate_border_width()
+  );
+function carriage_plate_height() = ceil(
+    carriage_wheel_distance_y() +
+    vwheel_max_mounting_hole_size() +
+    2 * carriage_plate_border_width()
+  );
 
 /**
  * The outer corner radius and resolution of the carriage base plate.
@@ -308,6 +312,131 @@ function end_switch_bracket_screw_length() = select_next_screw_length(size = M3,
                                                frame_wall_thickness() +
                                                end_switch_bracket_spring_height() + 
                                                (end_switch_bracket_top_nutcatch_height() - nut_thickness(M3))/2);
+
+// ----- effector base plate ------------------------------------------------------------------------------------------
+
+/**
+ * The outward angle of the magnets in the effector.
+ */
+function effector_base_magnet_angle() = EFFECTOR_MAGNET_ANGLE;
+
+/**
+ * The outer diameter of the magnets in the effector.
+ */
+function effector_base_magnet_diameter() = EFFECTOR_MAGNET_DIAMETER;
+
+/**
+ * The depth of the magnets in the effector.
+ */
+function effector_base_magnet_depth() = EFFECTOR_MAGNET_DEPTH ;
+
+/**
+ * The thickness of the walls around the magnet.
+ */
+function effector_base_magnet_wall_thickness() = EFFECTOR_MAGNET_WALL_THICKNESS ;
+
+/**
+ * The additional distance between the magnets on the effector (not the rod distance - the other one :-)).
+ * This value is added to the minimum distance determined by the magnet size and wall thickness.
+ */
+function effector_base_magnet_add_distance() = EFFECTOR_MAGNET_ADDITIONAL_DISTANCE;
+
+/**
+ * The distance of the magnets - center to center.
+ */
+function effector_base_magnet_distance() = effector_base_magnet_diameter() + 
+                                           effector_base_magnet_wall_thickness() + 
+                                           effector_base_magnet_add_distance();
+
+/**
+ * The thickness of the effector plate. This is calculated by considering the magnet angle and the minimum wall
+ * thickness as well as the configurable minimal thickness.
+ */
+function effector_base_thickness() = max(
+  EFFECTOR_MIN_THICKNESS,
+  ceil( effector_base_magnet_wall_thickness() +                               // the material below the lower edge
+    sin(effector_base_magnet_angle()) * effector_base_magnet_diameter() + // the distance between the lower edges of the magnet 
+    cos(effector_base_magnet_angle()) * effector_base_magnet_depth()      // the distance between the lower and upper "upper" corner of the magnet
+  )
+);
+
+/**
+ * The height of the magnets from the effector base, measured at the center point of the magnet.
+ */
+function effector_base_magnet_height() = 
+  (effector_base_magnet_angle() == 0)
+  ? sin(effector_base_magnet_angle()) * (
+       effector_base_magnet_diameter()/2 + // from the center of the magnet to the outer rim
+       effector_base_magnet_depth() / tan(effector_base_magnet_angle())// from the outer rim to the surface
+    )
+  :  effector_base_thickness() - effector_base_magnet_depth();
+
+/**
+ * The height and edge length of the "cut-off" points of the effector - the parts that were left out to turn the
+ * triangle into a hexagon.
+ */
+function effector_base_cutoff_edge_length() = effector_base_magnet_distance();
+function effector_base_cutoff_height() = effector_base_magnet_distance()/2 * tan(60);
+
+/**
+ * The height and edge lenght of the base triangle that the effector would be if the points hadn't been cut off.
+ */
+function effector_base_triangle_edge_length() = rod_distance() + 2 * effector_base_cutoff_edge_length();
+function effector_base_triangle_height() = effector_base_triangle_edge_length() * sin(60);
+
+/** 
+ * The distance of the center of the effector from one of the long sides / corners.
+ * (The height of the center point of the base triangle and its inverse.)
+ */
+function effector_base_center_long_edge_distance() = effector_base_triangle_edge_length()/2 * tan(30);
+function effector_base_center_short_edge_distance() = effector_base_center_corner_distance() - effector_base_cutoff_height();
+function effector_base_center_corner_distance() = effector_base_triangle_height() - effector_base_center_long_edge_distance();
+
+/**
+ * The positions of the magnets in the effector, relative to the bottom center of the effector.
+ */
+function effector_base_magnet_position_a_left() = 
+    [
+      effector_base_center_short_edge_distance(),
+      -effector_base_cutoff_edge_length()/2,
+      effector_base_magnet_height()
+    ];
+function effector_base_magnet_position_a_right() = 
+    [
+      -effector_base_center_long_edge_distance() + effector_base_cutoff_height(),
+      -(rod_distance()/2 + effector_base_cutoff_edge_length()/2),
+      effector_base_magnet_height()
+    ];
+function effector_base_magnet_position_b_left() = 
+    [
+      -effector_base_center_long_edge_distance() + effector_base_cutoff_height(),
+      rod_distance()/2 + effector_base_cutoff_edge_length()/2,
+      effector_base_magnet_height()
+    ];
+function effector_base_magnet_position_b_right() = 
+    [
+      effector_base_center_short_edge_distance(),
+      effector_base_cutoff_edge_length()/2,
+      effector_base_magnet_height()
+    ];
+function effector_base_magnet_position_c_left() = 
+    [
+      -effector_base_center_long_edge_distance(),
+      rod_distance()/2,
+      effector_base_magnet_height()
+    ];
+function effector_base_magnet_position_c_right() = 
+    [
+      -effector_base_center_long_edge_distance(),
+      -rod_distance()/2,
+      effector_base_magnet_height()
+    ];
+
+/**
+ * The dimensions of the magnet holder parts.
+ */
+function effector_base_magnet_holder_height() = effector_base_thickness();
+function effector_base_magnet_holder_diameter() = effector_base_magnet_diameter() + 2 * effector_base_magnet_wall_thickness();
 
 // ===== SCREWS, NUTS, BOLTS AND OTHER HARDWARE =======================================================================
 

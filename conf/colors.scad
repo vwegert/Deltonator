@@ -47,6 +47,14 @@ module color_printed_head_parts() {
 } 
 
 /**
+ * The color of the printed effectors.
+ */
+module color_printed_effector() {
+	color("DodgerBlue")
+		children();
+} 
+
+/**
  * The color of the stock hardware parts like nuts, bolts and screws.
  */
 module color_hardware() {

@@ -69,6 +69,25 @@ CARRIAGE_MAGNET_DIAMETER = 10;
 // The depth of the magnets in the carriage.
 CARRIAGE_MAGNET_DEPTH = 5;
 
-// The thickness of the walls around the magnet.
+// The thickness of the walls around the magnets.
 CARRIAGE_MAGNET_WALL_THICKNESS = 4;
 
+// The outward angle of the magnets in the effector.
+EFFECTOR_MAGNET_ANGLE = 20;
+
+// The outer diameter of the magnets in the effector.
+EFFECTOR_MAGNET_DIAMETER = 15;
+
+// The depth of the magnets in the effector.
+EFFECTOR_MAGNET_DEPTH = 3;
+
+// The thickness of the walls around the magnet.
+EFFECTOR_MAGNET_WALL_THICKNESS = 3;
+
+// The additional distance between the magnets on the effector (not the rod distance - the other one :-)).
+// This value is added to the minimum distance determined by the magnet size and wall thickness.
+EFFECTOR_MAGNET_ADDITIONAL_DISTANCE = 0;
+
+// The minimal thickness of the effector plate. Note that if the magnet angle requires a thicker plate, the dimension
+// will automatically be increased.
+EFFECTOR_MIN_THICKNESS = 8;

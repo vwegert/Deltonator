@@ -83,6 +83,7 @@ assemblies: printed vitamins \
 printed: vitamins \
 	parts/printed/bed_bracket.stl \
 	parts/printed/carriage.stl \
+	parts/printed/effector_base.stl \
 	parts/printed/end_switch_bracket.stl \
 	parts/printed/foot.stl \
 	parts/printed/head.stl \
