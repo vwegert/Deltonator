@@ -110,6 +110,7 @@ vitamins: \
 	parts/vitamins/electromechanic/stepper_nema23_long.stl \
 	parts/vitamins/electromechanic/stepper_nema23_medium.stl \
 	parts/vitamins/electromechanic/stepper_nema23_short.stl \
+	parts/vitamins/mechanic/ball_10.stl \
 	parts/vitamins/mechanic/bearing_f623.stl \
 	parts/vitamins/mechanic/bearing_625.stl \
 	parts/vitamins/mechanic/gt2_pulley_20t_5mm.stl \

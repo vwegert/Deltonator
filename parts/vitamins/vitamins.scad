@@ -70,6 +70,17 @@ module switch_ss5gl() {
 				import(file = "electromechanic/switch_ss5gl.stl"); 
 }
 
+// ===== parts/vitamins/mechanic/ball_*.* ==============================================================================
+
+/**
+ * Provides the pre-rendered balls.
+ */
+module ball(size) {
+	bom_entry(section = "Magnets and Accessories", description = "Steel Ball", size = str(size, " mm"));
+	color_magnets_balls()
+		import(file = str("mechanic/ball_", size, ".stl")); 
+}
+
 // ===== parts/vitamins/mechanic/bearing_*.* ===========================================================================
 
 /**
@@ -173,7 +184,7 @@ module insert(size, length) {
  * The magnet is centered along the X axis with the body extending into positive X.
  */
 module magnet_ring(diameter, thickness) {
-	bom_entry(section = "General Hardware", 
+	bom_entry(section = "Magnets and Accessories", 
 		description = "Magnet Ring", 
 		size = str(diameter, "x", thickness, " mm"));
 	color_magnets_balls()

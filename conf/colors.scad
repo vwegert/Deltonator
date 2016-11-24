@@ -47,6 +47,14 @@ module color_printed_head_parts() {
 } 
 
 /**
+ * The color of the magnet holders.
+ */
+module color_printed_magnet_holders() {
+	color("RoyalBlue")
+		children();
+} 
+
+/**
  * The color of the printed effectors.
  */
 module color_printed_effector() {
