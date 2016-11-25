@@ -87,6 +87,7 @@ printed: vitamins \
 	parts/printed/end_switch_bracket.stl \
 	parts/printed/foot.stl \
 	parts/printed/head.stl \
+	parts/printed/magnet_holder.stl \
 	parts/printed/motor_bracket.stl \
 	parts/printed/tensioner.stl
 

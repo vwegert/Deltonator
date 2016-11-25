@@ -175,6 +175,3 @@ module tensioner_hardware(screw_position = 15) {
 }
 
 _render_tensioner();
-echo(tensioner_vertical_screw_min_length = tensioner_vertical_screw_min_length());
-echo(tensioner_vertical_screw_length = tensioner_vertical_screw_length());
-echo(tensioner_screw_bracket_inner_height = tensioner_screw_bracket_inner_height());

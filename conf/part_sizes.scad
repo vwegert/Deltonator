@@ -277,6 +277,28 @@ function vwheel_width_offset() = vwheel_pair_center_distance() / 2;
 
 function vwheel_max_mounting_hole_size() = 8; // TODO derive this from the excentrical nut size!
 
+// ===== MAGNETS, BALLS, RODS ==========================================================================================
+
+/**
+ * The size of the steel balls used.
+ */
+function ball_diameter() = 10;
+
+/** 
+ * The dimensions of the magnet rings used.
+ */
+function magnet_outer_diameter() = 10;
+function magnet_height() = 5;
+function magnet_bore_diameter() = 3.4;
+function magnet_bevel_diameter() = 7;
+function magnet_bevel_angle() = 90;
+
+/**
+ * The dimensions of the rods that hold the effector.
+ */
+function rod_outer_diameter() = ROD_OUTER_DIAMETER;
+function rod_inner_diameter() = ROD_INNER_DIAMETER;
+
 // ===== SWITCHES =====================================================================================================
 
 /**

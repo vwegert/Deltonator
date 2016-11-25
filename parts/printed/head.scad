@@ -17,7 +17,7 @@ use <../../parts/printed/tensioner.scad>
 use <../../parts/vitamins/vitamins.scad>
 
 // set this to true to show the tensioner for positioning - set to false to render the part only
-_DEBUG_TENSIONER = false;
+_DEBUG_HEAD_TENSIONER = false;
 
 // The dimensions of the horizontal parts that hold the V-Slot extrusions.
 function _head_horizontal_height() = vslot_2020_depth() + frame_wall_thickness();
@@ -305,7 +305,7 @@ module head_hardware() {
 }
 
 _render_head();
-if (_DEBUG_TENSIONER) {
+if (_DEBUG_HEAD_TENSIONER) {
 	translate([tensioner_x_offset(), 0, _head_vertical_height() - tensioner_z_offset()]) {
 		tensioner();
 		tensioner_hardware(screw_position = tensioner_screw_position());

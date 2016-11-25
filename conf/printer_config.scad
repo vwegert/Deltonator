@@ -60,6 +60,24 @@ TENSIONER_RANGE = 15;
 // The distance between the rods that hold the effector.
 ROD_DISTANCE = 65;
 
+// The outer diameter of the rods.
+ROD_OUTER_DIAMETER = 6;
+
+// The inner diameter of the rods. Set to 0 if the rods are not hollow.
+ROD_INNER_DIAMETER = 4;
+
+// The additional clearance to leave between the rod and the holder.
+ROD_CLEARANCE = 0.05;
+
+// The thickness of the outer wall around the rod.
+ROD_HOLDER_WALL_THICKNESS = 2;
+
+// The depth of the insets that hold the rods.
+ROD_HOLDER_DEPTH = 10;
+
+// The thickness of the magnet holder arms.
+MAGNET_HOLDER_THICKNESS = 5;
+
 // The downward angle of the magnets in the carriage.
 CARRIAGE_MAGNET_ANGLE = 45;
 

@@ -43,6 +43,35 @@ function makerslide_clearance() = MAKERSLIDE_CLEARANCE;
  */
 function rod_distance() = ROD_DISTANCE;
 
+// ===== DERIVED PART-DEPENDENT SIZES AND DISTANCES ====================================================================
+
+/** 
+ * More dimensions of the magnet rings used.
+ */
+function magnet_bevel_depth() = sin(magnet_bevel_angle()/2) * (magnet_bevel_diameter() - magnet_bore_diameter());
+
+/**
+ * The diameter of the circle on the stell ball that will touch the magnet ring.
+ */
+function ball_contact_circle_diameter() = sqrt( 2 * pow(ball_diameter()/2, 2));
+
+/**
+ * The distance of the contact circle plane from the center of the ball.
+ */
+function ball_contact_circle_height() = sqrt(pow(ball_diameter()/2, 2) - pow(ball_contact_circle_diameter()/2, 2));
+
+/**
+ * The distance of the contact circle from the ball-ward flat side of the magnet.
+ */
+function magnet_contact_circle_depth() = 
+  abs(tan(magnet_bevel_angle()/2) * (magnet_bevel_diameter() - ball_contact_circle_diameter())/2);
+
+/**
+ * The distance of the base point of the magnet from the center of the steel ball.
+ */
+function ball_center_magnet_base_distance() =
+  ball_contact_circle_height() - magnet_contact_circle_depth() + magnet_height();
+
 // ===== FABRICATED PART DIMENSIONS ===================================================================================
 
 
@@ -312,6 +341,75 @@ function end_switch_bracket_screw_length() = select_next_screw_length(size = M3,
                                                frame_wall_thickness() +
                                                end_switch_bracket_spring_height() + 
                                                (end_switch_bracket_top_nutcatch_height() - nut_thickness(M3))/2);
+
+// ----- magnet holder ------------------------------------------------------------------------------------------------
+
+/**
+ * The dimensions of the part that hold the magnet.
+ */
+function magnet_holder_top_diameter() = magnet_outer_diameter();
+function magnet_holder_top_thickness() = MAGNET_HOLDER_THICKNESS;
+function magnet_holder_pin_diameter() = magnet_bore_diameter();
+// The pin must be small enough not to touch the ball, but not taller than the inner bore height.
+function magnet_holder_pin_height() = 
+  min(
+    magnet_height() - magnet_bevel_depth(),
+    ball_center_magnet_base_distance() - ball_diameter()/2
+  );
+
+/**
+ * The clearance left between the magnet / steel ball and the arm.
+ */
+function magnet_holder_arm_clearance() = magnet_outer_diameter() / 4;
+
+/**
+ * The minimum clearance to leave beneath the ball.
+ */
+function magnet_holder_ball_clearance() = 20;
+
+/**
+ * The dimensions of the arm.
+ */
+function magnet_holder_arm_width() = magnet_outer_diameter();
+function magnet_holder_arm_thickness() = MAGNET_HOLDER_THICKNESS;
+function magnet_holder_arm_length() = 
+  magnet_holder_top_thickness() +
+  magnet_height() + 
+  ball_diameter() + 
+  magnet_holder_ball_clearance() - magnet_holder_arm_clearance();
+
+/**
+ * The thickness of the outer wall around the rod.
+ */
+function magnet_holder_rod_wall_thickness() = ROD_HOLDER_WALL_THICKNESS;
+
+/**
+ * The depth of the insets that hold the rods.
+ */
+function magnet_holder_rod_holder_depth() = ROD_HOLDER_DEPTH;
+
+/**
+ * The additional clearance to leave between the rod and the holder.
+ */
+function magnet_holder_rod_clearance() = ROD_CLEARANCE;
+
+/**
+ * The distance between the center of the ball and the end of the rod in the holder.
+ */
+function magnet_holder_rod_distance() = 
+  ball_diameter()/2 +
+  magnet_holder_ball_clearance() +
+  magnet_holder_rod_wall_thickness(); 
+
+/** 
+ * The thickness of the rod holder.
+ */
+function magnet_holder_arm_thickness() = MAGNET_HOLDER_THICKNESS;
+
+/** 
+ * The rendering resolution for the magnet holder.
+ */
+function magnet_holder_resolution() = 32;
 
 // ----- effector base plate ------------------------------------------------------------------------------------------
 
