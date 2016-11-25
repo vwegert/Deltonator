@@ -37,8 +37,9 @@ module _render_magnet_holder() {
 
 				// the pin to push the magnet on
 				translate([0, 0, -magnet_holder_pin_height()])
-					cylinder(d = magnet_holder_pin_diameter(), h = magnet_holder_pin_height(), 
-						$fn = magnet_holder_resolution());
+					cylinder(d = magnet_holder_pin_diameter() - 2 * magnet_holder_magnet_clearance(), 
+							 h = magnet_holder_pin_height(), 
+							 $fn = magnet_holder_resolution());
 			}
 		}
 

@@ -394,6 +394,11 @@ function magnet_holder_rod_holder_depth() = ROD_HOLDER_DEPTH;
 function magnet_holder_rod_clearance() = ROD_CLEARANCE;
 
 /**
+ * The additional clearance to leave around the magnet holder pin.
+ */
+function magnet_holder_magnet_clearance() = MAGNET_CLEARANCE;
+
+/**
  * The distance between the center of the ball and the end of the rod in the holder.
  */
 function magnet_holder_rod_distance() = 

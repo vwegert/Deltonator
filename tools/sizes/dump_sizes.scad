@@ -180,6 +180,7 @@ echo(magnet_holder_arm_length = magnet_holder_arm_length());
 echo(magnet_holder_rod_wall_thickness = magnet_holder_rod_wall_thickness());
 echo(magnet_holder_rod_holder_depth = magnet_holder_rod_holder_depth());
 echo(magnet_holder_rod_clearance = magnet_holder_rod_clearance());
+echo(magnet_holder_magnet_clearance = magnet_holder_magnet_clearance());
 echo(magnet_holder_rod_distance = magnet_holder_rod_distance());
 echo(magnet_holder_arm_thickness = magnet_holder_arm_thickness());
 echo(magnet_holder_resolution = magnet_holder_resolution());
