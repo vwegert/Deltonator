@@ -79,7 +79,7 @@ ROD_HOLDER_DEPTH = 10;
 MAGNET_HOLDER_THICKNESS = 5;
 
 // The additional clearance to leave around the magnet holder pin.
-MAGNET_CLEARANCE = 0.05;
+MAGNET_CLEARANCE = 0.025;
 
 // The downward angle of the magnets in the carriage.
 CARRIAGE_MAGNET_ANGLE = 45;

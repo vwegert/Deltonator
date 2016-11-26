@@ -2,8 +2,7 @@
  **
  ** parts/printed/magnet_holder.scad
  **
- ** This file constructs the holder that will hold the end switch against the head part. To assemble the printer, you 
- ** need twelve of these parts.
+ ** This file provides a common base for the magnet holders on both ends of the rods. This file is not to be printed. 
  **
  **********************************************************************************************************************/
 
@@ -14,14 +13,11 @@ include <../../conf/part_sizes.scad>
 use <../../bom/bom.scad>
 use <../../parts/vitamins/vitamins.scad>
 
-// set this to true to show the hardware for positioning - set to false to render the part only
-_DEBUG_MAGNET_HOLDER = false; 
-
 /**
  * Creates the magnet holder assembly by rendering it from scratch. This module is not to be called externally, use 
  * magnet_holder() instead.
  */
-module _render_magnet_holder() {
+module _render_magnet_holder(ball_clearance, debug = false) {
 	color_printed_magnet_holders() {
 
 		// the horizontal magnet holder part
@@ -46,10 +42,10 @@ module _render_magnet_holder() {
 		// the vertical arm
 		translate([magnet_holder_top_diameter()/2 + magnet_holder_arm_clearance(), 
 				   -magnet_holder_top_diameter()/2, 
-				   magnet_holder_top_thickness() + ball_center_magnet_base_distance() - magnet_holder_arm_length()])
+				   magnet_holder_top_thickness() + ball_center_magnet_base_distance() - magnet_holder_arm_length(ball_clearance)])
 			cube([magnet_holder_arm_thickness(), 
 				  magnet_holder_arm_width(), 
-				  magnet_holder_arm_length() - magnet_holder_arm_thickness()/2]);
+				  magnet_holder_arm_length(ball_clearance) - magnet_holder_arm_thickness()/2]);
 
 		// the rounded edge between the magnet holder and the vertical arm
 		translate([magnet_holder_top_diameter()/2 + magnet_holder_arm_clearance() + magnet_holder_arm_thickness()/2,
@@ -59,11 +55,8 @@ module _render_magnet_holder() {
 				cylinder(d = magnet_holder_arm_thickness(), h = magnet_holder_arm_width(), 
 						 $fn = magnet_holder_resolution());
 
-
-
-
 		// the rod holder
-		translate([0, 0, -magnet_holder_rod_distance()]) {
+		translate([0, 0, -magnet_holder_rod_distance(ball_clearance)]) {
 			difference() {
 				union() {
 					// the outer shape of the rod holder
@@ -77,7 +70,7 @@ module _render_magnet_holder() {
 					_connector_outer_edge   = ball_diameter()/2 + magnet_holder_arm_clearance() + magnet_holder_arm_thickness();
 					_connector_inner_top    = magnet_holder_rod_wall_thickness();
 					_connector_inner_bottom = _connector_inner_top - magnet_holder_arm_thickness();
-					_connector_outer_top    = magnet_holder_arm_length() - magnet_holder_rod_distance() - magnet_holder_top_thickness();
+					_connector_outer_top    = magnet_holder_arm_length(ball_clearance) - magnet_holder_rod_distance(ball_clearance) - magnet_holder_top_thickness();
 					_connector_outer_bottom = _connector_outer_top - magnet_holder_arm_thickness();
 					_connector_points = [
 					  [  0,                    -_connector_lower_width/2,    _connector_inner_bottom ],  //0
@@ -115,33 +108,19 @@ module _render_magnet_holder() {
 		}
 
 	}
-}
-
-/**
- * Main module to use the pre-rendered magnet holder. The holder is upright, its direction of motion aligned 
- * with the Z axis. It is placed so that the left back corner is aligned to the Z axis with the lower corner at the 
- * origin.
- */
-module magnet_holder() {
-	bom_entry(section = "Printed Parts", description = "Small Parts", size = "Magnet Holder");
-	color_printed_magnet_holders()
-		import(file = "magnet_holder.stl");
+	if (debug) {
+		ball(size = ball_diameter());
+		translate([ball_diameter()/2 - 50, -50, -ball_diameter()/2 - ball_clearance])
+			%cube([50, 100, ball_clearance]);
+		_magnet_holder_hardware(ball_clearance = magnet_holder_top_ball_clearance());
+	}
 }
 
 /** 
  * Renders the hardware (nuts, bolts, screws) that are used to fixed the printed part to the surrounding parts.
  */
-module magnet_holder_hardware() {
+module _magnet_holder_hardware(ball_clearance) {
 	translate([0, 0, ball_center_magnet_base_distance()])
 		rotate([0, 90, 0])
 			magnet_ring(diameter = magnet_outer_diameter(), thickness = magnet_height());
-
-	}
-
-_render_magnet_holder();
-if (_DEBUG_MAGNET_HOLDER) {
-	ball(size = ball_diameter());
-	translate([ball_diameter()/2 - 50, -50, -ball_diameter()/2 - magnet_holder_ball_clearance()])
-		%cube([50, 100, magnet_holder_ball_clearance()]);
-	magnet_holder_hardware();
 }

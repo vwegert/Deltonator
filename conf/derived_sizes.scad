@@ -365,18 +365,19 @@ function magnet_holder_arm_clearance() = magnet_outer_diameter() / 4;
 /**
  * The minimum clearance to leave beneath the ball.
  */
-function magnet_holder_ball_clearance() = 20;
+function magnet_holder_top_ball_clearance() = 8;
+function magnet_holder_bottom_ball_clearance() = 20;
 
 /**
  * The dimensions of the arm.
  */
 function magnet_holder_arm_width() = magnet_outer_diameter();
 function magnet_holder_arm_thickness() = MAGNET_HOLDER_THICKNESS;
-function magnet_holder_arm_length() = 
+function magnet_holder_arm_length(ball_clearance) = 
   magnet_holder_top_thickness() +
   magnet_height() + 
   ball_diameter() + 
-  magnet_holder_ball_clearance() - magnet_holder_arm_clearance();
+  ball_clearance - magnet_holder_arm_clearance();
 
 /**
  * The thickness of the outer wall around the rod.
@@ -401,9 +402,9 @@ function magnet_holder_magnet_clearance() = MAGNET_CLEARANCE;
 /**
  * The distance between the center of the ball and the end of the rod in the holder.
  */
-function magnet_holder_rod_distance() = 
+function magnet_holder_rod_distance(ball_clearance) = 
   ball_diameter()/2 +
-  magnet_holder_ball_clearance() +
+  ball_clearance +
   magnet_holder_rod_wall_thickness(); 
 
 /** 
