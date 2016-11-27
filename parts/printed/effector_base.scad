@@ -15,25 +15,18 @@ use <../../bom/bom.scad>
 use <../../parts/vitamins/vitamins.scad>
 
 /**
- * Creates a magnet holder. 
+ * Creates a ball holder. 
  */
 module _effector_base_magnet_holder() {
-	translate([-effector_base_magnet_holder_height() + effector_base_magnet_depth(), 0, 0])
-		rotate([0, 90, 0])
-			cylinder(d = effector_base_magnet_holder_diameter(), h = effector_base_magnet_holder_height());
-}
-
-/**
- * Creates a hole to hold a magnet and the clean surface abovr.
- */
-module _effector_base_magnet_hole_and_surface() {
-	// the magnet hole
-	rotate([0, 90, 0])
-		cylinder(d = effector_base_magnet_diameter() + epsilon(), h = effector_base_magnet_depth() + epsilon());
-	// a cylinder to clean the surface area
-	translate([effector_base_magnet_depth(), 0, 0])
-		rotate([0, 90, 0])
-			cylinder(d = effector_base_magnet_holder_diameter(), h = effector_base_magnet_holder_height());
+	difference() {
+		// the cylinder
+		cylinder(d = effector_base_ball_holder_diameter(),
+				 h = effector_base_ball_holder_height(), 
+				 $fn = effector_base_resolution());
+		// minus the spherical recess for the ball
+		translate([0, 0, effector_base_ball_recess_depth() - ball_diameter()/2])
+			sphere(d = ball_diameter(), $fn = effector_base_resolution());
+	}
 }
 
 /**
@@ -42,12 +35,12 @@ module _effector_base_magnet_hole_and_surface() {
  */
 module _render_effector_base() {
 
-	_mp_a_left  = effector_base_magnet_position_a_left();
-	_mp_a_right = effector_base_magnet_position_a_right();
-	_mp_b_left  = effector_base_magnet_position_b_left();
-	_mp_b_right = effector_base_magnet_position_b_right();
-	_mp_c_left  = effector_base_magnet_position_c_left();
-	_mp_c_right = effector_base_magnet_position_c_right();
+	_bp_a_left  = effector_base_ball_position_a_left();
+	_bp_a_right = effector_base_ball_position_a_right();
+	_bp_b_left  = effector_base_ball_position_b_left();
+	_bp_b_right = effector_base_ball_position_b_right();
+	_bp_c_left  = effector_base_ball_position_c_left();
+	_bp_c_right = effector_base_ball_position_c_right();
 
 	color_printed_effector()
 		render() {		
@@ -56,58 +49,29 @@ module _render_effector_base() {
 					// the base plate			
 				    linear_extrude(height = effector_base_thickness())
 		        		polygon(points = [
-		        				[ _mp_a_left[0],  _mp_a_left[1]  ],
-								[ _mp_a_right[0], _mp_a_right[1] ],
-								[ _mp_c_right[0], _mp_c_right[1] ],
-								[ _mp_c_left[0],  _mp_c_left[1]  ],
-								[ _mp_b_left[0],  _mp_b_left[1]  ],
-								[ _mp_b_right[0], _mp_b_right[1] ]
+		        				[ _bp_a_left[0],  _bp_a_left[1]  ],
+								[ _bp_a_right[0], _bp_a_right[1] ],
+								[ _bp_c_right[0], _bp_c_right[1] ],
+								[ _bp_c_left[0],  _bp_c_left[1]  ],
+								[ _bp_b_left[0],  _bp_b_left[1]  ],
+								[ _bp_b_right[0], _bp_b_right[1] ]
 		        			]);
     
-					// the magnet holders
-					translate(_mp_a_left)
-						rotate([0, -90 - effector_base_magnet_angle(), 120])
-							_effector_base_magnet_holder();
-					translate(_mp_a_right)
-						rotate([0, -90 - effector_base_magnet_angle(), 120])
-							_effector_base_magnet_holder();
-					translate(_mp_b_left)
-						rotate([0, -90 - effector_base_magnet_angle(), -120])
-							_effector_base_magnet_holder();
-					translate(_mp_b_right)
-						rotate([0, -90 - effector_base_magnet_angle(), -120])
-							_effector_base_magnet_holder();
-					translate(_mp_c_left)
-						rotate([0, -90 - effector_base_magnet_angle(), 0])
-							_effector_base_magnet_holder();
-					translate(_mp_c_right)
-						rotate([0, -90 - effector_base_magnet_angle(), 0])
-							_effector_base_magnet_holder();
+					// the ball holders
+					translate(_bp_a_left)
+						_effector_base_magnet_holder();
+					translate(_bp_a_right)
+						_effector_base_magnet_holder();
+					translate(_bp_b_left)
+						_effector_base_magnet_holder();
+					translate(_bp_b_right)
+						_effector_base_magnet_holder();
+					translate(_bp_c_left)
+						_effector_base_magnet_holder();
+					translate(_bp_c_right)
+						_effector_base_magnet_holder();
 				}
 				
-				// minus everything in negative X
-				translate([-effector_base_triangle_edge_length(), -effector_base_triangle_edge_length(), -effector_base_thickness()])
-					cube([2*effector_base_triangle_edge_length(), 2*effector_base_triangle_edge_length(), effector_base_thickness()]);
-
-				// minus the holes for the magnets
-				translate(_mp_a_left)
-					rotate([0, -90 - effector_base_magnet_angle(), 120])
-						_effector_base_magnet_hole_and_surface();
-				translate(_mp_a_right)
-					rotate([0, -90 - effector_base_magnet_angle(), 120])
-						_effector_base_magnet_hole_and_surface();
-				translate(_mp_b_left)
-					rotate([0, -90 - effector_base_magnet_angle(), -120])
-						_effector_base_magnet_hole_and_surface();
-				translate(_mp_b_right)
-					rotate([0, -90 - effector_base_magnet_angle(), -120])
-						_effector_base_magnet_hole_and_surface();
-				translate(_mp_c_left)
-					rotate([0, -90 - effector_base_magnet_angle(), 0])
-						_effector_base_magnet_hole_and_surface();
-				translate(_mp_c_right)
-					rotate([0, -90 - effector_base_magnet_angle(), 0])
-						_effector_base_magnet_hole_and_surface();
 			}
 		} 
 }
@@ -126,25 +90,19 @@ module effector_base() {
  * This also includes the V-Wheels and their supporting material.
  */
 module effector_base_hardware() {
-	// the magnets inside the holders
-	translate(effector_base_magnet_position_a_left())
-		rotate([0, -90 - effector_base_magnet_angle(), 120])
-			magnet_ring(diameter = effector_base_magnet_diameter(), thickness = effector_base_magnet_depth());
-	translate(effector_base_magnet_position_a_right())
-		rotate([0, -90 - effector_base_magnet_angle(), 120])
-			magnet_ring(diameter = effector_base_magnet_diameter(), thickness = effector_base_magnet_depth());
-	translate(effector_base_magnet_position_b_left())
-		rotate([0, -90 - effector_base_magnet_angle(), -120])
-			magnet_ring(diameter = effector_base_magnet_diameter(), thickness = effector_base_magnet_depth());
-	translate(effector_base_magnet_position_b_right())
-		rotate([0, -90 - effector_base_magnet_angle(), -120])
-			magnet_ring(diameter = effector_base_magnet_diameter(), thickness = effector_base_magnet_depth());
-	translate(effector_base_magnet_position_c_left())
-		rotate([0, -90 - effector_base_magnet_angle(), 0])
-			magnet_ring(diameter = effector_base_magnet_diameter(), thickness = effector_base_magnet_depth());
-	translate(effector_base_magnet_position_c_right())
-		rotate([0, -90 - effector_base_magnet_angle(), 0])
-			magnet_ring(diameter = effector_base_magnet_diameter(), thickness = effector_base_magnet_depth());
+	// the balls inside the holders
+	translate(effector_base_ball_position_a_left())
+		ball();
+	translate(effector_base_ball_position_a_right())
+		ball();
+	translate(effector_base_ball_position_b_left())
+		ball();
+	translate(effector_base_ball_position_b_right())
+		ball();
+	translate(effector_base_ball_position_c_left())
+		ball();
+	translate(effector_base_ball_position_c_right())
+		ball();
 }
 
 _render_effector_base();
