@@ -13,6 +13,35 @@ include <../../conf/part_sizes.scad>
 use <../../bom/bom.scad>
 use <../../parts/extrusions/makerslide.scad>
 use <../../parts/vitamins/vitamins.scad>
+use <carriage_ball_holder.scad>
+
+/**
+ * Produces the dovetail shapes that will be cut out from the top of the carriate to accomodate the ball holders.
+ */
+module _carriage_ball_holder_cutout() {
+	_cutout_inner_top    = 0;
+	_cutout_inner_bottom = -carriage_ball_holder_height();
+	_cutout_outer_top    = 0;
+	_cutout_outer_bottom = -carriage_ball_holder_height() - tan(carriage_ball_holder_angle()) * carriage_plate_thickness();
+	_cutout_points = [
+	  [  0,                          -carriage_ball_holder_joint_inner_width()/2,    _cutout_inner_bottom ],  //0
+	  [ -carriage_plate_thickness(), -carriage_ball_holder_joint_outer_width()/2, _cutout_outer_bottom ],  //1
+	  [ -carriage_plate_thickness(),  carriage_ball_holder_joint_outer_width()/2, _cutout_outer_bottom ],  //2
+	  [  0,                           carriage_ball_holder_joint_inner_width()/2,    _cutout_inner_bottom ],  //3
+	  [  0,                          -carriage_ball_holder_joint_inner_width()/2,    _cutout_inner_top ],     //4
+	  [ -carriage_plate_thickness(), -carriage_ball_holder_joint_outer_width()/2, _cutout_outer_top ],     //5
+	  [ -carriage_plate_thickness(),  carriage_ball_holder_joint_outer_width()/2, _cutout_outer_top ],     //6
+	  [  0,                           carriage_ball_holder_joint_inner_width()/2,    _cutout_inner_top ]];    //7
+	_cutout_faces = [
+	  [0,1,2,3],  // bottom
+	  [4,5,1,0],  // front
+	  [7,6,5,4],  // top
+	  [5,6,2,1],  // right
+	  [6,7,3,2],  // back
+	  [7,4,0,3]]; // left				  
+	polyhedron(points = _cutout_points, faces = _cutout_faces);
+}
+
 
 /**
  * Renders the lower part of the base plate of the carriage that holds the wheels.
@@ -75,6 +104,11 @@ module _carriage_base_plate() {
 		translate([0, -carriage_tensioner_gap_width()/2, carriage_plate_height() - carriage_tensioner_gap_height()])
 			cube([carriage_plate_thickness(), carriage_tensioner_gap_width(), carriage_tensioner_gap_height()]);
 
+		// minus the cutouts for the ball holders
+		translate([carriage_plate_thickness(), -rod_distance()/2, carriage_plate_height()])
+			_carriage_ball_holder_cutout();
+		translate([carriage_plate_thickness(), rod_distance()/2, carriage_plate_height()])
+			_carriage_ball_holder_cutout();
 	}
 }
 
@@ -234,27 +268,6 @@ module _carriage_belt_holder() {
 }
 
 /**
- * Creates a magnet holder. The holder is placed at the origin so that it can be translated easily.
- */
-module _carriage_magnet_holder() {
-	rotate([0, carriage_magnet_angle(), 0])
-		difference() {
-			// the base shape of the magnet holder
-			union() {
-				translate([0, -carriage_magnet_holder_width()/2, 0])
-					cube([carriage_magnet_holder_depth(), carriage_magnet_holder_width(), carriage_magnet_holder_height()/2]);
-				translate([0, 0, carriage_magnet_holder_height()/2])
-					rotate([0, 90, 0])
-						cylinder(d = carriage_magnet_holder_width(), h = carriage_magnet_holder_depth());
-			}
-			// minus the hole for the magnet
-			translate([carriage_magnet_wall_thickness(), 0, carriage_magnet_holder_height()/2])
-				rotate([0, 90, 0])
-					cylinder(d = carriage_magnet_diameter() + epsilon(), h = carriage_magnet_depth() + epsilon());
-		}
-}
-
-/**
  * Creates the carriage assembly by rendering it from scratch. This module is not to be called externally, use 
  * carriage() instead.
  */
@@ -272,13 +285,6 @@ module _render_carriage() {
 			translate([carriage_plate_thickness(), -gt2_pulley_inner_diameter_min()/2, carriage_upper_belt_holder_z()])
 				mirror([0, 0, 1])
 					_carriage_belt_holder();
-
-			// the magnet holders
-			translate([0, -rod_distance()/2, carriage_plate_height()])
-				_carriage_magnet_holder();
-			translate([0, rod_distance()/2, carriage_plate_height()])
-				_carriage_magnet_holder();
-
 		} 
 }
 
@@ -287,7 +293,7 @@ module _render_carriage() {
  * manipulation, similar to the MakerSlide extrusion. 
  */
 module carriage() {
-	bom_entry(section = "Printed Parts", description = "Arm", size = "Outer Carriage");
+	bom_entry(section = "Printed Parts", description = "Arm", size = "Carriage");
 	color_printed_carriage()
 		import(file = "carriage.stl");
 }
@@ -384,15 +390,6 @@ module _carriage_hardware_belt_fixation() {
 	}
 }
 
-/**
- * Used to position the magnet in the holder.
- */
-module _carriage_magnet() {
-	rotate([0, carriage_magnet_angle(), 0])
-		translate([carriage_magnet_wall_thickness(), 0, carriage_magnet_holder_height()/2])
-			magnet_ring(diameter = carriage_magnet_diameter(), thickness = carriage_magnet_depth());
-}
-
 /** 
  * Renders the hardware (nuts, bolts, screws) that are used to fixed the printed part to the surrounding parts.
  * This also includes the V-Wheels and their supporting material.
@@ -415,12 +412,6 @@ module carriage_hardware() {
 	translate([carriage_plate_thickness(), -gt2_pulley_inner_diameter_min()/2, carriage_upper_belt_holder_z()])
 		mirror([0, 0, 1])
 			_carriage_hardware_belt_fixation();
-
-	// the magnets inside the holders
-	translate([0, -rod_distance()/2, carriage_plate_height()])
-		_carriage_magnet();
-	translate([0, rod_distance()/2, carriage_plate_height()])
-		_carriage_magnet();
 }
 
 _render_carriage();

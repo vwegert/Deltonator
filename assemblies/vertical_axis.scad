@@ -16,6 +16,7 @@ include <../conf/part_sizes.scad>
 use <../parts/extrusions/makerslide.scad>
 use <../parts/printed/bed_bracket.scad>
 use <../parts/printed/carriage.scad>
+use <../parts/printed/carriage_ball_holder.scad>
 use <../parts/printed/end_switch_bracket.scad>
 use <../parts/printed/foot.scad>
 use <../parts/printed/head.scad>
@@ -33,10 +34,9 @@ module vertical_axis_assembly(position = [0, 0, 0], angle = 0) {
 }
 
 /** 
- * The module that actually renders the assembly. 
- * This module is not intended to be called outside of this file.
+ * Renders the components that stay in a fixed position.
  */
-module _vertical_axis_assembly() {
+module _vertical_axis_fixed_components() {
 	// the vertical MakerSlide extrusion
 	makerslide_vertical_rail();
 
@@ -85,13 +85,42 @@ module _vertical_axis_assembly() {
 					inner_diameter_end2 = gt2_pulley_inner_diameter_min(), 
 					inner_diameter_end1 = gt2_pulley_inner_diameter_min());// bearing_f623zz_outer_diameter());
 
+}
+
+/**
+ * Renders the mobile components of the carriage.
+ */
+module _vertical_axis_carriage() {
+
 	// TODO make the carriage position dynamic
 	_carriage_z = 655;
 	translate([carriage_x_offset(), 0, _carriage_z]) {
+		// the carriage with associated hardware
 		carriage();
 		carriage_hardware();
-	}
 
+		// the ball holders
+		translate(carriage_ball_holder_position(left = true))
+			rotate([0, -carriage_ball_holder_angle(), 0]) {
+				carriage_ball_holder();
+				carriage_ball_holder_hardware();
+			}
+		translate(carriage_ball_holder_position(left = false))
+			rotate([0, -carriage_ball_holder_angle(), 0]) {
+				carriage_ball_holder();
+				carriage_ball_holder_hardware();
+			}
+
+	}
+}
+
+/** 
+ * The module that actually renders the assembly. 
+ * This module is not intended to be called outside of this file.
+ */
+module _vertical_axis_assembly() {
+	_vertical_axis_fixed_components();
+	_vertical_axis_carriage();
 }
 
 // render the axis to a separate output file if requested

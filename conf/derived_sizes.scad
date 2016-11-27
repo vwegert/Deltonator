@@ -151,22 +151,6 @@ function carriage_plate_thickness() = CARRIAGE_PLATE_THICKNESS;
  */
 function carriage_plate_border_width() = CARRIAGE_PLATE_BORDER_WIDTH; 
 
-/**
- * The downward angle of the magnets in the carriage.
- */
-function carriage_magnet_angle() = CARRIAGE_MAGNET_ANGLE;
-
-/**
- * The outer diameter and depth of the magnets in the carriage.
- */
-function carriage_magnet_diameter() = CARRIAGE_MAGNET_DIAMETER;
-function carriage_magnet_depth() = CARRIAGE_MAGNET_DEPTH;
-
-/**
- * The thickness of the walls around the magnet.
- */
-function carriage_magnet_wall_thickness() = CARRIAGE_MAGNET_WALL_THICKNESS;
-
 /** 
  * The horizontal and vertical distance of the center points of the carriage wheels.
  */
@@ -258,17 +242,55 @@ function carriage_belt_holder_insert_y() = carriage_belt_holder_height() -
 function carriage_tensioner_gap_width()  = tensioner_width() + 6;
 function carriage_tensioner_gap_height() = carriage_plate_height() - carriage_upper_belt_holder_z();
 
+// ----- carriage ball holder -----------------------------------------------------------------------------------------
+
 /**
- * The sizes and positions of the magnet holders.
+ * The dimensions of the ball holder.
  */
-function carriage_magnet_holder_width() = carriage_magnet_diameter() + 2 * carriage_magnet_wall_thickness();
-function carriage_magnet_holder_height() = carriage_magnet_diameter() + 
-                                           carriage_magnet_holder_additional_height() + 
-                                           2 * carriage_magnet_wall_thickness();
-function carriage_magnet_holder_depth() = carriage_magnet_depth() + carriage_magnet_wall_thickness();
+function carriage_ball_holder_width() = ball_diameter();
+function carriage_ball_holder_height() = ball_diameter()/2;
+function carriage_ball_holder_depth() = 
+  carriage_ball_holder_joint_depth() + 
+  magnet_holder_top_thickness() +
+  magnet_height() - magnet_contact_circle_depth() +
+  ball_diameter();
 
-function carriage_magnet_holder_additional_height() = 10;
+/**
+ * The upward angle of the ball holder.
+ */
+function carriage_ball_holder_angle() = CARRIAGE_BALL_HOLDER_ANGLE;
 
+/**
+ * The widths and depth of the devetail joint between the carriage and the ball holder.
+ */
+function carriage_ball_holder_joint_inner_width() = 0.6 * carriage_ball_holder_width();
+function carriage_ball_holder_joint_outer_width() = 0.8 * carriage_ball_holder_width();
+function carriage_ball_holder_joint_depth() = carriage_plate_thickness() / cos(carriage_ball_holder_angle());
+
+/**
+ * The depth of the recess that holds the ball.
+ */
+function carriage_ball_holder_recess_depth() = ball_diameter()/4;
+
+/** 
+ * The position of the ball holder (relative to the origin of the carriage, w/o rotation).
+ */
+function carriage_ball_holder_position(left = true) = [
+    carriage_plate_thickness(),
+    left ? -rod_distance()/2 : rod_distance()/2,
+    carriage_plate_height() - carriage_ball_holder_height()
+  ];
+
+/** 
+ * The position of the ball in the ball holder (relative to the origin of the ball holder, w/o rotation).
+ */
+function carriage_ball_holder_ball_position() = [
+    carriage_ball_holder_depth() - carriage_ball_holder_joint_depth() - ball_diameter()/2,
+    0,
+    carriage_ball_holder_height() + ball_diameter()/2 - carriage_ball_holder_recess_depth()
+  ];
+
+function carriage_ball_holder_resolution() = 32;
 
 // ----- belt tensioner -----------------------------------------------------------------------------------------------
 

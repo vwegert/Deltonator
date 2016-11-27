@@ -83,6 +83,7 @@ assemblies: printed vitamins \
 printed: vitamins \
 	parts/printed/bed_bracket.stl \
 	parts/printed/carriage.stl \
+	parts/printed/carriage_ball_holder.stl \
 	parts/printed/effector_base.stl \
 	parts/printed/end_switch_bracket.stl \
 	parts/printed/foot.stl \
@@ -112,13 +113,12 @@ vitamins: \
 	parts/vitamins/electromechanic/stepper_nema23_long.stl \
 	parts/vitamins/electromechanic/stepper_nema23_medium.stl \
 	parts/vitamins/electromechanic/stepper_nema23_short.stl \
-	parts/vitamins/mechanic/ball_10.stl \
+	parts/vitamins/mechanic/ball.stl \
 	parts/vitamins/mechanic/bearing_f623.stl \
 	parts/vitamins/mechanic/bearing_625.stl \
 	parts/vitamins/mechanic/gt2_pulley_20t_5mm.stl \
 	parts/vitamins/mechanic/insert_M3x7.stl \
-	parts/vitamins/mechanic/magnet_ring_10x5.stl \
-	parts/vitamins/mechanic/magnet_ring_15x3.stl \
+	parts/vitamins/mechanic/magnet_ring.stl \
 	parts/vitamins/mechanic/nut_M2.stl \
 	parts/vitamins/mechanic/nut_M3.stl \
 	parts/vitamins/mechanic/nut_M4.stl \

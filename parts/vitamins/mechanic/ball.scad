@@ -1,10 +1,12 @@
 /**********************************************************************************************************************
  **
- ** parts/vitamins/ball_10.scad
+ ** parts/vitamins/mechanic/ball.scad
  **
- ** This file renders a steel ball 10 mm in diameter.
+ ** This file renders a steel ball used for the arm joints.
  **
  **********************************************************************************************************************/
 
+include <../../../conf/part_sizes.scad>
+
 $fn = 96;
-sphere(r = 5);
+sphere(d = ball_diameter());

@@ -286,6 +286,7 @@ function ball_diameter() = 10;
 
 /** 
  * The dimensions of the magnet rings used.
+ * see https://www.mtsmagnete.de/magnetsysteme/mit-bohrung-und-senkung/neodym-scheibenmagnet-mit-bohrung-und-senkung-10x5mm-3-4mm-bohrung-n40/a-3805/
  */
 function magnet_outer_diameter() = 10;
 function magnet_height() = 5;

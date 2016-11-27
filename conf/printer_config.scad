@@ -81,17 +81,8 @@ MAGNET_HOLDER_THICKNESS = 5;
 // The additional clearance to leave around the magnet holder pin.
 MAGNET_CLEARANCE = 0.025;
 
-// The downward angle of the magnets in the carriage.
-CARRIAGE_MAGNET_ANGLE = 45;
-
-// The outer diameter of the magnets in the carriage.
-CARRIAGE_MAGNET_DIAMETER = 10;
-
-// The depth of the magnets in the carriage.
-CARRIAGE_MAGNET_DEPTH = 5;
-
-// The thickness of the walls around the magnets.
-CARRIAGE_MAGNET_WALL_THICKNESS = 4;
+// The upward angle of the ball holder on the carriage.
+CARRIAGE_BALL_HOLDER_ANGLE = 10;
 
 // The outward angle of the magnets in the effector.
 EFFECTOR_MAGNET_ANGLE = 20;

@@ -75,10 +75,10 @@ module switch_ss5gl() {
 /**
  * Provides the pre-rendered balls.
  */
-module ball(size) {
-	bom_entry(section = "Magnets and Accessories", description = "Steel Ball", size = str(size, " mm"));
+module ball() {
+	bom_entry(section = "Magnets and Accessories", description = "Steel Ball", size = str(ball_diameter(), " mm diameter"));
 	color_magnets_balls()
-		import(file = str("mechanic/ball_", size, ".stl")); 
+		import(file = "mechanic/ball.stl"); 
 }
 
 // ===== parts/vitamins/mechanic/bearing_*.* ===========================================================================
@@ -186,9 +186,9 @@ module insert(size, length) {
 module magnet_ring(diameter, thickness) {
 	bom_entry(section = "Magnets and Accessories", 
 		description = "Magnet Ring", 
-		size = str(diameter, "x", thickness, " mm"));
+		size = str(magnet_outer_diameter(), "x", magnet_height(), " mm, bore ", magnet_bore_diameter(), " mm, ", magnet_bevel_angle(), "° bevel with ", magnet_bevel_diameter(), " mm diameter"));
 	color_magnets_balls()
-		import(file = str("mechanic/magnet_ring_", diameter, "x", thickness, ".stl")); 
+		import(file = "mechanic/magnet_ring.stl"); 
 }
 
 // ===== parts/vitamins/mechanic/nut_*.* ===============================================================================
