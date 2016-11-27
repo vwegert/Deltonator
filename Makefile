@@ -123,6 +123,7 @@ vitamins: \
 	parts/vitamins/mechanic/nut_M3.stl \
 	parts/vitamins/mechanic/nut_M4.stl \
 	parts/vitamins/mechanic/nut_M5.stl \
+	parts/vitamins/mechanic/rod.stl \
 	parts/vitamins/mechanic/screw_M2x10.stl \
 	parts/vitamins/mechanic/screw_M3x6.stl \
 	parts/vitamins/mechanic/screw_M3x8.stl \

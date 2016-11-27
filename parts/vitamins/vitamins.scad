@@ -76,7 +76,7 @@ module switch_ss5gl() {
  * Provides the pre-rendered balls.
  */
 module ball() {
-	bom_entry(section = "Magnets and Accessories", description = "Steel Ball", size = str(ball_diameter(), " mm diameter"));
+	bom_entry(section = "Special Mechanic Parts", description = "Steel Ball", size = str(ball_diameter(), " mm diameter"));
 	color_magnets_balls()
 		import(file = "mechanic/ball.stl"); 
 }
@@ -183,8 +183,8 @@ module insert(size, length) {
  * Provides the pre-rendered magnet rings
  * The magnet is centered along the X axis with the body extending into positive X.
  */
-module magnet_ring(diameter, thickness) {
-	bom_entry(section = "Magnets and Accessories", 
+module magnet_ring() {
+	bom_entry(section = "Special Mechanic Parts", 
 		description = "Magnet Ring", 
 		size = str(magnet_outer_diameter(), "x", magnet_height(), " mm, bore ", magnet_bore_diameter(), " mm, ", magnet_bevel_angle(), "° bevel with ", magnet_bevel_diameter(), " mm diameter"));
 	color_magnets_balls()
@@ -247,6 +247,20 @@ module nut_tslot(size) {
 			description = "T-Slot Nut", 
 			size = str("M", _size));
 	}
+}
+
+// ===== parts/vitamins/mechanic/rod.* ================================================================================
+
+/**
+ * Provides the pre-rendered carbon fiber rods.
+ * The rod is centered around the Z axis extendin into positive Z.
+ */
+module rod() {
+	bom_entry(section = "Special Mechanic Parts", 
+		description = "Carbon Fiber Rods", 
+		size = str(arm_rod_length(), " mm, OD ", rod_outer_diameter(), " mm, ID ", rod_inner_diameter()));
+	color_rod()
+		import(file = "mechanic/rod.stl"); 
 }
 
 // ===== parts/vitamins/mechanic/screw_*.* =============================================================================
