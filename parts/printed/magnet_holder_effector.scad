@@ -20,7 +20,7 @@ use <magnet_holder.scad>
  * with the Z axis. It is placed so that the left back corner is aligned to the Z axis with the lower corner at the 
  * origin.
  */
-module magnet_holder() {
+module magnet_holder_effector() {
 	bom_entry(section = "Printed Parts", description = "Small Parts", size = "Bottom Magnet Holder");
 	color_printed_magnet_holders()
 		import(file = "magnet_holder_effector.stl");
@@ -29,7 +29,7 @@ module magnet_holder() {
 /** 
  * Renders the hardware (nuts, bolts, screws) that are used to fixed the printed part to the surrounding parts.
  */
-module magnet_holder_hardware() {
+module magnet_holder_effector_hardware() {
 	_magnet_holder_hardware(ball_clearance = magnet_holder_bottom_ball_clearance());
 }
 

@@ -75,6 +75,12 @@ ROD_HOLDER_WALL_THICKNESS = 2;
 // The depth of the insets that hold the rods.
 ROD_HOLDER_DEPTH = 10;
 
+// The minimum angle of the arms.
+ROD_MIN_ANGLE = 20;
+
+// The factor used to round up the rod length.
+ROD_ROUND_UP_TO = 5;
+
 // The thickness of the magnet holder arms.
 MAGNET_HOLDER_THICKNESS = 5;
 

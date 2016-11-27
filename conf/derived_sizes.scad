@@ -482,6 +482,7 @@ function effector_base_triangle_height() = effector_base_triangle_edge_length() 
 function effector_base_center_long_edge_distance() = effector_base_triangle_edge_length()/2 * tan(30);
 function effector_base_center_short_edge_distance() = effector_base_center_corner_distance() - effector_base_cutoff_height();
 function effector_base_center_corner_distance() = effector_base_triangle_height() - effector_base_center_long_edge_distance();
+function effector_base_long_short_edge_distance() = effector_base_center_long_edge_distance() + effector_base_center_short_edge_distance();
 
 /**
  * The positions of the balls in the effector, relative to the bottom center of the effector.
@@ -534,6 +535,54 @@ function effector_base_ball_holder_diameter() = ball_diameter();
  */
 function effector_base_resolution() = 32;
 
+// ===== ROD LENGTH CALCULATION =======================================================================================
+
+/**
+ * The minimum angle of the arms.
+ */
+function arm_min_angle() = ROD_MIN_ANGLE;
+
+/**
+ * The factor used to round up the rod length.
+ */
+function arm_rod_round_up_factor() = ROD_ROUND_UP_TO;
+
+/**
+ * The horizontal length ("distance over ground") the arms will have to cover when extended to the most distant point.
+ * This length is calculated from ball center to ball center, i. e. it includes the magnet holders.
+ */
+function arm_max_ground_distance() = front_plane_offset() 
+  - (carriage_x_offset() + carriage_ball_holder_position(left = true)[0] + carriage_ball_holder_ball_position()[0])
+  - (effector_base_long_short_edge_distance());
+// TODO might need an additional threshold here to prevent the arms from overstretching
+
+/**
+ * The exact length of the arms when extended to the the most distant point at the minimum angle configured.
+ * This length is calculated from ball center to ball center, i. e. it includes the magnet holders.
+ */
+function arm_exact_overall_length() = arm_max_ground_distance() / cos(arm_min_angle());
+
+/**
+ * The exact length of the rods when reaching for the most distant point.
+ */
+function arm_rod_exact_length() = 
+  arm_exact_overall_length() 
+  - magnet_holder_rod_distance(magnet_holder_top_ball_clearance())
+  - magnet_holder_rod_distance(magnet_holder_bottom_ball_clearance());
+
+/**
+ * The length of the rod rounded up as per the configured value.
+ */
+function arm_rod_length() = ceil((arm_rod_exact_length() / arm_rod_round_up_factor())) * arm_rod_round_up_factor();
+
+/**
+ * The length of the entire arm from ball center to ball center.
+ */
+function arm_overall_length() = 
+  arm_rod_length() 
+  + magnet_holder_rod_distance(magnet_holder_top_ball_clearance())
+  + magnet_holder_rod_distance(magnet_holder_bottom_ball_clearance());
+  
 // ===== SCREWS, NUTS, BOLTS AND OTHER HARDWARE =======================================================================
 
 /**
