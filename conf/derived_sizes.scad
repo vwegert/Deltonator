@@ -20,6 +20,19 @@ C = 2;
 // ===== PRINTER FRAME SIZES ===========================================================================================
 
 /**
+ * The angles of the vertical rails. A is the "front left" rail, B the "front right" rail, C the back rail.
+ * These angles are also used for the sides; in this case, side A is the one opposing rail A.
+ */
+function angle_rail_a() = 120;
+function angle_rail_b() = 240;
+function angle_rail_c() = 0;
+function angle_rails() = [
+    120, // A
+    240, // B
+      0  // C
+  ];
+
+/**
  * The length of the vertical MakerSlide extrusions.
  */
 function vertical_extrusion_length() = FRAME_V_RAIL_HEIGHT;
@@ -39,6 +52,17 @@ function horizontal_extrusion_offset() = makerslide_rail_edge_distance() + horiz
  * The overall size of the base triangle - from one crossing point to the next.
  */
 function horizontal_base_length() = horizontal_extrusion_length() + 2 * horizontal_extrusion_offset();
+
+/**
+ * The distance from one corner of the printer to the center of the opposing side. (The height of the triangle.)
+ */
+function horizontal_base_height() = sqrt(pow(horizontal_base_length(), 2) - pow(horizontal_base_length() / 2, 2));
+
+/**
+ * The distance from the center of the printer to one of the corners / edges.
+ */
+function horizontal_distance_center_edge() = tan(30) * horizontal_base_length()/2;
+function horizontal_distance_center_corner() = horizontal_base_height() - horizontal_distance_center_edge();
 
 /**
  * The additional clearance to leave around the MakerSlide extrusion.
@@ -80,7 +104,6 @@ function ball_center_magnet_base_distance() =
   ball_contact_circle_height() - magnet_contact_circle_depth() + magnet_height();
 
 // ===== FABRICATED PART DIMENSIONS ===================================================================================
-
 
 // ----- general frame parts ------------------------------------------------------------------------------------------
 
@@ -567,7 +590,7 @@ function arm_rod_round_up_factor() = ROD_ROUND_UP_TO;
  * The horizontal length ("distance over ground") the arms will have to cover when extended to the most distant point.
  * This length is calculated from ball center to ball center, i. e. it includes the magnet holders.
  */
-function arm_max_ground_distance() = front_plane_offset() 
+function arm_max_ground_distance() = horizontal_base_height() 
   - (carriage_x_offset() + carriage_ball_holder_position(left = true)[0] + carriage_ball_holder_ball_position()[0])
   - (effector_base_long_short_edge_distance());
 // TODO might need an additional threshold here to prevent the arms from overstretching
@@ -621,56 +644,10 @@ function frame_screw_hole_resolution() = 16;
 // ===== PART PLACEMENT ================================================================================================
 
 /**
- * The offset of the front plane from the X origin into positive X. This offset is applied to the back center of the
- * vertical rails, thus marking the front side of the construction triangle between the origins of the vertical rails.
- */
-function front_plane_offset() = sqrt(pow(horizontal_base_length(), 2) - pow(horizontal_base_length() / 2, 2));
-
-/**
- * The angles of the vertical rails. A is the "front left" rail, B the "front right" rail, C the back rail.
- */
-function angle_rail_a() = 120;
-function angle_rail_b() = -120;
-function angle_rail_c() = 0;
-function angle_rails() = [
-    angle_rail_a(),
-    angle_rail_b(),
-    angle_rail_c()
-  ];
-
-/**
- * The positions of the vertical rails. A is the "front left" rail, B the "front right" rail, C the back rail.
- */
-function position_rail_a() = [front_plane_offset(), -horizontal_base_length() / 2, 0];
-function position_rail_b() = [front_plane_offset(),  horizontal_base_length() / 2, 0];
-function position_rail_c() = [0, 0, 0];
-function position_rails() = [
-    position_rail_a(),
-    position_rail_b(),
-    position_rail_c()
-  ];
-
-/**
  * Each of the horizontal extrusion sets is placed outside of the construction triangle. This function specifies the
  * distance by which the rails are offset.
  */
 function horizontal_extrusion_outward_offset() = (makerslide_base_width()/2 * sin(60)) - (vslot_2020_width()/2);
-
-/**
- * The positions of the horizontal side assemblies. Be aware that - in contrast to the positioning of the vertical 
- * rails - the translation is applied BEFORE the rotation since that makes the calculation much easier to understand.
- */
-function position_front_assembly() = [front_plane_offset() + horizontal_extrusion_outward_offset(), 
-                                      -horizontal_extrusion_length()/2, 0];
-function position_left_assembly() = [-horizontal_extrusion_outward_offset() - vslot_2020_depth(),
-                                     -horizontal_extrusion_length() - horizontal_extrusion_offset(), 0];
-function position_right_assembly() = [-horizontal_extrusion_outward_offset() - vslot_2020_depth(),
-                                      horizontal_extrusion_offset(), 0];
-
-/**
- * The X position of the center of the build area.
- */
-function printer_center_x() = front_plane_offset() - (tan(30) * (horizontal_base_length() / 2));
 
 /**
  * The height at which the bracket is mounted. At the moment, it is placed directly above the lower foot.
@@ -766,15 +743,6 @@ function carriage_x_offset() = washer_thickness(M5) + epsilon() +
 		                       makerslide_base_depth();
 
 // ===== ARM MOVEMENT ==================================================================================================
-
-/**
- * Converts a point that is specified relative to the center of the build surface to the model coordinate system.
- */
-function convert_relative_point_to_absolute(point = [0, 0, 0]) = [
-    point[0] + printer_center_x(),
-    point[1],
-    point[2] + bed_bracket_top_level() // TODO change to add actual build surface height
-  ];
 
 /**
  * Determines the distance in the horizontal plane of a point from a given rail.

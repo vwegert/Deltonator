@@ -7,9 +7,7 @@ MakerSlide Extrusion
 
 V-Slot Extrusion
   400x20x20 mm.................................................................... 9
-    horizontal_front_assembly                                                (3)
-    horizontal_left_assembly                                                 (3)
-    horizontal_right_assembly                                                (3)
+    horizontal_assembly                                                      (9)
 
 ===== Bearings and Wheels =============================================================
 
@@ -110,12 +108,6 @@ Washer (DIN 125A / ISO 7089)
   M5.............................................................................. 27
     vertical_axis_assembly >> carriage_hardware                              (27)
 
-===== Magnets and Accessories =========================================================
-
-Steel Ball
-  10 mm diameter.................................................................. 6
-    vertical_axis_assembly >> carriage_ball_holder_hardware                  (6)
-
 ===== Printed Parts ===================================================================
 
 Arm
@@ -137,8 +129,27 @@ Frame
 Small Parts
   Belt Tensioner.................................................................. 3
     vertical_axis_assembly                                                   (3)
+  Bottom Magnet Holder............................................................ 6
+    vertical_axis_assembly                                                   (6)
   End Switch Bracket.............................................................. 3
     vertical_axis_assembly                                                   (3)
+  Top Magnet Holder............................................................... 6
+    vertical_axis_assembly                                                   (6)
+
+===== Special Mechanic Parts ==========================================================
+
+Carbon Fiber Rods
+  280 mm, OD 6 mm, ID 4........................................................... 6
+    vertical_axis_assembly                                                   (6)
+
+Magnet Ring
+  10x5 mm, bore 3.4 mm, 90° bevel with 7 mm diameter............................. 12
+    vertical_axis_assembly >> magnet_holder_carriage_hardware                (6)
+    vertical_axis_assembly >> magnet_holder_effector_hardware                (6)
+
+Steel Ball
+  10 mm diameter.................................................................. 6
+    vertical_axis_assembly >> carriage_ball_holder_hardware                  (6)
 
 ===== Timing Belts and Pulleys ========================================================
 

@@ -32,9 +32,9 @@ use <../parts/vitamins/vitamins.scad>
  * theta = the angle of the arms in the vertical plane; 0 = straight down, 90 = horizontal
  * phi = the angle of the arms in the horizontal plane; 0 = along the X axis, positive values counter-clockwise
  */
-module vertical_axis_assembly(position = [0, 0, 0], angle = 0, carriage_height = 500, arm_theta = 45, arm_phi = 45) {
-	translate(position)
-		rotate([0, 0, angle])
+module vertical_axis_assembly(angle = 0, carriage_height = 500, arm_theta = 45, arm_phi = 45) {
+	rotate([0, 0, angle])
+		translate([-horizontal_distance_center_corner(), 0, 0])
 			_vertical_axis_assembly(carriage_height, arm_theta, arm_phi);
 }
 

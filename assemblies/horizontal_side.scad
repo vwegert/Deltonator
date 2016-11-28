@@ -1,8 +1,8 @@
 /**********************************************************************************************************************
  **
- ** assemblies/horizontal_right.scad
+ ** assemblies/horizontal_side.scad
  **
- ** This file renders and provides the horizontal parts on the right side with whatever is attached to it. 
+ ** This file renders and provides the horizontal parts on the sides with whatever is attached to it. 
  ** This assembly can be rendered into an STL file; however, for further construction of the model, that rendered
  ** version is NOT used because all the color information would be lost.
  **
@@ -17,19 +17,23 @@ use <../parts/extrusions/vslot_2020.scad>
 /**
  * Provides access to the assembly.
  */
-module horizontal_right_assembly(position = [0, 0, 0], angle = 0, with_connectors = false) {
+module horizontal_assembly(side = A, angle = 0, with_connectors = false) {
 	rotate([0, 0, angle]) 
-		translate(position) {
-			_horizontal_right_assembly();
-			// TODO connectors
-		}
+		translate([horizontal_distance_center_edge(), 0, 0])
+			rotate([0, 0, 180])
+				translate([-vslot_2020_depth() - horizontal_extrusion_outward_offset(), 
+					       -horizontal_extrusion_length()/2, 
+					       0]) {
+					_horizontal_assembly(side = side, with_connectors = with_connectors);
+					// TODO connectors	
+				}
 }
 
 /** 
  * The module that actually renders the assembly. 
  * This module is not intended to be called outside of this file.
  */
-module _horizontal_right_assembly(with_connectors = false) {
+module _horizontal_assembly(side = A, with_connectors = false) {
 	// the bottom extrusion
 	translate([vslot_2020_depth(), 0, 0])
 		rotate([0, 0, 90])
@@ -45,4 +49,4 @@ module _horizontal_right_assembly(with_connectors = false) {
 }
 
 // render the axis to a separate output file if requested
-_horizontal_right_assembly(with_connectors = true);
+_horizontal_assembly(side = A, with_connectors = true);
