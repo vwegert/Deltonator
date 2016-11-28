@@ -23,14 +23,10 @@ C = 2;
  * The angles of the vertical rails. A is the "front left" rail, B the "front right" rail, C the back rail.
  * These angles are also used for the sides; in this case, side A is the one opposing rail A.
  */
-function angle_rail_a() = 120;
-function angle_rail_b() = 240;
-function angle_rail_c() = 0;
-function angle_rails() = [
-    120, // A
-    240, // B
-      0  // C
-  ];
+function angle_rail(side = A) = 
+  (side == A) ? 120 :
+  (side == B) ? 240 :
+  0;
 
 /**
  * The length of the vertical MakerSlide extrusions.
@@ -147,9 +143,30 @@ function motor_bracket_height() = FRAME_MOTOR_BRACKET_HEIGHT;
 function motor_bracket_edge_radius() = 5;
 function motor_bracket_edge_resolution() = 16;
 
+/**
+ * The height at which the bracket is mounted. At the moment, it is placed directly above the lower foot.
+ * see also: lower_foot_vertical_height() 
+ */
+function motor_bracket_z_offset() = foot_makerslide_recess_depth();
+
 // ----- build surface holder -----------------------------------------------------------------------------------------
 
 function bed_bracket_height() = FRAME_BED_BRACKET_HEIGHT;
+
+/**
+ * The position of the bed bracket on the vertical rail.
+ */
+function bed_bracket_z_offset() = motor_bracket_z_offset() + motor_bracket_height();
+
+/**
+ * The upper edge of the bed bracket.
+ */
+function bed_bracket_top_level() = bed_bracket_z_offset() + bed_bracket_height();
+
+/**
+ * The height of the upper edge of the working surface.
+ */
+function bed_working_height() = bed_bracket_top_level() + frame_wall_thickness(); // TODO factor in bed height!
 
 // ----- head ---------------------------------------------------------------------------------------------------------
 
@@ -168,6 +185,11 @@ function head_guide_depth() = 6;
  * The clearance between the tensioner / bracket and its guide blocks on either side.
  */
 function head_guide_clearance() = 0.2;
+
+/**
+ * The position of the head piece on the vertical rail.
+ */
+function head_z_offset() = vertical_extrusion_length() - head_makerslide_recess_depth();
 
 // ----- carriage -----------------------------------------------------------------------------------------------------
 
@@ -281,6 +303,13 @@ function carriage_ball_position(left = true) = [
     carriage_plate_height() - carriage_ball_holder_height() + ball_diameter()
   ];
 
+/**
+ * The inward offset of the carriage from the rail origin (+X in the vertical assembly).
+ */
+function carriage_x_offset() = washer_thickness(M5) + epsilon() + 
+                           vwheel_assembly_thickness() / 2 + 
+                           makerslide_base_depth();
+
 // ----- carriage ball holder -----------------------------------------------------------------------------------------
 
 /**
@@ -376,6 +405,27 @@ function head_tensioner_groove_width()  = washer_diameter(M4) + 2;
 function head_tensioner_groove_depth()  = nut_thickness(M4) * 2;
 function head_tensioner_groove_height() = head_makerslide_recess_depth() / 2;
 
+/**
+ * The X position of the tensioners relative to the back side (origin) of the MakerSlide rail.
+ */
+function tensioner_x_offset() = makerslide_depth() + vmotor_gt2_belt_rail_distance() + gt2_belt_width()/2;
+
+/**
+ * The default position of the tensioner screws. Defaults to 3/4 of the screw length, so that 1/4 of the screw is
+ * screwed in, the remaining 3/4 can still be used to tighten the tensioner.
+ */
+function tensioner_screw_position() = 0.75 * tensioner_vertical_screw_length();
+// function tensioner_screw_position() = frame_wall_thickness(); 
+
+/**
+ * The distance between the tensioner screw/washer and the idler running surface (the "origin" of the tensioner).
+ */
+function tensioner_z_offset() = tensioner_screw_position() + 
+                                frame_wall_thickness() + 
+                                tensioner_screw_bracket_inner_height() +
+                                tensioner_separator_thickness() + 
+                                tensioner_idler_z_offset();
+
 // ----- end switch bracket -------------------------------------------------------------------------------------------
 
 /** 
@@ -402,6 +452,15 @@ function end_switch_bracket_screw_length() = select_next_screw_length(size = M3,
                                                frame_wall_thickness() +
                                                end_switch_bracket_spring_height() + 
                                                (end_switch_bracket_top_nutcatch_height() - nut_thickness(M3))/2);
+
+/**
+ * The position of the end switch bracket.
+ */
+function end_switch_bracket_x_offset() = tensioner_x_offset() - tensioner_depth()/2;
+function end_switch_bracket_y_offset() = tensioner_width() / 2 + head_guide_width() + 2 * head_guide_clearance();
+function end_switch_bracket_z_offset() = frame_wall_thickness() + 
+                                         end_switch_bracket_spring_height() + 
+                                         end_switch_bracket_total_height(); 
 
 // ----- magnet holder ------------------------------------------------------------------------------------------------
 
@@ -643,62 +702,11 @@ function frame_screw_hole_resolution() = 16;
 
 // ===== PART PLACEMENT ================================================================================================
 
-/**
+/*
  * Each of the horizontal extrusion sets is placed outside of the construction triangle. This function specifies the
  * distance by which the rails are offset.
  */
 function horizontal_extrusion_outward_offset() = (makerslide_base_width()/2 * sin(60)) - (vslot_2020_width()/2);
-
-/**
- * The height at which the bracket is mounted. At the moment, it is placed directly above the lower foot.
- * see also: lower_foot_vertical_height() 
- */
-function motor_bracket_z_offset() = foot_makerslide_recess_depth();
-
-/**
- * The position of the bed bracket on the vertical rail.
- */
-function bed_bracket_z_offset() = motor_bracket_z_offset() + motor_bracket_height();
-
-/**
- * The upper edge of the bed bracket.
- */
-function bed_bracket_top_level() = bed_bracket_z_offset() + bed_bracket_height();
-
-/**
- * The position of the head piece on the vertical rail.
- */
-function head_z_offset() = vertical_extrusion_length() - head_makerslide_recess_depth();
-
-/**
- * The X position of the tensioners relative to the back side (origin) of the MakerSlide rail.
- */
-function tensioner_x_offset() = makerslide_depth() + vmotor_gt2_belt_rail_distance() + gt2_belt_width()/2;
-
-/**
- * The default position of the tensioner screws. Defaults to 3/4 of the screw length, so that 1/4 of the screw is
- * screwed in, the remaining 3/4 can still be used to tighten the tensioner.
- */
-function tensioner_screw_position() = 0.75 * tensioner_vertical_screw_length();
-// function tensioner_screw_position() = frame_wall_thickness(); 
-
-/**
- * The distance between the tensioner screw/washer and the idler running surface (the "origin" of the tensioner).
- */
-function tensioner_z_offset() = tensioner_screw_position() + 
-                                frame_wall_thickness() + 
-                                tensioner_screw_bracket_inner_height() +
-                                tensioner_separator_thickness() + 
-                                tensioner_idler_z_offset();
-
-/**
- * The position of the end switch bracket.
- */
-function end_switch_bracket_x_offset() = tensioner_x_offset() - tensioner_depth()/2;
-function end_switch_bracket_y_offset() = tensioner_width() / 2 + head_guide_width() + 2 * head_guide_clearance();
-function end_switch_bracket_z_offset() = frame_wall_thickness() + 
-                                         end_switch_bracket_spring_height() + 
-                                         end_switch_bracket_total_height(); 
 
 /**
  * The distance of the motor front face to the inward face of the vertical MakerSlide extrusion.
@@ -735,40 +743,110 @@ function belt_center_distance() = vertical_extrusion_length()
                                   - vmotor_z_offset() // bottom distance
                                   - (tensioner_z_offset() + bearing_f623_outer_diameter() / 2); // top distance
 
-/**
- * The inward offset of the carriage from the rail origin (+X in the vertical assembly).
- */
-function carriage_x_offset() = washer_thickness(M5) + epsilon() + 
-		                       vwheel_assembly_thickness() / 2 + 
-		                       makerslide_base_depth();
-
 // ===== ARM MOVEMENT ==================================================================================================
 
-/**
- * Determines the distance in the horizontal plane of a point from a given rail.
+/** 
+ * Determines the distance of the "ball plane" from the center of the build plate.
  */
-function arm_target_base_distance(rail = [0, 0], point = [0, 0, 0]) = 
-  (rail[0] == point[0]) ?
-    (abs(point[1] - rail[1]))
-  :
-    sqrt(pow(rail[0] - point[0], 2) + pow(rail[1] - point[1], 2))
-  ;
+function ball_plane_distance_center_corner() = 
+  horizontal_distance_center_corner() - carriage_x_offset() - carriage_ball_position(left = true)[0];
 
 /**
- * Determines the angle between the normal of an axis and a given point in thr horizontal plane.
+ * Determines the distance of the edge of the "ball plane triangle" from the center of the build plate.
  */
-function arm_target_base_angle(rail = [0, 0], rail_angle = 0, point = [0, 0, 0]) = 
-  (point[1] == rail[1]) ?
-    0
-  :
-    abs(rail_angle/4) - atan(abs(point[0] - rail[0])/abs(point[1] - rail[1]))
-  ;
+function ball_plane_distance_center_edge() = sin(30) * ball_plane_distance_center_corner();
 
 /**
- * Determines the height of the upper end of the arm for a given point. 
+ * The height of the "ball plane triangle".
  */
-function arm_target_upper_height(rail = [0, 0], point = [0, 0, 0]) =
-  point[2] + sqrt(pow(arm_overall_length(), 2) - pow(arm_target_base_distance(rail, point), 2));
+function ball_plane_base_height() = ball_plane_distance_center_corner() + ball_plane_distance_center_edge();
+
+/** 
+ * The side length of the "ball plane triangle".
+ */
+function ball_plane_base_length() = ball_plane_base_height() / cos(30);
+
+/**
+ * Determines the positions of the centers of the ball planes.
+ */
+function ball_plane_position(axis = A) =
+  (axis == A) ? [ball_plane_distance_center_edge(), -ball_plane_base_length()/2] :
+  (axis == B) ? [ball_plane_distance_center_edge(),  ball_plane_base_length()/2] :
+  (axis == C) ? [-ball_plane_distance_center_corner(), 0] : [0, 0];
+
+/**
+ * Determines the distance of a point on the print surface from the axis given.
+ */
+function ball_plane_distance_corner_point(axis = A, point = [0, 0]) =
+  sqrt(pow(point[0] - ball_plane_position(axis)[0], 2) + pow(point[1] - ball_plane_position(axis)[1], 2));
+
+/**
+ * Determines the distance of the edge of the effector from the axis given if centered on a certain point on the print 
+ * surface.
+ */
+function ball_plane_distance_corner_effector(axis = A, point = [0, 0]) =
+  ball_plane_distance_corner_point(axis = axis, point = point) - effector_base_center_long_edge_distance();
+
+/**
+ * Determines the angle phi (in the plane) from a certain axis to a given point. This is the absolute angle that 
+ * still needs to be adapted to the orientation of the arm.
+ */
+function ball_plane_angle_corner_point_absolute(axis = A, point = [0, 0]) =
+  asin((point[0] - ball_plane_position(axis)[0]) / ball_plane_distance_corner_point(axis = axis, point = point));
+
+/**
+ * Determines the angle of an arm in the plane (phi) for a given axis and point.
+ */
+function arm_angle_phi(axis = A, point = [0, 0]) =
+  (axis == A) ? -(ball_plane_angle_corner_point_absolute(axis = axis, point = point) + 30) :
+  (axis == B) ?  (ball_plane_angle_corner_point_absolute(axis = axis, point = point) + 30) :
+  (axis == C) ? -(ball_plane_angle_corner_point_absolute(axis = axis, point = point) - 90) : 0;
+
+/**
+ * Determines the downward angle of the arm (theta) for a given axis and point.
+ */
+function arm_angle_theta(axis = A, point = [0, 0]) =
+  asin(ball_plane_distance_corner_effector(axis = axis, point = point) / arm_overall_length());
+  
+/**
+ * Determines the height of the upper ball joint for a given point above the print surface.
+ */
+function arm_ball_joint_height(axis = A, point = [0, 0, 0]) =
+  bed_working_height() + 
+  point[2] + 
+  sqrt(pow(arm_overall_length(), 2) - pow(ball_plane_distance_corner_effector(axis = axis, point = point), 2));
+
+/** 
+ * Determines the height of the carriage for a given point above the print surface.
+ */
+function arm_carriage_height(axis = A, point = [0, 0, 0]) =
+  arm_ball_joint_height(axis = axis, point = point) - carriage_ball_position(left = true)[2];
+
+// /**
+//  * Determines the distance in the horizontal plane of a point from a given rail.
+//  */
+// function arm_target_base_distance(rail = [0, 0], point = [0, 0, 0]) = 
+//   (rail[0] == point[0]) ?
+//     (abs(point[1] - rail[1]))
+//   :
+//     sqrt(pow(rail[0] - point[0], 2) + pow(rail[1] - point[1], 2))
+//   ;
+
+// /**
+//  * Determines the angle between the normal of an axis and a given point in thr horizontal plane.
+//  */
+// function arm_target_base_angle(rail = [0, 0], rail_angle = 0, point = [0, 0, 0]) = 
+//   (point[1] == rail[1]) ?
+//     0
+//   :
+//     abs(rail_angle/4) - atan(abs(point[0] - rail[0])/abs(point[1] - rail[1]))
+//   ;
+
+// /**
+//  * Determines the height of the upper end of the arm for a given point. 
+//  */
+// function arm_target_upper_height(rail = [0, 0], point = [0, 0, 0]) =
+//   point[2] + sqrt(pow(arm_overall_length(), 2) - pow(arm_target_base_distance(rail, point), 2));
 
 
 // ===== AUXILIARY FUNCTIONS ===========================================================================================

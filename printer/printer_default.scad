@@ -12,6 +12,6 @@ use <printer.scad>
 printer_model();
 
 // dummy printer build surface - this will be relocated later on
-// color("Salmon")
-// 	translate([printer_center_x(), 0, bed_bracket_top_level()])
-// 		cylinder(d = 330, h = 5, $fn = 96);
+color("Salmon")
+	translate([0, 0, bed_working_height() - 5])
+		cylinder(d = 330, h = 5, $fn = 96);

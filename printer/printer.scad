@@ -15,65 +15,33 @@ use <../assemblies/vertical_axis.scad>
 use <../assemblies/horizontal_side.scad>
 
 
-module printer_model(head_position = [00, 0, 10]) {
-
-	// _point = convert_relative_point_to_absolute(head_position);
-	// echo(_point = _point);
-
-	_angle_rails = angle_rails();
-	// _pos_rails   = position_rails();
-
-	// _distances = [
-	// 	arm_target_base_distance(rail = _pos_rails[A], point = _point), 
-	// 	arm_target_base_distance(rail = _pos_rails[B], point = _point),
-	// 	arm_target_base_distance(rail = _pos_rails[C], point = _point)
-	// ];
-	// _angles_phi = [
-	// 	arm_target_base_angle(rail = _pos_rails[A], rail_angle = _angle_rails[A], point = _point), 
-	// 	arm_target_base_angle(rail = _pos_rails[B], rail_angle = _angle_rails[B], point = _point),
-	// 	arm_target_base_angle(rail = _pos_rails[C], rail_angle = _angle_rails[C], point = _point) 
-	// ];
-
-	// _heights = [
-	// 	arm_target_upper_height(rail = _pos_rails[A], point = _point), 
-	// 	arm_target_upper_height(rail = _pos_rails[B], point = _point),
-	// 	arm_target_upper_height(rail = _pos_rails[C], point = _point) 
-	// ];
-
-
-
-	// echo(_angle_rails = _angle_rails);
-	// echo(_pos_rails = _pos_rails);
-	// echo(_distances = _distances);
-	// echo(_angles_phi = _angles_phi);
-	// echo(_heights = _heights); 
-
-
- 
-
-	// _carriage_heights = [500, 550, 450];
+module printer_model(head_position = [0, 50, 40]) {
 
 	// place the three axis assemblies
-	vertical_axis_assembly(angle           = _angle_rails[A], 
-						   // carriage_height = _carriage_heights[A],
-						   arm_theta       = 30,
-						   arm_phi         = _angles_phi[A]);
-	vertical_axis_assembly(angle           = _angle_rails[B], 
-						   // carriage_height = _carriage_heights[B],
-						   arm_theta       = 30,
-						   arm_phi         = _angles_phi[B]);
-	vertical_axis_assembly(angle           = _angle_rails[C], 
-						   // carriage_height = _carriage_heights[C],
-						   arm_theta       = 30,
-						   arm_phi         = _angles_phi[C]);
+	vertical_axis_assembly(angle           = angle_rail(A), 
+						   carriage_height = arm_carriage_height(axis = A, point = head_position),
+						   arm_theta       = arm_angle_theta(axis = A, point = head_position),
+						   arm_phi         = arm_angle_phi(axis = A, point = head_position));
+
+	vertical_axis_assembly(angle           = angle_rail(B), 
+						   carriage_height = arm_carriage_height(axis = B, point = head_position),
+						   arm_theta       = arm_angle_theta(axis = B, point = head_position),
+						   arm_phi         = arm_angle_phi(axis = B, point = head_position));
+
+	vertical_axis_assembly(angle           = angle_rail(C), 
+						   carriage_height = arm_carriage_height(axis = C, point = head_position),
+						   arm_theta       = arm_angle_theta(axis = C, point = head_position),
+						   arm_phi         = arm_angle_phi(axis = C, point = head_position));
 
 	// place the horizontal parts
 	horizontal_assembly(side  = A, 
-		                angle = _angle_rails[A]);
+		                angle = angle_rail(A));
+
 	horizontal_assembly(side  = B, 
-		                angle = _angle_rails[B]);
+		                angle = angle_rail(B));
+
 	horizontal_assembly(side  = C, 
-		                angle = _angle_rails[C]);
+		                angle = angle_rail(C));
 
 
 }
