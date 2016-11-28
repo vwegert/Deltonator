@@ -10,6 +10,13 @@
 include <printer_config.scad>
 use <part_sizes.scad>
 
+// ===== ALIAS CONSTANTS TO ADDRESS THE AXES ===========================================================================
+
+// A is the "front left" rail, B the "front right" rail, C the back rail.
+A = 0;
+B = 1;
+C = 2;
+
 // ===== PRINTER FRAME SIZES ===========================================================================================
 
 /**
@@ -241,6 +248,15 @@ function carriage_belt_holder_insert_y() = carriage_belt_holder_height() -
  */
 function carriage_tensioner_gap_width()  = tensioner_width() + 6;
 function carriage_tensioner_gap_height() = carriage_plate_height() - carriage_upper_belt_holder_z();
+
+/** 
+ * The positions of the balls relative to the carriage origin.
+ */
+function carriage_ball_position(left = true) = [
+    carriage_plate_thickness() + (cos(carriage_ball_holder_angle()) * carriage_ball_holder_ball_position()[0]),
+    left ? -rod_distance()/2 : rod_distance()/2,
+    carriage_plate_height() - carriage_ball_holder_height() + ball_diameter()
+  ];
 
 // ----- carriage ball holder -----------------------------------------------------------------------------------------
 
@@ -582,7 +598,7 @@ function arm_overall_length() =
   arm_rod_length() 
   + magnet_holder_rod_distance(magnet_holder_top_ball_clearance())
   + magnet_holder_rod_distance(magnet_holder_bottom_ball_clearance());
-  
+
 // ===== SCREWS, NUTS, BOLTS AND OTHER HARDWARE =======================================================================
 
 /**
@@ -611,11 +627,28 @@ function frame_screw_hole_resolution() = 16;
 function front_plane_offset() = sqrt(pow(horizontal_base_length(), 2) - pow(horizontal_base_length() / 2, 2));
 
 /**
+ * The angles of the vertical rails. A is the "front left" rail, B the "front right" rail, C the back rail.
+ */
+function angle_rail_a() = 120;
+function angle_rail_b() = -120;
+function angle_rail_c() = 0;
+function angle_rails() = [
+    angle_rail_a(),
+    angle_rail_b(),
+    angle_rail_c()
+  ];
+
+/**
  * The positions of the vertical rails. A is the "front left" rail, B the "front right" rail, C the back rail.
  */
 function position_rail_a() = [front_plane_offset(), -horizontal_base_length() / 2, 0];
 function position_rail_b() = [front_plane_offset(),  horizontal_base_length() / 2, 0];
 function position_rail_c() = [0, 0, 0];
+function position_rails() = [
+    position_rail_a(),
+    position_rail_b(),
+    position_rail_c()
+  ];
 
 /**
  * Each of the horizontal extrusion sets is placed outside of the construction triangle. This function specifies the
@@ -731,6 +764,44 @@ function belt_center_distance() = vertical_extrusion_length()
 function carriage_x_offset() = washer_thickness(M5) + epsilon() + 
 		                       vwheel_assembly_thickness() / 2 + 
 		                       makerslide_base_depth();
+
+// ===== ARM MOVEMENT ==================================================================================================
+
+/**
+ * Converts a point that is specified relative to the center of the build surface to the model coordinate system.
+ */
+function convert_relative_point_to_absolute(point = [0, 0, 0]) = [
+    point[0] + printer_center_x(),
+    point[1],
+    point[2] + bed_bracket_top_level() // TODO change to add actual build surface height
+  ];
+
+/**
+ * Determines the distance in the horizontal plane of a point from a given rail.
+ */
+function arm_target_base_distance(rail = [0, 0], point = [0, 0, 0]) = 
+  (rail[0] == point[0]) ?
+    (abs(point[1] - rail[1]))
+  :
+    sqrt(pow(rail[0] - point[0], 2) + pow(rail[1] - point[1], 2))
+  ;
+
+/**
+ * Determines the angle between the normal of an axis and a given point in thr horizontal plane.
+ */
+function arm_target_base_angle(rail = [0, 0], rail_angle = 0, point = [0, 0, 0]) = 
+  (point[1] == rail[1]) ?
+    0
+  :
+    abs(rail_angle/4) - atan(abs(point[0] - rail[0])/abs(point[1] - rail[1]))
+  ;
+
+/**
+ * Determines the height of the upper end of the arm for a given point. 
+ */
+function arm_target_upper_height(rail = [0, 0], point = [0, 0, 0]) =
+  point[2] + sqrt(pow(arm_overall_length(), 2) - pow(arm_target_base_distance(rail, point), 2));
+
 
 // ===== AUXILIARY FUNCTIONS ===========================================================================================
 

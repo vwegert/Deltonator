@@ -20,17 +20,22 @@ use <../parts/printed/carriage_ball_holder.scad>
 use <../parts/printed/end_switch_bracket.scad>
 use <../parts/printed/foot.scad>
 use <../parts/printed/head.scad>
+use <../parts/printed/magnet_holder_carriage.scad>
+use <../parts/printed/magnet_holder_effector.scad>
 use <../parts/printed/motor_bracket.scad>
 use <../parts/printed/tensioner.scad>
 use <../parts/vitamins/vitamins.scad>
 
+
 /**
  * Provides access to the assembly.
+ * theta = the angle of the arms in the vertical plane; 0 = straight down, 90 = horizontal
+ * phi = the angle of the arms in the horizontal plane; 0 = along the X axis, positive values counter-clockwise
  */
-module vertical_axis_assembly(position = [0, 0, 0], angle = 0) {
+module vertical_axis_assembly(position = [0, 0, 0], angle = 0, carriage_height = 500, arm_theta = 45, arm_phi = 45) {
 	translate(position)
 		rotate([0, 0, angle])
-			_vertical_axis_assembly();
+			_vertical_axis_assembly(carriage_height, arm_theta, arm_phi);
 }
 
 /** 
@@ -90,11 +95,10 @@ module _vertical_axis_fixed_components() {
 /**
  * Renders the mobile components of the carriage.
  */
-module _vertical_axis_carriage() {
+module _vertical_axis_carriage(carriage_height = 500) {
 
 	// TODO make the carriage position dynamic
-	_carriage_z = 655;
-	translate([carriage_x_offset(), 0, _carriage_z]) {
+	translate([carriage_x_offset(), 0, carriage_height]) {
 		// the carriage with associated hardware
 		carriage();
 		carriage_hardware();
@@ -115,12 +119,39 @@ module _vertical_axis_carriage() {
 }
 
 /** 
+ * The module that actually renders arms. 
+ * This module is not intended to be called outside of this file.
+ */
+module _vertical_axis_arm() {
+	magnet_holder_carriage();
+	magnet_holder_carriage_hardware();
+	translate([0, 0, -(arm_rod_length() + magnet_holder_rod_distance(magnet_holder_top_ball_clearance()))])
+		rod();
+	translate([0, 0, -(arm_rod_length() + magnet_holder_rod_distance(magnet_holder_top_ball_clearance())
+		                                + magnet_holder_rod_distance(magnet_holder_bottom_ball_clearance()))])
+		rotate([0, 180, 0]) {
+			magnet_holder_effector();
+			magnet_holder_effector_hardware();
+		}
+}
+
+
+/** 
  * The module that actually renders the assembly. 
  * This module is not intended to be called outside of this file.
  */
-module _vertical_axis_assembly() {
+module _vertical_axis_assembly(carriage_height = 500, arm_theta = 25, arm_phi = -45) {
 	_vertical_axis_fixed_components();
-	_vertical_axis_carriage();
+	_vertical_axis_carriage(carriage_height);
+
+	translate([carriage_x_offset(), 0, carriage_height]) {
+		translate(carriage_ball_position(left = true))
+			rotate([0, -arm_theta, arm_phi])
+				_vertical_axis_arm();	
+		translate(carriage_ball_position(left = false))
+			rotate([0, -arm_theta, arm_phi])
+				_vertical_axis_arm();	
+	}
 }
 
 // render the axis to a separate output file if requested
