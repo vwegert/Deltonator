@@ -28,9 +28,10 @@ foreach my $file (@FILES) {
 #
 foreach my $filename (@FILES) {
 	open(my $srcfile, "<", $filename) or die "Can't open $filename: $!";
+	print "echo(\"----- $filename ----------------------------------------\");\n";
 	while (my $srcline = <$srcfile>) {
 		chomp($srcline);
-		if ($srcline =~ /function (.*?)\(\)/) {
+		if ($srcline =~ /^function (.*?)\(\)/) {
 			my $function = $1;
 			print "echo($function = $function());\n"
 		}
