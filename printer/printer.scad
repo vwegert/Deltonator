@@ -44,4 +44,8 @@ module printer_model(head_position = [0, 50, 40]) {
 		                angle = angle_rail(C));
 
 
+	// dummy printer build surface - this will be relocated later on
+	color("Salmon")
+		translate([0, 0, bed_working_height() - 5])
+			cylinder(d = 330, h = 5, $fn = 96);
 }
