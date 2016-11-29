@@ -295,12 +295,17 @@ function carriage_tensioner_gap_width()  = tensioner_width() + 6;
 function carriage_tensioner_gap_height() = carriage_plate_height() - carriage_upper_belt_holder_z();
 
 /** 
- * The positions of the balls relative to the carriage origin.
+ * The positions of the balls relative to the carriage origin. Due to the rotation of the ball holder,
+ * this is not really easy to determine any more...
  */
 function carriage_ball_position(left = true) = [
-    carriage_plate_thickness() + (cos(carriage_ball_holder_angle()) * carriage_ball_holder_ball_position()[0]),
-    left ? -rod_distance()/2 : rod_distance()/2,
-    carriage_plate_height() - carriage_ball_holder_height() + ball_diameter()
+    carriage_plate_thickness() + 
+      (cos(carriage_ball_holder_angle() + carriage_ball_holder_angle_joint_ball_center()) * carriage_ball_holder_distance_joint_ball_center()),
+    left 
+      ? -rod_distance()/2 
+      : rod_distance()/2,
+    carriage_plate_height() +
+      (sin(carriage_ball_holder_angle() + carriage_ball_holder_angle_joint_ball_center()) * carriage_ball_holder_distance_joint_ball_center())
   ];
 
 /**
@@ -358,6 +363,29 @@ function carriage_ball_holder_ball_position() = [
     carriage_ball_holder_height() + ball_diameter()/2 - carriage_ball_holder_recess_depth()
   ];
 
+/**
+ * The distance of the upper edge of the dove tail joint from the YZ plane.
+ */
+function carriage_ball_holder_distance_origin_joint() = 
+  (carriage_ball_holder_angle() == 0) ? 0 : carriage_ball_holder_height() * tan(carriage_ball_holder_angle());
+
+/**
+ * The angle under which the center of the ball is seen from the upper center of the dove tail joint.
+ */
+function carriage_ball_holder_angle_joint_ball_center() = 
+  atan((ball_diameter()/2 - carriage_ball_holder_recess_depth()) /
+       (carriage_ball_holder_ball_position()[0] - carriage_ball_holder_distance_origin_joint()));
+
+/**
+ * The distance of the center of the ball from the upper center of the dove tail joint.
+ */
+function carriage_ball_holder_distance_joint_ball_center() = 
+  sqrt(pow((ball_diameter()/2 - carriage_ball_holder_recess_depth()), 2) +
+       pow((carriage_ball_holder_ball_position()[0] - carriage_ball_holder_distance_origin_joint()), 2));
+
+/**
+ * The resolution with which to render the rounded parts of the ball holder. 
+ */
 function carriage_ball_holder_resolution() = 32;
 
 // ----- belt tensioner -----------------------------------------------------------------------------------------------

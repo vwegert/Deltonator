@@ -96,8 +96,6 @@ module _vertical_axis_fixed_components() {
  * Renders the mobile components of the carriage.
  */
 module _vertical_axis_carriage(carriage_height = 500) {
-
-	// TODO make the carriage position dynamic
 	translate([carriage_x_offset(), 0, carriage_height]) {
 		// the carriage with associated hardware
 		carriage();
@@ -114,7 +112,6 @@ module _vertical_axis_carriage(carriage_height = 500) {
 				carriage_ball_holder();
 				carriage_ball_holder_hardware();
 			}
-
 	}
 }
 
@@ -145,12 +142,14 @@ module _vertical_axis_assembly(carriage_height = 500, arm_theta = 25, arm_phi = 
 	_vertical_axis_carriage(carriage_height);
 
 	translate([carriage_x_offset(), 0, carriage_height]) {
-		translate(carriage_ball_position(left = true))
+		translate(carriage_ball_position(left = true)) {
 			rotate([0, -arm_theta, arm_phi])
 				_vertical_axis_arm();	
-		translate(carriage_ball_position(left = false))
-			rotate([0, -arm_theta, arm_phi])
+		}
+		translate(carriage_ball_position(left = false)) {
+			rotate([0, -arm_theta, arm_phi]) 
 				_vertical_axis_arm();	
+		}
 	}
 }
 

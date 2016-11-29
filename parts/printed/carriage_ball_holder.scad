@@ -95,8 +95,7 @@ module carriage_ball_holder() {
  */
 module carriage_ball_holder_hardware() {
 	translate(carriage_ball_holder_ball_position())
-		ball(size = ball_diameter());
-
+		ball(size = ball_diameter()); 
 }
 
 _render_carriage_ball_holder();
