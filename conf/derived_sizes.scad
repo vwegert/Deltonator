@@ -827,7 +827,9 @@ function ball_plane_angle_corner_point_absolute(axis = A, point = [0, 0]) =
 function arm_angle_phi(axis = A, point = [0, 0]) =
   (axis == A) ? -(ball_plane_angle_corner_point_absolute(axis = axis, point = point) + 30) :
   (axis == B) ?  (ball_plane_angle_corner_point_absolute(axis = axis, point = point) + 30) :
-  (axis == C) ? -(ball_plane_angle_corner_point_absolute(axis = axis, point = point) - 90) : 0;
+  (axis == C) ? 
+    (point[1] < 0) ?  (ball_plane_angle_corner_point_absolute(axis = axis, point = point) - 90)
+                   : -(ball_plane_angle_corner_point_absolute(axis = axis, point = point) - 90) : 0;
 
 /**
  * Determines the downward angle of the arm (theta) for a given axis and point.
@@ -848,33 +850,6 @@ function arm_ball_joint_height(axis = A, point = [0, 0, 0]) =
  */
 function arm_carriage_height(axis = A, point = [0, 0, 0]) =
   arm_ball_joint_height(axis = axis, point = point) - carriage_ball_position(left = true)[2];
-
-// /**
-//  * Determines the distance in the horizontal plane of a point from a given rail.
-//  */
-// function arm_target_base_distance(rail = [0, 0], point = [0, 0, 0]) = 
-//   (rail[0] == point[0]) ?
-//     (abs(point[1] - rail[1]))
-//   :
-//     sqrt(pow(rail[0] - point[0], 2) + pow(rail[1] - point[1], 2))
-//   ;
-
-// /**
-//  * Determines the angle between the normal of an axis and a given point in thr horizontal plane.
-//  */
-// function arm_target_base_angle(rail = [0, 0], rail_angle = 0, point = [0, 0, 0]) = 
-//   (point[1] == rail[1]) ?
-//     0
-//   :
-//     abs(rail_angle/4) - atan(abs(point[0] - rail[0])/abs(point[1] - rail[1]))
-//   ;
-
-// /**
-//  * Determines the height of the upper end of the arm for a given point. 
-//  */
-// function arm_target_upper_height(rail = [0, 0], point = [0, 0, 0]) =
-//   point[2] + sqrt(pow(arm_overall_length(), 2) - pow(arm_target_base_distance(rail, point), 2));
-
 
 // ===== AUXILIARY FUNCTIONS ===========================================================================================
 
