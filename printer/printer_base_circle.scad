@@ -8,7 +8,7 @@
 
 use <printer.scad>
 
-CIRCLE_RADIUS      = 250;
+CIRCLE_RADIUS      = 115;
 HEIGHT             = 50;
 
 current_angle = $t * 360;

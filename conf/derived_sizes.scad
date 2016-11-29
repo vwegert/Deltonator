@@ -677,9 +677,8 @@ function arm_rod_round_up_factor() = ROD_ROUND_UP_TO;
  * The horizontal length ("distance over ground") the arms will have to cover when extended to the most distant point.
  * This length is calculated from ball center to ball center, i. e. it includes the magnet holders.
  */
-function arm_max_ground_distance() = horizontal_base_height() 
-  - (carriage_x_offset() + carriage_ball_holder_position(left = true)[0] + carriage_ball_holder_ball_position()[0])
-  - (effector_base_long_short_edge_distance());
+function arm_max_ground_distance() = 
+  ball_plane_distance_center_corner() + horizontal_distance_center_edge() - effector_base_long_short_edge_distance();
 // TODO might need an additional threshold here to prevent the arms from overstretching
 
 /**
