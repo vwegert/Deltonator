@@ -205,6 +205,7 @@ echo(magnet_holder_rod_clearance = magnet_holder_rod_clearance());
 echo(magnet_holder_magnet_clearance = magnet_holder_magnet_clearance());
 echo(magnet_holder_arm_thickness = magnet_holder_arm_thickness());
 echo(magnet_holder_resolution = magnet_holder_resolution());
+echo(effector_tool_height = effector_tool_height());
 echo(effector_base_ball_recess_depth = effector_base_ball_recess_depth());
 echo(effector_base_ball_add_distance = effector_base_ball_add_distance());
 echo(effector_base_ball_distance = effector_base_ball_distance());

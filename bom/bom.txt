@@ -139,7 +139,7 @@ Small Parts
 ===== Special Mechanic Parts ==========================================================
 
 Carbon Fiber Rods
-  280 mm, OD 6 mm, ID 4........................................................... 6
+  290 mm, OD 6 mm, ID 4........................................................... 6
     vertical_axis_assembly                                                   (6)
 
 Magnet Ring
@@ -148,7 +148,8 @@ Magnet Ring
     vertical_axis_assembly >> magnet_holder_effector_hardware                (6)
 
 Steel Ball
-  10 mm diameter.................................................................. 6
+  10 mm diameter.................................................................. 12
+    effector_base_hardware                                                   (6)
     vertical_axis_assembly >> carriage_ball_holder_hardware                  (6)
 
 ===== Timing Belts and Pulleys ========================================================

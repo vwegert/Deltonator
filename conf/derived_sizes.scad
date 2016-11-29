@@ -565,6 +565,13 @@ function magnet_holder_arm_thickness() = MAGNET_HOLDER_THICKNESS;
  */
 function magnet_holder_resolution() = 32;
 
+// ----- general effector dimensions ----------------------------------------------------------------------------------
+
+/**
+ * The vertical distance of the tip of the tool from the underside of the effector.
+ */
+function effector_tool_height() = 20;
+
 // ----- effector base plate ------------------------------------------------------------------------------------------
 
 /**
@@ -842,6 +849,7 @@ function arm_angle_theta(axis = A, point = [0, 0]) =
  */
 function arm_ball_joint_height(axis = A, point = [0, 0, 0]) =
   bed_working_height() + 
+  effector_tool_height() +
   point[2] + 
   sqrt(pow(arm_overall_length(), 2) - pow(ball_plane_distance_corner_effector(axis = axis, point = point), 2));
 

@@ -9,7 +9,7 @@
 use <printer.scad>
 
 CIRCLE_RADIUS      = 115;
-HEIGHT             = 50;
+HEIGHT             = 0;
 
 current_angle = $t * 360;
 current_x = cos(current_angle) * CIRCLE_RADIUS;

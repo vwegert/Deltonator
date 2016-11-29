@@ -105,4 +105,16 @@ module effector_base_hardware() {
 		ball();
 }
 
+/**
+ * Renders a placeholder to indicate the location of an assumed tool mounted in the center of the effector.
+ */
+module effector_base_dummy_tool() {
+	#rotate_extrude()
+		polygon(points = [
+			[0, 0],
+			[0, -effector_tool_height()],
+			[-effector_tool_height()/2, 0]
+		]);
+}
+
 _render_effector_base();

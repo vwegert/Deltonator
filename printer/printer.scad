@@ -13,9 +13,10 @@ include <../conf/part_sizes.scad>
 
 use <../assemblies/vertical_axis.scad>
 use <../assemblies/horizontal_side.scad>
+use <../parts/printed/effector_base.scad>
 
 
-module printer_model(head_position = [0, 50, 40]) {
+module printer_model(head_position = [0, 50, 0]) {
 
 	// place the three axis assemblies
 	vertical_axis_assembly(angle           = angle_rail(A), 
@@ -43,6 +44,13 @@ module printer_model(head_position = [0, 50, 40]) {
 	horizontal_assembly(side  = C, 
 		                angle = angle_rail(C));
 
+	// place the effector
+	translate([0, 0, bed_working_height() + effector_tool_height()])
+		translate(head_position) {
+			effector_base();
+			effector_base_hardware();
+			effector_base_dummy_tool();
+		}
 
 	// dummy printer build surface - this will be relocated later on
 	color("Salmon")
