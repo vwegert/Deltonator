@@ -17,16 +17,11 @@ use <../../parts/vitamins/vitamins.scad>
 /**
  * Creates a ball holder. 
  */
-module _effector_base_magnet_holder() {
-	difference() {
-		// the cylinder
+module _effector_base_ball_holder() {
+	translate([0, 0, ball_diameter()/2 - effector_base_ball_recess_depth()]) 
 		cylinder(d = effector_base_ball_holder_diameter(),
 				 h = effector_base_ball_holder_height(), 
 				 $fn = effector_base_resolution());
-		// minus the spherical recess for the ball
-		translate([0, 0, effector_base_ball_recess_depth() - ball_diameter()/2])
-			sphere(d = ball_diameter(), $fn = effector_base_resolution());
-	}
 }
 
 /**
@@ -59,19 +54,32 @@ module _render_effector_base() {
     
 					// the ball holders
 					translate(_bp_a_left)
-						_effector_base_magnet_holder();
+						_effector_base_ball_holder();
 					translate(_bp_a_right)
-						_effector_base_magnet_holder();
+						_effector_base_ball_holder();
 					translate(_bp_b_left)
-						_effector_base_magnet_holder();
+						_effector_base_ball_holder();
 					translate(_bp_b_right)
-						_effector_base_magnet_holder();
+						_effector_base_ball_holder();
 					translate(_bp_c_left)
-						_effector_base_magnet_holder();
+						_effector_base_ball_holder();
 					translate(_bp_c_right)
-						_effector_base_magnet_holder();
-				}
-				
+						_effector_base_ball_holder();
+				}				
+
+				// minus the cutouts for the balls
+				translate(_bp_a_left)
+					sphere(d = ball_diameter(), $fn = effector_base_resolution());
+				translate(_bp_a_right)
+					sphere(d = ball_diameter(), $fn = effector_base_resolution());
+				translate(_bp_b_left)
+					sphere(d = ball_diameter(), $fn = effector_base_resolution());
+				translate(_bp_b_right)
+					sphere(d = ball_diameter(), $fn = effector_base_resolution());
+				translate(_bp_c_left)
+					sphere(d = ball_diameter(), $fn = effector_base_resolution());
+				translate(_bp_c_right)
+					sphere(d = ball_diameter(), $fn = effector_base_resolution());
 			}
 		} 
 }
@@ -118,3 +126,5 @@ module effector_base_dummy_tool() {
 }
 
 _render_effector_base();
+// translate([-effector_base_center_long_edge_distance(), 0, -25])
+// 	#cylinder(d = effector_base_center_corner_distance(), h = 50);

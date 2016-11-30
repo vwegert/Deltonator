@@ -514,7 +514,7 @@ function magnet_holder_arm_clearance() = magnet_outer_diameter() / 4;
  * The minimum clearance to leave beneath the ball.
  */
 function magnet_holder_top_ball_clearance() = 8;
-function magnet_holder_bottom_ball_clearance() = 20;
+function magnet_holder_bottom_ball_clearance() = 8;
 
 /**
  * The dimensions of the arm.
@@ -660,7 +660,7 @@ function effector_base_ball_position_c_right() =
 /**
  * The dimensions of the ball holder parts.
  */
-function effector_base_ball_holder_height() = effector_base_thickness() + ball_diameter()/2 - effector_base_ball_recess_depth();
+function effector_base_ball_holder_height() = effector_base_thickness();
 function effector_base_ball_holder_diameter() = ball_diameter();
 
 /** 
