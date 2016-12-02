@@ -76,7 +76,7 @@ ROD_HOLDER_WALL_THICKNESS = 2;
 ROD_HOLDER_DEPTH = 10;
 
 // The minimum angle of the arms.
-ROD_MIN_ANGLE = 25;
+ROD_MIN_ANGLE = 30;
 
 // The factor used to round up the rod length.
 ROD_ROUND_UP_TO = 5;
@@ -92,7 +92,7 @@ CARRIAGE_BALL_HOLDER_ANGLE = 10;
 
 // The additional distance between the magnets on the effector (not the rod distance - the other one :-)).
 // This value is added to the minimum distance determined by the magnet size and wall thickness.
-EFFECTOR_BALL_ADDITIONAL_DISTANCE = 5;
+EFFECTOR_BALL_ADDITIONAL_DISTANCE = 15;
 
 // The thickness of the effector plate.
 EFFECTOR_THICKNESS = 8;

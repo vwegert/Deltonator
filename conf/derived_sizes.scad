@@ -570,7 +570,7 @@ function magnet_holder_resolution() = 32;
 /**
  * The vertical distance of the tip of the tool from the underside of the effector.
  */
-function effector_tool_height() = 20;
+function effector_tool_height() = 25;
 
 // ----- effector base plate ------------------------------------------------------------------------------------------
 
@@ -656,6 +656,39 @@ function effector_base_ball_position_c_right() =
       -rod_distance()/2,
       effector_base_ball_recess_depth() - ball_diameter()/2
     ];
+
+/**
+ * The horizontal and vertical distance between the center of the effector and the center of the long edges that
+ * face the A and B rails. 
+ */
+function effector_base_center_long_edge_center_dx() = sin(30) * effector_base_center_long_edge_distance();
+function effector_base_center_long_edge_center_dy() = cos(30) * effector_base_center_long_edge_distance();
+
+/**
+ * The position of the center of the long sides (the center point between the balls), relative to the bottom 
+ * center of the effector.
+ */
+function effector_base_long_edge_center_position(axis = A) = 
+  (axis == A) ?
+    [
+      effector_base_center_long_edge_center_dx(),
+      -effector_base_center_long_edge_center_dy(),
+      effector_base_ball_recess_depth() - ball_diameter()/2
+    ] :
+  (axis == B) ?
+    [
+      effector_base_center_long_edge_center_dx(),
+      effector_base_center_long_edge_center_dy(),
+      effector_base_ball_recess_depth() - ball_diameter()/2
+    ] : 
+  (axis == C) ?
+    [
+      -effector_base_center_long_edge_distance(),
+      0,
+      effector_base_ball_recess_depth() - ball_diameter()/2
+    ] 
+  :
+    [0, 0, 0];
 
 /**
  * The dimensions of the ball holder parts.
@@ -815,28 +848,30 @@ function ball_plane_distance_corner_point(axis = A, point = [0, 0]) =
   sqrt(pow(point[0] - ball_plane_position(axis)[0], 2) + pow(point[1] - ball_plane_position(axis)[1], 2));
 
 /**
- * Determines the distance of the edge of the effector from the axis given if centered on a certain point on the print 
- * surface.
+ * Determines the distance of the center of the edge of the effector from the axis given if centered on a certain 
+ * point on the print surface.
  */
 function ball_plane_distance_corner_effector(axis = A, point = [0, 0]) =
-  ball_plane_distance_corner_point(axis = axis, point = point) - effector_base_center_long_edge_distance();
+   ball_plane_distance_corner_point(axis = axis, point = point + effector_base_long_edge_center_position(axis = axis));
 
 /**
  * Determines the angle phi (in the plane) from a certain axis to a given point. This is the absolute angle that 
  * still needs to be adapted to the orientation of the arm.
  */
 function ball_plane_angle_corner_point_absolute(axis = A, point = [0, 0]) =
-  asin((point[0] - ball_plane_position(axis)[0]) / ball_plane_distance_corner_point(axis = axis, point = point));
+  ((point[0] > ball_plane_position(axis)[0]) ? -1 : 1) 
+  *
+  (asin((point[0] - ball_plane_position(axis)[0]) / ball_plane_distance_corner_point(axis = axis, point = point)));
 
 /**
  * Determines the angle of an arm in the plane (phi) for a given axis and point.
  */
 function arm_angle_phi(axis = A, point = [0, 0]) =
-  (axis == A) ? -(ball_plane_angle_corner_point_absolute(axis = axis, point = point) + 30) :
-  (axis == B) ?  (ball_plane_angle_corner_point_absolute(axis = axis, point = point) + 30) :
+  (axis == A) ? -(ball_plane_angle_corner_point_absolute(axis = axis, point = point + effector_base_long_edge_center_position(axis = axis)) + 30) :
+  (axis == B) ?  (ball_plane_angle_corner_point_absolute(axis = axis, point = point + effector_base_long_edge_center_position(axis = axis)) + 30) :
   (axis == C) ? 
-    (point[1] < 0) ?  (ball_plane_angle_corner_point_absolute(axis = axis, point = point) - 90)
-                   : -(ball_plane_angle_corner_point_absolute(axis = axis, point = point) - 90) : 0;
+    (point[1] < 0) ? -(ball_plane_angle_corner_point_absolute(axis = axis, point = point + effector_base_long_edge_center_position(axis = axis)) + 90)
+                   :  (ball_plane_angle_corner_point_absolute(axis = axis, point = point + effector_base_long_edge_center_position(axis = axis)) + 90) : 0;
 
 /**
  * Determines the downward angle of the arm (theta) for a given axis and point.
@@ -850,7 +885,8 @@ function arm_angle_theta(axis = A, point = [0, 0]) =
 function arm_ball_joint_height(axis = A, point = [0, 0, 0]) =
   bed_working_height() + 
   effector_tool_height() +
-  point[2] + 
+  point[2] -
+  effector_base_ball_recess_depth() +
   sqrt(pow(arm_overall_length(), 2) - pow(ball_plane_distance_corner_effector(axis = axis, point = point), 2));
 
 /** 

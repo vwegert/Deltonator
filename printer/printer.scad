@@ -16,7 +16,7 @@ use <../assemblies/horizontal_side.scad>
 use <../parts/printed/effector_base.scad>
 
 
-module printer_model(head_position = [0, -50, 0]) {
+module printer_model(head_position = [90, 50, 0]) {
 
 	// place the three axis assemblies
 	vertical_axis_assembly(angle           = angle_rail(A), 
@@ -52,34 +52,8 @@ module printer_model(head_position = [0, -50, 0]) {
 			effector_base_dummy_tool();
 		}
 
-	_ball_plane_distance_corner_point_A = ball_plane_distance_corner_point(axis = A, point = head_position);
-	echo(_ball_plane_distance_corner_point_A = _ball_plane_distance_corner_point_A);
-	_ball_plane_distance_corner_point_B = ball_plane_distance_corner_point(axis = B, point = head_position);
-	echo(_ball_plane_distance_corner_point_B = _ball_plane_distance_corner_point_B);
-	_ball_plane_distance_corner_point_C = ball_plane_distance_corner_point(axis = C, point = head_position);
-	echo(_ball_plane_distance_corner_point_C = _ball_plane_distance_corner_point_C);
-
-	_ball_plane_angle_corner_point_absolute_A = ball_plane_angle_corner_point_absolute(axis = A, point = head_position);
-	echo(_ball_plane_angle_corner_point_absolute_A = _ball_plane_angle_corner_point_absolute_A);
-	_ball_plane_angle_corner_point_absolute_B = ball_plane_angle_corner_point_absolute(axis = B, point = head_position);
-	echo(_ball_plane_angle_corner_point_absolute_B = _ball_plane_angle_corner_point_absolute_B);
-	_ball_plane_angle_corner_point_absolute_C = ball_plane_angle_corner_point_absolute(axis = C, point = head_position);
-	echo(_ball_plane_angle_corner_point_absolute_C = _ball_plane_angle_corner_point_absolute_C);
-
-	// translate([head_position[0], head_position[1], 0])
-		// cylinder(r = effector_base_center_long_edge_distance(), h = 120, $fn = 96);
-
-	// translate(ball_plane_position(axis = A)) 
-		// rotate([0, 0, ball_plane_angle_corner_point_absolute(axis = A, point = head_position)])
-		// 	translate([-ball_plane_distance_corner_point(axis = A, point = head_position), 0, 0])
-				// #cylinder(r = ball_plane_distance_corner_effector(axis = A, point = head_position), h = 800);
-	
-
-// function ball_plane_angle_corner_point_absolute(axis = A, point = [0, 0]) =
-
-
 	// dummy printer build surface - this will be relocated later on
-	// color("Salmon")
-	// 	translate([0, 0, bed_working_height() - 5])
-	// 		cylinder(d = 330, h = 5, $fn = 96);
+	color("Salmon")
+		translate([0, 0, bed_working_height() - 5])
+			cylinder(d = 330, h = 5, $fn = 96);
 }
