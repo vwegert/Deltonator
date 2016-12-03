@@ -15,3 +15,8 @@ printer/**/*.stl
 
 # do not track the temporary BOM data file
 bom/*.echo
+
+# do not track the video frames or rendered video files
+video/*.png
+video/*.avi
+video/*.mp4

@@ -11,6 +11,9 @@ use <printer.scad>
 CIRCLE_RADIUS      = 115;
 HEIGHT             = 0;
 
+$vpr = [ 55, 0, 100 ];
+$vpt = [ 2000, 200, 1800 ];
+
 current_angle = $t * 360;
 current_x = cos(current_angle) * CIRCLE_RADIUS;
 current_y = sin(current_angle) * CIRCLE_RADIUS;

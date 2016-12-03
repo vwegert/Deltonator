@@ -7,7 +7,7 @@
 #
 # phony target definitions (targets that are no files)
 #
-.PHONY: all clean assemblies printer vitamins bom bom-clean sizes sizes-clean
+.PHONY: all clean assemblies printer video video-frames video-file vitamins bom bom-clean sizes sizes-clean
 
 #
 # OS detection and inclusion of OS-specific configuration files
@@ -71,7 +71,7 @@ printer: assemblies \
 #
 # Rule to build the assemblies
 #
-assemblies: printed vitamins \
+assemblies: printed vitamins extrusions \
 	assemblies/vertical_axis.stl \
 	assemblies/horizontal_front.stl \
 	assemblies/horizontal_left.stl \
@@ -195,6 +195,23 @@ tools/sizes/dump_sizes.scad: tools/sizes/generate_sizes_scad.pl \
 tools/sizes/dump_sizes.echo: tools/sizes/dump_sizes.scad
 	$(OPENSCAD) -m make -o $@ -D WRITE_BOM=false $<
 
+#
+# Rules to render the video.
+#
+video: video-frames video-file
+
+video-frames: printed vitamins extrusions 
+	$(RM) video/frame*.png
+	frames=1200 ; frame=1 ; while [[ $$frame -le $$frames ]] ; do \
+		echo Rendering frame $$frame of $$frames ; \
+		printf -v imgfile 'frame%05d.png' $$frame ; \
+		$(OPENSCAD) -o video/$$imgfile --imgsize=2000,2000 -D WRITE_BOM=false -D animation_position=$$frame/$$frames printer/printer_hourglass.scad ; \
+		((frame = frame + 1)) ; \
+	done
+
+video-file:
+	$(FFMPEG) -r 25 -s 2000x2000 -i video/frame%05d.png -vcodec libx264 -crf 25  -pix_fmt yuv420p video/printer_hourglass.mp4
+
 # 
 # Rules to fetch external libraries.
 #
@@ -205,3 +222,4 @@ lib/nutsnbolts/cyl_head_bolt.scad:
 lib/MCAD/stepper.scad: 
 	$(GIT) submodule init
 	$(GIT) submodule update
+

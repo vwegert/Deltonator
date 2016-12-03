@@ -22,3 +22,6 @@ PERL = /usr/bin/perl
 
 # Where to find the Git executable
 GIT = /usr/bin/git
+
+# Where to find the ffmpeg executable used to render the video.
+FFMPEG = /usr/local/bin/ffmpeg
