@@ -78,7 +78,7 @@ ROD_HOLDER_WALL_THICKNESS = 2;
 ROD_HOLDER_DEPTH = 10;
 
 // The minimum angle of the arms.
-ROD_MIN_ANGLE = 30;
+ROD_MIN_ANGLE = 20;
 
 // The factor used to round up the rod length.
 ROD_ROUND_UP_TO = 5;

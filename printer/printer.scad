@@ -16,7 +16,7 @@ use <../assemblies/horizontal_side.scad>
 use <../parts/printed/effector_base.scad>
 
 
-module printer_model(head_position = [90, 50, 0]) {
+module printer_model(head_position = [0, 0, 0]) {
 
 	// place the three axis assemblies
 	vertical_axis_assembly(angle           = angle_rail(A), 

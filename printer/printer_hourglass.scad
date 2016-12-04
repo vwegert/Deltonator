@@ -8,9 +8,9 @@
 
 use <printer.scad>
 
-OUTER_RADIUS      = 120;
+OUTER_RADIUS      = 140;
 INNER_RADIUS      =  25;
-HEIGHT            = 300;
+HEIGHT            = 290;
 TURNS_PER_SECTION =   4;
 
 // Set the camera position and orientation.

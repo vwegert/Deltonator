@@ -9,4 +9,4 @@
 
 use <printer.scad>
 
-printer_model();
+printer_model(head_position = [140, 0, 295]);
