@@ -6,8 +6,8 @@ MakerSlide Extrusion
     vertical_axis_assembly                                                   (3)
 
 V-Slot Extrusion
-  400x20x20 mm.................................................................... 9
-    horizontal_assembly                                                      (9)
+  400x20x20 mm.................................................................... 6
+    horizontal_assembly                                                      (6)
 
 ===== Bearings and Wheels =============================================================
 
@@ -60,14 +60,14 @@ Hex Socket Head Cap Screw (DIN 912 / ISO 4762)
     vertical_axis_assembly >> motor_bracket_stepper_hardware >> screw        (12)
   M4 x 12 mm...................................................................... 24
     vertical_axis_assembly >> bed_bracket_hardware >> screw                  (6)
-    vertical_axis_assembly >> foot_rail_hardware >> screw                    (6)
+    vertical_axis_assembly >> foot_norail_hardware >> screw                  (6)
     vertical_axis_assembly >> head_hardware >> screw                         (6)
     vertical_axis_assembly >> motor_bracket_hardware >> screw                (6)
   M4 x 25 mm...................................................................... 3
     vertical_axis_assembly >> tensioner_hardware >> screw                    (3)
-  M4 x 8 mm....................................................................... 60
+  M4 x 8 mm....................................................................... 48
     vertical_axis_assembly >> bed_bracket_hardware >> screw                  (18)
-    vertical_axis_assembly >> foot_rail_hardware >> screw                    (18)
+    vertical_axis_assembly >> foot_norail_hardware >> screw                  (6)
     vertical_axis_assembly >> head_hardware >> screw                         (18)
     vertical_axis_assembly >> motor_bracket_hardware >> screw                (6)
   M5 x 25 mm...................................................................... 6
@@ -84,9 +84,9 @@ Spring
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
 
 T-Slot Nut
-  M4.............................................................................. 84
+  M4.............................................................................. 72
     vertical_axis_assembly >> bed_bracket_hardware                           (24)
-    vertical_axis_assembly >> foot_rail_hardware                             (24)
+    vertical_axis_assembly >> foot_norail_hardware                           (12)
     vertical_axis_assembly >> head_hardware                                  (24)
     vertical_axis_assembly >> motor_bracket_hardware                         (12)
 
@@ -99,9 +99,9 @@ Washer (DIN 125A / ISO 7089)
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
     vertical_axis_assembly >> motor_bracket_stepper_hardware                 (12)
     vertical_axis_assembly >> tensioner_hardware                             (12)
-  M4.............................................................................. 87
+  M4.............................................................................. 75
     vertical_axis_assembly >> bed_bracket_hardware                           (24)
-    vertical_axis_assembly >> foot_rail_hardware                             (24)
+    vertical_axis_assembly >> foot_norail_hardware                           (12)
     vertical_axis_assembly >> head_hardware                                  (24)
     vertical_axis_assembly >> motor_bracket_hardware                         (12)
     vertical_axis_assembly >> tensioner_hardware                             (3)
@@ -119,7 +119,7 @@ Arm
 Frame
   Bed Bracket..................................................................... 3
     vertical_axis_assembly                                                   (3)
-  Foot (Rail Version)............................................................. 3
+  Foot (No-Rail Version).......................................................... 3
     vertical_axis_assembly                                                   (3)
   Head............................................................................ 3
     vertical_axis_assembly                                                   (3)
@@ -155,7 +155,7 @@ Steel Ball
 ===== Timing Belts and Pulleys ========================================================
 
 GT2 Belt
-  approx. 1495.82 mm.............................................................. 3
+  approx. 1510.82 mm.............................................................. 3
     vertical_axis_assembly                                                   (3)
 
 GT2 Pulley

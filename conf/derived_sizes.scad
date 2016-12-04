@@ -120,9 +120,20 @@ function horizontal_screw_distance() = FRAME_PART_VSLOT_DEPTH/2;
 // ----- foot ---------------------------------------------------------------------------------------------------------
 
 /**
+ * Whether to use a horizontal rail at the base of the printer or not.
+ */
+function foot_with_rail() = FRAME_HORIZONTAL_BASE_RAIL;
+
+/**
  * The depth of the holes that hold the V-Slot extrusions.
  */
-function foot_makerslide_recess_depth() = FRAME_FOOT_MAKERSLIDE_DEPTH; 
+function foot_rail_makerslide_recess_depth() = FRAME_FOOT_RAIL_MAKERSLIDE_DEPTH; 
+function foot_norail_makerslide_recess_depth() = FRAME_FOOT_NORAIL_MAKERSLIDE_DEPTH; 
+
+/**
+ * The size of the screws that can be used to mount the foot to the underlying surface.
+ */
+function foot_norail_bottom_screw_size() = FRAME_FOOT_BOTTOM_SCREW_SIZE;
 
 // ----- motor bracket ------------------------------------------------------------------------------------------------
 
@@ -141,7 +152,10 @@ function motor_bracket_edge_resolution() = 16;
  * The height at which the bracket is mounted. At the moment, it is placed directly above the lower foot.
  * see also: lower_foot_vertical_height() 
  */
-function motor_bracket_z_offset() = foot_makerslide_recess_depth();
+function motor_bracket_z_offset() = 
+  foot_with_rail() 
+    ? foot_rail_makerslide_recess_depth() 
+    : foot_norail_makerslide_recess_depth();
 
 // ----- build surface holder -----------------------------------------------------------------------------------------
 

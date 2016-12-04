@@ -19,6 +19,7 @@ use <../parts/printed/carriage.scad>
 use <../parts/printed/carriage_ball_holder.scad>
 use <../parts/printed/end_switch_bracket.scad>
 use <../parts/printed/foot_rail.scad>
+use <../parts/printed/foot_norail.scad>
 use <../parts/printed/head.scad>
 use <../parts/printed/magnet_holder_carriage.scad>
 use <../parts/printed/magnet_holder_effector.scad>
@@ -46,8 +47,13 @@ module _vertical_axis_fixed_components() {
 	makerslide_vertical_rail();
 
 	// the foot with associated hardware
-	foot_rail();
-	foot_rail_hardware();
+	if (foot_with_rail()) {
+		foot_rail();
+		foot_rail_hardware();
+	} else {
+		foot_norail();
+		foot_norail_hardware();		
+	}
 
 	// the motor bracket with the stepper and the associated hardware
 	translate([0, 0, motor_bracket_z_offset()]) {

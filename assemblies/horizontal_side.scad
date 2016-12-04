@@ -34,10 +34,12 @@ module horizontal_assembly(side = A, angle = 0, with_connectors = false) {
  * This module is not intended to be called outside of this file.
  */
 module _horizontal_assembly(side = A, with_connectors = false) {
-	// the bottom extrusion
-	translate([vslot_2020_depth(), 0, 0])
-		rotate([0, 0, 90])
-			vslot_2020_side();
+	if (foot_with_rail()) {
+		// the bottom extrusion
+		translate([vslot_2020_depth(), 0, 0])
+			rotate([0, 0, 90])
+				vslot_2020_side();
+	}
 	// the bed-level extrusion
 	translate([vslot_2020_depth(), 0, bed_bracket_z_offset() + bed_bracket_height() - vslot_2020_width()])
 		rotate([0, 0, 90])

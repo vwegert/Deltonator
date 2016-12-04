@@ -36,8 +36,19 @@ FRAME_V_H_RAIL_SEPARATION = 8;
 // The depth of the holes that hold the V-Slot extrusions.
 FRAME_PART_VSLOT_DEPTH = 30;
 
-// The depth of the holes in the foot that hold the MakerSlide extrusions.
-FRAME_FOOT_MAKERSLIDE_DEPTH = 25; 
+// Whether to use a horizontal rail at the base of the printer or not.
+FRAME_HORIZONTAL_BASE_RAIL = false;
+
+// The depth of the holes in the foot that hold the MakerSlide extrusions. This is for the foot version that holds
+// a horizontal rail.
+FRAME_FOOT_RAIL_MAKERSLIDE_DEPTH = 25; 
+
+// The depth of the holes in the foot that hold the MakerSlide extrusions. This is for the foot version that does not
+// hold a horizontal rail.
+FRAME_FOOT_NORAIL_MAKERSLIDE_DEPTH = 17.5; 
+
+// The size of the screws that can be used to mount the foot to the underlying surface.
+FRAME_FOOT_BOTTOM_SCREW_SIZE = M5;
 
 // The height of the bracket that holds the motor. WARNING: Increasing this might make it difficult to 
 // turn the screws that hold the motor.
