@@ -86,7 +86,7 @@ printed: vitamins \
 	parts/printed/carriage_ball_holder.stl \
 	parts/printed/effector_base.stl \
 	parts/printed/end_switch_bracket.stl \
-	parts/printed/foot.stl \
+	parts/printed/foot_rail.stl \
 	parts/printed/head.stl \
 	parts/printed/magnet_holder_carriage.stl \
 	parts/printed/magnet_holder_effector.stl \
