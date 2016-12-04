@@ -12,6 +12,8 @@
  **
  **********************************************************************************************************************/
 
+include <constants.scad>
+
 // ===== PRINTER CONFIGURATION ========================================================================================
 
 // The length of the vertical MakerSlide extrusions that make up the rails for the carriages.

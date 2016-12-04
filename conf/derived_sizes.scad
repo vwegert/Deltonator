@@ -7,15 +7,9 @@
  **
  **********************************************************************************************************************/
 
+include <constants.scad>
 include <printer_config.scad>
 use <part_sizes.scad>
-
-// ===== ALIAS CONSTANTS TO ADDRESS THE AXES ===========================================================================
-
-// A is the "front left" rail, B the "front right" rail, C the back rail.
-A = 0;
-B = 1;
-C = 2;
 
 // ===== PRINTER FRAME SIZES ===========================================================================================
 
