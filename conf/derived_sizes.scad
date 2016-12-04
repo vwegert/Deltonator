@@ -853,8 +853,6 @@ function ball_plane_distance_corner_effector(axis = A, point = [0, 0]) =
  * still needs to be adapted to the orientation of the arm.
  */
 function ball_plane_angle_corner_point_absolute(axis = A, point = [0, 0]) =
-  ((point[0] > ball_plane_position(axis)[0]) ? -1 : 1) 
-  *
   (asin((point[0] - ball_plane_position(axis)[0]) / ball_plane_distance_corner_point(axis = axis, point = point)));
 
 /**
@@ -864,8 +862,8 @@ function arm_angle_phi(axis = A, point = [0, 0]) =
   (axis == A) ? -(ball_plane_angle_corner_point_absolute(axis = axis, point = point + effector_base_long_edge_center_position(axis = axis)) + 30) :
   (axis == B) ?  (ball_plane_angle_corner_point_absolute(axis = axis, point = point + effector_base_long_edge_center_position(axis = axis)) + 30) :
   (axis == C) ? 
-    (point[1] < 0) ? -(ball_plane_angle_corner_point_absolute(axis = axis, point = point + effector_base_long_edge_center_position(axis = axis)) + 90)
-                   :  (ball_plane_angle_corner_point_absolute(axis = axis, point = point + effector_base_long_edge_center_position(axis = axis)) + 90) : 0;
+    (point[1] < 0) ?  (ball_plane_angle_corner_point_absolute(axis = axis, point = point + effector_base_long_edge_center_position(axis = axis)) - 90)
+                   : -(ball_plane_angle_corner_point_absolute(axis = axis, point = point + effector_base_long_edge_center_position(axis = axis)) - 90) : 0;
 
 /**
  * Determines the downward angle of the arm (theta) for a given axis and point.
