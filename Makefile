@@ -210,6 +210,7 @@ video-frames: printed vitamins extrusions
 	done
 
 video-file:
+	$(RM) video/printer_hourglass.mp4
 	$(FFMPEG) -r 25 -s 2000x2000 -i video/frame%05d.png -vcodec libx264 -crf 25  -pix_fmt yuv420p video/printer_hourglass.mp4
 
 # 
