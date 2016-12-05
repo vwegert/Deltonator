@@ -30,6 +30,31 @@ function vslot_2020_edge_resolution() = 64;
  */
 function vslot_2020_slot_offset() = 10;
 
+// ===== parts/vitamins/mechanic/rail_bracket.scad =====================================================================
+
+/** 
+ * The outer dimensions of the rail bracket.
+ */
+function rail_bracket_side_length() = 20;
+function rail_bracket_width()       = 17;
+
+/** 
+ * The wall thickness of the rail bracket.
+ */
+function rail_bracket_outer_wall_thickness() = 3;
+function rail_bracket_side_wall_thickness() = 2.25;
+
+/** 
+ * The dimensions and positions of the holes.
+ */
+function rail_bracket_hole_width() = 6;
+function rail_bracket_hole_length() = 9;
+function rail_bracket_hole_corner_offset() = 5.25;
+function rail_bracket_hole_center() = [
+    rail_bracket_hole_corner_offset() + rail_bracket_hole_length()/2, 
+    rail_bracket_width()/2
+  ];
+
 // ===== parts/extrusions/makerslide.scad ==============================================================================
 
 // All dimensions were taken from the file makerslide_b17022_rev_2.pdf.

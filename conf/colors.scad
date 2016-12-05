@@ -15,6 +15,14 @@ module color_extrusion() {
 } 
 
 /**
+ * The color of the cast aluminium parts.
+ */
+module color_cast_aluminium() {
+	color("Silver")
+		children();
+} 
+
+/**
  * The color of the "outer" printed frame elements.
  */
 module color_printed_outer_frame() {

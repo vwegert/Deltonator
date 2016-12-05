@@ -249,6 +249,20 @@ module nut_tslot(size) {
 	}
 }
 
+// ===== parts/vitamins/mechanic/rail_bracket.* ========================================================================
+
+/**
+ * Provides the pre-rendered 90° 2020 rail brackets.
+ * The bracket is positioned with its coner on the Y axis reaching into positive X, Y and Z.
+ */
+module rail_bracket() {
+	bom_entry(section = "Aluminium Extrusions", 
+		      description = "90° Corner Bracket for 2020 Extrusions");
+	color_cast_aluminium()
+		translate([0, rail_bracket_width()/2, 0])
+			import(file = "mechanic/rail_bracket.stl"); 
+}
+
 // ===== parts/vitamins/mechanic/rod.* ================================================================================
 
 /**
