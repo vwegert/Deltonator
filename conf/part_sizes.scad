@@ -50,9 +50,24 @@ function rail_bracket_side_wall_thickness() = 2.25;
 function rail_bracket_hole_width() = 6;
 function rail_bracket_hole_length() = 9;
 function rail_bracket_hole_corner_offset() = 5.25;
-function rail_bracket_hole_center() = [
+
+/**
+ * Some positions relative to the holes: innermost, center, outermost.
+ */
+function rail_bracket_hole_inner(with_z = true) = [
+    rail_bracket_hole_corner_offset() + rail_bracket_hole_width()/2, 
+    rail_bracket_width()/2,
+    with_z ? -rail_bracket_outer_wall_thickness() : 0
+  ];
+function rail_bracket_hole_center(with_z = true) = [
     rail_bracket_hole_corner_offset() + rail_bracket_hole_length()/2, 
-    rail_bracket_width()/2
+    rail_bracket_width()/2,
+    with_z ? -rail_bracket_outer_wall_thickness() : 0
+  ];
+function rail_bracket_hole_outer(with_z = true) = [
+    rail_bracket_hole_corner_offset() + rail_bracket_hole_length() - rail_bracket_hole_width()/2, 
+    rail_bracket_width()/2,
+    with_z ? -rail_bracket_outer_wall_thickness() : 0
   ];
 
 // ===== parts/extrusions/makerslide.scad ==============================================================================

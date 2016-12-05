@@ -1,6 +1,10 @@
 
 ===== Aluminium Extrusions ============================================================
 
+90° Corner Bracket for 2020 Extrusions
+  ................................................................................ 6
+    horizontal_assembly                                                      (6)
+
 MakerSlide Extrusion
   800 mm.......................................................................... 3
     vertical_axis_assembly                                                   (3)
@@ -43,7 +47,8 @@ Hex Nut (DIN 934 / ISO 4032)
   M3.............................................................................. 6
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
     vertical_axis_assembly >> tensioner_hardware                             (3)
-  M4.............................................................................. 3
+  M4.............................................................................. 6
+    horizontal_assembly                                                      (3)
     vertical_axis_assembly >> tensioner_hardware                             (3)
   M5.............................................................................. 9
     vertical_axis_assembly >> carriage_hardware                              (9)
@@ -58,6 +63,8 @@ Hex Socket Head Cap Screw (DIN 912 / ISO 4762)
   M3 x 6 mm....................................................................... 18
     vertical_axis_assembly >> carriage_hardware >> screw                     (6)
     vertical_axis_assembly >> motor_bracket_stepper_hardware >> screw        (12)
+  M4 x 10 mm...................................................................... 3
+    horizontal_assembly >> screw                                             (3)
   M4 x 12 mm...................................................................... 24
     vertical_axis_assembly >> bed_bracket_hardware >> screw                  (6)
     vertical_axis_assembly >> foot_norail_hardware >> screw                  (6)
@@ -65,7 +72,8 @@ Hex Socket Head Cap Screw (DIN 912 / ISO 4762)
     vertical_axis_assembly >> motor_bracket_hardware >> screw                (6)
   M4 x 25 mm...................................................................... 3
     vertical_axis_assembly >> tensioner_hardware >> screw                    (3)
-  M4 x 8 mm....................................................................... 48
+  M4 x 8 mm....................................................................... 51
+    horizontal_assembly >> screw                                             (3)
     vertical_axis_assembly >> bed_bracket_hardware >> screw                  (18)
     vertical_axis_assembly >> foot_norail_hardware >> screw                  (6)
     vertical_axis_assembly >> head_hardware >> screw                         (18)
@@ -84,7 +92,8 @@ Spring
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
 
 T-Slot Nut
-  M4.............................................................................. 72
+  M4.............................................................................. 75
+    horizontal_assembly                                                      (3)
     vertical_axis_assembly >> bed_bracket_hardware                           (24)
     vertical_axis_assembly >> foot_norail_hardware                           (12)
     vertical_axis_assembly >> head_hardware                                  (24)
@@ -99,7 +108,8 @@ Washer (DIN 125A / ISO 7089)
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
     vertical_axis_assembly >> motor_bracket_stepper_hardware                 (12)
     vertical_axis_assembly >> tensioner_hardware                             (12)
-  M4.............................................................................. 75
+  M4.............................................................................. 84
+    horizontal_assembly                                                      (9)
     vertical_axis_assembly >> bed_bracket_hardware                           (24)
     vertical_axis_assembly >> foot_norail_hardware                           (12)
     vertical_axis_assembly >> head_hardware                                  (24)
