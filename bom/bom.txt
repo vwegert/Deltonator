@@ -41,14 +41,18 @@ Stepper Motor
 
 ===== General Hardware ================================================================
 
+Flat Head Countersunk Socket Cap Screw (DIN 7991 / ISO 10642)
+  M4 x 35 mm...................................................................... 3
+    horizontal_assembly                                                      (3)
+
 Hex Nut (DIN 934 / ISO 4032)
   M2.............................................................................. 6
     vertical_axis_assembly >> end_switch_bracket_hardware                    (6)
   M3.............................................................................. 6
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
     vertical_axis_assembly >> tensioner_hardware                             (3)
-  M4.............................................................................. 6
-    horizontal_assembly                                                      (3)
+  M4.............................................................................. 9
+    horizontal_assembly                                                      (6)
     vertical_axis_assembly >> tensioner_hardware                             (3)
   M5.............................................................................. 9
     vertical_axis_assembly >> carriage_hardware                              (9)
@@ -88,7 +92,8 @@ Large Washer (DIN 9021 / ISO 7093)
     vertical_axis_assembly >> carriage_hardware                              (6)
 
 Spring
-  5x20 mm......................................................................... 3
+  5x20 mm......................................................................... 6
+    horizontal_assembly                                                      (3)
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
 
 T-Slot Nut
@@ -108,8 +113,8 @@ Washer (DIN 125A / ISO 7089)
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
     vertical_axis_assembly >> motor_bracket_stepper_hardware                 (12)
     vertical_axis_assembly >> tensioner_hardware                             (12)
-  M4.............................................................................. 84
-    horizontal_assembly                                                      (9)
+  M4.............................................................................. 93
+    horizontal_assembly                                                      (18)
     vertical_axis_assembly >> bed_bracket_hardware                           (24)
     vertical_axis_assembly >> foot_norail_hardware                           (12)
     vertical_axis_assembly >> head_hardware                                  (24)
@@ -145,6 +150,12 @@ Small Parts
     vertical_axis_assembly                                                   (3)
   Top Magnet Holder............................................................... 6
     vertical_axis_assembly                                                   (6)
+
+===== Sheet / Cast Aluminium ==========================================================
+
+Bed Plate
+  d = 300 mm, h = 4 mm............................................................ 1
+                                                                             (1)
 
 ===== Special Mechanic Parts ==========================================================
 

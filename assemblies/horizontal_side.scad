@@ -12,6 +12,8 @@ include <../conf/colors.scad>
 include <../conf/derived_sizes.scad>
 include <../conf/part_sizes.scad>
 
+use <../bom/bom.scad>
+
 use <../parts/extrusions/vslot_2020.scad>
 use <../parts/vitamins/vitamins.scad>
 
@@ -46,13 +48,13 @@ module _horizontal_assembly_bed_holder() {
 			nut_tslot(M4);
 		}
 
-	// the second bracket that attaches to the first one
-	translate([rail_bracket_side_length() + epsilon(), 0, 0]) 
+	// the second bracket that attaches to the first one, but shifted upwards as far as the holes allow
+	translate([rail_bracket_side_length() + epsilon(), 0, bed_inner_bracket_offset()]) 
 		rotate([0, 90, 0])
 			rail_bracket();
 
 	// the hardware to attach the bracket to the rail
-	translate([rail_bracket_side_length() + rail_bracket_outer_wall_thickness(), 0, 0])
+	translate([rail_bracket_side_length() + rail_bracket_outer_wall_thickness(), 0, bed_inner_bracket_offset()])
 		rotate([0, 90, 0])
 			translate(rail_bracket_hole_outer(with_z = false))
 				rotate([0, 90, 0]) {
@@ -66,6 +68,31 @@ module _horizontal_assembly_bed_holder() {
 						rotate([90, 0, 0])
 							nut(size = M4);
 				}
+
+	translate([vslot_2020_width(), 0, bed_inner_bracket_offset()])
+		translate(rail_bracket_hole_center(with_z = false)) {
+			// the spring and washers on top of the inner bracket
+			translate([0, 0, washer_thickness(M4) + epsilon()])
+				rotate([0, 90, 0])
+					washer(size = M4);
+			translate([0, 0, washer_thickness(M4) + 2 * epsilon()])
+				spring(inner_diameter = 5, length = bed_holder_spring_height());
+			translate([0, 0, 2 * washer_thickness(M4) + bed_holder_spring_height() + 3 * epsilon()])
+				rotate([0, 90, 0])
+					washer(size = M4);
+			// the washer and nut below the inner bracket
+			translate([0, 0, -rail_bracket_outer_wall_thickness() - epsilon()])
+				rotate([0, 90, 0])
+					washer(size = M4);
+			translate([0, 0, -rail_bracket_outer_wall_thickness() - washer_thickness(M4) - 2 * epsilon()])
+				rotate([0, 90, 0])
+					nut(size = M4);
+		}
+
+	// TODO add a part for a countersunk scres
+	bom_entry(section = "General Hardware", 
+		description = "Flat Head Countersunk Socket Cap Screw (DIN 7991 / ISO 10642)", 
+		size = str("M4 x ", ceil(bed_screw_min_length()/5)*5, " mm"));
 
 }
 

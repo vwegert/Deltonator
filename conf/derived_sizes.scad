@@ -171,10 +171,65 @@ function bed_bracket_z_offset() = motor_bracket_z_offset() + motor_bracket_heigh
  */
 function bed_bracket_top_level() = bed_bracket_z_offset() + bed_bracket_height();
 
+// ----- build surface (bed) ------------------------------------------------------------------------------------------
+
+/** 
+ * The thickness and diameter of the bed plate.
+ */
+function bed_thickness() = BED_THICKNESS;
+function bed_diameter() = BED_DIAMETER;
+
+/**
+ * The length of the spring beneath the bed.
+ */
+function bed_holder_spring_height() = 20;
+
+/** 
+ * The minimum lenght of the screw that holds the bed in place.
+ */
+function bed_screw_min_length() = 
+  bed_thickness() + 
+  washer_thickness(M4) +
+  bed_holder_spring_height() + 
+  washer_thickness(M4) + 
+  rail_bracket_outer_wall_thickness() +
+  washer_thickness(M4) + 
+  nut_thickness(M4);
+  
+/**
+ * The amount by which the inner bed rail bracket is moved upwards.
+ */
+function bed_inner_bracket_offset() = rail_bracket_hole_length() - rail_bracket_hole_width();
+
+/** 
+ * The distance of the mounting holes from the center of the build surface.
+ */
+function bed_center_hole_distance() = 
+  horizontal_distance_center_edge() +
+  horizontal_extrusion_outward_offset() -
+  rail_bracket_hole_center()[0];
+
+/** 
+ * The size and rendering resolution of the mounting holes.
+ */
+function bed_mounting_hole_size() = M4;
+function bed_mounting_hole_resolution() = 16;
+
+/**
+ * The mounting height of the bed - this is the height of the underside.
+ */
+function bed_mounting_height() = 
+  bed_bracket_top_level() - 
+  vslot_2020_width() + 
+  bed_inner_bracket_offset() + 
+  washer_thickness(M4) +
+  bed_holder_spring_height() + 
+  washer_thickness(M4);
+
 /**
  * The height of the upper edge of the working surface.
  */
-function bed_working_height() = bed_bracket_top_level() + frame_wall_thickness(); // TODO factor in bed height!
+function bed_working_height() = bed_mounting_height() + bed_thickness();
 
 // ----- head ---------------------------------------------------------------------------------------------------------
 

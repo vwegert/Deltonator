@@ -28,7 +28,7 @@ endif
 #
 # default targets all and clean
 #
-all: extrusions vitamins printed bom sizes # assemblies printer
+all: extrusions sheets vitamins printed bom sizes # assemblies printer
 
 clean:
 	$(RM) assemblies/*.deps
@@ -56,9 +56,12 @@ clean:
 #
 # Include the dependency files provided by OpenSCAD. 
 #
-include $(wildcard parts/vitamins/*.deps)
 include $(wildcard parts/extrusions/*.deps)
 include $(wildcard parts/printed/*.deps)
+include $(wildcard parts/sheets/*.deps)
+include $(wildcard parts/vitamins/electromechanic/*.deps)
+include $(wildcard parts/vitamins/electronic/*.deps)
+include $(wildcard parts/vitamins/mechanic/*.deps)
 include $(wildcard assemblies/*.deps)
 include $(wildcard printer/*.deps)
 
@@ -71,7 +74,7 @@ printer: assemblies \
 #
 # Rule to build the assemblies
 #
-assemblies: printed vitamins extrusions \
+assemblies: extrusions sheets vitamins printed \
 	assemblies/vertical_axis.stl \
 	assemblies/horizontal_front.stl \
 	assemblies/horizontal_left.stl \
@@ -100,6 +103,12 @@ printed: vitamins \
 extrusions: \
 	parts/extrusions/makerslide_rail.stl \
 	parts/extrusions/vslot_2020_side.stl
+
+#
+# Rule to build the parts fabricated out of sheet material
+#
+sheets: \
+	parts/sheets/bed.stl
 
 #
 # Rules to buld the parts provided by the external libraries

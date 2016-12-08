@@ -109,3 +109,9 @@ EFFECTOR_BALL_ADDITIONAL_DISTANCE = 15;
 
 // The thickness of the effector plate.
 EFFECTOR_THICKNESS = 8;
+
+// The thickness of the plate that serves as the heated bed.
+BED_THICKNESS = 4;
+
+// The diameter of the plate that serves as the heated bed.
+BED_DIAMETER = 300;

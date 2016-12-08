@@ -13,6 +13,7 @@ include <../conf/part_sizes.scad>
 
 use <../assemblies/vertical_axis.scad>
 use <../assemblies/horizontal_side.scad>
+use <../parts/sheets/bed.scad>
 use <../parts/printed/effector_base.scad>
 
 
@@ -52,8 +53,7 @@ module printer_model(head_position = [0, 0, 0]) {
 			effector_base_dummy_tool();
 		}
 
-	// dummy printer build surface - this will be relocated later on
-	color("Salmon")
-		translate([0, 0, bed_working_height() - 5])
-			cylinder(d = 330, h = 5, $fn = 96);
+	// printer build surface (bed)
+	translate([0, 0, bed_mounting_height()])
+		bed_plate();
 }
