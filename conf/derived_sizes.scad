@@ -64,7 +64,14 @@ function makerslide_clearance() = MAKERSLIDE_CLEARANCE;
  */
 function rod_distance() = ROD_DISTANCE;
 
-// ===== DERIVED PART-DEPENDENT SIZES AND DISTANCES ====================================================================
+// ===== MAXIMUM (SAFE) BUILDING AREA =================================================================================
+
+/**
+ * The maximum (safe) radius of the build area.
+ */
+function build_area_max_radius() = bed_center_hole_distance() - 5; // TODO remove hard-coded safety margin for screw head diameter 
+
+// ===== DERIVED PART-DEPENDENT SIZES AND DISTANCES ===================================================================
 
 /** 
  * More dimensions of the magnet rings used.
@@ -780,7 +787,9 @@ function arm_rod_round_up_factor() = ROD_ROUND_UP_TO;
  * The horizontal length ("distance over ground") the arms will have to cover when extended to the most distant point.
  * This length is calculated from ball center to ball center, i. e. it includes the magnet holders.
  */
-function arm_max_ground_distance() = ball_plane_distance_center_corner() + horizontal_distance_center_edge();
+function arm_max_ground_distance() = 
+  ball_plane_distance_center_corner() + 
+  build_area_max_radius() - effector_base_center_long_edge_distance();
 
 /**
  * The exact length of the arms when extended to the the most distant point at the minimum angle configured.

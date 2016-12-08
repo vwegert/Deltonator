@@ -56,4 +56,5 @@ module printer_model(head_position = [0, 0, 0]) {
 	// printer build surface (bed)
 	translate([0, 0, bed_mounting_height()])
 		bed_plate();
+
 }

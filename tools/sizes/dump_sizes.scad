@@ -90,6 +90,7 @@ echo(horizontal_distance_center_edge = horizontal_distance_center_edge());
 echo(horizontal_distance_center_corner = horizontal_distance_center_corner());
 echo(makerslide_clearance = makerslide_clearance());
 echo(rod_distance = rod_distance());
+echo(build_area_max_radius = build_area_max_radius());
 echo(magnet_bevel_depth = magnet_bevel_depth());
 echo(ball_contact_circle_diameter = ball_contact_circle_diameter());
 echo(ball_contact_circle_height = ball_contact_circle_height());
