@@ -10,4 +10,4 @@
 use <printer.scad>
 
 printer_model(head_position = [build_area_max_radius(), 0, 0]);
-//printer_model(head_position = [-170, 0, 0]);
+//printer_model(head_position = [-180, 0, 0]);

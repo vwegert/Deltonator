@@ -126,5 +126,3 @@ module effector_base_dummy_tool() {
 }
 
 _render_effector_base();
-// translate([-effector_base_center_long_edge_distance(), 0, -25])
-// 	#cylinder(d = effector_base_center_corner_distance(), h = 50);

@@ -89,7 +89,7 @@ ROD_HOLDER_WALL_THICKNESS = 2;
 ROD_HOLDER_DEPTH = 10;
 
 // The minimum angle of the arms.
-ROD_MIN_ANGLE = 20;
+ROD_MIN_ANGLE = 18;
 
 // The factor used to round up the rod length.
 ROD_ROUND_UP_TO = 5;
@@ -108,7 +108,7 @@ CARRIAGE_BALL_HOLDER_ANGLE = 10;
 EFFECTOR_BALL_ADDITIONAL_DISTANCE = 15;
 
 // The thickness of the effector plate.
-EFFECTOR_THICKNESS = 8;
+EFFECTOR_THICKNESS = 6;
 
 // The thickness of the plate that serves as the heated bed.
 BED_THICKNESS = 4;

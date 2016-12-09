@@ -650,6 +650,12 @@ function effector_tool_height() = 25;
 function effector_base_ball_recess_depth() = ball_diameter()/4;
 
 /**
+ * The diameter of the outer perimeter of the recess.
+ */
+function effector_base_ball_recess_diamenter() =
+  2 * sqrt(pow(ball_diameter()/2, 2) - pow(ball_diameter()/2 - effector_base_ball_recess_depth(), 2));
+
+/**
  * The additional distance between the balls on the short sides of the effector (not the rod distance - the other 
  * one :-)).This value is added to the minimum distance determined by the ball size.
  */
@@ -688,43 +694,54 @@ function effector_base_center_corner_distance() = effector_base_triangle_height(
 function effector_base_long_short_edge_distance() = effector_base_center_long_edge_distance() + effector_base_center_short_edge_distance();
 
 /**
+ * The offset by which the ball holder extends below the lower edge of the effector plate.
+ */
+function effector_base_ball_holder_additional_height() = ball_diameter() / 4;
+
+/**
+ * The Z coordinate of the center of the balls in relation to the bottom of the effector.
+ */
+function effector_base_ball_z_offset() = 
+  - effector_base_ball_holder_additional_height() + effector_base_ball_recess_depth() - ball_diameter()/2;
+
+/**
  * The positions of the balls in the effector, relative to the bottom center of the effector.
  */
 function effector_base_ball_position_a_left() = 
     [
       effector_base_center_short_edge_distance(),
       -effector_base_cutoff_edge_length()/2,
-      effector_base_ball_recess_depth() - ball_diameter()/2
+      effector_base_ball_z_offset()
     ];
 function effector_base_ball_position_a_right() = 
     [
       -effector_base_center_long_edge_distance() + effector_base_cutoff_height(),
       -(rod_distance()/2 + effector_base_cutoff_edge_length()/2),
-      effector_base_ball_recess_depth() - ball_diameter()/2
+      effector_base_ball_z_offset()
     ];
 function effector_base_ball_position_b_left() = 
     [
       -effector_base_center_long_edge_distance() + effector_base_cutoff_height(),
       rod_distance()/2 + effector_base_cutoff_edge_length()/2,
-      effector_base_ball_recess_depth() - ball_diameter()/2
+      effector_base_ball_z_offset()
     ];
 function effector_base_ball_position_b_right() = 
     [
       effector_base_center_short_edge_distance(),
       effector_base_cutoff_edge_length()/2,
-      effector_base_ball_recess_depth() - ball_diameter()/2
+      effector_base_ball_z_offset()
     ];
 function effector_base_ball_position_c_left() = 
     [
       -effector_base_center_long_edge_distance(),
       rod_distance()/2,
-      effector_base_ball_recess_depth() - ball_diameter()/2
+      effector_base_ball_z_offset()
     ];
 function effector_base_ball_position_c_right() = 
     [
       -effector_base_center_long_edge_distance(),
       -rod_distance()/2,
-      effector_base_ball_recess_depth() - ball_diameter()/2
+      effector_base_ball_z_offset()
     ];
 
 /**
@@ -743,19 +760,19 @@ function effector_base_long_edge_center_position(axis = A) =
     [
       effector_base_center_long_edge_center_dx(),
       -effector_base_center_long_edge_center_dy(),
-      effector_base_ball_recess_depth() - ball_diameter()/2
+      effector_base_ball_z_offset()
     ] :
   (axis == B) ?
     [
       effector_base_center_long_edge_center_dx(),
       effector_base_center_long_edge_center_dy(),
-      effector_base_ball_recess_depth() - ball_diameter()/2
+      effector_base_ball_z_offset()
     ] : 
   (axis == C) ?
     [
       -effector_base_center_long_edge_distance(),
       0,
-      effector_base_ball_recess_depth() - ball_diameter()/2
+      effector_base_ball_z_offset()
     ] 
   :
     [0, 0, 0];
@@ -763,8 +780,8 @@ function effector_base_long_edge_center_position(axis = A) =
 /**
  * The dimensions of the ball holder parts.
  */
-function effector_base_ball_holder_height() = effector_base_thickness();
-function effector_base_ball_holder_diameter() = ball_diameter();
+function effector_base_ball_holder_height() = effector_base_thickness() + effector_base_ball_holder_additional_height();
+function effector_base_ball_holder_diameter() = ceil(effector_base_ball_recess_diamenter());
 
 /** 
  * The rendering resolution for the effector base.
@@ -952,9 +969,9 @@ function arm_angle_theta(axis = A, point = [0, 0]) =
  */
 function arm_ball_joint_height(axis = A, point = [0, 0, 0]) =
   bed_working_height() + 
+  point[2] +
   effector_tool_height() +
-  point[2] -
-  effector_base_ball_recess_depth() +
+  effector_base_ball_z_offset() +
   sqrt(pow(arm_overall_length(), 2) - pow(ball_plane_distance_corner_effector(axis = axis, point = point), 2));
 
 /** 
