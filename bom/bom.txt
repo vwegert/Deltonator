@@ -76,12 +76,10 @@ Hex Socket Head Cap Screw (DIN 912 / ISO 4762)
     vertical_axis_assembly >> motor_bracket_hardware >> screw                (6)
   M4 x 25 mm...................................................................... 3
     vertical_axis_assembly >> tensioner_hardware >> screw                    (3)
-  M4 x 8 mm....................................................................... 51
+  M4 x 8 mm....................................................................... 15
     horizontal_assembly >> screw                                             (3)
-    vertical_axis_assembly >> bed_bracket_hardware >> screw                  (18)
-    vertical_axis_assembly >> foot_norail_hardware >> screw                  (6)
-    vertical_axis_assembly >> head_hardware >> screw                         (18)
-    vertical_axis_assembly >> motor_bracket_hardware >> screw                (6)
+    vertical_axis_assembly >> bed_bracket_hardware >> screw                  (6)
+    vertical_axis_assembly >> head_hardware >> screw                         (6)
   M5 x 25 mm...................................................................... 6
     vertical_axis_assembly >> carriage_hardware >> screw                     (6)
   M5 x 35 mm...................................................................... 3
@@ -97,12 +95,12 @@ Spring
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
 
 T-Slot Nut
-  M4.............................................................................. 75
+  M4.............................................................................. 39
     horizontal_assembly                                                      (3)
-    vertical_axis_assembly >> bed_bracket_hardware                           (24)
-    vertical_axis_assembly >> foot_norail_hardware                           (12)
-    vertical_axis_assembly >> head_hardware                                  (24)
-    vertical_axis_assembly >> motor_bracket_hardware                         (12)
+    vertical_axis_assembly >> bed_bracket_hardware                           (12)
+    vertical_axis_assembly >> foot_norail_hardware                           (6)
+    vertical_axis_assembly >> head_hardware                                  (12)
+    vertical_axis_assembly >> motor_bracket_hardware                         (6)
 
 Threaded Insert
   M3 x 7 mm....................................................................... 6
@@ -113,12 +111,12 @@ Washer (DIN 125A / ISO 7089)
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
     vertical_axis_assembly >> motor_bracket_stepper_hardware                 (12)
     vertical_axis_assembly >> tensioner_hardware                             (12)
-  M4.............................................................................. 93
+  M4.............................................................................. 57
     horizontal_assembly                                                      (18)
-    vertical_axis_assembly >> bed_bracket_hardware                           (24)
-    vertical_axis_assembly >> foot_norail_hardware                           (12)
-    vertical_axis_assembly >> head_hardware                                  (24)
-    vertical_axis_assembly >> motor_bracket_hardware                         (12)
+    vertical_axis_assembly >> bed_bracket_hardware                           (12)
+    vertical_axis_assembly >> foot_norail_hardware                           (6)
+    vertical_axis_assembly >> head_hardware                                  (12)
+    vertical_axis_assembly >> motor_bracket_hardware                         (6)
     vertical_axis_assembly >> tensioner_hardware                             (3)
   M5.............................................................................. 27
     vertical_axis_assembly >> carriage_hardware                              (27)

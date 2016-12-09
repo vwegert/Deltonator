@@ -58,38 +58,44 @@ module _foot_rail_horizontal_leg(right = false) {
 /**
  * Auxiliary module that creates the hardware for one of the vertical legs. Not to be used outside of this file.
  */
-module _foot_rail_horizontal_leg_hardware(right = false) { 
+module _foot_rail_horizontal_leg_hardware(right = false, side_screw = true, top_screw = false) { 
 	_screw_x = _foot_rail_horizontal_depth()-horizontal_screw_distance();
-	// inner screw
-	translate([_screw_x, 
-		       right ? _foot_rail_horizontal_width() + epsilon() + washer_thickness(M4) 
-		             : -epsilon() - washer_thickness(M4), 
-		       vslot_2020_depth()/2])
-		rotate([0, 0, right ? -90 : 90]) {
-			washer(M4);
-		}
-	translate([_screw_x, 
-		       right ? _foot_rail_horizontal_width() + epsilon() + washer_thickness(M4) + epsilon() 
-		             : -epsilon() - washer_thickness(M4) - epsilon(), 
-		       vslot_2020_depth()/2])
-		rotate([0, 0, right ? -90 : 90]) {
-			screw(size = M4, length = 8);
-			nut_tslot(M4);
-		}
-	// top screw
-	translate([_screw_x, 
-		       vslot_2020_depth()/2 + (right ? 0 : frame_wall_thickness()), 
-		       _foot_rail_horizontal_height() + epsilon() + washer_thickness(M4) ])
-		rotate([0, 90, 0]) {
-			washer(size = M4);
-		}
-	translate([_screw_x, 
-		       vslot_2020_depth()/2 + (right ? 0 : frame_wall_thickness()), 
-		       _foot_rail_horizontal_height() + epsilon() + washer_thickness(M4) + epsilon()])
-		rotate([0, 90, 0]) {
-			screw(size = M4, length = 8);
-			nut_tslot(M4);
-		}
+	
+	if (side_screws) {
+		// inner screw
+		translate([_screw_x, 
+			       right ? _foot_rail_horizontal_width() + epsilon() + washer_thickness(M4) 
+		    	         : -epsilon() - washer_thickness(M4), 
+			       vslot_2020_depth()/2])
+			rotate([0, 0, right ? -90 : 90]) {
+				washer(M4);
+			}
+		translate([_screw_x, 
+			       right ? _foot_rail_horizontal_width() + epsilon() + washer_thickness(M4) + epsilon() 
+		    	         : -epsilon() - washer_thickness(M4) - epsilon(), 
+			       vslot_2020_depth()/2])
+			rotate([0, 0, right ? -90 : 90]) {
+				screw(size = M4, length = 8);
+				nut_tslot(M4);
+			}
+	}
+
+	if (top_screws) {
+		// top screw
+		translate([_screw_x, 
+			       vslot_2020_depth()/2 + (right ? 0 : frame_wall_thickness()), 
+			       _foot_rail_horizontal_height() + epsilon() + washer_thickness(M4) ])
+			rotate([0, 90, 0]) {
+				washer(size = M4);
+			}
+		translate([_screw_x, 
+			       vslot_2020_depth()/2 + (right ? 0 : frame_wall_thickness()), 
+			       _foot_rail_horizontal_height() + epsilon() + washer_thickness(M4) + epsilon()])
+			rotate([0, 90, 0]) {
+				screw(size = M4, length = 8);
+				nut_tslot(M4);
+			}
+	}
 }
 
 /**
@@ -161,71 +167,79 @@ module foot_rail() {
 /** 
  * Renders the hardware (nuts, bolts, screws) that are used to fixed the printed part to the surrounding parts.
  */
-module foot_rail_hardware() {
+module foot_rail_hardware(vertical_side_screws = true, vertical_back_screws = false, horizontal_side_screws = true, horizontal_top_screws = false) {
 
 	// vertical MakerSlide rail -- back 
-	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4), 
-		       -makerslide_slot_offset(), 
-		       _foot_rail_vertical_back_screw_height()]) {
-		washer(size = M4);
-	}
-	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(), 
-		       -makerslide_slot_offset(), 
-		       _foot_rail_vertical_back_screw_height()]) {
-		screw(size = M4, length = 8);
-		nut_tslot(M4);
-	}
-	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4),
-	           makerslide_slot_offset(), 
-	           _foot_rail_vertical_back_screw_height()]) {
-		washer(size = M4);
-	}
-	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(),
-	           makerslide_slot_offset(), 
-	           _foot_rail_vertical_back_screw_height()]) {
-		screw(size = M4, length = 8);
-		nut_tslot(M4);
+	if (vertical_back_screws) {
+		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4), 
+			       -makerslide_slot_offset(), 
+			       _foot_rail_vertical_back_screw_height()]) {
+			washer(size = M4);
+		}
+		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(), 
+			       -makerslide_slot_offset(), 
+			       _foot_rail_vertical_back_screw_height()]) {
+			screw(size = M4, length = 8);
+			nut_tslot(M4);
+		}
+		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4),
+		           makerslide_slot_offset(), 
+		           _foot_rail_vertical_back_screw_height()]) {
+			washer(size = M4);
+		}
+		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(),
+		           makerslide_slot_offset(), 
+		           _foot_rail_vertical_back_screw_height()]) {
+			screw(size = M4, length = 8);
+			nut_tslot(M4);
+		}
 	}
 
 	// vertical MakerSlide rail -- sides
-	_side_screw_y = _foot_rail_vertical_side_screw_y_offset() + epsilon();
-	translate([makerslide_slot_offset(), 
-		       _side_screw_y + washer_thickness(M4), 
-		       _foot_rail_vertical_side_screw_height()]) 
-		rotate([0, 0, -90]) {
-			washer(size = M4);
-		}
-	translate([makerslide_slot_offset(), 
-		       _side_screw_y + washer_thickness(M4) + epsilon(), 
-		       _foot_rail_vertical_side_screw_height()]) 
-		rotate([0, 0, -90]) {
-			screw(size = M4, length = 12);
-			nut_tslot(M4);
-		}
-	translate([makerslide_slot_offset(), 
-		       -_side_screw_y - washer_thickness(M4) - epsilon(), 
-		       _foot_rail_vertical_side_screw_height()]) 
-		rotate([0, 0, 90]) {
-			screw(size = M4, length = 12);
-			nut_tslot(M4);
-		}
-	translate([makerslide_slot_offset(), 
-		       -_side_screw_y - washer_thickness(M4), 
-		       _foot_rail_vertical_side_screw_height()]) 
-		rotate([0, 0, 90]) {
-			washer(size = M4);
-		}
+	if (vertical_side_screws) {
+		_side_screw_y = _foot_rail_vertical_side_screw_y_offset() + epsilon();
+		translate([makerslide_slot_offset(), 
+			       _side_screw_y + washer_thickness(M4), 
+			       _foot_rail_vertical_side_screw_height()]) 
+			rotate([0, 0, -90]) {
+				washer(size = M4);
+			}
+		translate([makerslide_slot_offset(), 
+			       _side_screw_y + washer_thickness(M4) + epsilon(), 
+			       _foot_rail_vertical_side_screw_height()]) 
+			rotate([0, 0, -90]) {
+				screw(size = M4, length = 12);
+				nut_tslot(M4);
+			}
+		translate([makerslide_slot_offset(), 
+			       -_side_screw_y - washer_thickness(M4) - epsilon(), 
+			       _foot_rail_vertical_side_screw_height()]) 
+			rotate([0, 0, 90]) {
+				screw(size = M4, length = 12);
+				nut_tslot(M4);
+			}
+		translate([makerslide_slot_offset(), 
+			       -_side_screw_y - washer_thickness(M4), 
+			       _foot_rail_vertical_side_screw_height()]) 
+			rotate([0, 0, 90]) {
+				washer(size = M4);
+			}
+	}
 
 	// left horizontal leg
 	rotate([0, 0, 30])
 		translate([0, _foot_rail_horizontal_left_y_offset(), 0])
-			_foot_rail_horizontal_leg_hardware(right = false);
+			_foot_rail_horizontal_leg_hardware(right = false, 
+				                               side_screw = horizontal_side_screws, 
+				                               top_screw = horizontal_top_screws);
 
 
 	// right horizontal leg
 	rotate([0, 0, -30])
 		translate([0, _foot_rail_horizontal_right_y_offset(), 0])
-			_foot_rail_horizontal_leg_hardware(right = true);
+			_foot_rail_horizontal_leg_hardware(right = true, 
+				                               side_screw = horizontal_side_screws, 
+				                               top_screw = horizontal_top_screws);
 
 }
 

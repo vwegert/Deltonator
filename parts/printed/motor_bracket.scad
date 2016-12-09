@@ -177,50 +177,56 @@ module motor_bracket_stepper(with_pulley = true) {
 /** 
  * Renders the hardware (nuts, bolts, screws) that are used to fixed the printed part to the surrounding parts.
  */
-module motor_bracket_hardware() {
-	// vertical MakerSlide rail -- back 
-	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4),
-			   -makerslide_slot_offset(), 
-			   _motor_bracket_screw_z()]) {
-		washer(size = M4);
-	}
-	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(),
-			   -makerslide_slot_offset(), 
-			   _motor_bracket_screw_z()]) {
-		screw(size = M4, length = 8);
-		nut_tslot(M4);
-	}
-	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4),
-			   makerslide_slot_offset(), 
-			   _motor_bracket_screw_z()]) {
-		washer(size = M4);
-	}
-	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(), 
-		       makerslide_slot_offset(), 
-		       _motor_bracket_screw_z()]) {
-		screw(size = M4, length = 8);
-		nut_tslot(M4);
-	}
-	// vertical MakerSlide rail -- sides
-	_side_screw_y = makerslide_width() / 2 + frame_wall_thickness() + epsilon();
-	translate([makerslide_slot_offset(), _side_screw_y + washer_thickness(M4), _motor_bracket_screw_z()]) 
-		rotate([0, 0, -90]) {
+module motor_bracket_hardware(vertical_side_screws = true, vertical_back_screws = false) {
+
+	if (vertical_back_screws) {
+		// vertical MakerSlide rail -- back 
+		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4),
+				   -makerslide_slot_offset(), 
+				   _motor_bracket_screw_z()]) {
 			washer(size = M4);
 		}
-	translate([makerslide_slot_offset(), _side_screw_y + washer_thickness(M4) + epsilon(), _motor_bracket_screw_z()]) 
-		rotate([0, 0, -90]) {
-			screw(size = M4, length = 12);
+		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(),
+				   -makerslide_slot_offset(), 
+				   _motor_bracket_screw_z()]) {
+			screw(size = M4, length = 8);
 			nut_tslot(M4);
 		}
-	translate([makerslide_slot_offset(), -_side_screw_y - washer_thickness(M4), _motor_bracket_screw_z()]) 
-		rotate([0, 0, 90]) {
+		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4),
+				   makerslide_slot_offset(), 
+				   _motor_bracket_screw_z()]) {
 			washer(size = M4);
 		}
-	translate([makerslide_slot_offset(), -_side_screw_y - washer_thickness(M4) - epsilon(), _motor_bracket_screw_z()]) 
-		rotate([0, 0, 90]) {
-			screw(size = M4, length = 12);
+		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(), 
+			       makerslide_slot_offset(), 
+			       _motor_bracket_screw_z()]) {
+			screw(size = M4, length = 8);
 			nut_tslot(M4);
 		}
+	}
+
+	if (vertical_side_screws) {
+		// vertical MakerSlide rail -- sides
+		_side_screw_y = makerslide_width() / 2 + frame_wall_thickness() + epsilon();
+		translate([makerslide_slot_offset(), _side_screw_y + washer_thickness(M4), _motor_bracket_screw_z()]) 
+			rotate([0, 0, -90]) {
+				washer(size = M4);
+			}
+		translate([makerslide_slot_offset(), _side_screw_y + washer_thickness(M4) + epsilon(), _motor_bracket_screw_z()]) 
+			rotate([0, 0, -90]) {
+				screw(size = M4, length = 12);
+				nut_tslot(M4);
+			}
+		translate([makerslide_slot_offset(), -_side_screw_y - washer_thickness(M4), _motor_bracket_screw_z()]) 
+			rotate([0, 0, 90]) {
+				washer(size = M4);
+			}
+		translate([makerslide_slot_offset(), -_side_screw_y - washer_thickness(M4) - epsilon(), _motor_bracket_screw_z()]) 
+			rotate([0, 0, 90]) {
+				screw(size = M4, length = 12);
+				nut_tslot(M4);
+			}
+	}
 }
 
 /** 

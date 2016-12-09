@@ -119,60 +119,64 @@ module foot_norail() {
 /** 
  * Renders the hardware (nuts, bolts, screws) that are used to fixed the printed part to the surrounding parts.
  */
-module foot_norail_hardware() {
+module foot_norail_hardware(vertical_side_screws = true, vertical_back_screws = false) {
 
-	// vertical MakerSlide rail -- back 
-	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4), 
-		       -makerslide_slot_offset(), 
-		       _foot_norail_vertical_back_screw_height()]) {
-		washer(size = M4);
-	}
-	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(), 
-		       -makerslide_slot_offset(), 
-		       _foot_norail_vertical_back_screw_height()]) {
-		screw(size = M4, length = 8);
-		nut_tslot(M4);
-	}
-	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4),
-	           makerslide_slot_offset(), 
-	           _foot_norail_vertical_back_screw_height()]) {
-		washer(size = M4);
-	}
-	translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(),
-	           makerslide_slot_offset(), 
-	           _foot_norail_vertical_back_screw_height()]) {
-		screw(size = M4, length = 8);
-		nut_tslot(M4);
-	}
-
-	// vertical MakerSlide rail -- sides
-	_side_screw_y = _foot_norail_vertical_side_screw_y_offset() + epsilon();
-	translate([makerslide_slot_offset(), 
-		       _side_screw_y + washer_thickness(M4), 
-		       _foot_norail_vertical_side_screw_height()]) 
-		rotate([0, 0, -90]) {
+	if (vertical_back_screws) {
+		// vertical MakerSlide rail -- back 
+		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4), 
+			       -makerslide_slot_offset(), 
+			       _foot_norail_vertical_back_screw_height()]) {
 			washer(size = M4);
 		}
-	translate([makerslide_slot_offset(), 
-		       _side_screw_y + washer_thickness(M4) + epsilon(), 
-		       _foot_norail_vertical_side_screw_height()]) 
-		rotate([0, 0, -90]) {
-			screw(size = M4, length = 12);
+		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(), 
+			       -makerslide_slot_offset(), 
+			       _foot_norail_vertical_back_screw_height()]) {
+			screw(size = M4, length = 8);
 			nut_tslot(M4);
 		}
-	translate([makerslide_slot_offset(), 
-		       -_side_screw_y - washer_thickness(M4) - epsilon(), 
-		       _foot_norail_vertical_side_screw_height()]) 
-		rotate([0, 0, 90]) {
-			screw(size = M4, length = 12);
-			nut_tslot(M4);
-		}
-	translate([makerslide_slot_offset(), 
-		       -_side_screw_y - washer_thickness(M4), 
-		       _foot_norail_vertical_side_screw_height()]) 
-		rotate([0, 0, 90]) {
+		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4),
+		           makerslide_slot_offset(), 
+		           _foot_norail_vertical_back_screw_height()]) {
 			washer(size = M4);
 		}
+		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(),
+		           makerslide_slot_offset(), 
+		           _foot_norail_vertical_back_screw_height()]) {
+			screw(size = M4, length = 8);
+			nut_tslot(M4);
+		}
+	}
+
+	if (vertical_side_screws) {
+		// vertical MakerSlide rail -- sides
+		_side_screw_y = _foot_norail_vertical_side_screw_y_offset() + epsilon();
+		translate([makerslide_slot_offset(), 
+			       _side_screw_y + washer_thickness(M4), 
+			       _foot_norail_vertical_side_screw_height()]) 
+			rotate([0, 0, -90]) {
+				washer(size = M4);
+			}
+		translate([makerslide_slot_offset(), 
+			       _side_screw_y + washer_thickness(M4) + epsilon(), 
+			       _foot_norail_vertical_side_screw_height()]) 
+			rotate([0, 0, -90]) {
+				screw(size = M4, length = 12);
+				nut_tslot(M4);
+			}
+		translate([makerslide_slot_offset(), 
+			       -_side_screw_y - washer_thickness(M4) - epsilon(), 
+			       _foot_norail_vertical_side_screw_height()]) 
+			rotate([0, 0, 90]) {
+				screw(size = M4, length = 12);
+				nut_tslot(M4);
+			}
+		translate([makerslide_slot_offset(), 
+			       -_side_screw_y - washer_thickness(M4), 
+			       _foot_norail_vertical_side_screw_height()]) 
+			rotate([0, 0, 90]) {
+				washer(size = M4);
+			}
+	}
 
 }
 
