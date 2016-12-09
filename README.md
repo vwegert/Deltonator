@@ -17,8 +17,8 @@ following design goals in mind:
 
  * Use the [MakerSlide](https://www.inventables.com/technologies/makerslide) system with V-shaped wheels for the 
    vertical axes.
- * Use a magnetic bearing system somewhat similar to the one designed by [Bert Broeren](http://www.thingiverse.com/thing:1239984) 
-   - that is, the magnets do not have to hold the weight of the effector.
+ * Use a magnetic bearing system somewhat similar to the one designed by [Bert Broeren](http://www.thingiverse.com/thing:1239984), 
+   that is, the magnets do not have to hold the weight of the effector.
  * Keep the effectors easily exchangeable to support different tool heads - various 3D printing heads, maybe a small 
    motor for PCB milling or a laser engraving module at some time.
  * Create an enclosed build volumes - for stable printing conditions, to prevent chips from flying all over the place 
