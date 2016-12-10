@@ -14,7 +14,7 @@
 
 include <constants.scad>
 
-// ===== PRINTER CONFIGURATION ========================================================================================
+// ===== FRAME RAIL DIMENSIONS ========================================================================================
 
 // The length of the vertical MakerSlide extrusions that make up the rails for the carriages.
 FRAME_V_RAIL_HEIGHT = 800;
@@ -22,7 +22,15 @@ FRAME_V_RAIL_HEIGHT = 800;
 // The length of the horizontal 20x20 V-Slot extrusions that form the sides of the triangle.
 FRAME_H_RAIL_LENGTH = 400;
 
-// ===== FABRICATED PART DIMENSIONS ===================================================================================
+// ===== WORKING SURFACE (BED) DIMENSIONS =============================================================================
+
+// The thickness of the plate that serves as the heated bed.
+BED_THICKNESS = 4;
+
+// The diameter of the plate that serves as the heated bed.
+BED_DIAMETER = 300;
+
+// ===== DIMENSIONS OF THE PRINTED FRAME PARTS ========================================================================
 
 // The additional clearance to leave around the MakerSlide extrusion.
 MAKERSLIDE_CLEARANCE = 0.05;
@@ -60,6 +68,8 @@ FRAME_BED_BRACKET_HEIGHT = 25;
 // The depth of the holes in the head that hold the MakerSlide extrusions.
 FRAME_HEAD_MAKERSLIDE_DEPTH = 35; 
 
+// ===== CARRIAGE DIMENSIONS ==========================================================================================
+
 // The thickness of the carriage base plate. A thicker plate will make the carriage stiffer, but cost more
 // material to print and take away space from the working area.
 CARRIAGE_PLATE_THICKNESS = 6;
@@ -67,8 +77,10 @@ CARRIAGE_PLATE_THICKNESS = 6;
 // The width of the border around the holes in the carriage base plate that hold the V-Wheels. 
 CARRIAGE_PLATE_BORDER_WIDTH = 8;
 
-// The range by which the vertical belt tensioner can be adjusted.
-TENSIONER_RANGE = 15;
+// The upward angle of the ball holder on the carriage.
+CARRIAGE_BALL_HOLDER_ANGLE = 10;
+
+// ===== ARM DIMENSIONS AND PARAMETERS ================================================================================
 
 // The distance between the rods that hold the effector.
 ROD_DISTANCE = 65;
@@ -100,8 +112,7 @@ MAGNET_HOLDER_THICKNESS = 5;
 // The additional clearance to leave around the magnet holder pin.
 MAGNET_CLEARANCE = 0.025;
 
-// The upward angle of the ball holder on the carriage.
-CARRIAGE_BALL_HOLDER_ANGLE = 10;
+// ===== EFFECTOR DIMENSIONS AND PARAMETERS ===========================================================================
 
 // The additional distance between the magnets on the effector (not the rod distance - the other one :-)).
 // This value is added to the minimum distance determined by the magnet size and wall thickness.
@@ -110,8 +121,7 @@ EFFECTOR_BALL_ADDITIONAL_DISTANCE = 15;
 // The thickness of the effector plate.
 EFFECTOR_THICKNESS = 6;
 
-// The thickness of the plate that serves as the heated bed.
-BED_THICKNESS = 4;
+// ===== OTHER DIMENSIONS AND PARAMETERS ==============================================================================
 
-// The diameter of the plate that serves as the heated bed.
-BED_DIAMETER = 300;
+// The range by which the vertical belt tensioner can be adjusted.
+TENSIONER_RANGE = 15;
