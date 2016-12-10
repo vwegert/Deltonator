@@ -31,7 +31,6 @@ function _head_horizontal_z_offset()  = head_makerslide_recess_depth() - frame_w
 function _head_vertical_height() = head_makerslide_recess_depth();
 function _head_vertical_width()  = frame_wall_thickness() + makerslide_width() + frame_wall_thickness();
 function _head_vertical_depth()  = frame_wall_thickness() + tensioner_x_offset() - tensioner_depth()/2;
-function _head_vertical_back_screw_height() = head_makerslide_recess_depth()/2;
 function _head_vertical_side_screw_height() = _head_vertical_height() - _head_horizontal_height()/2; // align with other screw
 function _head_vertical_side_screw_y_offset() = _head_vertical_width()/2 + 1;
 
@@ -193,11 +192,11 @@ module _render_head() {
 					cube([head_tensioner_groove_depth(), head_tensioner_groove_width(), head_tensioner_groove_height()]);
 
 				// minus the screw holes on the back
-				translate([-frame_wall_thickness()/2, -makerslide_slot_offset(), _head_vertical_back_screw_height()])
+				translate([-frame_wall_thickness()/2, -makerslide_slot_offset(), head_back_screw_z_offset()])
 					rotate([0, 90, 0])
 						cylinder(d = frame_screw_size(), h = 2*frame_wall_thickness(), 
 								 center = true, $fn = frame_screw_hole_resolution());
-				translate([-frame_wall_thickness()/2, makerslide_slot_offset(), _head_vertical_back_screw_height()])
+				translate([-frame_wall_thickness()/2, makerslide_slot_offset(), head_back_screw_z_offset()])
 					rotate([0, 90, 0])
 						cylinder(d = frame_screw_size(), h = 2*frame_wall_thickness(), 
 								 center = true, $fn = frame_screw_hole_resolution());
@@ -248,23 +247,23 @@ module head_hardware(vertical_side_screws = true, vertical_back_screws = false, 
 		// vertical MakerSlide rail -- back 
 		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4), 
 			       -makerslide_slot_offset(), 
-			       _head_vertical_back_screw_height()]) {
+			       head_back_screw_z_offset()]) {
 			washer(size = M4);
 		}
 		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(), 
 			       -makerslide_slot_offset(), 
-			       _head_vertical_back_screw_height()]) {
+			       head_back_screw_z_offset()]) {
 			screw(size = M4, length = 8);
 			nut_tslot(M4);
 		}
 		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4),
 		           makerslide_slot_offset(), 
-		           _head_vertical_back_screw_height()]) {
+		           head_back_screw_z_offset()]) {
 			washer(size = M4);
 		}
 		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(),
 		           makerslide_slot_offset(), 
-		           _head_vertical_back_screw_height()]) {
+		           head_back_screw_z_offset()]) {
 			screw(size = M4, length = 8);
 			nut_tslot(M4);
 		}

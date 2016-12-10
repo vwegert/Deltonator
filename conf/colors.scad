@@ -23,6 +23,14 @@ module color_cast_aluminium() {
 } 
 
 /**
+ * The color of the solid parts of the enclosure.
+ */
+module color_enclosure_solid() {
+	color("BurlyWood")
+		children();
+} 
+
+/**
  * The color of the "outer" printed frame elements.
  */
 module color_printed_outer_frame() {

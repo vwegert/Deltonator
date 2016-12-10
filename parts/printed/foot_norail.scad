@@ -28,7 +28,6 @@ function _foot_norail_horizontal_right_y_offset() = -_foot_norail_horizontal_wid
 function _foot_norail_vertical_height() = foot_norail_makerslide_recess_depth();
 function _foot_norail_vertical_width()  = frame_wall_thickness() + makerslide_width() + frame_wall_thickness();
 function _foot_norail_vertical_depth()  = frame_wall_thickness() + makerslide_depth() + frame_wall_thickness();
-function _foot_norail_vertical_back_screw_height() = foot_norail_makerslide_recess_depth()/2;
 function _foot_norail_vertical_side_screw_height() = _foot_norail_horizontal_height()/2; // align with other screw
 function _foot_norail_vertical_side_screw_y_offset() = _foot_norail_vertical_width()/2 + 1;
 
@@ -79,11 +78,11 @@ module _render_foot_norail() {
 				// minus the hole for the MakerSlide extrusion
 				makerslide_punch(foot_norail_makerslide_recess_depth());
 				// minus the screw holes on the back
-				translate([-frame_wall_thickness()/2, -makerslide_slot_offset(), _foot_norail_vertical_back_screw_height()])
+				translate([-frame_wall_thickness()/2, -makerslide_slot_offset(), foot_norail_vertical_back_screw_height()])
 					rotate([0, 90, 0])
 						cylinder(d = frame_screw_size(), h = 2*frame_wall_thickness(), 
 								 center = true, $fn = frame_screw_hole_resolution());
-				translate([-frame_wall_thickness()/2, makerslide_slot_offset(), _foot_norail_vertical_back_screw_height()])
+				translate([-frame_wall_thickness()/2, makerslide_slot_offset(), foot_norail_vertical_back_screw_height()])
 					rotate([0, 90, 0])
 						cylinder(d = frame_screw_size(), h = 2*frame_wall_thickness(), 
 								 center = true, $fn = frame_screw_hole_resolution());
@@ -125,23 +124,23 @@ module foot_norail_hardware(vertical_side_screws = true, vertical_back_screws = 
 		// vertical MakerSlide rail -- back 
 		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4), 
 			       -makerslide_slot_offset(), 
-			       _foot_norail_vertical_back_screw_height()]) {
+			       foot_norail_vertical_back_screw_height()]) {
 			washer(size = M4);
 		}
 		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(), 
 			       -makerslide_slot_offset(), 
-			       _foot_norail_vertical_back_screw_height()]) {
+			       foot_norail_vertical_back_screw_height()]) {
 			screw(size = M4, length = 8);
 			nut_tslot(M4);
 		}
 		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4),
 		           makerslide_slot_offset(), 
-		           _foot_norail_vertical_back_screw_height()]) {
+		           foot_norail_vertical_back_screw_height()]) {
 			washer(size = M4);
 		}
 		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(),
 		           makerslide_slot_offset(), 
-		           _foot_norail_vertical_back_screw_height()]) {
+		           foot_norail_vertical_back_screw_height()]) {
 			screw(size = M4, length = 8);
 			nut_tslot(M4);
 		}

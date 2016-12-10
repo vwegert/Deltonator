@@ -27,7 +27,6 @@ function _bed_bracket_horizontal_z_offset()  = bed_bracket_height() - frame_wall
 function _bed_bracket_vertical_height() = bed_bracket_height();
 function _bed_bracket_vertical_width()  = frame_wall_thickness() + makerslide_width() + frame_wall_thickness();
 function _bed_bracket_vertical_depth()  = frame_wall_thickness() + makerslide_depth() + frame_wall_thickness();
-function _bed_bracket_vertical_back_screw_height() = bed_bracket_height()/2;
 function _bed_bracket_vertical_side_screw_height() = _bed_bracket_vertical_height() - _bed_bracket_horizontal_height()/2; // align with other screw
 function _bed_bracket_vertical_side_screw_y_offset() = _bed_bracket_vertical_width()/2 + 1;
 
@@ -133,11 +132,11 @@ module _render_bed_bracket() {
 				makerslide_punch(bed_bracket_height());
 
 				// minus the screw holes on the back
-				translate([-frame_wall_thickness()/2, -makerslide_slot_offset(), _bed_bracket_vertical_back_screw_height()])
+				translate([-frame_wall_thickness()/2, -makerslide_slot_offset(), bed_bracket_back_screw_z_offset()])
 					rotate([0, 90, 0])
 						cylinder(d = frame_screw_size(), h = 2*frame_wall_thickness(), 
 								 center = true, $fn = frame_screw_hole_resolution());
-				translate([-frame_wall_thickness()/2, makerslide_slot_offset(), _bed_bracket_vertical_back_screw_height()])
+				translate([-frame_wall_thickness()/2, makerslide_slot_offset(), bed_bracket_back_screw_z_offset()])
 					rotate([0, 90, 0])
 						cylinder(d = frame_screw_size(), h = 2*frame_wall_thickness(), 
 								 center = true, $fn = frame_screw_hole_resolution());
@@ -181,23 +180,23 @@ module bed_bracket_hardware(vertical_side_screws = true, vertical_back_screws = 
 		// vertical MakerSlide rail -- back 
 		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4), 
 			       -makerslide_slot_offset(), 
-			       _bed_bracket_vertical_back_screw_height()]) {
+			       bed_bracket_back_screw_z_offset()]) {
 			washer(size = M4);
 		}
 		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(), 
 			       -makerslide_slot_offset(), 
-			       _bed_bracket_vertical_back_screw_height()]) {
+			       bed_bracket_back_screw_z_offset()]) {
 			screw(size = M4, length = 8);
 			nut_tslot(M4);
 		}
 		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4),
 		           makerslide_slot_offset(), 
-		           _bed_bracket_vertical_back_screw_height()]) {
+		           bed_bracket_back_screw_z_offset()]) {
 			washer(size = M4);
 		}
 		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(),
 		           makerslide_slot_offset(), 
-		           _bed_bracket_vertical_back_screw_height()]) {
+		           bed_bracket_back_screw_z_offset()]) {
 			screw(size = M4, length = 8);
 			nut_tslot(M4);
 		}

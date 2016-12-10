@@ -33,11 +33,6 @@ function _motor_bracket_plate_screw_dist_y() = (vmotor_width() - vmotor_screw_di
 function _motor_bracket_plate_screw_dist_z() = (vmotor_height() - vmotor_screw_distance()) / 2;
 
 /**
- * Some internal screw positions.
- */
-function _motor_bracket_screw_z() = _motor_bracket_outer_height()/2;
-
-/**
  * Renders a block that can be fixed to the vertical MakerSlide extrusion. 
  * Not to be used outside of this file.
  */
@@ -49,16 +44,16 @@ module _motor_bracket_rail_fixture() {
 		// minus the hole for the MakerSlide extrusion
 		makerslide_punch(_motor_bracket_outer_height());
 		// minus the screw holes on the back
-		translate([-frame_wall_thickness()/2, -makerslide_slot_offset(), _motor_bracket_screw_z()])
+		translate([-frame_wall_thickness()/2, -makerslide_slot_offset(), motor_bracket_screw_z_offset()])
 			rotate([0, 90, 0])
 				cylinder(d = frame_screw_size(), h = 2*frame_wall_thickness(), 
 						 center = true, $fn = frame_screw_hole_resolution());
-		translate([-frame_wall_thickness()/2, makerslide_slot_offset(), _motor_bracket_screw_z()])
+		translate([-frame_wall_thickness()/2, makerslide_slot_offset(), motor_bracket_screw_z_offset()])
 			rotate([0, 90, 0])
 				cylinder(d = frame_screw_size(), h = 2*frame_wall_thickness(), 
 						 center = true, $fn = frame_screw_hole_resolution());
 		// minus the screw holes on the side
-		translate([makerslide_slot_offset(), 0, _motor_bracket_screw_z()])
+		translate([makerslide_slot_offset(), 0, motor_bracket_screw_z_offset()])
 			rotate([90, 0, 0])
 				cylinder(d = frame_screw_size(), h = 2*_motor_bracket_outer_width(), 
 						 center = true, $fn = frame_screw_hole_resolution());
@@ -183,23 +178,23 @@ module motor_bracket_hardware(vertical_side_screws = true, vertical_back_screws 
 		// vertical MakerSlide rail -- back 
 		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4),
 				   -makerslide_slot_offset(), 
-				   _motor_bracket_screw_z()]) {
+				   motor_bracket_screw_z_offset()]) {
 			washer(size = M4);
 		}
 		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(),
 				   -makerslide_slot_offset(), 
-				   _motor_bracket_screw_z()]) {
+				   motor_bracket_screw_z_offset()]) {
 			screw(size = M4, length = 8);
 			nut_tslot(M4);
 		}
 		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4),
 				   makerslide_slot_offset(), 
-				   _motor_bracket_screw_z()]) {
+				   motor_bracket_screw_z_offset()]) {
 			washer(size = M4);
 		}
 		translate([-frame_wall_thickness() - epsilon() - washer_thickness(M4) - epsilon(), 
 			       makerslide_slot_offset(), 
-			       _motor_bracket_screw_z()]) {
+			       motor_bracket_screw_z_offset()]) {
 			screw(size = M4, length = 8);
 			nut_tslot(M4);
 		}
@@ -208,20 +203,20 @@ module motor_bracket_hardware(vertical_side_screws = true, vertical_back_screws 
 	if (vertical_side_screws) {
 		// vertical MakerSlide rail -- sides
 		_side_screw_y = makerslide_width() / 2 + frame_wall_thickness() + epsilon();
-		translate([makerslide_slot_offset(), _side_screw_y + washer_thickness(M4), _motor_bracket_screw_z()]) 
+		translate([makerslide_slot_offset(), _side_screw_y + washer_thickness(M4), motor_bracket_screw_z_offset()]) 
 			rotate([0, 0, -90]) {
 				washer(size = M4);
 			}
-		translate([makerslide_slot_offset(), _side_screw_y + washer_thickness(M4) + epsilon(), _motor_bracket_screw_z()]) 
+		translate([makerslide_slot_offset(), _side_screw_y + washer_thickness(M4) + epsilon(), motor_bracket_screw_z_offset()]) 
 			rotate([0, 0, -90]) {
 				screw(size = M4, length = 12);
 				nut_tslot(M4);
 			}
-		translate([makerslide_slot_offset(), -_side_screw_y - washer_thickness(M4), _motor_bracket_screw_z()]) 
+		translate([makerslide_slot_offset(), -_side_screw_y - washer_thickness(M4), motor_bracket_screw_z_offset()]) 
 			rotate([0, 0, 90]) {
 				washer(size = M4);
 			}
-		translate([makerslide_slot_offset(), -_side_screw_y - washer_thickness(M4) - epsilon(), _motor_bracket_screw_z()]) 
+		translate([makerslide_slot_offset(), -_side_screw_y - washer_thickness(M4) - epsilon(), motor_bracket_screw_z_offset()]) 
 			rotate([0, 0, 90]) {
 				screw(size = M4, length = 12);
 				nut_tslot(M4);

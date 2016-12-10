@@ -138,6 +138,14 @@ function foot_rail_makerslide_recess_depth() = FRAME_FOOT_RAIL_MAKERSLIDE_DEPTH;
 function foot_norail_makerslide_recess_depth() = FRAME_FOOT_NORAIL_MAKERSLIDE_DEPTH; 
 
 /**
+ * The height of the back-side holes in the foot brackets.
+ */
+function foot_rail_vertical_back_screw_height() = foot_rail_makerslide_recess_depth()/2; 
+function foot_norail_vertical_back_screw_height() = foot_norail_makerslide_recess_depth()/2;
+function foot_vertical_back_screw_height() = 
+  foot_with_rail() ? foot_rail_vertical_back_screw_height() : foot_norail_vertical_back_screw_height();
+
+/**
  * The size of the screws that can be used to mount the foot to the underlying surface.
  */
 function foot_norail_bottom_screw_size() = FRAME_FOOT_BOTTOM_SCREW_SIZE;
@@ -164,6 +172,12 @@ function motor_bracket_z_offset() =
     ? foot_rail_makerslide_recess_depth() 
     : foot_norail_makerslide_recess_depth();
 
+/** 
+ * The offset and abolute height of the screw holes in the motor bracket.
+ */
+function motor_bracket_screw_z_offset() = motor_bracket_height() / 2;
+function motor_bracket_screw_height() = motor_bracket_z_offset() + motor_bracket_screw_z_offset();
+
 // ----- build surface holder -----------------------------------------------------------------------------------------
 
 function bed_bracket_height() = FRAME_BED_BRACKET_HEIGHT;
@@ -177,6 +191,12 @@ function bed_bracket_z_offset() = motor_bracket_z_offset() + motor_bracket_heigh
  * The upper edge of the bed bracket.
  */
 function bed_bracket_top_level() = bed_bracket_z_offset() + bed_bracket_height();
+
+/** 
+ * The offset and abolute height of the screw holes in the motor bracket.
+ */
+function bed_bracket_back_screw_z_offset() = bed_bracket_height() / 2;
+function bed_bracket_back_screw_height() = bed_bracket_z_offset() + bed_bracket_back_screw_z_offset();
 
 // ----- build surface (bed) ------------------------------------------------------------------------------------------
 
@@ -260,6 +280,12 @@ function head_guide_clearance() = 0.2;
  * The position of the head piece on the vertical rail.
  */
 function head_z_offset() = vertical_extrusion_length() - head_makerslide_recess_depth();
+
+/** 
+ * The offset and abolute height of the screw holes in the head bracket.
+ */
+function head_back_screw_z_offset() = head_makerslide_recess_depth() / 2;
+function head_back_screw_height() = head_z_offset() + head_back_screw_z_offset();
 
 // ----- carriage -----------------------------------------------------------------------------------------------------
 
@@ -979,6 +1005,36 @@ function arm_ball_joint_height(axis = A, point = [0, 0, 0]) =
  */
 function arm_carriage_height(axis = A, point = [0, 0, 0]) =
   arm_ball_joint_height(axis = axis, point = point) - carriage_ball_position(left = true)[2];
+
+// ===== ENCLOSURE DIMENSIONS ==========================================================================================
+
+/**
+ * The material thickness of the solid (back and side) enclosure walls.
+ */
+function enclosure_solid_thickness() = ENCLOSURE_SOLID_THICKNESS;
+
+/**
+ * The gap between the horizontal extrusions and the enclosure side walls.
+ */
+function enclosure_long_side_gap() = ENCLOSURE_SIDE_GAP;
+
+/**
+ * The distance of the inner side of the long enclosure walls from side of the base triangle.
+ */
+function enclosure_long_side_base_distance() = 
+  horizontal_extrusion_outward_offset() + vslot_2020_width() + enclosure_long_side_gap();
+
+/**
+ * The size of the small sides that are mounted to the back of the MakerSlide rails.
+ */
+function enclosure_short_side_width() = 2 * enclosure_long_side_base_distance() / cos(30);
+function enclosure_short_side_height() = vertical_extrusion_length();
+function enclosure_short_side_thickness() = enclosure_solid_thickness();
+
+/**
+ * The resolution of the holes in the enclosure plates.
+ */
+function enclosure_hole_resolution() = 32;
 
 // ===== AUXILIARY FUNCTIONS ===========================================================================================
 

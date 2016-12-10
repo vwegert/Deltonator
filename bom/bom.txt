@@ -69,8 +69,9 @@ Hex Socket Head Cap Screw (DIN 912 / ISO 4762)
     vertical_axis_assembly >> motor_bracket_stepper_hardware >> screw        (12)
   M4 x 10 mm...................................................................... 3
     horizontal_assembly >> screw                                             (3)
-  M4 x 12 mm...................................................................... 24
+  M4 x 12 mm...................................................................... 42
     vertical_axis_assembly >> bed_bracket_hardware >> screw                  (6)
+    vertical_axis_assembly >> enclosure_short_side_plate_hardware >> screw   (18)
     vertical_axis_assembly >> foot_norail_hardware >> screw                  (6)
     vertical_axis_assembly >> head_hardware >> screw                         (6)
     vertical_axis_assembly >> motor_bracket_hardware >> screw                (6)
@@ -95,9 +96,10 @@ Spring
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
 
 T-Slot Nut
-  M4.............................................................................. 39
+  M4.............................................................................. 57
     horizontal_assembly                                                      (3)
     vertical_axis_assembly >> bed_bracket_hardware                           (12)
+    vertical_axis_assembly >> enclosure_short_side_plate_hardware            (18)
     vertical_axis_assembly >> foot_norail_hardware                           (6)
     vertical_axis_assembly >> head_hardware                                  (12)
     vertical_axis_assembly >> motor_bracket_hardware                         (6)
@@ -111,9 +113,10 @@ Washer (DIN 125A / ISO 7089)
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
     vertical_axis_assembly >> motor_bracket_stepper_hardware                 (12)
     vertical_axis_assembly >> tensioner_hardware                             (12)
-  M4.............................................................................. 57
+  M4.............................................................................. 75
     horizontal_assembly                                                      (18)
     vertical_axis_assembly >> bed_bracket_hardware                           (12)
+    vertical_axis_assembly >> enclosure_short_side_plate_hardware            (18)
     vertical_axis_assembly >> foot_norail_hardware                           (6)
     vertical_axis_assembly >> head_hardware                                  (12)
     vertical_axis_assembly >> motor_bracket_hardware                         (6)
@@ -154,6 +157,12 @@ Small Parts
 Bed Plate
   d = 300 mm, h = 4 mm............................................................ 1
                                                                              (1)
+
+===== Sheet / Multiplex Plywood =======================================================
+
+Bed Plate
+  155.47 x 800 x 4  mm............................................................ 3
+    vertical_axis_assembly                                                   (3)
 
 ===== Special Mechanic Parts ==========================================================
 

@@ -108,7 +108,8 @@ extrusions: \
 # Rule to build the parts fabricated out of sheet material
 #
 sheets: \
-	parts/sheets/bed.stl
+	parts/sheets/bed.stl \
+	parts/sheets/enclosure_short_side.stl 
 
 #
 # Rules to buld the parts provided by the external libraries

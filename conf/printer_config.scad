@@ -68,6 +68,14 @@ FRAME_BED_BRACKET_HEIGHT = 25;
 // The depth of the holes in the head that hold the MakerSlide extrusions.
 FRAME_HEAD_MAKERSLIDE_DEPTH = 35; 
 
+// ===== ENCLOSURE DIMENSIONS =========================================================================================
+
+// The material thickness of the solid (back and side) enclosure walls.
+ENCLOSURE_SOLID_THICKNESS = 4;
+
+// The gap between the horizontal extrusions and the enclosure side walls.
+ENCLOSURE_SIDE_GAP = 40;
+
 // ===== CARRIAGE DIMENSIONS ==========================================================================================
 
 // The thickness of the carriage base plate. A thicker plate will make the carriage stiffer, but cost more
