@@ -76,6 +76,16 @@ ENCLOSURE_SOLID_THICKNESS = 4;
 // The gap between the horizontal extrusions and the enclosure side walls.
 ENCLOSURE_SIDE_GAP = 40;
 
+// The thickness of the brackets that hold the outer enclosure walls.
+ENCLOSURE_BRACKET_THICKNESS = 6;
+
+// The width of the brackets that hold the outer enclosure walls, excluding the parts that bolt on to the 
+// horizontal rails.
+ENCLOSURE_BRACKET_WIDTH = 50;
+
+// The distance of the two screw holes and nut recesses in the brackets.
+ENCLOSURE_BRACKET_SCREW_DISTANCE = 20;
+
 // ===== CARRIAGE DIMENSIONS ==========================================================================================
 
 // The thickness of the carriage base plate. A thicker plate will make the carriage stiffer, but cost more

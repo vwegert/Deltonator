@@ -1036,6 +1036,49 @@ function enclosure_short_side_thickness() = enclosure_solid_thickness();
  */
 function enclosure_hole_resolution() = 32;
 
+// ===== ENCLOSURE BRACKET DIMENSIONS ==================================================================================
+
+/**
+ * The thickness of the brackets that hold the outer enclosure walls.
+ */
+function enclosure_bracket_thickness() = ENCLOSURE_BRACKET_THICKNESS;
+
+/**
+ * The height (in Z direction) of the entire bracket.
+ */
+function enclosure_bracket_height() = vslot_2020_width(); 
+
+/**
+ * The dimensions of the "feet" of the bracket that are screwed onto the horizontal extrusions.
+ */
+function enclosure_bracket_foot_width() = vslot_2020_width();
+
+/**
+ * The width of the brackets that hold the outer enclosure walls, excluding the parts that bolt on to the 
+ * horizontal rails.
+ */
+function enclosure_bracket_body_width() = ENCLOSURE_BRACKET_WIDTH;
+
+/** 
+ * The overall depth of the bracket.
+ */
+function enclosure_bracket_depth() = enclosure_long_side_gap();
+
+/**
+ * The width of the entire bracket.
+ */
+function encosure_bracket_total_width() = 2 * enclosure_bracket_foot_width() + enclosure_bracket_body_width();
+
+/**
+ * The distance of the two screw holes and nut recesses in the brackets.
+ */
+function enclosure_bracket_screw_distance() = ENCLOSURE_BRACKET_SCREW_DISTANCE;
+
+/**
+ * The resolution of the holes and the rounced edges of the enclosure bracket.
+ */
+function enclosure_bracket_resolution() = 32;
+
 // ===== AUXILIARY FUNCTIONS ===========================================================================================
 
 /**

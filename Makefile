@@ -88,6 +88,7 @@ printed: vitamins \
 	parts/printed/carriage.stl \
 	parts/printed/carriage_ball_holder.stl \
 	parts/printed/effector_base.stl \
+	parts/printed/enclosure_side_bracket.stl \
 	parts/printed/end_switch_bracket.stl \
 	parts/printed/foot_rail.stl \
 	parts/printed/foot_norail.stl \
