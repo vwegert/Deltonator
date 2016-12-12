@@ -1075,6 +1075,12 @@ function encosure_bracket_total_width() = 2 * enclosure_bracket_foot_width() + e
 function enclosure_bracket_screw_distance() = ENCLOSURE_BRACKET_SCREW_DISTANCE;
 
 /**
+ * The distance of the brackets from the outer edge of the horizontal rails.
+ */
+function enclosure_bracket_horizontal_offset() = horizontal_recess_depth() + horizontal_recess_depth();
+// TODO this value will have to be determined from the mounting plate size
+
+/**
  * The resolution of the holes and the rounced edges of the enclosure bracket.
  */
 function enclosure_bracket_resolution() = 32;
