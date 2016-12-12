@@ -109,18 +109,25 @@ module _render_enclosure_side_bracket() {
 }
 
 /**
- * Main module to use the pre-rendered bracket. 
+ * Main module to use the pre-rendered bracket. If rotated i
  */
-module enclosure_side_bracket() {
+module enclosure_side_bracket(right_side = false) {
 	bom_entry(section = "Printed Parts", description = "Enclosure", size = "Side Bracket");
-	color_printed_outer_frame()
-		import(file = "enclosure_side_bracket.stl");
+	color_printed_outer_frame() {
+		if (right_side) {
+			translate([0, 0, enclosure_bracket_height()])
+				rotate([180, 0, 0])
+					import(file = "enclosure_side_bracket.stl");
+		} else {
+			import(file = "enclosure_side_bracket.stl");
+		}
+	}
 }
 
 /** 
  * Renders the hardware (nuts, bolts, screws) that are used to fixed the printed part to the surrounding parts.
  */
-module enclosure_side_bracket_hardware(nut_left = false, nut_right = false) {
+module _enclosure_side_bracket_hardware(nut_left = false, nut_right = false) {
 
 	// the washer and screw on the left-hand side
 	translate([enclosure_bracket_thickness(), 
@@ -160,6 +167,19 @@ module enclosure_side_bracket_hardware(nut_left = false, nut_right = false) {
 				nut(size = frame_screw_size());
 	}
 
+}
+
+/** 
+ * Renders the hardware (nuts, bolts, screws) that are used to fixed the printed part to the surrounding parts.
+ */
+module enclosure_side_bracket_hardware(right_side = false, nut_left = false, nut_right = false) {
+	if (right_side) {
+		translate([0, 0, enclosure_bracket_height()])
+			rotate([180, 0, 0])
+				_enclosure_side_bracket_hardware(nut_left = nut_left, nut_right = nut_right);
+	} else {
+		_enclosure_side_bracket_hardware(nut_left = nut_left, nut_right = nut_right);
+	}
 }
 
 _render_enclosure_side_bracket();
