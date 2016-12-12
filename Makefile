@@ -110,6 +110,7 @@ extrusions: \
 #
 sheets: \
 	parts/sheets/bed.stl \
+	parts/sheets/enclosure_long_side.stl \
 	parts/sheets/enclosure_short_side.stl 
 
 #

@@ -1032,6 +1032,13 @@ function enclosure_short_side_height() = vertical_extrusion_length();
 function enclosure_short_side_thickness() = enclosure_solid_thickness();
 
 /**
+ * The size of the long sides that are mounted to the sides opposing the A and B rails.
+ */
+function enclosure_long_side_width() = horizontal_base_length() - 2 * (cos(60) * enclosure_short_side_width()/2);
+function enclosure_long_side_height() = vertical_extrusion_length();
+function enclosure_long_side_thickness() = enclosure_solid_thickness();
+
+/**
  * The resolution of the holes in the enclosure plates.
  */
 function enclosure_hole_resolution() = 32;
