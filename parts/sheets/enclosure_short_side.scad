@@ -2,7 +2,7 @@
  **
  ** parts/sheets/enclosure_short_side.scad
  **
- ** This file generates the heated bed with the holes for the mounting assembly.
+ ** This file generates the intransparent parts of the enclosure that mount to the vertical rails.
  ** This file is intended to be included by other files down the line.
  **
  **********************************************************************************************************************/
@@ -16,11 +16,11 @@ use <../../bom/bom.scad>
 use <../../parts/vitamins/vitamins.scad>
 
 /**
- * Provides the pre-rendered bed plate. 
+ * Provides the pre-rendered plate. 
  */
 module enclosure_short_side_plate() {
 	bom_entry(section = "Sheet / Multiplex Plywood", 
-		      description = "Bed Plate", 
+		      description = "Enclosure Short Side Plate", 
 		      size = str(enclosure_short_side_width(), " x ", enclosure_short_side_height(), " x ", enclosure_short_side_thickness(), "  mm"));
 	color_enclosure_solid()
 		import(file = "enclosure_short_side.stl"); 
