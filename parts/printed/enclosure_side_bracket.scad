@@ -93,14 +93,14 @@ module _render_enclosure_side_bracket() {
 							     h = enclosure_bracket_thickness() + 2 * epsilon(),
 							     $fn = enclosure_bracket_resolution());
 
-				// minus a recess for the nut on the left-hand side
+				// minus a recess for the inner nut on the left-hand side
 				translate([enclosure_bracket_depth() - enclosure_bracket_thickness() - epsilon(), 
 					       -enclosure_bracket_screw_distance()/2,
 					       enclosure_bracket_height()/2])
 						nut_recess(size = frame_screw_size());
 
-				// minus a recess for the nut on the right-hand side
-				translate([enclosure_bracket_depth() - enclosure_bracket_thickness() - epsilon(), 
+				// minus a recess for the outer nut on the right-hand side
+				translate([enclosure_bracket_depth() - nut_thickness(frame_screw_size()) + epsilon(), 
 					       enclosure_bracket_screw_distance()/2,
 					       enclosure_bracket_height()/2])
 						nut_recess(size = frame_screw_size());
@@ -152,9 +152,9 @@ module enclosure_side_bracket_hardware(nut_left = false, nut_right = false) {
 				nut(size = frame_screw_size());
 	}
 
-	// the inner nut on the right_hand side
+	// the outer nut on the right-hand side
 	if (nut_right) {
-		translate([enclosure_bracket_depth() - enclosure_bracket_thickness() - epsilon(), 
+		translate([enclosure_bracket_depth() - nut_thickness(frame_screw_size()) + epsilon(), 
 			       enclosure_bracket_screw_distance()/2,
 			       enclosure_bracket_height()/2])
 				nut(size = frame_screw_size());
