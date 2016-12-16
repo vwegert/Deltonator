@@ -345,3 +345,76 @@ function switch_ss5gl_hole_bottom_distance() =  2.9;
 function switch_ss5gl_hole_distance()        =  9.5;
 function switch_ss5gl_hole_diameter()        =  2.35;
 
+// ===== EXTRUDER NEMA 17 STEPPER MOTORS ==============================================================================
+
+/**
+ * The NEMA size of the motor.
+ */
+function emotor_size() = 17;
+
+/**
+ * The outer dimensions of the motor (width and height) perpendicular to the axis. 
+ * The depth is irrelevant (at the moment, at least).
+ */
+function emotor_width() = 42.2;
+function emotor_height() = 42.2;
+
+/**
+ * The length of the shaft.
+ */
+function emotor_shaft_length() = 24;
+
+/**
+ * The distance between the screw holes on the front face of the motor.
+ */
+function emotor_screw_distance() = 31;
+
+/** 
+ * The size of the screw holes to hold the motor.
+ */
+function emotor_screw_size() = 3;
+
+// ===== EXTRUDER MOUNT ===============================================================================================
+
+/**
+ * The material (plate) thickness of the mount.
+ */
+function extruder_mount_thickness() = 2; // TODO verify this value
+
+/**
+ * The width of the bracket (both sides).
+ */
+function extruder_mount_bracket_width() = 42;
+
+/**
+ * The length of the bracket sides.
+ */
+function extruder_mount_motor_length() = 50;
+function extruder_mount_base_length() = 50;
+
+/**
+ * The size of the large holes in the side.
+ */
+function extruder_mount_hole_size() = 22;
+
+/**
+ * The size of the screw holes to mount the motor.
+ */
+function extruder_mount_motor_screw_hole_size() = 3.5;
+
+/**
+ * The size of the mounting holes in the base.
+ */
+function extruder_mount_base_screw_hole_size() = M4;
+
+/**
+ * The distance of the mounting holes from each other in the directions of the dimensions specified above.
+ */
+function extruder_mount_base_screw_dist_width() = 30;
+function extruder_mount_base_screw_dist_length() = 24;
+
+/**
+ * The distance of the mounting holes from the sides of the bracket.
+ */
+function extruder_mount_base_screw_edge_dist_width() = (extruder_mount_bracket_width() - extruder_mount_base_screw_dist_width()) / 2;
+function extruder_mount_base_screw_edge_dist_length() = 6; // TODO verify this value
