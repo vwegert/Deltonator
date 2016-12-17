@@ -1074,7 +1074,7 @@ function enclosure_bracket_depth() = enclosure_long_side_gap();
 /**
  * The width of the entire bracket.
  */
-function encosure_bracket_total_width() = 2 * enclosure_bracket_foot_width() + enclosure_bracket_body_width();
+function enclosure_bracket_total_width() = 2 * enclosure_bracket_foot_width() + enclosure_bracket_body_width();
 
 /**
  * The distance of the two screw holes and nut recesses in the brackets.

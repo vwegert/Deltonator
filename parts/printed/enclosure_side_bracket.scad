@@ -22,11 +22,11 @@ use <../../parts/vitamins/vitamins.scad>
 module _enclosure_side_bracket_body() {
 	union() {
 		// the left foot
-		translate([0, -encosure_bracket_total_width()/2, 0])
+		translate([0, -enclosure_bracket_total_width()/2, 0])
 			cube([enclosure_bracket_thickness(), enclosure_bracket_foot_width(), enclosure_bracket_height()]);
 
 		// the right foot
-		translate([0, encosure_bracket_total_width()/2 - enclosure_bracket_foot_width(), 0])
+		translate([0, enclosure_bracket_total_width()/2 - enclosure_bracket_foot_width(), 0])
 			cube([enclosure_bracket_thickness(), enclosure_bracket_foot_width(), enclosure_bracket_height()]);
 
 		// the left wall
@@ -59,7 +59,7 @@ module _render_enclosure_side_bracket() {
 
 				// minus the screw hole in the left foot
 				translate([-epsilon(), 
-					       -encosure_bracket_total_width()/2 + enclosure_bracket_foot_width()/2,
+					       -enclosure_bracket_total_width()/2 + enclosure_bracket_foot_width()/2,
 					       enclosure_bracket_height()/2])
 					rotate([0, 90, 0])
 						cylinder(d = frame_screw_size(), 
@@ -68,7 +68,7 @@ module _render_enclosure_side_bracket() {
 
 				// minus the screw hole in the right foot
 				translate([-epsilon(), 
-					       encosure_bracket_total_width()/2 - enclosure_bracket_foot_width()/2,
+					       enclosure_bracket_total_width()/2 - enclosure_bracket_foot_width()/2,
 					       enclosure_bracket_height()/2])
 					rotate([0, 90, 0])
 						cylinder(d = frame_screw_size(), 
@@ -131,7 +131,7 @@ module _enclosure_side_bracket_hardware(nut_left = false, nut_right = false) {
 
 	// the washer and screw on the left-hand side
 	translate([enclosure_bracket_thickness(), 
-		       -encosure_bracket_total_width()/2 + enclosure_bracket_foot_width()/2,
+		       -enclosure_bracket_total_width()/2 + enclosure_bracket_foot_width()/2,
 			   enclosure_bracket_height()/2]) {
 		translate([epsilon(), 0, 0])
 			washer(size = frame_screw_size());
@@ -142,7 +142,7 @@ module _enclosure_side_bracket_hardware(nut_left = false, nut_right = false) {
 
 	// the washer and screw on the right-hand side
 	translate([enclosure_bracket_thickness(), 
-		       encosure_bracket_total_width()/2 - enclosure_bracket_foot_width()/2,
+		       enclosure_bracket_total_width()/2 - enclosure_bracket_foot_width()/2,
 			   enclosure_bracket_height()/2]) {
 		translate([epsilon(), 0, 0])
 			washer(size = frame_screw_size());
