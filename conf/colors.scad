@@ -119,6 +119,14 @@ module color_motor() {
 } 
 
 /**
+ * The color of the powder coated parts (e. g. the extruder mount brackets).
+ */
+module color_powder_coated() {
+	color([0.15, 0.15, 0.15])
+		children();
+} 
+
+/**
  * The color of the end switches.
  */
 module color_switch() {

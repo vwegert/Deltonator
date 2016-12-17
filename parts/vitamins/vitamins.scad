@@ -93,6 +93,19 @@ module bearing(size, prefix = "", suffix = "") {
 		import(file = str("mechanic/bearing_", size, ".stl")); 
 }
 
+// ===== parts/vitamins/mechanic/extruder_mount.* =====================================================================
+
+/**
+ * Provides the pre-rendered extruder mounting bracket.
+ * The racket is positioned along the Y axis reaching into positive Y with the motor plate extending into positive Z 
+ * and the base plate extending into positive X.
+ */
+module extruder_mount() {
+	bom_entry(section = "Special Mechanic Parts", description = "Extruder Mounting Bracket");
+	color_powder_coated()
+		import(file = "mechanic/extruder_mount.stl"); 
+}
+
 // ===== parts/vitamins/mechanic/gt2_*.* ===============================================================================
 
 /**
