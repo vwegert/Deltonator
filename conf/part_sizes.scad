@@ -350,7 +350,7 @@ function switch_ss5gl_hole_diameter()        =  2.35;
 /**
  * The NEMA size of the motor.
  */
-function emotor_size() = 17;
+function emotor_size() = NEMA17;
 
 /**
  * The outer dimensions of the motor (width and height) perpendicular to the axis. 
