@@ -118,12 +118,12 @@ module _horizontal_assembly(side = A, with_connectors = false) {
 
 		// the brackets on the A and B sides to hold the enclosure walls
 		if ((side == A) || (side == B)) {
-			translate([-vslot_2020_depth(), encosure_bracket_total_width()/2 + enclosure_bracket_horizontal_offset(), 0]) 
+			translate([-vslot_2020_depth(), enclosure_bracket_total_width()/2 + enclosure_bracket_horizontal_offset(), 0]) 
 				rotate([0, 0, 180]) {
 					enclosure_side_bracket(right_side = true);
 					enclosure_side_bracket_hardware(right_side = true, nut_left = true, nut_right = false);
 				}
-			translate([-vslot_2020_depth(), horizontal_extrusion_length() - (encosure_bracket_total_width()/2 + enclosure_bracket_horizontal_offset()), 0]) 
+			translate([-vslot_2020_depth(), horizontal_extrusion_length() - (enclosure_bracket_total_width()/2 + enclosure_bracket_horizontal_offset()), 0]) 
 				rotate([0, 0, 180]) {
 					enclosure_side_bracket(right_side = false);
 					enclosure_side_bracket_hardware(right_side = false, nut_left = true, nut_right = false);
@@ -143,12 +143,12 @@ module _horizontal_assembly(side = A, with_connectors = false) {
 
 		// the brackets on the A and B sides to hold the enclosure walls
 		if ((side == A) || (side == B)) {
-			translate([-vslot_2020_depth(), encosure_bracket_total_width()/2 + enclosure_bracket_horizontal_offset(), 0]) 
+			translate([-vslot_2020_depth(), enclosure_bracket_total_width()/2 + enclosure_bracket_horizontal_offset(), 0]) 
 				rotate([0, 0, 180]) {
 					enclosure_side_bracket(right_side = true);
 					enclosure_side_bracket_hardware(right_side = true, nut_left = true, nut_right = true);
 				}
-			translate([-vslot_2020_depth(), horizontal_extrusion_length() - (encosure_bracket_total_width()/2 + enclosure_bracket_horizontal_offset()), 0]) 
+			translate([-vslot_2020_depth(), horizontal_extrusion_length() - (enclosure_bracket_total_width()/2 + enclosure_bracket_horizontal_offset()), 0]) 
 				rotate([0, 0, 180]) {
 					enclosure_side_bracket(right_side = false);
 					enclosure_side_bracket_hardware(right_side = false, nut_left = true, nut_right = true);
