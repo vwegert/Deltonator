@@ -1027,14 +1027,25 @@ function enclosure_long_side_base_distance() =
 /**
  * The size of the small sides that are mounted to the back of the MakerSlide rails.
  */
-function enclosure_short_side_width() = 2 * enclosure_long_side_base_distance() / cos(30);
+function enclosure_short_side_width() = 
+  2 * ( ( enclosure_long_side_base_distance() / cos(30)) - 
+        ( ( frame_wall_thickness() + enclosure_solid_thickness() ) / tan(60) ) );
 function enclosure_short_side_height() = vertical_extrusion_length();
 function enclosure_short_side_thickness() = enclosure_solid_thickness();
 
 /**
+ * The extra length added to the outer side of the small sides.
+ */
+function enclosure_short_side_additional_width() = tan(30) * enclosure_solid_thickness();
+
+/**
  * The size of the long sides that are mounted to the sides opposing the A and B rails.
  */
-function enclosure_long_side_width() = horizontal_base_length() - 2 * (cos(60) * enclosure_short_side_width()/2);
+function enclosure_long_side_width() = 
+  horizontal_base_length() - 2 * (
+    (tan(30) * enclosure_long_side_base_distance()) -
+    ((frame_wall_thickness() + enclosure_solid_thickness()) / cos(30))
+  );
 function enclosure_long_side_height() = vertical_extrusion_length();
 function enclosure_long_side_thickness() = enclosure_solid_thickness();
 

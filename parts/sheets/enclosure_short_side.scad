@@ -54,8 +54,19 @@ module _enclosure_short_side_screw() {
 module _render_enclosure_short_side_plate() {
 	difference() {
 		// the base plate
+		translate([0, -enclosure_short_side_width()/2 - enclosure_short_side_additional_width(), 0])
+			cube([enclosure_short_side_thickness(), 
+				  enclosure_short_side_width() + 2 * enclosure_short_side_additional_width(),
+				  enclosure_short_side_height()]);
+
+		// minus the beveled edges
 		translate([0, -enclosure_short_side_width()/2, 0])
-			cube([enclosure_short_side_thickness(), enclosure_short_side_width(), enclosure_short_side_height()]);
+			rotate([0, 0, -30])
+				translate([0, -enclosure_short_side_thickness(), 0])
+					cube([2 * enclosure_short_side_thickness(), enclosure_short_side_thickness(), enclosure_short_side_height()]);
+		translate([0, enclosure_short_side_width()/2, 0])
+		 	rotate([0, 0, 30])
+				cube([2 * enclosure_short_side_thickness(), enclosure_short_side_thickness(), enclosure_short_side_height()]);
 
 		// minus the mounting holes through the foot
 		translate([0, -makerslide_slot_offset(), foot_vertical_back_screw_height()])
@@ -82,6 +93,7 @@ module _render_enclosure_short_side_plate() {
 			_enclosure_short_side_screw_hole();
 
 	}
+
 }
 
 /**
