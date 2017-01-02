@@ -882,11 +882,17 @@ function frame_screw_hole_resolution() = 16;
 
 // ===== PART PLACEMENT ================================================================================================
 
-/*
+/**
  * Each of the horizontal extrusion sets is placed outside of the construction triangle. This function specifies the
  * distance by which the rails are offset.
  */
 function horizontal_extrusion_outward_offset() = (makerslide_base_width()/2 * sin(60)) - (vslot_2020_width()/2);
+
+/** 
+ * The height of the center of the horizontal extrusions - useful for screw positioning.
+ */
+function head_horizontal_extrusion_center_height() = vertical_extrusion_length() - vslot_2020_width()/2; 
+function bed_horizontal_extrusion_center_height() = bed_bracket_z_offset() + bed_bracket_height() - vslot_2020_width()/2; 
 
 /**
  * The distance of the motor front face to the inward face of the vertical MakerSlide extrusion.
@@ -1050,6 +1056,14 @@ function enclosure_long_side_height() = vertical_extrusion_length();
 function enclosure_long_side_thickness() = enclosure_solid_thickness();
 
 /**
+ * The horizontal distance of the holes in the long sides from the center of the plate.
+ */
+function enclosure_long_side_inner_hole_offset() = 
+  enclosure_bracket_center_horizontal_offset() - enclosure_bracket_screw_distance() / 2;
+function enclosure_long_side_outer_hole_offset() = 
+  enclosure_bracket_center_horizontal_offset() + enclosure_bracket_screw_distance() / 2; 
+
+/**
  * The resolution of the holes in the enclosure plates.
  */
 function enclosure_hole_resolution() = 32;
@@ -1093,10 +1107,17 @@ function enclosure_bracket_total_width() = 2 * enclosure_bracket_foot_width() + 
 function enclosure_bracket_screw_distance() = ENCLOSURE_BRACKET_SCREW_DISTANCE;
 
 /**
- * The distance of the brackets from the outer edge of the horizontal rails.
+ * The distance of the outer edge of the brackets from the outer edge of the horizontal rails.
  */
 function enclosure_bracket_horizontal_offset() = horizontal_recess_depth() + horizontal_recess_depth();
 // TODO this value will have to be determined from the mounting plate size
+
+/**
+ * The distance of the center of the bracket from the center of the horizontal extrusion.
+ */
+function enclosure_bracket_center_horizontal_offset() = 
+  horizontal_extrusion_length() / 2 - enclosure_bracket_horizontal_offset() - enclosure_bracket_total_width() / 2;
+
 
 /**
  * The resolution of the holes and the rounced edges of the enclosure bracket.
