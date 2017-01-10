@@ -107,7 +107,7 @@ ROD_DISTANCE = 65;
 ROD_OUTER_DIAMETER = 6;
 
 // The inner diameter of the rods. Set to 0 if the rods are not hollow.
-ROD_INNER_DIAMETER = 4;
+ROD_INNER_DIAMETER = 0;
 
 // The additional clearance to leave between the rod and the holder.
 ROD_CLEARANCE = 0.05;
