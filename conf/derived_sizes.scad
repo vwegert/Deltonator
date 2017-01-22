@@ -369,20 +369,20 @@ function carriage_upper_belt_holder_z() = carriage_plate_height()/2 +
                                           carriage_belt_holder_center_offset();
 
 /**
- * The location and dimension of the threaded insert to lock the belt in the carriage holder.
+ * The location and dimension of the threaded holes to lock the belt in the carriage holder.
  * The position is relative to the origin of the result of carriage_belt_holder().
  */
-function carriage_belt_holder_insert_hole_diameter() = 5.0;
-function carriage_belt_holder_insert_hole_distance() = 0.5;
-function carriage_belt_holder_insert_x() = -carriage_belt_holder_channel_width() / 2 -
-                                           carriage_belt_holder_insert_hole_distance() - 
-                                           carriage_belt_holder_insert_hole_diameter() / 2;
-function carriage_belt_holder_insert_y() = carriage_belt_holder_height() - 
+function carriage_belt_holder_guard_hole_diameter() = 2.5; // for M3 thread
+function carriage_belt_holder_guard_hole_distance() = 1.0;
+function carriage_belt_holder_guard_x() = -carriage_belt_holder_channel_width() / 2 -
+                                           carriage_belt_holder_guard_hole_distance() - 
+                                           carriage_belt_holder_guard_hole_diameter() / 2;
+function carriage_belt_holder_guard_y() = carriage_belt_holder_height() - 
                                            carriage_belt_holder_path_width() - 
                                            carriage_belt_holder_center_height()-
                                            carriage_belt_holder_path_width() - 
-                                           carriage_belt_holder_insert_hole_distance() - 
-                                           carriage_belt_holder_insert_hole_diameter() / 2;
+                                           carriage_belt_holder_guard_hole_distance() - 
+                                           carriage_belt_holder_guard_hole_diameter() / 2;
 
 /** 
  * The size of the gap that is left in the carriage to leave room for the tensioner.
