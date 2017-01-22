@@ -385,9 +385,6 @@ module _carriage_hardware_adjustable_wheel() {
  */
 module _carriage_hardware_belt_fixation() { 
 	translate([0, carriage_belt_holder_guard_x(), carriage_belt_holder_guard_y()]) {
-		// the threaded insert
-		_guard_size = carriage_plate_thickness() + carriage_belt_holder_depth();
-		insert(size = M3, length = _guard_size);
 		// a washer on top
 		translate([carriage_belt_holder_depth() + epsilon(), 0, 0])
 			washer_large(size = M3);

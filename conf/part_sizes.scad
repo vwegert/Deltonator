@@ -203,12 +203,6 @@ function nut_key_width(size = M4) =
  */
 function nut_key_outer_diameter(size = M4) = (nut_key_width(size) / sqrt(3)) * 2;
 
-/**
- * The dimensions of a threaded insert, M3x7mm.
- */
-function insert_outer_diameter_m3() = 5.0; // TODO validate this value
-function insert_inner_diameter_m3() = 3.0;
-
 // ===== VERTICAL AXIS NEMA 17 STEPPER MOTORS ==========================================================================
 
 /**

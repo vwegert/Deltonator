@@ -9,8 +9,6 @@ instructions.
 
 ## GT2 pulleys
 
-## Threaded Inserts
-
 ## Nuts
 
 ## Screws
