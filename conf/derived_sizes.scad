@@ -494,7 +494,8 @@ function tensioner_range() = TENSIONER_RANGE;
 /**
  * The dimensions of the tensioners that hold the upper end of the belt.
  */
-function tensioner_idler_gap_depth() = 2 * bearing_f623_width() + 2 * washer_thickness(M3);
+function tensioner_inner_clearance() = 0.5;
+function tensioner_idler_gap_depth() = 2 * bearing_f623_width() + 2 * washer_thickness(M3) + tensioner_inner_clearance(); 
 function tensioner_flange_width() = 2;
 function tensioner_separator_thickness() = 2; 
 function tensioner_depth() = tensioner_idler_gap_depth() + 2 * frame_wall_thickness();
