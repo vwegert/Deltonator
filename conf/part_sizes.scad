@@ -203,6 +203,15 @@ function nut_key_width(size = M4) =
  */
 function nut_key_outer_diameter(size = M4) = (nut_key_width(size) / sqrt(3)) * 2;
 
+/**
+ * The diameter of a hole that is tapped with a metrical thread.
+ */
+function tap_base_diameter(size = M4) =
+			(size == M2) ? 1.6 :
+			(size == M3) ? 2.5 :
+	        (size == M4) ? 3.3 :
+	        (size == M5) ? 4.2 : -1;	
+
 // ===== VERTICAL AXIS NEMA 17 STEPPER MOTORS ==========================================================================
 
 /**

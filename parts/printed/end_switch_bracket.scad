@@ -42,15 +42,13 @@ module _render_end_switch_bracket_lower() {
 			translate([0, 0, end_switch_bracket_foot_height() - end_switch_bracket_edge_radius()])
 				cube([end_switch_bracket_edge_radius(), end_switch_bracket_thickness(), end_switch_bracket_edge_radius()]);
 		}
-		// minus the screw holes and recesses to attach the switch
+		// minus the screw holes to attach the switch
 		translate([end_switch_bracket_foot_depth() - switch_ss5gl_hole_edge_distance(), 
 			       0, end_switch_bracket_foot_height() - switch_ss5gl_hole_bottom_distance()]) {
 			rotate([270, 0, 0]) 
 				cylinder(d = end_switch_bracket_screw_hole_diameter(),
 					     h = end_switch_bracket_thickness(),
 			    		 $fn = frame_screw_hole_resolution());
-			rotate([270, 0, 90])
-				nut_recess(M2);
 		}
 		translate([end_switch_bracket_foot_depth() - switch_ss5gl_hole_edge_distance() - switch_ss5gl_hole_distance(), 
 			       0, end_switch_bracket_foot_height() - switch_ss5gl_hole_bottom_distance()]) {
@@ -58,8 +56,6 @@ module _render_end_switch_bracket_lower() {
 				cylinder(d = end_switch_bracket_screw_hole_diameter(),
 					     h = end_switch_bracket_thickness(),
 			    		 $fn = frame_screw_hole_resolution());
-			rotate([270, 0, 90])
-				nut_recess(M2);
 		}
 	}
 }
@@ -82,15 +78,8 @@ module _render_end_switch_bracket_upper() {
 		translate([end_switch_bracket_top_depth()/2, 
 			       end_switch_bracket_top_width()/2, 
 			       end_switch_bracket_total_height() - end_switch_bracket_top_nutcatch_height() - epsilon()])
-			cylinder(d = M3, h = end_switch_bracket_top_nutcatch_height() + 2 * epsilon(), $fn = frame_screw_hole_resolution());
-		// minus a recess to hold the nut (the width is the Y direction - might also be called the depth of the hole)
-		_nut_recess_width = nut_key_outer_diameter(M3)/2 + end_switch_bracket_top_width()/2;
-		translate([(end_switch_bracket_top_depth() - nut_key_width(M3))/2, 
-			       end_switch_bracket_top_width() - _nut_recess_width, 
-			       end_switch_bracket_total_height() - 
-			          end_switch_bracket_top_nutcatch_height()/2 - nut_thickness(M3)/2])
-			cube([nut_key_width(M3), _nut_recess_width + epsilon(), nut_thickness(M3)]);
-		
+			cylinder(d = tap_base_diameter(M3), h = end_switch_bracket_top_nutcatch_height() + 2 * epsilon(), $fn = frame_screw_hole_resolution());
+	
 	}
 }
 
@@ -131,16 +120,6 @@ module end_switch_bracket_hardware() {
 		rotate([0, 0, 270])
 			switch_ss5gl();
 
-	// the nuts to hold the switch
-	translate([end_switch_bracket_foot_depth() - switch_ss5gl_hole_edge_distance(), 
-		       0, end_switch_bracket_foot_height() - switch_ss5gl_hole_bottom_distance()]) 
-		rotate([270, 0, 90])
-			nut(M2);
-	translate([end_switch_bracket_foot_depth() - switch_ss5gl_hole_edge_distance() - switch_ss5gl_hole_distance(), 
-		       0, end_switch_bracket_foot_height() - switch_ss5gl_hole_bottom_distance()]) 
-		rotate([270, 0, 90])
-			nut(M2);
-
 	// the screws to hold the switch
 	_screw_length = switch_ss5gl_thickness() + end_switch_bracket_thickness() - nut_thickness(M2)/2;
 	translate([end_switch_bracket_foot_depth() - switch_ss5gl_hole_edge_distance(), 
@@ -172,12 +151,6 @@ module end_switch_bracket_hardware() {
 	 	// the spring above the bracket
 		translate([0, 0, end_switch_bracket_total_height() + epsilon()])
 			spring(inner_diameter = 5, length = end_switch_bracket_spring_height());
-
-		// the nut
-		translate([0, 0, end_switch_bracket_total_height() - 
-			          end_switch_bracket_top_nutcatch_height()/2 + nut_thickness(M3)/2])
-			rotate([0, 90, 90])
-				nut(M3);
 
 	}
 }

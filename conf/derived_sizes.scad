@@ -559,7 +559,7 @@ function tensioner_z_offset() = tensioner_screw_position() +
 function end_switch_bracket_thickness()             =  3;
 function end_switch_bracket_foot_depth()            = 20;
 function end_switch_bracket_foot_height()           = 10;
-function end_switch_bracket_screw_hole_diameter()   =  2;
+function end_switch_bracket_screw_hole_diameter()   =  tap_base_diameter(M2);
 
 function end_switch_bracket_top_height()          = 17.5;
 function end_switch_bracket_top_depth()           = 10;
