@@ -110,22 +110,23 @@ module tensioner_hardware(screw_position = 15) {
 	// the idler parts
 	translate([0, 0, -bearing_f623_outer_diameter()/2]) {
 
-		_screw_length = 2 * bearing_f623_width() +
-		                4 * washer_thickness(M3) +
-	    	            2 * frame_wall_thickness() + 
-	        	        nut_thickness(M3);
+		_screw_length = tensioner_depth() + 2 * nut_thickness(M3);
+
+	    // the washer between the two ball bearings
+		translate([-washer_thickness(M3)/2, 0, 0])
+			washer(M3);	
 
 		// the two ball bearings that make up the idler
-		translate([-bearing_f623_width(), 0, 0])
+		translate([-bearing_f623_width() - washer_thickness(M3)/2, 0, 0])
 			bearing(size = "F623");
-		translate([bearing_f623_width(), 0, 0])
+		translate([bearing_f623_width() + washer_thickness(M3)/2, 0, 0])
 			rotate([0, 0, 180])
 				bearing(size = "F623");
 
 		// a washer on either side
-		translate([-bearing_f623_width() - epsilon() - washer_thickness(M3), 0, 0])
+		translate([-bearing_f623_width() - epsilon() - washer_thickness(M3) * 1.5, 0, 0])
 			washer(M3);	
-		translate([bearing_f623_width() + epsilon(), 0, 0])
+		translate([bearing_f623_width() + epsilon() + washer_thickness(M3)/2, 0, 0])
 			washer(M3);
 
 		// the washers on the outer side of the printed part
@@ -138,19 +139,17 @@ module tensioner_hardware(screw_position = 15) {
 			       frame_wall_thickness() + epsilon(), 0, 0])
 			washer(M3);	
 
-		// the screw (front to back in this case)
-		translate([bearing_f623_width() + epsilon() + 
-			       washer_thickness(M3) + epsilon() + 
-			       frame_wall_thickness() + epsilon() + washer_thickness(M3), 0, 0])
-			rotate([0, 0, 180])
+		// the screw (back to front in this case)
+		translate([-tensioner_depth()/2 - epsilon(), 0, 0])
+			rotate([0, 0, 0])
 				screw(size = M3, min_length = _screw_length);
 
-		// the nut to hold it 				
-		translate([-bearing_f623_width() - epsilon() - 
-			       washer_thickness(M3) - epsilon() - 
-			       frame_wall_thickness() - epsilon() - 
-			       washer_thickness(M3) - epsilon() - nut_thickness(M3), 0, 0])
+		// the nuts to hold it 				
+		translate([tensioner_depth()/2 + epsilon(), 0, 0])
 			nut(M3);	
+		translate([tensioner_depth()/2 + 2 * epsilon() + nut_thickness(M3), 0, 0])
+			rotate([90, 0, 0])
+				nut(M3);
 	}
 
 	// the vertical screw parts

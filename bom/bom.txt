@@ -48,9 +48,9 @@ Flat Head Countersunk Socket Cap Screw (DIN 7991 / ISO 10642)
 Hex Nut (DIN 934 / ISO 4032)
   M2.............................................................................. 6
     vertical_axis_assembly >> end_switch_bracket_hardware                    (6)
-  M3.............................................................................. 6
+  M3.............................................................................. 9
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
-    vertical_axis_assembly >> tensioner_hardware                             (3)
+    vertical_axis_assembly >> tensioner_hardware                             (6)
   M4.............................................................................. 21
     horizontal_assembly                                                      (6)
     horizontal_assembly >> enclosure_side_bracket_hardware                   (12)
@@ -61,13 +61,14 @@ Hex Nut (DIN 934 / ISO 4032)
 Hex Socket Head Cap Screw (DIN 912 / ISO 4762)
   M2 x 10 mm...................................................................... 6
     vertical_axis_assembly >> end_switch_bracket_hardware >> screw           (6)
-  M3 x 20 mm...................................................................... 3
+  M3 x 25 mm...................................................................... 3
     vertical_axis_assembly >> tensioner_hardware >> screw                    (3)
   M3 x 30 mm...................................................................... 3
     vertical_axis_assembly >> end_switch_bracket_hardware >> screw           (3)
-  M3 x 6 mm....................................................................... 18
-    vertical_axis_assembly >> carriage_hardware >> screw                     (6)
+  M3 x 6 mm....................................................................... 12
     vertical_axis_assembly >> motor_bracket_stepper_hardware >> screw        (12)
+  M3 x 8 mm....................................................................... 6
+    vertical_axis_assembly >> carriage_hardware >> screw                     (6)
   M4 x 10 mm...................................................................... 3
     horizontal_assembly >> screw                                             (3)
   M4 x 12 mm...................................................................... 66
@@ -109,14 +110,14 @@ T-Slot Nut
     vertical_axis_assembly >> motor_bracket_hardware                         (6)
 
 Threaded Insert
-  M3 x 7 mm....................................................................... 6
+  M3 x -1 mm...................................................................... 6
     vertical_axis_assembly >> carriage_hardware                              (6)
 
 Washer (DIN 125A / ISO 7089)
-  M3.............................................................................. 27
+  M3.............................................................................. 30
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
     vertical_axis_assembly >> motor_bracket_stepper_hardware                 (12)
-    vertical_axis_assembly >> tensioner_hardware                             (12)
+    vertical_axis_assembly >> tensioner_hardware                             (15)
   M4.............................................................................. 99
     horizontal_assembly                                                      (18)
     horizontal_assembly >> enclosure_long_side_plate_hardware                (8)
