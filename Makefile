@@ -146,6 +146,7 @@ vitamins: \
 	parts/vitamins/mechanic/screw_M3x12.stl \
 	parts/vitamins/mechanic/screw_M3x16.stl \
 	parts/vitamins/mechanic/screw_M3x20.stl \
+	parts/vitamins/mechanic/screw_M3x25.stl \
 	parts/vitamins/mechanic/screw_M3x30.stl \
 	parts/vitamins/mechanic/screw_M4x8.stl \
 	parts/vitamins/mechanic/screw_M4x10.stl \

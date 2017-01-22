@@ -129,6 +129,7 @@ function select_next_screw_length(size, min_length) =
 		(min_length <= 12) ? 12 :
 		(min_length <= 16) ? 16 :
 		(min_length <= 20) ? 20 : 
+		(min_length <= 25) ? 25 : 
 		(min_length <= 30) ? 30 : -min_length
 	: (size == M4) ? 
 		(min_length <=  8) ?  8 :
