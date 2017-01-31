@@ -64,6 +64,8 @@ Hex Socket Head Cap Screw (DIN 912 / ISO 4762)
     vertical_axis_assembly >> end_switch_bracket_hardware >> screw           (3)
   M3 x 6 mm....................................................................... 12
     vertical_axis_assembly >> motor_bracket_stepper_hardware >> screw        (12)
+  M3 x 8 mm....................................................................... 6
+    vertical_axis_assembly >> carriage_hardware >> screw                     (6)
   M4 x 10 mm...................................................................... 3
     horizontal_assembly >> screw                                             (3)
   M4 x 12 mm...................................................................... 66
@@ -127,8 +129,6 @@ Washer (DIN 125A / ISO 7089)
 Arm
   Carriage........................................................................ 3
     vertical_axis_assembly                                                   (3)
-  Carriage Ball Holder............................................................ 6
-    vertical_axis_assembly                                                   (6)
 
 Enclosure
   Side Bracket.................................................................... 8
@@ -184,7 +184,7 @@ Magnet Ring
 Steel Ball
   10 mm diameter.................................................................. 12
     effector_base_hardware                                                   (6)
-    vertical_axis_assembly >> carriage_ball_holder_hardware                  (6)
+    vertical_axis_assembly >> carriage_hardware                              (6)
 
 ===== Timing Belts and Pulleys ========================================================
 

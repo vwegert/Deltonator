@@ -342,8 +342,8 @@ function carriage_wheel3_z() = carriage_plate_height() / 2;
  */
 function carriage_wheel1_hole_diameter() = bearing_625_bore_diameter();
 function carriage_wheel2_hole_diameter() = bearing_625_bore_diameter();
-function carriage_wheel3_hole_diameter() = 8; // TODO adjust to the excenter size
-function carriage_wheel_hole_resolution() = 16;
+function carriage_wheel3_hole_diameter() = vwheel_spacer_inset_diameter();
+function carriage_wheel_hole_resolution() = 32;
 
 /** 
  * The dimensions of the set of blocks on the carriage that hold the belt.
@@ -411,8 +411,6 @@ function carriage_x_offset() = washer_thickness(M5) + epsilon() +
                            vwheel_assembly_thickness() / 2 + 
                            makerslide_base_depth();
 
-// ----- carriage ball holder -----------------------------------------------------------------------------------------
-
 /**
  * The dimensions of the ball holder.
  */
@@ -430,10 +428,8 @@ function carriage_ball_holder_depth() =
 function carriage_ball_holder_angle() = CARRIAGE_BALL_HOLDER_ANGLE;
 
 /**
- * The widths and depth of the devetail joint between the carriage and the ball holder.
+ * The depth of the connection between the carriage and the ball holder.
  */
-function carriage_ball_holder_joint_inner_width() = 0.6 * carriage_ball_holder_width();
-function carriage_ball_holder_joint_outer_width() = 0.8 * carriage_ball_holder_width();
 function carriage_ball_holder_joint_depth() = carriage_plate_thickness() / cos(carriage_ball_holder_angle());
 
 /**
@@ -460,20 +456,20 @@ function carriage_ball_holder_ball_position() = [
   ];
 
 /**
- * The distance of the upper edge of the dove tail joint from the YZ plane.
+ * The distance of the upper edge of the connection point from the YZ plane.
  */
 function carriage_ball_holder_distance_origin_joint() = 
   (carriage_ball_holder_angle() == 0) ? 0 : carriage_ball_holder_height() * tan(carriage_ball_holder_angle());
 
 /**
- * The angle under which the center of the ball is seen from the upper center of the dove tail joint.
+ * The angle under which the center of the ball is seen from the upper center of the top connection point.
  */
 function carriage_ball_holder_angle_joint_ball_center() = 
   atan((ball_diameter()/2 - carriage_ball_holder_recess_depth()) /
        (carriage_ball_holder_ball_position()[0] - carriage_ball_holder_distance_origin_joint()));
 
 /**
- * The distance of the center of the ball from the upper center of the dove tail joint.
+ * The distance of the center of the ball from the upper center of the top connection point.
  */
 function carriage_ball_holder_distance_joint_ball_center() = 
   sqrt(pow((ball_diameter()/2 - carriage_ball_holder_recess_depth()), 2) +

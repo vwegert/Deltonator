@@ -86,7 +86,6 @@ assemblies: extrusions sheets vitamins printed \
 printed: vitamins \
 	parts/printed/bed_bracket.stl \
 	parts/printed/carriage.stl \
-	parts/printed/carriage_ball_holder.stl \
 	parts/printed/effector_base.stl \
 	parts/printed/enclosure_side_bracket.stl \
 	parts/printed/end_switch_bracket.stl \

@@ -113,18 +113,6 @@ module _vertical_axis_carriage(carriage_height = 500) {
 		// the carriage with associated hardware
 		carriage();
 		carriage_hardware();
-
-		// the ball holders
-		translate(carriage_ball_holder_position(left = true))
-			rotate([0, -carriage_ball_holder_angle(), 0]) {
-				carriage_ball_holder();
-				carriage_ball_holder_hardware();
-			}
-		translate(carriage_ball_holder_position(left = false))
-			rotate([0, -carriage_ball_holder_angle(), 0]) {
-				carriage_ball_holder();
-				carriage_ball_holder_hardware();
-			}
 	}
 }
 
