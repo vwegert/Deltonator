@@ -31,6 +31,9 @@ function _foot_norail_vertical_depth()  = frame_wall_thickness() + makerslide_de
 function _foot_norail_vertical_side_screw_height() = _foot_norail_horizontal_height()/2; // align with other screw
 function _foot_norail_vertical_side_screw_y_offset() = _foot_norail_vertical_width()/2 + 1;
 
+function _foot_norail_t_slot_nut_holder_height() = (foot_norail_makerslide_recess_depth() - t_slot_nut_length()) / 2 
+                                                 - t_slot_nut_clearance();
+
 /**
  * Auxiliary module that creates one of the vertical legs. Not to be used outside of this file.
  */
@@ -75,8 +78,10 @@ module _render_foot_norail() {
 							cube([vslot_2020_depth(), 2*makerslide_width(), _foot_norail_horizontal_height()]);
 					}
 				}
+
 				// minus the hole for the MakerSlide extrusion
 				makerslide_punch(foot_norail_makerslide_recess_depth());
+
 				// minus the screw holes on the back
 				translate([-frame_wall_thickness()/2, -makerslide_slot_offset(), foot_norail_vertical_back_screw_height()])
 					rotate([0, 90, 0])
@@ -86,11 +91,13 @@ module _render_foot_norail() {
 					rotate([0, 90, 0])
 						cylinder(d = frame_screw_size(), h = 2*frame_wall_thickness(), 
 								 center = true, $fn = frame_screw_hole_resolution());
+
 				// minus the screw holes on the side
 				translate([makerslide_slot_offset(), 0, _foot_norail_vertical_side_screw_height()])
 					rotate([90, 0, 0])
 						cylinder(d = frame_screw_size(), h = 2*_foot_norail_vertical_width(), 
 								 center = true, $fn = frame_screw_hole_resolution());
+
 				// minus an additional inset so that the side screws can rest on a perpendicular surface
 				_inset_depth = 100;
 				translate([makerslide_slot_offset(), _foot_norail_vertical_side_screw_y_offset() + _inset_depth/2, _foot_norail_vertical_side_screw_height()])
@@ -102,6 +109,27 @@ module _render_foot_norail() {
 						cylinder(d = frame_screw_head_size(), h = _inset_depth, 
 								 center = true, $fn = frame_screw_hole_resolution());				
 			}
+
+			// plus the blocks to hold the T-Slot nut on the outer sides
+			translate([(makerslide_base_depth() - t_slot_nut_holder_width()) / 2, 
+				       makerslide_base_width() / 2 - t_slot_nut_holder_depth() + makerslide_clearance(), 
+				       0])
+				cube([t_slot_nut_holder_width(), t_slot_nut_holder_depth(), _foot_norail_t_slot_nut_holder_height()]);
+			translate([(makerslide_base_depth() - t_slot_nut_holder_width()) / 2, 
+				       -makerslide_base_width() / 2 - makerslide_clearance(), 
+				       0])
+				cube([t_slot_nut_holder_width(), t_slot_nut_holder_depth(), _foot_norail_t_slot_nut_holder_height()]);
+	
+			// plus the blocks to hold the T-Slot nut on the back sides
+			translate([-makerslide_clearance(), 
+				       -makerslide_slot_offset() - t_slot_nut_holder_width()/2, 
+				       0])
+				cube([t_slot_nut_holder_depth(), t_slot_nut_holder_width(), _foot_norail_t_slot_nut_holder_height()]);
+			translate([-makerslide_clearance(), 
+				       +makerslide_slot_offset() - t_slot_nut_holder_width()/2,
+				       0])
+				cube([t_slot_nut_holder_depth(), t_slot_nut_holder_width(), _foot_norail_t_slot_nut_holder_height()]);
+	
 		} 
 }
 

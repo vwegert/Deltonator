@@ -204,6 +204,20 @@ function nut_key_width(size = M4) =
 function nut_key_outer_diameter(size = M4) = (nut_key_width(size) / sqrt(3)) * 2;
 
 /**
+ * The length of a T-Slot nut along the slot, and an additional clearance to leave on each side. 
+ * This is used to construct the supports that hold the nut in place.
+ */
+function t_slot_nut_length(size = M4) =
+			(size == M4) ? 11.0 : -1;
+function t_slot_nut_clearance() = 0.5;
+
+/**
+ * The width and depth of the support blocks that hold the T-Slot nuts.
+ */
+function t_slot_nut_holder_width() = 5.0;
+function t_slot_nut_holder_depth() = 5.0;
+
+/**
  * The diameter of a hole that is tapped with a metrical thread.
  */
 function tap_base_diameter(size = M4) =

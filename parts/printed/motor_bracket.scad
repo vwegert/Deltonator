@@ -22,6 +22,9 @@ function _motor_bracket_outer_height() = motor_bracket_height();
 function _motor_bracket_outer_width()  = frame_wall_thickness() + makerslide_width() + frame_wall_thickness();
 function _motor_bracket_outer_depth()  = frame_wall_thickness() + makerslide_depth() + frame_wall_thickness();
 
+function _motor_bracket_t_slot_nut_holder_height() = (motor_bracket_height() - t_slot_nut_length()) / 2 
+                                                     - t_slot_nut_clearance();
+
 /**
  * The position of the plate that holds the motor.
  */
@@ -37,26 +40,49 @@ function _motor_bracket_plate_screw_dist_z() = (vmotor_height() - vmotor_screw_d
  * Not to be used outside of this file.
  */
 module _motor_bracket_rail_fixture() {
-	difference() {
-		// a block to hold the MakerSlide extrusion
-		translate([-frame_wall_thickness(), -_motor_bracket_outer_width()/2, 0])
-			cube([_motor_bracket_outer_depth(), _motor_bracket_outer_width(), _motor_bracket_outer_height()]);
-		// minus the hole for the MakerSlide extrusion
-		makerslide_punch(_motor_bracket_outer_height());
-		// minus the screw holes on the back
-		translate([-frame_wall_thickness()/2, -makerslide_slot_offset(), motor_bracket_screw_z_offset()])
-			rotate([0, 90, 0])
-				cylinder(d = frame_screw_size(), h = 2*frame_wall_thickness(), 
-						 center = true, $fn = frame_screw_hole_resolution());
-		translate([-frame_wall_thickness()/2, makerslide_slot_offset(), motor_bracket_screw_z_offset()])
-			rotate([0, 90, 0])
-				cylinder(d = frame_screw_size(), h = 2*frame_wall_thickness(), 
-						 center = true, $fn = frame_screw_hole_resolution());
-		// minus the screw holes on the side
-		translate([makerslide_slot_offset(), 0, motor_bracket_screw_z_offset()])
-			rotate([90, 0, 0])
-				cylinder(d = frame_screw_size(), h = 2*_motor_bracket_outer_width(), 
-						 center = true, $fn = frame_screw_hole_resolution());
+	union() {
+		difference() {
+			// a block to hold the MakerSlide extrusion
+			translate([-frame_wall_thickness(), -_motor_bracket_outer_width()/2, 0])
+				cube([_motor_bracket_outer_depth(), _motor_bracket_outer_width(), _motor_bracket_outer_height()]);
+			// minus the hole for the MakerSlide extrusion
+			makerslide_punch(_motor_bracket_outer_height());
+			// minus the screw holes on the back
+			translate([-frame_wall_thickness()/2, -makerslide_slot_offset(), motor_bracket_screw_z_offset()])
+				rotate([0, 90, 0])
+					cylinder(d = frame_screw_size(), h = 2*frame_wall_thickness(), 
+							 center = true, $fn = frame_screw_hole_resolution());
+			translate([-frame_wall_thickness()/2, makerslide_slot_offset(), motor_bracket_screw_z_offset()])
+				rotate([0, 90, 0])
+					cylinder(d = frame_screw_size(), h = 2*frame_wall_thickness(), 
+							 center = true, $fn = frame_screw_hole_resolution());
+			// minus the screw holes on the side
+			translate([makerslide_slot_offset(), 0, motor_bracket_screw_z_offset()])
+				rotate([90, 0, 0])
+					cylinder(d = frame_screw_size(), h = 2*_motor_bracket_outer_width(), 
+							 center = true, $fn = frame_screw_hole_resolution());
+		}
+
+		// plus the blocks to hold the T-Slot nut on the outer sides
+		translate([(makerslide_base_depth() - t_slot_nut_holder_width()) / 2, 
+			       makerslide_base_width() / 2 - t_slot_nut_holder_depth() + makerslide_clearance(), 
+			       0])
+			cube([t_slot_nut_holder_width(), t_slot_nut_holder_depth(), _motor_bracket_t_slot_nut_holder_height()]);
+		translate([(makerslide_base_depth() - t_slot_nut_holder_width()) / 2, 
+			       -makerslide_base_width() / 2 - makerslide_clearance(), 
+			       0])
+			cube([t_slot_nut_holder_width(), t_slot_nut_holder_depth(), _motor_bracket_t_slot_nut_holder_height()]);
+
+		// plus the blocks to hold the T-Slot nut on the back sides
+		translate([-makerslide_clearance(), 
+			       -makerslide_slot_offset() - t_slot_nut_holder_width()/2, 
+			       0])
+			cube([t_slot_nut_holder_depth(), t_slot_nut_holder_width(), _motor_bracket_t_slot_nut_holder_height()]);
+		translate([-makerslide_clearance(), 
+			       +makerslide_slot_offset() - t_slot_nut_holder_width()/2,
+			       0])
+			cube([t_slot_nut_holder_depth(), t_slot_nut_holder_width(), _motor_bracket_t_slot_nut_holder_height()]);
+
 	}
 }
 

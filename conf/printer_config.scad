@@ -45,7 +45,7 @@ FRAME_V_H_RAIL_SEPARATION = 8;
 FRAME_PART_VSLOT_DEPTH = 30;
 
 // Whether to use a horizontal rail at the base of the printer or not.
-FRAME_HORIZONTAL_BASE_RAIL = false;
+FRAME_HORIZONTAL_BASE_RAIL = true;
 
 // The depth of the holes in the foot that hold the MakerSlide extrusions. This is for the foot version that holds
 // a horizontal rail.
@@ -63,7 +63,8 @@ FRAME_FOOT_BOTTOM_SCREW_SIZE = M5;
 FRAME_MOTOR_BRACKET_HEIGHT = 25;
 
 // The height of the bracket that holds the intermediate level with the working surface (print bed).
-FRAME_BED_BRACKET_HEIGHT = 25; 
+// Will be A LOT easier to print if equals to 2020 extrusion width + FRAME_PART_WALL_THICKNESS
+FRAME_BED_BRACKET_HEIGHT = 23; 
 
 // The depth of the holes in the head that hold the MakerSlide extrusions.
 FRAME_HEAD_MAKERSLIDE_DEPTH = 35; 

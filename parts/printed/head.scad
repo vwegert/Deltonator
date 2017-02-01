@@ -151,10 +151,58 @@ module _head_top_plate() {
 			// minus the screw hole for the tensioner
 			translate([tensioner_depth()/2, 0, 0])
 				cylinder(d = M4, h = frame_wall_thickness() + 2 * epsilon(), $fn = frame_screw_hole_resolution());
-		}
+
+			// minus the screw hole for the end switch bracket
+			translate([end_switch_bracket_top_depth()/2,
+				       end_switch_bracket_y_offset() + end_switch_bracket_top_width()/2,
+				       -epsilon()])
+				cylinder(d = M3, h = frame_wall_thickness() + 2 * epsilon(), $fn = frame_screw_hole_resolution());
+
+	 	}
 	}
 
 }
+
+/**
+ * Adds the blocks that hold the T-Slot nuts in place.
+ */
+module _head_t_slot_nut_holders() {
+
+	// arbitrarily chosen, no special reason for this value
+	_t_slot_nut_holder_height = t_slot_nut_holder_width();
+
+	_t_slot_nut_holder_z_offset_side = _head_vertical_side_screw_height() 
+	                                   - _t_slot_nut_holder_height
+	                                   - frame_screw_size()/2
+	                                   - t_slot_nut_length()/2 
+	                                   - t_slot_nut_clearance();
+	_t_slot_nut_holder_z_offset_back = head_back_screw_z_offset() 
+	                                   - _t_slot_nut_holder_height
+	                                   - frame_screw_size()/2
+	                                   - t_slot_nut_length()/2 
+	                                   - t_slot_nut_clearance();
+
+	// plus the blocks to hold the T-Slot nut on the outer sides
+	translate([(makerslide_base_depth() - t_slot_nut_holder_width()) / 2, 
+		       makerslide_base_width() / 2 - t_slot_nut_holder_depth() + makerslide_clearance(), 
+		       _t_slot_nut_holder_z_offset_side])
+		cube([t_slot_nut_holder_width(), t_slot_nut_holder_depth(), _t_slot_nut_holder_height]);
+	translate([(makerslide_base_depth() - t_slot_nut_holder_width()) / 2, 
+		       -makerslide_base_width() / 2 - makerslide_clearance(), 
+		       _t_slot_nut_holder_z_offset_side])
+		cube([t_slot_nut_holder_width(), t_slot_nut_holder_depth(), _t_slot_nut_holder_height]);
+
+	// plus the blocks to hold the T-Slot nut on the back sides
+	translate([-makerslide_clearance(), 
+		       -makerslide_slot_offset() - t_slot_nut_holder_width()/2, 
+		       _t_slot_nut_holder_z_offset_back])
+		cube([t_slot_nut_holder_depth(), t_slot_nut_holder_width(), _t_slot_nut_holder_height]);
+	translate([-makerslide_clearance(), 
+		       +makerslide_slot_offset() - t_slot_nut_holder_width()/2,
+		       _t_slot_nut_holder_z_offset_back])
+		cube([t_slot_nut_holder_depth(), t_slot_nut_holder_width(), _t_slot_nut_holder_height]);
+
+} 
 
 /**
  * Creates the lower head assembly by rendering it from scratch. This module is not to be called externally, use 
@@ -219,6 +267,8 @@ module _render_head() {
 								 center = true, $fn = frame_screw_hole_resolution());				
 			}
 
+			// add the T-Slot nut holders
+			_head_t_slot_nut_holders();
 
 			// add the vertical guide blocks for the tensioner and bracket
 			_head_guides();
