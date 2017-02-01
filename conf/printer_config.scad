@@ -49,7 +49,7 @@ FRAME_HORIZONTAL_BASE_RAIL = true;
 
 // The depth of the holes in the foot that hold the MakerSlide extrusions. This is for the foot version that holds
 // a horizontal rail.
-FRAME_FOOT_RAIL_MAKERSLIDE_DEPTH = 25; 
+FRAME_FOOT_RAIL_MAKERSLIDE_DEPTH = 23; 
 
 // The depth of the holes in the foot that hold the MakerSlide extrusions. This is for the foot version that does not
 // hold a horizontal rail.
@@ -60,7 +60,7 @@ FRAME_FOOT_BOTTOM_SCREW_SIZE = M5;
 
 // The height of the bracket that holds the motor. WARNING: Increasing this might make it difficult to 
 // turn the screws that hold the motor.
-FRAME_MOTOR_BRACKET_HEIGHT = 25;
+FRAME_MOTOR_BRACKET_HEIGHT = 20;
 
 // The height of the bracket that holds the intermediate level with the working surface (print bed).
 // Will be A LOT easier to print if equals to 2020 extrusion width + FRAME_PART_WALL_THICKNESS
