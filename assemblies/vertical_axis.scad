@@ -16,7 +16,6 @@ include <../conf/part_sizes.scad>
 use <../parts/extrusions/makerslide.scad>
 use <../parts/printed/bed_bracket.scad>
 use <../parts/printed/carriage.scad>
-use <../parts/printed/carriage_ball_holder.scad>
 use <../parts/printed/end_switch_bracket.scad>
 use <../parts/printed/foot_rail.scad>
 use <../parts/printed/foot_norail.scad>

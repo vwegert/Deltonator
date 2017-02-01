@@ -60,7 +60,7 @@ module _foot_rail_horizontal_leg(right = false) {
 /**
  * Auxiliary module that creates the hardware for one of the vertical legs. Not to be used outside of this file.
  */
-module _foot_rail_horizontal_leg_hardware(right = false, side_screw = true, top_screw = false) { 
+module _foot_rail_horizontal_leg_hardware(right = false, side_screws = true, top_screws = false) { 
 	_screw_x = _foot_rail_horizontal_depth()-horizontal_screw_distance();
 	
 	if (side_screws) {
