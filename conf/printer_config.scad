@@ -69,6 +69,9 @@ FRAME_BED_BRACKET_HEIGHT = 23;
 // The depth of the holes in the head that hold the MakerSlide extrusions.
 FRAME_HEAD_MAKERSLIDE_DEPTH = 35; 
 
+// The clearance between the tensioner / bracket and its guide blocks on either side.
+FRAME_HEAD_GUIDE_CLEARANCE = 0.5;
+
 // ===== ENCLOSURE DIMENSIONS =========================================================================================
 
 // The material thickness of the solid (back and side) enclosure walls.

@@ -274,7 +274,7 @@ function head_guide_depth() = 6;
 /**
  * The clearance between the tensioner / bracket and its guide blocks on either side.
  */
-function head_guide_clearance() = 0.2;
+function head_guide_clearance() = FRAME_HEAD_GUIDE_CLEARANCE;
 
 /**
  * The position of the head piece on the vertical rail.
