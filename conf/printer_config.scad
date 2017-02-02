@@ -33,7 +33,7 @@ BED_DIAMETER = 300;
 // ===== DIMENSIONS OF THE PRINTED FRAME PARTS ========================================================================
 
 // The additional clearance to leave around the MakerSlide extrusion.
-MAKERSLIDE_CLEARANCE = 0.05;
+MAKERSLIDE_CLEARANCE = 0.25;
 
 // The thickness of the walls outside the extruded parts.
 FRAME_PART_WALL_THICKNESS = 3;
