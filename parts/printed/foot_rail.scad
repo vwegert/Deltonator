@@ -101,6 +101,32 @@ module _foot_rail_horizontal_leg_hardware(right = false, side_screws = true, top
 }
 
 /**
+ * Creates the bottom plate that the foot screw will screw into
+ */
+module _foot_rail_bottom_plate() {
+	_base_width = makerslide_width();	
+	_edge_width = _base_width + 2 * (foot_rail_plate_depth() * tan(30));
+	translate([_foot_rail_vertical_depth() - frame_wall_thickness(), 0, 0]) { 
+		difference() {
+			// the plate itself
+			linear_extrude(height = foot_rail_plate_height(), center = false) {
+				polygon(points = [
+					[ 0, -_base_width/2],
+					[ 0, _base_width/2],
+					[ foot_rail_plate_depth(), _edge_width/2],
+					[ foot_rail_plate_depth(), -_edge_width/2]
+				]);
+			}
+			// minus the screw hole for the external foot
+			translate([foot_rail_plate_depth()/2, 0, -epsilon()])
+				cylinder(d = tap_base_diameter(foot_rail_bottom_screw_size()), 
+					     h = foot_rail_plate_height() + 2 * epsilon(), 
+					     $fn = frame_screw_hole_resolution());
+	 	}
+	}
+}
+
+/**
  * Creates the lower foot assembly by rendering it from scratch. This module is not to be called externally, use 
  * foot() instead.
  */
@@ -157,6 +183,9 @@ module _render_foot_rail() {
 						cylinder(d = frame_screw_head_size(), h = _inset_depth, 
 								 center = true, $fn = frame_screw_hole_resolution());				
 			}
+
+			// plus the foot plate
+			_foot_rail_bottom_plate();
 
 			// plus the blocks to hold the T-Slot nut on the outer sides
 			translate([(makerslide_base_depth() - t_slot_nut_holder_width()) / 2, 

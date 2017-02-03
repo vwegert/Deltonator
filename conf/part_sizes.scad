@@ -224,7 +224,8 @@ function tap_base_diameter(size = M4) =
 			(size == M2) ? 1.6 :
 			(size == M3) ? 2.5 :
 	        (size == M4) ? 3.3 :
-	        (size == M5) ? 4.2 : -1;	
+	        (size == M5) ? 4.2 : 
+	        (size == M8) ? 6.8 : -1;	
 
 // ===== VERTICAL AXIS NEMA 17 STEPPER MOTORS ==========================================================================
 

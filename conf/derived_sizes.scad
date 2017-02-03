@@ -146,9 +146,20 @@ function foot_vertical_back_screw_height() =
   foot_with_rail() ? foot_rail_vertical_back_screw_height() : foot_norail_vertical_back_screw_height();
 
 /**
+ * The depth of the plate in the foot that the external foot will screw into.
+ */
+function foot_rail_plate_depth() = FRAME_FOOT_RAIL_PLATE_DEPTH;
+
+/**
+ * The thickness of the plate in the foot that the external foot will screw into.
+ */
+function foot_rail_plate_height() = FRAME_FOOT_RAIL_PLATE_HEIGHT;
+
+/**
  * The size of the screws that can be used to mount the foot to the underlying surface.
  */
-function foot_norail_bottom_screw_size() = FRAME_FOOT_BOTTOM_SCREW_SIZE;
+function foot_norail_bottom_screw_size() = FRAME_FOOT_NORAIL_BOTTOM_SCREW_SIZE;
+function foot_rail_bottom_screw_size() = FRAME_FOOT_RAIL_BOTTOM_SCREW_SIZE;
 
 // ----- motor bracket ------------------------------------------------------------------------------------------------
 

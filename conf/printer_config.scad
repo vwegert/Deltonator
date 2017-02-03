@@ -51,12 +51,22 @@ FRAME_HORIZONTAL_BASE_RAIL = true;
 // a horizontal rail.
 FRAME_FOOT_RAIL_MAKERSLIDE_DEPTH = 23; 
 
+// The depth of the plate in the foot that the external foot will screw into.
+FRAME_FOOT_RAIL_PLATE_DEPTH = 15;
+
+// The thickness of the plate in the foot that the external foot will screw into.
+// Hint: Easier to print (although more material is required) if equals to FRAME_FOOT_RAIL_MAKERSLIDE_DEPTH.
+FRAME_FOOT_RAIL_PLATE_HEIGHT = 23;
+
 // The depth of the holes in the foot that hold the MakerSlide extrusions. This is for the foot version that does not
 // hold a horizontal rail.
 FRAME_FOOT_NORAIL_MAKERSLIDE_DEPTH = 17.5; 
 
 // The size of the screws that can be used to mount the foot to the underlying surface.
-FRAME_FOOT_BOTTOM_SCREW_SIZE = M5;
+FRAME_FOOT_NORAIL_BOTTOM_SCREW_SIZE = M5;
+
+// The size of the screws that can be used to mount the foot to the underlying surface.
+FRAME_FOOT_RAIL_BOTTOM_SCREW_SIZE = M8;
 
 // The height of the bracket that holds the motor. WARNING: Increasing this might make it difficult to 
 // turn the screws that hold the motor.

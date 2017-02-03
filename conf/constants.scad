@@ -23,6 +23,7 @@ M2 = 2;
 M3 = 3;
 M4 = 4;
 M5 = 5;
+M8 = 8;
 
 /** 
  * Aliases for NEMA stepper motors.
