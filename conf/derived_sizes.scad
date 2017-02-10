@@ -313,7 +313,8 @@ function carriage_plate_border_width() = CARRIAGE_PLATE_BORDER_WIDTH;
 /** 
  * The horizontal and vertical distance of the center points of the carriage wheels.
  */
-function carriage_wheel_distance_x() = vwheel_pair_center_distance(); // FIXED otherwise it won't fit the rail!
+function carriage_wheel_distance_extra_clearance() = 0.2;
+function carriage_wheel_distance_x() = vwheel_pair_center_distance() + carriage_wheel_distance_extra_clearance(); 
 function carriage_wheel_distance_y() = vwheel_pair_center_distance();
 
 /**
@@ -340,12 +341,12 @@ function carriage_plate_edge_resolution() = 16;
  * The positions of the holes that the V-Wheels will be mounted on.
  * Wheel 1 is the top left wheel, 2 is the bottom left one, 3 is the adjustable wheel on the right-hand side.
  */
-function carriage_wheel1_y() = -vwheel_pair_center_distance()/2;
+function carriage_wheel1_y() = -carriage_wheel_distance_x()/2;
 function carriage_wheel1_z() = carriage_plate_height() - 
                                 (vwheel_max_mounting_hole_size()/2 + carriage_plate_border_width());
-function carriage_wheel2_y() = -vwheel_pair_center_distance()/2;
+function carriage_wheel2_y() = -carriage_wheel_distance_x()/2;
 function carriage_wheel2_z() = vwheel_max_mounting_hole_size()/2 + carriage_plate_border_width();
-function carriage_wheel3_y() = vwheel_pair_center_distance()/2;
+function carriage_wheel3_y() = carriage_wheel_distance_x()/2;
 function carriage_wheel3_z() = carriage_plate_height() / 2;
 
 /**
@@ -384,7 +385,7 @@ function carriage_upper_belt_holder_z() = carriage_plate_height()/2 +
  * The position is relative to the origin of the result of carriage_belt_holder().
  */
 function carriage_belt_holder_guard_hole_diameter() = 2.5; // for M3 thread
-function carriage_belt_holder_guard_hole_distance() = 1.0;
+function carriage_belt_holder_guard_hole_distance() = 3.5;
 function carriage_belt_holder_guard_x() = -carriage_belt_holder_channel_width() / 2 -
                                            carriage_belt_holder_guard_hole_distance() - 
                                            carriage_belt_holder_guard_hole_diameter() / 2;

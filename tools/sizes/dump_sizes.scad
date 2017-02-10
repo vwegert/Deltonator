@@ -158,6 +158,7 @@ echo(head_back_screw_z_offset = head_back_screw_z_offset());
 echo(head_back_screw_height = head_back_screw_height());
 echo(carriage_plate_thickness = carriage_plate_thickness());
 echo(carriage_plate_border_width = carriage_plate_border_width());
+echo(carriage_wheel_distance_extra_clearance = carriage_wheel_distance_extra_clearance());
 echo(carriage_wheel_distance_x = carriage_wheel_distance_x());
 echo(carriage_wheel_distance_y = carriage_wheel_distance_y());
 echo(carriage_plate_width = carriage_plate_width());

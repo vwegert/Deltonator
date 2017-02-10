@@ -289,11 +289,6 @@ module _render_carriage() {
 						rotate([0, -carriage_ball_holder_angle(), 0]) {
 							_carriage_ball_holder();
 						}
-		// // minus the cutouts for the ball holders
-		// translate([carriage_plate_thickness(), -rod_distance()/2, carriage_plate_height()])
-		// 	_carriage_ball_holder_cutout();
-		// translate([carriage_plate_thickness(), rod_distance()/2, carriage_plate_height()])
-		// 	_carriage_ball_holder_cutout();
 				}
 
 				// minus the holes for the belt fixing screws
