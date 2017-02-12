@@ -468,6 +468,13 @@ function carriage_x_offset() = washer_thickness(M5) + epsilon() +
                            makerslide_base_depth();
 
 /**
+ * The size and resolution of the groove for the belt on the side opposite to the belt holders.
+ */
+function carriage_groove_width() = 5;
+function carriage_groove_depth() = 1.5;
+function carriage_groove_resolution() = 16;
+
+/**
  * The dimensions of the ball holder.
  */
 function carriage_ball_holder_width() = ball_diameter();

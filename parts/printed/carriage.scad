@@ -75,6 +75,20 @@ module _carriage_base_plate() {
 		translate([0, -carriage_tensioner_gap_width()/2, carriage_plate_height() - carriage_tensioner_gap_height()])
 			cube([carriage_plate_thickness(), carriage_tensioner_gap_width(), carriage_tensioner_gap_height()]);
 
+		// minus a groove to leave some room for the belt
+		translate([carriage_plate_thickness(), gt2_pulley_inner_diameter_min()/2, 0]) {
+			hull() {
+				translate([0, -carriage_groove_width()/2 + carriage_groove_depth(), 0])
+					cylinder(r = carriage_groove_depth(), 
+							 h = carriage_plate_height(),
+							 $fn = carriage_groove_resolution());
+				translate([0, carriage_groove_width()/2 - carriage_groove_depth(), 0])
+					cylinder(r = carriage_groove_depth(), 
+							 h = carriage_plate_height(),
+							 $fn = carriage_groove_resolution());
+			}
+		}
+
 	}
 }
 
