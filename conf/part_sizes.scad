@@ -154,7 +154,19 @@ function select_next_screw_length(size, min_length) =
 		(min_length <= 45) ? 45 :
 		(min_length <= 55) ? 55 :
 		(min_length <= 65) ? 65 : -min_length
+	: (size == M8) ?
+		(min_length <= 30) ? 30 : -min_length
 	: -1000;
+
+/**
+ * The thickness of hex screw heads of various dimensions (ISO 4017).
+ */
+function hex_screw_head_thickness(size = M4) =
+			(size == M2) ? 1.4 :
+			(size == M3) ? 2.0 :
+	        (size == M4) ? 2.8 :
+	        (size == M5) ? 3.5 :
+	        (size == M8) ? 5.3 : -1;	
 
 /**
  * The thickness of washers of various dimensions (normal = ISO 7089, large = ISO 7093)
@@ -162,11 +174,13 @@ function select_next_screw_length(size, min_length) =
 function washer_thickness(size = M4) =
 			(size == M3) ? 0.5 :
 	        (size == M4) ? 0.8 :
-	        (size == M5) ? 1.0 : -1;	
+	        (size == M5) ? 1.0 :
+	        (size == M8) ? 1.6 : -1;	
 function washer_thickness_large(size = M4) =
 			(size == M3) ? 0.8 :
 	        (size == M4) ? 1.0 :
-	        (size == M5) ? 1.2 : -1;	
+	        (size == M5) ? 1.2 :
+	        (size == M8) ? 2.0 : -1;	
 
 /**
  * The diameter of washers of various dimensions (normal = ISO 7089, large = ISO 7093)
@@ -174,29 +188,33 @@ function washer_thickness_large(size = M4) =
 function washer_diameter(size = M4) =
 			(size == M3) ?  7 :
 	        (size == M4) ?  9 :
-	        (size == M5) ? 10 : -1;	
+	        (size == M5) ? 10 :
+	        (size == M8) ? 16 : -1;	
 function washer_diameter_large(size = M4) =
 			(size == M3) ?  9 :
 	        (size == M4) ? 12 :
-	        (size == M5) ? 15 : -1;	
+	        (size == M5) ? 15 :
+	        (size == M5) ? 24 : -1;	
 
 /**
- * The thickness of nuts of various dimensions.
+ * The thickness of nuts of various dimensions (ISO 4032).
  */
 function nut_thickness(size = M4) =
 			(size == M2) ? 1.6 :
 			(size == M3) ? 2.4 :
 	        (size == M4) ? 3.2 :
-	        (size == M5) ? 4.7 : -1;	
+	        (size == M5) ? 4.7 :
+	        (size == M8) ? 6.8 : -1;	
 
 /**
- * The key width of nuts of various dimensions.
+ * The key width of nuts of various dimensions (ISO 4032).
  */
 function nut_key_width(size = M4) =
-			(size == M2) ? 4.0 :
-			(size == M3) ? 5.5 :
-	        (size == M4) ? 7.0 :
-	        (size == M5) ? 8.0 : -1;	
+			(size == M2) ?  4.0 :
+			(size == M3) ?  5.5 :
+	        (size == M4) ?  7.0 :
+	        (size == M5) ?  8.0 :
+	        (size == M8) ? 13.0 : -1;	
 
 /**
  * The outer (subscribing) diameter of nuts of various dimensions.

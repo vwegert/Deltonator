@@ -146,20 +146,64 @@ function foot_vertical_back_screw_height() =
   foot_with_rail() ? foot_rail_vertical_back_screw_height() : foot_norail_vertical_back_screw_height();
 
 /**
- * The depth of the plate in the foot that the external foot will screw into.
+ * The depth of the plate in the foot that the foot plate will screw into.
  */
 function foot_rail_plate_depth() = FRAME_FOOT_RAIL_PLATE_DEPTH;
 
 /**
- * The thickness of the plate in the foot that the external foot will screw into.
+ * The thickness of the plate in the foot that the foot plate will screw into.
  */
 function foot_rail_plate_height() = FRAME_FOOT_RAIL_PLATE_HEIGHT;
 
 /**
- * The size of the screws that can be used to mount the foot to the underlying surface.
+ * The distance of the hole from the origin of the foot bracket in Y direction.
  */
-function foot_norail_bottom_screw_size() = FRAME_FOOT_NORAIL_BOTTOM_SCREW_SIZE;
-function foot_rail_bottom_screw_size() = FRAME_FOOT_RAIL_BOTTOM_SCREW_SIZE;
+function foot_rail_plate_hole_y_offset() = makerslide_depth() + frame_wall_thickness() + foot_rail_plate_depth()/2;
+
+// ----- foot plate ---------------------------------------------------------------------------------------------------
+
+/**
+ * The size of the screw that holds the foot plate.
+ */
+function foot_plate_screw_size() = FRAME_FOOT_PLATE_SCREW_SIZE;
+function foot_plate_screw_min_length() = foot_rail_plate_height();
+
+/**
+ * The clearance to leave around the screw head.
+ */
+function foot_plate_screw_head_clearance() = FRAME_FOOT_PLATE_SCREW_HEAD_CLEARANCE;
+
+/**
+ * The resolution the screw hole is rendered with.
+ */
+function foot_plate_screw_hole_resolution() = 32;
+
+/**
+ * The diameter of the adjustable foot that screws into the foot bracket. 
+ * Note that the polygon is INscribed into this circumference.
+ */
+function foot_plate_diameter() = FRAME_FOOT_PLATE_DIAMETER;
+
+/**
+ * The number of sides to the adjustable foot that screws into the foot bracket.
+ */
+function foot_plate_sides() = FRAME_FOOT_PLATE_SIDES;
+
+/**
+ * The thickness of the adjustable foot that screws into the foot bracket.
+ */ 
+function foot_plate_thickness() = FRAME_FOOT_PLATE_THICKNESS;
+
+/**
+ * The depth of the hole to hold the screw head.
+ */
+function foot_plate_screw_recess_depth() = ceil(hex_screw_head_thickness(foot_plate_screw_size()));
+
+/**
+ * The relative position of the foot plate when mounted under the foot bracket.
+ */
+function foot_plate_x_offset() = foot_rail_plate_hole_y_offset();
+function foot_plate_z_offset() = - foot_plate_screw_min_length() / 2;
 
 // ----- motor bracket ------------------------------------------------------------------------------------------------
 

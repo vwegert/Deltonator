@@ -17,6 +17,7 @@ use <../parts/extrusions/makerslide.scad>
 use <../parts/printed/bed_bracket.scad>
 use <../parts/printed/carriage.scad>
 use <../parts/printed/end_switch_bracket.scad>
+use <../parts/printed/foot_plate.scad>
 use <../parts/printed/foot_rail.scad>
 use <../parts/printed/foot_norail.scad>
 use <../parts/printed/head.scad>
@@ -50,6 +51,11 @@ module _vertical_axis_fixed_components() {
 	if (foot_with_rail()) {
 		foot_rail();
 		foot_rail_hardware();
+		// the foot plate beneath the foot bracket
+		translate([foot_plate_x_offset(), 0, foot_plate_z_offset()]) {
+			foot_plate();
+			foot_plate_hardware();
+		}
 	} else {
 		foot_norail();
 		foot_norail_hardware();		

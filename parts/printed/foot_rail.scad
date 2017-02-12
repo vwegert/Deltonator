@@ -119,7 +119,7 @@ module _foot_rail_bottom_plate() {
 			}
 			// minus the screw hole for the external foot
 			translate([foot_rail_plate_depth()/2, 0, -epsilon()])
-				cylinder(d = tap_base_diameter(foot_rail_bottom_screw_size()), 
+				cylinder(d = tap_base_diameter(foot_plate_screw_size()), 
 					     h = foot_rail_plate_height() + 2 * epsilon(), 
 					     $fn = frame_screw_hole_resolution());
 	 	}

@@ -63,10 +63,21 @@ FRAME_FOOT_RAIL_PLATE_HEIGHT = 23;
 FRAME_FOOT_NORAIL_MAKERSLIDE_DEPTH = 17.5; 
 
 // The size of the screws that can be used to mount the foot to the underlying surface.
-FRAME_FOOT_NORAIL_BOTTOM_SCREW_SIZE = M5;
+FRAME_FOOT_PLATE_SCREW_SIZE = M8;
 
-// The size of the screws that can be used to mount the foot to the underlying surface.
-FRAME_FOOT_RAIL_BOTTOM_SCREW_SIZE = M8;
+// The clearance to leave around the screw head on all sides.
+FRAME_FOOT_PLATE_SCREW_HEAD_CLEARANCE = 0.25;
+
+// The diameter of the adjustable foot that screws into the foot bracket. 
+// Note that the polygon is INscribed into this circumference.
+FRAME_FOOT_PLATE_DIAMETER = 50;
+
+// The number of sides to the adjustable foot that screws into the foot bracket.
+FRAME_FOOT_PLATE_SIDES = 8;
+
+// The thickness of the adjustable foot that screws into the foot bracket.
+// Keep this larger than the head of the screw used to fix it, or you will run into trouble.
+FRAME_FOOT_PLATE_THICKNESS = 6.5;
 
 // The height of the bracket that holds the motor. WARNING: Increasing this might make it difficult to 
 // turn the screws that hold the motor.

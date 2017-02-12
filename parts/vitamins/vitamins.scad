@@ -276,7 +276,8 @@ module screw(size, length = -1, min_length = -1, max_length = -1) {
 	_size = (size == M2) ? 2 :
 	        (size == M3) ? 3 :
 	        (size == M4) ? 4 :
-	        (size == M5) ? 5 : -1;
+	        (size == M5) ? 5 :
+	        (size == M8) ? 8 : -1;
 	if (_size < 0) {
 		echo(str("ERROR: Unknown screw size '", size, "'."));
 	} else {

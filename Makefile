@@ -89,6 +89,7 @@ printed: vitamins \
 	parts/printed/effector_base.stl \
 	parts/printed/enclosure_side_bracket.stl \
 	parts/printed/end_switch_bracket.stl \
+	parts/printed/foot_plate.stl \
 	parts/printed/foot_rail.stl \
 	parts/printed/foot_norail.stl \
 	parts/printed/head.stl \
@@ -168,6 +169,7 @@ vitamins: \
 	parts/vitamins/mechanic/screw_M5x45.stl \
 	parts/vitamins/mechanic/screw_M5x55.stl \
 	parts/vitamins/mechanic/screw_M5x65.stl \
+	parts/vitamins/mechanic/screw_M8x30.stl \
 	parts/vitamins/mechanic/spring_5x20.stl \
 	parts/vitamins/mechanic/vwheel_dbl_bearing.stl \
 	parts/vitamins/mechanic/vwheel_spacer.stl \

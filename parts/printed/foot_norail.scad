@@ -47,7 +47,7 @@ module _foot_norail_horizontal_leg(right = false) {
 		// minus the screw hole on the bottom side
 		_screw_x = _foot_norail_horizontal_depth() - horizontal_screw_distance();
 		translate([_screw_x, vslot_2020_depth()/2 + (right ? frame_wall_thickness() : 0), frame_wall_thickness()/2 + epsilon()])
-				cylinder(d = foot_norail_bottom_screw_size(), h = frame_wall_thickness() + 2 * epsilon(), 
+				cylinder(d = foot_plate_screw_size(), h = frame_wall_thickness() + 2 * epsilon(), 
 		                 center = true, $fn = frame_screw_hole_resolution());
 	}
 }
