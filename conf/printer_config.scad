@@ -98,8 +98,14 @@ FRAME_HEAD_GUIDE_CLEARANCE = 0.5;
 // The material thickness of the solid (back and side) enclosure walls.
 ENCLOSURE_SOLID_THICKNESS = 4;
 
+// The thickness of the insulation layer between the enclosure walls and the brackets they are mounted to.
+ENCLOSURE_INSULATION_THICKNESS = 2;
+
 // The gap between the horizontal extrusions and the enclosure side walls.
 ENCLOSURE_SIDE_GAP = 40;
+
+// The factor used to round down the enclosure plate widths.
+ENCLOSURE_ROUND_DOWN_TO = 1;
 
 // The thickness of the brackets that hold the outer enclosure walls.
 ENCLOSURE_BRACKET_THICKNESS = 6;

@@ -44,7 +44,7 @@ module _enclosure_short_side_screw() {
 	translate([-washer_thickness(frame_screw_size()) - epsilon(), 0, 0]) 
 		washer(frame_screw_size());
 	translate([-washer_thickness(frame_screw_size()) - 2 * epsilon(), 0, 0]) 
-		screw(size = frame_screw_size(), length = 8 + enclosure_short_side_thickness());
+		screw(size = frame_screw_size(), min_length = 8 + enclosure_short_side_thickness() + enclosure_insulation_thickness());
 	nut_tslot(frame_screw_size());	
 }
 
@@ -54,19 +54,10 @@ module _enclosure_short_side_screw() {
 module _render_enclosure_short_side_plate() {
 	difference() {
 		// the base plate
-		translate([0, -enclosure_short_side_width()/2 - enclosure_short_side_additional_width(), 0])
-			cube([enclosure_short_side_thickness(), 
-				  enclosure_short_side_width() + 2 * enclosure_short_side_additional_width(),
-				  enclosure_short_side_height()]);
-
-		// minus the beveled edges
 		translate([0, -enclosure_short_side_width()/2, 0])
-			rotate([0, 0, -30])
-				translate([0, -enclosure_short_side_thickness(), 0])
-					cube([2 * enclosure_short_side_thickness(), enclosure_short_side_thickness(), enclosure_short_side_height()]);
-		translate([0, enclosure_short_side_width()/2, 0])
-		 	rotate([0, 0, 30])
-				cube([2 * enclosure_short_side_thickness(), enclosure_short_side_thickness(), enclosure_short_side_height()]);
+			cube([enclosure_short_side_thickness(), 
+				  enclosure_short_side_width(),
+				  enclosure_short_side_height()]);
 
 		// minus the mounting holes through the foot
 		translate([0, -makerslide_slot_offset(), foot_vertical_back_screw_height()])

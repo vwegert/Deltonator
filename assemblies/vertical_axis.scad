@@ -103,7 +103,7 @@ module _vertical_axis_fixed_components() {
 					inner_diameter_end1 = gt2_pulley_inner_diameter_min());// bearing_f623zz_outer_diameter());
 
 	// the enclosure plate mounted to the vertical rail
-	translate([-enclosure_short_side_thickness() - frame_wall_thickness() - epsilon(), 0, 0]) {
+	translate([-enclosure_short_side_thickness() - enclosure_insulation_thickness() - frame_wall_thickness() - epsilon(), 0, 0]) {
 		enclosure_short_side_plate();
 		enclosure_short_side_plate_hardware();
 	}

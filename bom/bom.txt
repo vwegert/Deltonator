@@ -68,14 +68,15 @@ Hex Socket Head Cap Screw (DIN 912 / ISO 4762)
     vertical_axis_assembly >> carriage_hardware >> screw                     (6)
   M4 x 10 mm...................................................................... 3
     horizontal_assembly >> screw                                             (3)
-  M4 x 12 mm...................................................................... 66
-    horizontal_assembly >> enclosure_long_side_plate_hardware >> screw       (8)
+  M4 x 12 mm...................................................................... 40
     horizontal_assembly >> enclosure_side_bracket_hardware >> screw          (16)
     vertical_axis_assembly >> bed_bracket_hardware >> screw                  (6)
-    vertical_axis_assembly >> enclosure_short_side_plate_hardware >> screw   (18)
     vertical_axis_assembly >> foot_rail_hardware >> screw                    (6)
     vertical_axis_assembly >> head_hardware >> screw                         (6)
     vertical_axis_assembly >> motor_bracket_hardware >> screw                (6)
+  M4 x 16 mm...................................................................... 26
+    horizontal_assembly >> enclosure_long_side_plate_hardware >> screw       (8)
+    vertical_axis_assembly >> enclosure_short_side_plate_hardware >> screw   (18)
   M4 x 25 mm...................................................................... 3
     vertical_axis_assembly >> tensioner_hardware >> screw                    (3)
   M4 x 8 mm....................................................................... 21
@@ -168,11 +169,11 @@ Bed Plate
 ===== Sheet / Multiplex Plywood =======================================================
 
 Enclosure Long Side Plate
-  418.561 x 800 x 4  mm........................................................... 2
+  411 x 800 x 4  mm............................................................... 2
     horizontal_assembly                                                      (2)
 
 Enclosure Short Side Plate
-  147.387 x 800 x 4  mm........................................................... 3
+  155 x 800 x 4  mm............................................................... 3
     vertical_axis_assembly                                                   (3)
 
 ===== Special Mechanic Parts ==========================================================

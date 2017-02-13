@@ -158,7 +158,7 @@ module _horizontal_assembly(side = A, with_connectors = false) {
 
 	// the enclosure walls on the sides opposing the A and B rails
 	if ((side == A) || (side == B)) {
-		translate([-enclosure_long_side_gap() - enclosure_solid_thickness() - epsilon(), horizontal_extrusion_length()/2, 0]) {
+		translate([-enclosure_long_side_gap() - enclosure_insulation_thickness() - enclosure_solid_thickness() - epsilon(), horizontal_extrusion_length()/2, 0]) {
 			enclosure_long_side_plate();
 			enclosure_long_side_plate_hardware();
 		}		

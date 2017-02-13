@@ -44,7 +44,7 @@ module _enclosure_long_side_screw() {
 	translate([-washer_thickness(frame_screw_size()) - epsilon(), 0, 0]) 
 		washer(frame_screw_size());
 	translate([-washer_thickness(frame_screw_size()) - 2 * epsilon(), 0, 0]) 
-		screw(size = frame_screw_size(), length = 8 + enclosure_long_side_thickness());
+		screw(size = frame_screw_size(), min_length = 8 + enclosure_long_side_thickness() + enclosure_insulation_thickness());
 	nut_tslot(frame_screw_size());	
 }
 
