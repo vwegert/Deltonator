@@ -138,7 +138,7 @@ ROD_INNER_DIAMETER = 0;
 ROD_CLEARANCE = 0.25;
 
 // The thickness of the outer wall around the rod.
-ROD_HOLDER_WALL_THICKNESS = 2;
+ROD_HOLDER_WALL_THICKNESS = 2.2;
 
 // The depth of the insets that hold the rods.
 ROD_HOLDER_DEPTH = 10;
