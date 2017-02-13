@@ -694,6 +694,21 @@ function magnet_holder_rod_wall_thickness() = ROD_HOLDER_WALL_THICKNESS;
 function magnet_holder_rod_holder_depth() = ROD_HOLDER_DEPTH;
 
 /**
+ * The size of the text on the outside of the rod holders.
+ */
+function magnet_holder_text_size() = ROD_HOLDER_TEXT_SIZE;
+
+/**
+ * The depth of the text on the outside of the rod holders.
+ */
+function magnet_holder_text_depth() = ROD_HOLDER_TEXT_DEPTH;
+
+/**
+ * The rendering resolution of the text on the outside of the rod holders.
+ */
+function magnet_holder_text_resolution() = 32;
+
+/**
  * The additional clearance to leave between the rod and the holder.
  */
 function magnet_holder_rod_clearance() = ROD_CLEARANCE;

@@ -33,4 +33,7 @@ module magnet_holder_effector_hardware() {
 	_magnet_holder_hardware(ball_clearance = magnet_holder_bottom_ball_clearance());
 }
 
-_render_magnet_holder(ball_clearance = magnet_holder_bottom_ball_clearance(), debug = false);
+_render_magnet_holder(ball_clearance = magnet_holder_bottom_ball_clearance(), 
+	                  label_text = "E",
+	                  rotate_label = 180,
+	                  debug = false);

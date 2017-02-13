@@ -129,19 +129,25 @@ CARRIAGE_BALL_HOLDER_ANGLE = 10;
 ROD_DISTANCE = 65;
 
 // The outer diameter of the rods.
-ROD_OUTER_DIAMETER = 6;
+ROD_OUTER_DIAMETER = 8;
 
 // The inner diameter of the rods. Set to 0 if the rods are not hollow.
 ROD_INNER_DIAMETER = 0;
 
 // The additional clearance to leave between the rod and the holder.
-ROD_CLEARANCE = 0.05;
+ROD_CLEARANCE = 0.25;
 
 // The thickness of the outer wall around the rod.
 ROD_HOLDER_WALL_THICKNESS = 2;
 
 // The depth of the insets that hold the rods.
 ROD_HOLDER_DEPTH = 10;
+
+// The size of the text on the outside of the rod holders.
+ROD_HOLDER_TEXT_SIZE = 9;
+
+// The depth of the text on the outside of the rod holders.
+ROD_HOLDER_TEXT_DEPTH = 0.5;
 
 // The minimum angle of the arms.
 ROD_MIN_ANGLE = 18;

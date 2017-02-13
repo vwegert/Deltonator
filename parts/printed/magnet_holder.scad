@@ -17,7 +17,7 @@ use <../../parts/vitamins/vitamins.scad>
  * Creates the magnet holder assembly by rendering it from scratch. This module is not to be called externally, use 
  * magnet_holder() instead.
  */
-module _render_magnet_holder(ball_clearance, debug = false) {
+module _render_magnet_holder(ball_clearance, label_text, rotate_label = 0, debug = false) {
 	color_printed_magnet_holders() {
 
 		// the horizontal magnet holder part
@@ -46,6 +46,17 @@ module _render_magnet_holder(ball_clearance, debug = false) {
 			cube([magnet_holder_arm_thickness(), 
 				  magnet_holder_arm_width(), 
 				  magnet_holder_arm_length(ball_clearance) - magnet_holder_arm_thickness()/2]);
+
+		// the label text on the outside of the arm
+		translate([magnet_holder_top_diameter()/2 + magnet_holder_arm_clearance() + magnet_holder_arm_thickness(), 0, 0])
+			rotate([90, rotate_label, 90])
+				linear_extrude(height = magnet_holder_text_depth()) {
+					text(text = label_text, 
+						 size = magnet_holder_text_size(), 
+						 halign ="center", 
+						 valign = "center",
+						 $fn = magnet_holder_text_resolution());
+				}
 
 		// the rounded edge between the magnet holder and the vertical arm
 		translate([magnet_holder_top_diameter()/2 + magnet_holder_arm_clearance() + magnet_holder_arm_thickness()/2,

@@ -33,4 +33,7 @@ module magnet_holder_carriage_hardware() {
 	_magnet_holder_hardware(ball_clearance = magnet_holder_top_ball_clearance());
 }
 
-_render_magnet_holder(ball_clearance = magnet_holder_top_ball_clearance(), debug = false);
+_render_magnet_holder(ball_clearance = magnet_holder_top_ball_clearance(), 
+	                  label_text = "C", 
+	                  rotate_label = 0,
+	                  debug = false);
