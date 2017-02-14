@@ -93,6 +93,7 @@ printed: vitamins \
 	parts/printed/foot_rail.stl \
 	parts/printed/foot_norail.stl \
 	parts/printed/head.stl \
+	parts/printed/ir_sensor_housing.stl \
 	parts/printed/magnet_holder_carriage.stl \
 	parts/printed/magnet_holder_effector.stl \
 	parts/printed/motor_bracket.stl \
@@ -126,11 +127,13 @@ vitamins: \
 	parts/vitamins/electromechanic/stepper_nema23_long.stl \
 	parts/vitamins/electromechanic/stepper_nema23_medium.stl \
 	parts/vitamins/electromechanic/stepper_nema23_short.stl \
+	parts/vitamins/electronic/escher_ir_sensor.stl \
 	parts/vitamins/mechanic/ball.stl \
 	parts/vitamins/mechanic/bearing_f623.stl \
 	parts/vitamins/mechanic/bearing_625.stl \
 	parts/vitamins/mechanic/extruder_mount.stl \
 	parts/vitamins/mechanic/gt2_pulley_20t_5mm.stl \
+	parts/vitamins/mechanic/magnet_cylinder.stl \
 	parts/vitamins/mechanic/magnet_ring.stl \
 	parts/vitamins/mechanic/nut_M2.stl \
 	parts/vitamins/mechanic/nut_M3.stl \

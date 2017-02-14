@@ -151,6 +151,14 @@ module color_rod() {
 } 
 
 /**
+ * The color for electronic component placeholders
+ */
+module color_electronics() {
+	color("Green")
+		children();
+} 
+
+/**
  * The color of punches and other objects that are usually not intended to be rendered as such, but rather to be
  * used as subtractive objects.
  */

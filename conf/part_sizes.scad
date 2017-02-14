@@ -455,3 +455,42 @@ function extruder_mount_base_screw_dist_length() = 24;
  */
 function extruder_mount_base_screw_edge_dist_width() = (extruder_mount_bracket_width() - extruder_mount_base_screw_dist_width()) / 2;
 function extruder_mount_base_screw_edge_dist_length() = 6; // TODO verify this value
+
+// ===== ESCHER 3D MINI DIFFERENTIAL IR HEIGHT SENSOR =================================================================
+
+/**
+ * The size of the sensor PCB.
+ */
+function escher_ir_sensor_pcb_width() = 24;
+function escher_ir_sensor_pcb_height() = 18;
+
+/**
+ * The relative position and size of the mounting holes.
+ */
+function escher_ir_sensor_hole_size() = M3;
+function escher_ir_sensor_hole_offset_side() = 2.5;
+function escher_ir_sensor_hole_offset_top() = 2.5;
+
+/**
+ * The sizes of the components (excluding the connector header) - or rather the clearance required to 
+ * fit a case around the components.
+ */
+function escher_ir_sensor_pcb_thickness() = 1.0;
+function escher_ir_sensor_pcb_max_pin_length() = 2.25;
+function escher_ir_sensor_pcb_max_component_height() = 5.5;
+
+/**
+ * The width of the area on the left and right back side that can be used to rest the board on.
+ */
+function escher_ir_sensor_pcb_bottom_side_clearance() = 5.0; 
+
+/**
+ * The width and height of the area on the top of the component side that can be used to hold the board in place.
+ */
+function escher_ir_sensor_pcb_top_edge_clearance() = 5.0;
+
+/**
+ * The size of the small magnets used to hold the height sensor.
+ */
+function escher_ir_sensor_magnet_diameter() = 6.0;
+function escher_ir_sensor_magnet_height() = 3.0;

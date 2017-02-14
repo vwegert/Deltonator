@@ -70,6 +70,20 @@ module switch_ss5gl() {
 				import(file = "electromechanic/switch_ss5gl.stl"); 
 }
 
+// ===== parts/vitamins/electronic/escher_ir_sensor.* ==================================================================
+
+/**
+ * Provides a pre-rendered approximation of the Mini Differential IR height sensor board available from 
+ * http://www.escher3d.com/pages/order/products/product1.php
+ * The switch is aligned to the YZ plane with the positive X axis showing the component side. The orgin is on the left 
+ * bottom back side of the PCB.
+ */
+module escher_ir_sensor() {
+	bom_entry(section = "Electronic Components", description = "Escher IR Height Sensor", size = "Mini");
+	color_electronics()
+		import(file = "electronic/escher_ir_sensor.stl"); 
+}
+
 // ===== parts/vitamins/mechanic/ball_*.* ==============================================================================
 
 /**
@@ -166,7 +180,19 @@ module gt2_belt_loop(length, inner_diameter_end1, inner_diameter_end2) {
 		}
 }
 
-// ===== parts/vitamins/mechanic/magnet_ring_*.* =======================================================================
+// ===== parts/vitamins/mechanic/magnet_*.* ============================================================================
+
+/**
+ * Provides the pre-rendered cylindrical magnets
+ * The magnet is centered along the X axis with the body extending into positive X.
+ */
+module magnet_cylinder() {
+	bom_entry(section = "Special Mechanic Parts", 
+		description = "Cylindrical Magnet", 
+		size = str("d = ", escher_ir_sensor_magnet_diameter(), " mm, h = ", escher_ir_sensor_magnet_height(), " mm"));
+	color_magnets_balls()
+		import(file = "mechanic/magnet_cylinder.stl"); 
+}
 
 /**
  * Provides the pre-rendered magnet rings

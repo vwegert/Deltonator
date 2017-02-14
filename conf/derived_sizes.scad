@@ -1200,11 +1200,94 @@ function enclosure_bracket_horizontal_offset() = horizontal_recess_depth() + hor
 function enclosure_bracket_center_horizontal_offset() = 
   horizontal_extrusion_length() / 2 - enclosure_bracket_horizontal_offset() - enclosure_bracket_total_width() / 2;
 
-
 /**
- * The resolution of the holes and the rounced edges of the enclosure bracket.
+ * The resolution of the holes and the rounded edges of the enclosure bracket.
  */
 function enclosure_bracket_resolution() = 32;
+
+// ===== ESCHER 3D MINI DIFFERENTIAL IR HEIGHT SENSOR =================================================================
+
+/**
+ * The basic wall thickness of the housing. Might be larger in certain parts due to the construction.
+ */
+function escher_ir_sensor_housing_wall_thickness() = 1.0;
+
+/**
+ * The additional clearance to leave above and below the sensor.
+ */
+function escher_ir_sensor_housing_top_bottom_clearance() = 0.75;
+
+/**
+ * The additional clearance to leave around the PCB.
+ */
+function escher_ir_sensor_housing_pcb_clearance() = IR_SENSOR_PCB_CLEARANCE;
+
+/**
+ * The outer dimensions of the housing body.
+ */
+function escher_ir_sensor_housing_body_width() = 
+  escher_ir_sensor_pcb_width() 
+  + 2 * escher_ir_sensor_housing_pcb_clearance()
+  + 2 * escher_ir_sensor_housing_wall_thickness();
+function escher_ir_sensor_housing_body_height() = 
+  escher_ir_sensor_pcb_height();
+function escher_ir_sensor_housing_body_depth() = 
+  escher_ir_sensor_housing_wall_thickness()
+  + escher_ir_sensor_housing_top_bottom_clearance()
+  + escher_ir_sensor_pcb_max_pin_length()
+  + escher_ir_sensor_housing_pcb_clearance()
+  + escher_ir_sensor_pcb_thickness()
+  + escher_ir_sensor_housing_pcb_clearance()
+  + escher_ir_sensor_pcb_max_component_height()
+  + escher_ir_sensor_housing_top_bottom_clearance()
+  + escher_ir_sensor_housing_wall_thickness();
+
+/**
+ * The height of the screw holes above the lower edge of the housing.
+ */
+function escher_ir_sensor_screw_z_offset() = 
+  escher_ir_sensor_housing_body_height()
+  - escher_ir_sensor_hole_offset_top();
+
+/**
+ * The distance of the screw holes from the outer edge of the housing.
+ */
+function escher_ir_sensor_screw_y_offset() = 
+  escher_ir_sensor_housing_wall_thickness()
+  + escher_ir_sensor_housing_pcb_clearance()
+  + escher_ir_sensor_hole_offset_side();
+
+/**
+ * The minimal size of the screw required to hold the board.
+ */
+function escher_ir_sensor_screw_min_length() = 
+  escher_ir_sensor_housing_wall_thickness()
+  + escher_ir_sensor_housing_top_bottom_clearance()
+  + escher_ir_sensor_pcb_max_pin_length()
+  + escher_ir_sensor_housing_pcb_clearance()
+  + escher_ir_sensor_pcb_thickness()
+  + escher_ir_sensor_housing_pcb_clearance()
+  + 2; // assume we want 2mm of the screw in the opposite block
+
+/**
+ * The additional clearance to leave around the magnets.
+ */
+function escher_ir_sensor_magnet_clearance() = IR_SENSOR_MAGNET_CLEARANCE;
+
+/**
+ * The size of the outer blocks that hold the magnets.
+ */
+function escher_ir_sensor_magnet_holder_width() = 
+  escher_ir_sensor_magnet_diameter() 
+  + 2 * escher_ir_sensor_magnet_clearance()
+  + escher_ir_sensor_housing_wall_thickness();
+function escher_ir_sensor_magnet_holder_height() = escher_ir_sensor_magnet_height();
+function escher_ir_sensor_magnet_holder_depth() = escher_ir_sensor_housing_body_depth();
+
+/**
+ * The resolution of the holes and the rounded edges.
+ */
+function escher_ir_sensor_resolution() = 32;
 
 // ===== AUXILIARY FUNCTIONS ===========================================================================================
 
