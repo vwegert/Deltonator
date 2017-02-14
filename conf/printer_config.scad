@@ -170,7 +170,7 @@ MAGNET_CLEARANCE = 0.025;
 // ===== IR SENSOR DIMENSIONS AND PARAMETERS ==========================================================================
 
 // The additional clearance to leave around the PCB.
-IR_SENSOR_PCB_CLEARANCE = 0.2;
+IR_SENSOR_PCB_CLEARANCE = 0.25;
 
 // The additional clearance to leave around the magnets.
 IR_SENSOR_MAGNET_CLEARANCE = 0.2;
