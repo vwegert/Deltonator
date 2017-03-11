@@ -902,6 +902,12 @@ function arm_min_angle() = ROD_MIN_ANGLE;
 function arm_rod_round_up_factor() = ROD_ROUND_UP_TO;
 
 /**
+ * Set to a positive value if you want the rods to have a fixed length (for example if you have pre-fabricated
+ * rods). Set this to a negative value to have the rod length calculated automatically.
+ */
+function arm_rod_fixed_length() = ROD_FIXED_LENGTH;
+
+/**
  * The horizontal length ("distance over ground") the arms will have to cover when extended to the most distant point.
  * This length is calculated from ball center to ball center, i. e. it includes the magnet holders.
  */
@@ -924,9 +930,12 @@ function arm_rod_exact_length() =
   - magnet_holder_rod_distance(magnet_holder_bottom_ball_clearance());
 
 /**
- * The length of the rod rounded up as per the configured value.
+ * The length of the rod configured or rounded up as per the configured value.
  */
-function arm_rod_length() = ceil((arm_rod_exact_length() / arm_rod_round_up_factor())) * arm_rod_round_up_factor();
+function arm_rod_length() = 
+  (arm_rod_fixed_length() >= 0) ?
+  arm_rod_fixed_length() :
+  ceil((arm_rod_exact_length() / arm_rod_round_up_factor())) * arm_rod_round_up_factor();
 
 /**
  * The length of the entire arm from ball center to ball center.

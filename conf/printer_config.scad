@@ -161,6 +161,10 @@ ROD_MIN_ANGLE = 18;
 // The factor used to round up the rod length.
 ROD_ROUND_UP_TO = 5;
 
+// Set this to a positive value if you want the rods to have a fixed length (for example if you have pre-fabricated
+// rods). Set this to a negative value to have the rod length calculated automatically.
+ROD_FIXED_LENGTH = 330;
+
 // The thickness of the magnet holder arms.
 MAGNET_HOLDER_THICKNESS = 5;
 

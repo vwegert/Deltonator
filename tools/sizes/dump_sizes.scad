@@ -311,6 +311,7 @@ echo(effector_base_ball_holder_diameter = effector_base_ball_holder_diameter());
 echo(effector_base_resolution = effector_base_resolution());
 echo(arm_min_angle = arm_min_angle());
 echo(arm_rod_round_up_factor = arm_rod_round_up_factor());
+echo(arm_rod_fixed_length = arm_rod_fixed_length());
 echo(arm_max_ground_distance = arm_max_ground_distance());
 echo(arm_exact_overall_length = arm_exact_overall_length());
 echo(arm_rod_exact_length = arm_rod_exact_length());
