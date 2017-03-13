@@ -189,7 +189,7 @@ Magnet Ring
 
 Steel Ball
   10 mm diameter.................................................................. 12
-    effector_base_hardware                                                   (6)
+    effector_dummy_hardware >> effector_base_hardware                        (6)
     vertical_axis_assembly >> carriage_hardware                              (6)
 
 ===== Timing Belts and Pulleys ========================================================

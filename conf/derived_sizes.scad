@@ -100,6 +100,12 @@ function magnet_contact_circle_depth() =
 function ball_center_magnet_base_distance() =
   ball_contact_circle_height() - magnet_contact_circle_depth() + magnet_height();
 
+/**
+ * The diestance of the ball-ward flat side of the magnet to the center of the stell ball.
+ */
+function ball_center_magnet_top_distance() =
+  ball_center_magnet_base_distance() - magnet_height();
+
 // ===== FABRICATED PART DIMENSIONS ===================================================================================
 
 // ----- general frame parts ------------------------------------------------------------------------------------------
@@ -736,7 +742,12 @@ function magnet_holder_arm_thickness() = MAGNET_HOLDER_THICKNESS;
  */
 function magnet_holder_resolution() = 32;
 
-// ----- general effector dimensions ----------------------------------------------------------------------------------
+// ----- general effector dimensions and settings ----------------------------------------------------------------------
+
+/**
+ * The type of effector to use.
+ */
+function effector_type() = EFFECTOR_TYPE;
 
 /**
  * The vertical distance of the tip of the tool from the underside of the effector.

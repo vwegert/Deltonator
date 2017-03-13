@@ -31,3 +31,9 @@ M8 = 8;
 NEMA14 = 14;
 NEMA17 = 17;
 NEMA23 = 23;
+
+/**
+ * The various types of effector heads supported.
+ */
+EFFECTOR_DUMMY      = 0;
+EFFECTOR_E3D_V6LITE = 1;

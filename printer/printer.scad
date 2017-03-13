@@ -14,7 +14,8 @@ include <../conf/part_sizes.scad>
 use <../assemblies/vertical_axis.scad>
 use <../assemblies/horizontal_side.scad>
 use <../parts/sheets/bed.scad>
-use <../parts/printed/effector_base.scad>
+use <../parts/printed/effector_dummy.scad>
+use <../parts/printed/effector_e3d_v6lite.scad>
 
 
 module printer_model(head_position = [0, 0, 0]) {
@@ -48,9 +49,15 @@ module printer_model(head_position = [0, 0, 0]) {
 	// place the effector
 	translate([0, 0, bed_working_height() + effector_tool_height()])
 		translate(head_position) {
-			effector_base();
-			effector_base_hardware();
-			effector_base_dummy_tool();
+			if (effector_type() == EFFECTOR_DUMMY) {
+				effector_dummy();
+				effector_dummy_hardware();
+				effector_dummy_tool();
+			} else if (effector_type() == EFFECTOR_E3D_V6LITE) {
+				effector_e3d_v6lite();
+				effector_e3d_v6lite_hardware();
+				effector_e3d_v6lite_tool();
+			}
 		}
 
 	// printer build surface (bed)

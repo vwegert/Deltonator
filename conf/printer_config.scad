@@ -186,7 +186,10 @@ IR_SENSOR_MAGNET_CLEARANCE = 0.2;
 EFFECTOR_BALL_ADDITIONAL_DISTANCE = 15;
 
 // The thickness of the effector plate.
-EFFECTOR_THICKNESS = 6;
+EFFECTOR_THICKNESS = 4;
+
+// The type of effector to use.
+EFFECTOR_TYPE = EFFECTOR_DUMMY;
 
 // ===== OTHER DIMENSIONS AND PARAMETERS ==============================================================================
 

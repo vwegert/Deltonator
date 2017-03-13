@@ -25,10 +25,10 @@ module _effector_base_ball_holder() {
 }
 
 /**
- * Creates the effector base assembly by rendering it from scratch. This module is not to be called externally, use 
- * effector_base() instead.
+ * Main module to use the pre-rendered effector base. The assembly is centered at the origin. Since this version is
+ * not supposed to be printed, no BOM entry is generated.
  */
-module _render_effector_base() {
+module effector_base() {
 
 	_bp_a_left  = effector_base_ball_position_a_left();
 	_bp_a_right = effector_base_ball_position_a_right();
@@ -84,15 +84,6 @@ module _render_effector_base() {
 		} 
 }
 
-/**
- * Main module to use the pre-rendered effector base. The assembly is centered at the origin. Since this version is
- * not supposed to be printed, no BOM entry is generated.
- */
-module effector_base() {
-	color_printed_effector()
-		import(file = "effector_base.stl");
-}
-
 /** 
  * Renders the hardware (nuts, bolts, screws) that are used to fixed the printed part to the surrounding parts.
  * This also includes the V-Wheels and their supporting material.
@@ -112,17 +103,3 @@ module effector_base_hardware() {
 	translate(effector_base_ball_position_c_right())
 		ball();
 }
-
-/**
- * Renders a placeholder to indicate the location of an assumed tool mounted in the center of the effector.
- */
-module effector_base_dummy_tool() {
-	#rotate_extrude()
-		polygon(points = [
-			[0, 0],
-			[0, -effector_tool_height()],
-			[-effector_tool_height()/2, 0]
-		]);
-}
-
-_render_effector_base();
