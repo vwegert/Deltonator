@@ -133,14 +133,18 @@ module _ir_sensor_housing_magnet_holders() {
 module _render_ir_sensor_housing() {
 	color_printed_head_parts()
 		render() {
-			_ir_sensor_housing_body();
-			_ir_sensor_housing_magnet_holders();
+			translate([-escher_ir_sensor_housing_body_depth() / 2,
+				       -escher_ir_sensor_housing_body_width() / 2,
+				       -escher_ir_sensor_housing_body_height()]) {
+				_ir_sensor_housing_body();
+				_ir_sensor_housing_magnet_holders();
+			}
 		} 
 }
 
 /**
  * Main module to use the pre-rendered sensor housing. 
- * TODO describe the orientation of the housing
+ * The housing is centered on its base to facilitate mounting calculations.
  */
 module ir_sensor_housing() {
 	bom_entry(section = "Printed Parts", description = "Small Parts", size = "IR Sensor Housing");
@@ -154,40 +158,45 @@ module ir_sensor_housing() {
  */
 module ir_sensor_housing_hardware() {
 
-	// the sensor board inside the housing
-	translate([escher_ir_sensor_housing_wall_thickness() 
-		       + escher_ir_sensor_housing_top_bottom_clearance()
-               + escher_ir_sensor_pcb_max_pin_length()
-               + escher_ir_sensor_housing_pcb_clearance(),
-		       escher_ir_sensor_housing_wall_thickness() 
-               + escher_ir_sensor_housing_pcb_clearance(),
-		       0])
-		escher_ir_sensor();
+	translate([-escher_ir_sensor_housing_body_depth() / 2,
+		       -escher_ir_sensor_housing_body_width() / 2,
+		       -escher_ir_sensor_housing_body_height()]) {
 
-	// the screws to hold the sensor board
-	translate([-epsilon(),
-		       escher_ir_sensor_screw_y_offset(),
-		       escher_ir_sensor_screw_z_offset()])
-		screw(size = escher_ir_sensor_hole_size(),
-			  min_length = escher_ir_sensor_screw_min_length(),
-			  max_length = escher_ir_sensor_housing_body_depth());
-	translate([-epsilon(),
-		       escher_ir_sensor_housing_body_width() - escher_ir_sensor_screw_y_offset(),
-		       escher_ir_sensor_screw_z_offset()])
-		screw(size = escher_ir_sensor_hole_size(),
-			  min_length = escher_ir_sensor_screw_min_length(),
-			  max_length = escher_ir_sensor_housing_body_depth());
+		// the sensor board inside the housing
+		translate([escher_ir_sensor_housing_wall_thickness() 
+			       + escher_ir_sensor_housing_top_bottom_clearance()
+    	           + escher_ir_sensor_pcb_max_pin_length()
+    	           + escher_ir_sensor_housing_pcb_clearance(),
+			       escher_ir_sensor_housing_wall_thickness() 
+    	           + escher_ir_sensor_housing_pcb_clearance(),
+			       0])
+			escher_ir_sensor();
+	
+		// the screws to hold the sensor board
+		translate([-epsilon(),
+			       escher_ir_sensor_screw_y_offset(),
+			       escher_ir_sensor_screw_z_offset()])
+			screw(size = escher_ir_sensor_hole_size(),
+				  min_length = escher_ir_sensor_screw_min_length(),
+				  max_length = escher_ir_sensor_housing_body_depth());
+		translate([-epsilon(),
+			       escher_ir_sensor_housing_body_width() - escher_ir_sensor_screw_y_offset(),
+			       escher_ir_sensor_screw_z_offset()])
+			screw(size = escher_ir_sensor_hole_size(),
+				  min_length = escher_ir_sensor_screw_min_length(),
+				  max_length = escher_ir_sensor_housing_body_depth());
+	
+		// the magnets
+		translate([escher_ir_sensor_magnet_holder_depth()/2,
+			       - escher_ir_sensor_magnet_diameter() / 2 - escher_ir_sensor_magnet_clearance(), 
+			       escher_ir_sensor_housing_body_height() - escher_ir_sensor_magnet_height()]) 
+			magnet_cylinder();
+		translate([escher_ir_sensor_magnet_holder_depth()/2,
+			       escher_ir_sensor_housing_body_width() + escher_ir_sensor_magnet_diameter() / 2 + escher_ir_sensor_magnet_clearance(), 
+			       escher_ir_sensor_housing_body_height() - escher_ir_sensor_magnet_height()]) 
+			magnet_cylinder();
 
-	// the magnets
-	translate([escher_ir_sensor_magnet_holder_depth()/2,
-		       - escher_ir_sensor_magnet_diameter() / 2 - escher_ir_sensor_magnet_clearance(), 
-		       escher_ir_sensor_housing_body_height() - escher_ir_sensor_magnet_height()]) 
-		magnet_cylinder();
-	translate([escher_ir_sensor_magnet_holder_depth()/2,
-		       escher_ir_sensor_housing_body_width() + escher_ir_sensor_magnet_diameter() / 2 + escher_ir_sensor_magnet_clearance(), 
-		       escher_ir_sensor_housing_body_height() - escher_ir_sensor_magnet_height()]) 
-		magnet_cylinder();
-
+	}
 }
 
 _render_ir_sensor_housing();
