@@ -1243,6 +1243,11 @@ function escher_ir_sensor_housing_top_bottom_clearance() = 0.75;
 function escher_ir_sensor_housing_pcb_clearance() = IR_SENSOR_PCB_CLEARANCE;
 
 /**
+ * The size of the screws used to adjust the IR sensor.
+ */
+function escher_ir_sensor_adjustment_screw_size() = IR_SENSOR_ADJUSTMENT_SCREW_SIZE;
+
+/**
  * The outer dimensions of the housing body.
  */
 function escher_ir_sensor_housing_body_width() = 
@@ -1261,6 +1266,29 @@ function escher_ir_sensor_housing_body_depth() =
   + escher_ir_sensor_pcb_max_component_height()
   + escher_ir_sensor_housing_top_bottom_clearance()
   + escher_ir_sensor_housing_wall_thickness();
+
+/**
+ * The distances of the hole that is required to plug in the cable from the screw/soldering and mounting side.
+ */
+function escher_ir_sensor_cutout_distance_solder() =
+  escher_ir_sensor_housing_wall_thickness()
+  + escher_ir_sensor_housing_top_bottom_clearance()
+  + escher_ir_sensor_pcb_max_pin_length()
+  + escher_ir_sensor_housing_pcb_clearance();
+function escher_ir_sensor_cutout_distance_components() =
+  escher_ir_sensor_housing_top_bottom_clearance()
+  + escher_ir_sensor_housing_wall_thickness();
+
+/**
+ * The size of the cutout.
+ */
+function escher_ir_sensor_cutout_depth() = 
+  escher_ir_sensor_housing_body_depth()
+  - escher_ir_sensor_cutout_distance_solder()
+  - escher_ir_sensor_cutout_distance_components();
+function escher_ir_sensor_cutout_width() = 
+  escher_ir_sensor_pcb_width()
+  - 2 * escher_ir_sensor_pcb_top_edge_clearance();
 
 /**
  * The height of the screw holes above the lower edge of the housing.

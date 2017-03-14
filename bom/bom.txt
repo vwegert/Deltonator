@@ -35,6 +35,10 @@ End Switch
   SS-5GL.......................................................................... 3
     vertical_axis_assembly >> end_switch_bracket_hardware                    (3)
 
+Escher IR Height Sensor
+  Mini............................................................................ 1
+    effector_e3d_v6lite_hardware >> ir_sensor_housing_hardware               (1)
+
 Stepper Motor
   NEMA 17 medium.................................................................. 3
     vertical_axis_assembly >> motor_bracket_stepper                          (3)
@@ -64,7 +68,8 @@ Hex Socket Head Cap Screw (DIN 912 / ISO 4762)
     vertical_axis_assembly >> end_switch_bracket_hardware >> screw           (3)
   M3 x 6 mm....................................................................... 12
     vertical_axis_assembly >> motor_bracket_stepper_hardware >> screw        (12)
-  M3 x 8 mm....................................................................... 6
+  M3 x 8 mm....................................................................... 8
+    effector_e3d_v6lite_hardware >> ir_sensor_housing_hardware >> screw      (2)
     vertical_axis_assembly >> carriage_hardware >> screw                     (6)
   M4 x 10 mm...................................................................... 3
     horizontal_assembly >> screw                                             (3)
@@ -134,6 +139,12 @@ Arm
   Carriage........................................................................ 3
     vertical_axis_assembly                                                   (3)
 
+Effector
+  E3D V6 Lite (Base Plate)........................................................ 1
+                                                                             (1)
+  E3D V6 Lite Spacer.............................................................. 2
+    effector_e3d_v6lite_hardware                                             (2)
+
 Enclosure
   Side Bracket.................................................................... 8
     horizontal_assembly                                                      (8)
@@ -157,6 +168,8 @@ Small Parts
     vertical_axis_assembly                                                   (6)
   End Switch Bracket.............................................................. 3
     vertical_axis_assembly                                                   (3)
+  IR Sensor Housing............................................................... 1
+    effector_e3d_v6lite_hardware                                             (1)
   Top Magnet Holder............................................................... 6
     vertical_axis_assembly                                                   (6)
 
@@ -182,6 +195,10 @@ Carbon Fiber Rods
   330 mm, OD 8 mm, ID 0........................................................... 6
     vertical_axis_assembly                                                   (6)
 
+Cylindrical Magnet
+  d = 6 mm, h = 3 mm.............................................................. 2
+    effector_e3d_v6lite_hardware >> ir_sensor_housing_hardware               (2)
+
 Magnet Ring
   10x5 mm, bore 3.4 mm, 90° bevel with 7 mm diameter............................. 12
     vertical_axis_assembly >> magnet_holder_carriage_hardware                (6)
@@ -189,7 +206,7 @@ Magnet Ring
 
 Steel Ball
   10 mm diameter.................................................................. 12
-    effector_dummy_hardware >> effector_base_hardware                        (6)
+    effector_e3d_v6lite_hardware >> effector_base_hardware                   (6)
     vertical_axis_assembly >> carriage_hardware                              (6)
 
 ===== Timing Belts and Pulleys ========================================================

@@ -179,6 +179,9 @@ IR_SENSOR_PCB_CLEARANCE = 0.25;
 // The additional clearance to leave around the magnets.
 IR_SENSOR_MAGNET_CLEARANCE = 0.2;
 
+// The size of the screws used to adjust the IR sensor.
+IR_SENSOR_ADJUSTMENT_SCREW_SIZE = M4;
+
 // ===== EFFECTOR DIMENSIONS AND PARAMETERS ===========================================================================
 
 // The additional distance between the magnets on the effector (not the rod distance - the other one :-)).
@@ -189,7 +192,7 @@ EFFECTOR_BALL_ADDITIONAL_DISTANCE = 15;
 EFFECTOR_THICKNESS = 4;
 
 // The type of effector to use.
-EFFECTOR_TYPE = EFFECTOR_DUMMY;
+EFFECTOR_TYPE = EFFECTOR_E3D_V6LITE;
 
 // ===== OTHER DIMENSIONS AND PARAMETERS ==============================================================================
 

@@ -494,3 +494,29 @@ function escher_ir_sensor_pcb_top_edge_clearance() = 5.0;
  */
 function escher_ir_sensor_magnet_diameter() = 6.0;
 function escher_ir_sensor_magnet_height() = 3.0;
+
+// ===== E3D V6 LITE HOTEND ===========================================================================================
+
+/** 
+ * The size of the cutout required for the hotend in the effector plate.
+ */
+function hotend_e3d_v6lite_cutout_width() = 32.0;
+function hotend_e3d_v6lite_cutout_depth_front() = 27.5;
+function hotend_e3d_v6lite_cutout_depth_back() = 12.5;
+
+/**
+ * The horizontal distance between the nozzle and the middle of the mounting holes when using the standard bracket.
+ */
+function hotend_e3d_v6lite_mounting_hole_distance() = 25.0;
+
+/** 
+ * The size of the screw to use for mounting the hotend.
+ */
+function hotend_e3d_v6lite_mounting_hole_size() = M4;
+
+/**
+ * The height and outer size of the spacer used to hold the mounting bracket.
+ */
+function hotend_e3d_v6lite_spacer_height() = 33.0;
+function hotend_e3d_v6lite_spacer_width()  = 15.0;
+function hotend_e3d_v6lite_spacer_depth()  = 15.0;

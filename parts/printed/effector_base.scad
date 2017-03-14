@@ -37,51 +37,48 @@ module effector_base() {
 	_bp_c_left  = effector_base_ball_position_c_left();
 	_bp_c_right = effector_base_ball_position_c_right();
 
-	color_printed_effector()
-		render() {		
-			difference() {
-				union() {
-					// the base plate			
-				    linear_extrude(height = effector_base_thickness())
-		        		polygon(points = [
-		        				[ _bp_a_left[0],  _bp_a_left[1]  ],
-								[ _bp_a_right[0], _bp_a_right[1] ],
-								[ _bp_c_right[0], _bp_c_right[1] ],
-								[ _bp_c_left[0],  _bp_c_left[1]  ],
-								[ _bp_b_left[0],  _bp_b_left[1]  ],
-								[ _bp_b_right[0], _bp_b_right[1] ]
-		        			]);
+	difference() {
+		union() {
+			// the base plate			
+		    linear_extrude(height = effector_base_thickness())
+	     		polygon(points = [
+	     				[ _bp_a_left[0],  _bp_a_left[1]  ],
+						[ _bp_a_right[0], _bp_a_right[1] ],
+						[ _bp_c_right[0], _bp_c_right[1] ],
+						[ _bp_c_left[0],  _bp_c_left[1]  ],
+						[ _bp_b_left[0],  _bp_b_left[1]  ],
+						[ _bp_b_right[0], _bp_b_right[1] ]
+	     			]);
     
-					// the ball holders
-					translate(_bp_a_left)
-						_effector_base_ball_holder();
-					translate(_bp_a_right)
-						_effector_base_ball_holder();
-					translate(_bp_b_left)
-						_effector_base_ball_holder();
-					translate(_bp_b_right)
-						_effector_base_ball_holder();
-					translate(_bp_c_left)
-						_effector_base_ball_holder();
-					translate(_bp_c_right)
-						_effector_base_ball_holder();
-				}				
+			// the ball holders
+			translate(_bp_a_left)
+				_effector_base_ball_holder();
+			translate(_bp_a_right)
+				_effector_base_ball_holder();
+			translate(_bp_b_left)
+				_effector_base_ball_holder();
+			translate(_bp_b_right)
+				_effector_base_ball_holder();
+			translate(_bp_c_left)
+				_effector_base_ball_holder();
+			translate(_bp_c_right)
+				_effector_base_ball_holder();
+		}				
 
-				// minus the cutouts for the balls
-				translate(_bp_a_left)
-					sphere(d = ball_diameter(), $fn = effector_base_resolution());
-				translate(_bp_a_right)
-					sphere(d = ball_diameter(), $fn = effector_base_resolution());
-				translate(_bp_b_left)
-					sphere(d = ball_diameter(), $fn = effector_base_resolution());
-				translate(_bp_b_right)
-					sphere(d = ball_diameter(), $fn = effector_base_resolution());
-				translate(_bp_c_left)
-					sphere(d = ball_diameter(), $fn = effector_base_resolution());
-				translate(_bp_c_right)
-					sphere(d = ball_diameter(), $fn = effector_base_resolution());
-			}
-		} 
+		// minus the cutouts for the balls
+		translate(_bp_a_left)
+			sphere(d = ball_diameter(), $fn = effector_base_resolution());
+		translate(_bp_a_right)
+			sphere(d = ball_diameter(), $fn = effector_base_resolution());
+		translate(_bp_b_left)
+			sphere(d = ball_diameter(), $fn = effector_base_resolution());
+		translate(_bp_b_right)
+			sphere(d = ball_diameter(), $fn = effector_base_resolution());
+		translate(_bp_c_left)
+			sphere(d = ball_diameter(), $fn = effector_base_resolution());
+		translate(_bp_c_right)
+			sphere(d = ball_diameter(), $fn = effector_base_resolution());
+	}
 }
 
 /** 
