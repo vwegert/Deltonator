@@ -12,6 +12,19 @@ include <../../conf/part_sizes.scad>
 
 use <../../bom/bom.scad>
 
+// ===== parts/vitamins/electromechanic/fan_*_*.scad ===================================================================
+
+/**
+ * Provides the pre-rendered axial fans.
+ */
+module fan_axial(side_length = 40, thickness = 20) {
+	bom_entry(section = "Electronic Components", 
+		      description = "Axial Fan", 
+		      size = str(side_length, "x", side_length, "x", thickness, " mm"));
+	color_motor()
+		import(file = str("electromechanic/fan_", side_length, "_", thickness, ".stl")); 
+}
+
 // ===== parts/vitamins/electromechanic/stepper_*.* ====================================================================
 
 /**
