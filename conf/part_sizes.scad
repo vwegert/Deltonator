@@ -495,6 +495,26 @@ function escher_ir_sensor_pcb_top_edge_clearance() = 5.0;
 function escher_ir_sensor_magnet_diameter() = 6.0;
 function escher_ir_sensor_magnet_height() = 3.0;
 
+/**
+ * The recommended height of the IR sensor above the nozzle level.
+ */
+function escher_ir_sensor_nozzle_offset() = 1.5;
+
+// ===== 40 mm AXIAL FAN FOR PART COOLING =============================================================================
+
+/** 
+ * The fan size.
+ */
+function pc_fan_side_length() = 25;
+function pc_fan_depth() = 10;
+function pc_fan_corner_radius() = 4.0; // TODO double-check these values
+
+/**
+ * The size and position of the mounting holes.
+ */
+function pc_fan_hole_diameter() = 4.0; // TODO double-check these values
+function pc_fan_hole_offset() = 4.0; // TODO double-check these values
+
 // ===== E3D V6 LITE HOTEND ===========================================================================================
 
 /** 
@@ -515,8 +535,6 @@ function hotend_e3d_v6lite_mounting_hole_distance() = 25.0;
 function hotend_e3d_v6lite_mounting_hole_size() = M4;
 
 /**
- * The height and outer size of the spacer used to hold the mounting bracket.
+ * The height of the hotend from the underside of the mounting plate to the tip of the nozzle.
  */
-function hotend_e3d_v6lite_spacer_height() = 33.0;
-function hotend_e3d_v6lite_spacer_width()  = 15.0;
-function hotend_e3d_v6lite_spacer_depth()  = 15.0;
+function hotend_e3d_v6lite_overall_height() = 53.0; 

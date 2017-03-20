@@ -900,6 +900,19 @@ function effector_base_ball_holder_diameter() = ceil(effector_base_ball_recess_d
  */
 function effector_base_resolution() = 32;
 
+// ----- E3D V6lite effector  -----------------------------------------------------------------------------------------
+
+/**
+ * The height and outer size of the spacer used to hold the mounting bracket.
+ */
+function effector_e3d_v6lite_spacer_height() = 
+  hotend_e3d_v6lite_overall_height()
+  - effector_base_thickness()
+  - escher_ir_sensor_housing_body_height()
+  - escher_ir_sensor_nozzle_offset();
+function effector_e3d_v6lite_spacer_width()  = 15.0;
+function effector_e3d_v6lite_spacer_depth()  = 15.0;
+
 // ===== ROD LENGTH CALCULATION =======================================================================================
 
 /**

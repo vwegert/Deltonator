@@ -120,7 +120,7 @@ sheets: \
 # Rules to buld the parts provided by the external libraries
 #
 vitamins: \
-	parts/vitamins/electromechanic/fan_axial_40_20.stl \
+	parts/vitamins/electromechanic/fan_axial_pc.stl \
 	parts/vitamins/electromechanic/stepper_nema14_long.stl \
 	parts/vitamins/electromechanic/stepper_nema14_medium.stl \
 	parts/vitamins/electromechanic/stepper_nema14_short.stl \

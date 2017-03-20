@@ -22,16 +22,16 @@ module _render_effector_e3d_v6lite_spacer() {
 	color_printed_effector()
 		difference() {
 			// the basic effector shape
-			translate([-hotend_e3d_v6lite_spacer_depth()/2,
-			           -hotend_e3d_v6lite_spacer_width()/2,
+			translate([-effector_e3d_v6lite_spacer_depth()/2,
+			           -effector_e3d_v6lite_spacer_width()/2,
 			           0])	
-				cube([hotend_e3d_v6lite_spacer_depth(),
-					  hotend_e3d_v6lite_spacer_width(),
-					  hotend_e3d_v6lite_spacer_height()]);
+				cube([effector_e3d_v6lite_spacer_depth(),
+					  effector_e3d_v6lite_spacer_width(),
+					  effector_e3d_v6lite_spacer_height()]);
 			// minus a threaded hole all the way through
 			translate([0, 0, -epsilon()])
 				cylinder(d = tap_base_diameter(hotend_e3d_v6lite_mounting_hole_size()),
-					     h = hotend_e3d_v6lite_spacer_height() + 2 * epsilon(),
+					     h = effector_e3d_v6lite_spacer_height() + 2 * epsilon(),
 						 $fn = effector_base_resolution());					     
 		}
 }

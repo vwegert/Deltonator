@@ -97,23 +97,62 @@ module _effector_e3d_v6lite_ir_sensor() {
 }
 
 /**
+ * Renders the right-hand (if viewed from the front) part cooling fan holder.
+ */
+module _effector_e3d_v6lite_pcf_holder() {
+	rotate([0, 0, -30]) 
+		translate([-pc_fan_side_length()/2, effector_base_center_long_edge_distance(), 0]) {
+			// the upper part that the fan is screwed onto
+			difference() {
+				// the fan mounting plate
+				cube([pc_fan_side_length(), pc_fan_side_length(), effector_base_thickness()]);
+				// minus the center hole
+				translate([pc_fan_side_length()/2, pc_fan_side_length()/2, -epsilon()])
+				cylinder(d = pc_fan_side_length() - 2 * 2, h = effector_base_thickness() + 2 * epsilon());
+				// TODO add the screw holes
+			}
+			// TODO add the air nozzle
+
+			_nozzle_bottom_length = 3 * pc_fan_side_length();
+
+			translate([0, pc_fan_side_length(), 0])
+			rotate([20, 0, 0])
+				translate([0, -_nozzle_bottom_length, -effector_base_thickness()])
+					cube([pc_fan_side_length(), _nozzle_bottom_length, effector_base_thickness()]);
+		}
+}
+
+/**
+ * Renders both part cooling fan holders.
+ */
+module _effector_e3d_v6lite_pcf_holders() {
+	_effector_e3d_v6lite_pcf_holder();
+	mirror([0, 1, 0])
+		_effector_e3d_v6lite_pcf_holder();
+}
+
+/**
  * Creates the effector assembly by rendering it from scratch. This module is not to be called externally, use 
  * effector_e3d_v6lite() instead.
  */
 module _render_effector_e3d_v6lite() {
-	color_printed_effector()
-		difference() {
-			// the base plate
-			effector_base();
-			// minus the cutout for the hotend in the center
-			_effector_e3d_v6lite_cutout();
-			// minus the mounting holes for the hotend
-			_effector_e3d_v6lite_mounting_holes();
-			// minus the mounting holes for the IR sensor
-			_effector_e3d_v6lite_ir_sensor();
+	color_printed_effector() 
+		union() {
+			difference() {
+				// the base plate
+				effector_base();
+				// minus the cutout for the hotend in the center
+				_effector_e3d_v6lite_cutout();
+				// minus the mounting holes for the hotend
+				_effector_e3d_v6lite_mounting_holes();
+				// minus the mounting holes for the IR sensor
+				_effector_e3d_v6lite_ir_sensor();
+			}
+			// add the part cooling fan holders
+			_effector_e3d_v6lite_pcf_holders();
+		// TODO add a part cooling fan
+		// TODO add lighting
 		}
-	// TODO add a part cooling fan
-	// TODO add lighting
 }
 
 /**
@@ -154,13 +193,15 @@ module effector_e3d_v6lite_hardware(with_spacers = true, with_ir_sensor = true) 
  * Renders a placeholder to indicate the location of an assumed tool mounted in the center of the effector.
  */
 module effector_e3d_v6lite_tool() {
+	_nozzle_height = hotend_e3d_v6lite_overall_height() - effector_e3d_v6lite_spacer_height() - effector_base_thickness();
 	#rotate_extrude()
 		polygon(points = [
 			[0, 0],
-			[0, -effector_tool_height()],
-			[-effector_tool_height()/2, 0]
+			[0, -_nozzle_height],
+			[-_nozzle_height/2, 0]
 		]);
 }
 
 _render_effector_e3d_v6lite();
 //effector_e3d_v6lite_hardware();
+//effector_e3d_v6lite_tool();

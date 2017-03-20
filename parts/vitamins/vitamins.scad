@@ -17,12 +17,12 @@ use <../../bom/bom.scad>
 /**
  * Provides the pre-rendered axial fans.
  */
-module fan_axial(side_length = 40, thickness = 20) {
+module fan_axial_pc() {
 	bom_entry(section = "Electronic Components", 
 		      description = "Axial Fan", 
-		      size = str(side_length, "x", side_length, "x", thickness, " mm"));
+		      size = str(pc_fan_side_length(), "x", pc_fan_side_length(), "x", pc_fan_depth(), " mm"));
 	color_motor()
-		import(file = str("electromechanic/fan_", side_length, "_", thickness, ".stl")); 
+		import(file = "electromechanic/fan_axial_pc.stl"); 
 }
 
 // ===== parts/vitamins/electromechanic/stepper_*.* ====================================================================
