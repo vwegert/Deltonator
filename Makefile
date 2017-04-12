@@ -89,6 +89,7 @@ printed: vitamins \
 	parts/printed/effector_dummy.stl \
 	parts/printed/effector_e3d_v6lite.stl \
 	parts/printed/effector_e3d_v6lite_spacer.stl \
+	parts/printed/effector_pen.stl \
 	parts/printed/enclosure_side_bracket.stl \
 	parts/printed/end_switch_bracket.stl \
 	parts/printed/foot_plate.stl \
