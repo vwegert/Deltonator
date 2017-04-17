@@ -47,8 +47,8 @@ module effector_dummy_tool() {
 	#rotate_extrude()
 		polygon(points = [
 			[0, 0],
-			[0, -effector_tool_height()],
-			[-effector_tool_height()/2, 0]
+			[0, -effector_z_clearance()],
+			[-effector_z_clearance()/2, 0]
 		]);
 }
 

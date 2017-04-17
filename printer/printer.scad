@@ -47,7 +47,7 @@ module printer_model(head_position = [0, 0, 0]) {
 		                angle = angle_rail(C));
 
 	// place the effector
-	translate([0, 0, bed_working_height() + effector_tool_height()])
+	translate([0, 0, bed_working_height() + effector_z_clearance()])
 		translate(head_position) {
 			if (effector_type() == EFFECTOR_DUMMY) {
 				effector_dummy();

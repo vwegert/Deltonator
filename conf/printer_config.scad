@@ -194,6 +194,9 @@ EFFECTOR_THICKNESS = 4;
 // The type of effector to use.
 EFFECTOR_TYPE = EFFECTOR_E3D_V6LITE;
 
+// The clearance in Z direction to leave beneath the effector plate.
+EFFECTOR_Z_CLEARANCE = 30.0;
+
 // ===== OTHER DIMENSIONS AND PARAMETERS ==============================================================================
 
 // The range by which the vertical belt tensioner can be adjusted.

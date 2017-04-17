@@ -50,18 +50,20 @@ module _ir_sensor_housing_body() {
 			_mounting_block_thickness = escher_ir_sensor_pcb_max_component_height() + 
 			                            escher_ir_sensor_housing_top_bottom_clearance();
 			_mounting_block_x_offset = escher_ir_sensor_housing_body_depth() - escher_ir_sensor_housing_wall_thickness() - _mounting_block_thickness;
+			_mounting_block_height = escher_ir_sensor_housing_body_height() - ( escher_ir_sensor_pcb_height() - escher_ir_sensor_pcb_top_edge_clearance() );
+			_mounting_block_z_offset = escher_ir_sensor_pcb_height() - escher_ir_sensor_pcb_top_edge_clearance();
 			translate([_mounting_block_x_offset, 
 				       escher_ir_sensor_housing_wall_thickness(), 
-				       escher_ir_sensor_housing_body_height() - escher_ir_sensor_pcb_top_edge_clearance()])
+				       _mounting_block_z_offset])
 				cube([_mounting_block_thickness,
 					  escher_ir_sensor_pcb_top_edge_clearance(),
-					  escher_ir_sensor_pcb_top_edge_clearance()]);
+					  _mounting_block_height]);
 			translate([_mounting_block_x_offset, 
 					   escher_ir_sensor_housing_body_width() - escher_ir_sensor_housing_wall_thickness() - escher_ir_sensor_pcb_top_edge_clearance(), 
-				       escher_ir_sensor_housing_body_height() - escher_ir_sensor_pcb_top_edge_clearance()])
+				       _mounting_block_z_offset])
 				cube([_mounting_block_thickness,
 					  escher_ir_sensor_pcb_top_edge_clearance(),
-					  escher_ir_sensor_pcb_top_edge_clearance()]);
+					  _mounting_block_height]);
 		}
 
 		// minus the screw holes
@@ -200,3 +202,4 @@ module ir_sensor_housing_hardware() {
 }
 
 _render_ir_sensor_housing();
+

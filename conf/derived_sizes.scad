@@ -750,9 +750,10 @@ function magnet_holder_resolution() = 32;
 function effector_type() = EFFECTOR_TYPE;
 
 /**
- * The vertical distance of the tip of the tool from the underside of the effector.
+ * The clearance in Z direction to leave beneath the effector plate.
+ * This is also te vertical distance of the tip of the tool from the underside of the effector.
  */
-function effector_tool_height() = 25;
+function effector_z_clearance() = EFFECTOR_Z_CLEARANCE;
 
 // ----- effector base plate ------------------------------------------------------------------------------------------
 
@@ -908,8 +909,7 @@ function effector_base_resolution() = 32;
 function effector_e3d_v6lite_spacer_height() = 
   hotend_e3d_v6lite_overall_height()
   - effector_base_thickness()
-  - escher_ir_sensor_housing_body_height()
-  - escher_ir_sensor_nozzle_offset();
+  - effector_z_clearance();
 function effector_e3d_v6lite_spacer_width()  = 15.0;
 function effector_e3d_v6lite_spacer_depth()  = 15.0;
 
@@ -1110,7 +1110,7 @@ function arm_angle_theta(axis = A, point = [0, 0]) =
 function arm_ball_joint_height(axis = A, point = [0, 0, 0]) =
   bed_working_height() + 
   point[2] +
-  effector_tool_height() +
+  effector_z_clearance() +
   effector_base_ball_z_offset() +
   sqrt(pow(arm_overall_length(), 2) - pow(ball_plane_distance_corner_effector(axis = axis, point = point), 2));
 
@@ -1268,7 +1268,7 @@ function escher_ir_sensor_housing_body_width() =
   + 2 * escher_ir_sensor_housing_pcb_clearance()
   + 2 * escher_ir_sensor_housing_wall_thickness();
 function escher_ir_sensor_housing_body_height() = 
-  escher_ir_sensor_pcb_height();
+   effector_z_clearance() - escher_ir_sensor_nozzle_offset();
 function escher_ir_sensor_housing_body_depth() = 
   escher_ir_sensor_housing_wall_thickness()
   + escher_ir_sensor_housing_top_bottom_clearance()
@@ -1307,7 +1307,7 @@ function escher_ir_sensor_cutout_width() =
  * The height of the screw holes above the lower edge of the housing.
  */
 function escher_ir_sensor_screw_z_offset() = 
-  escher_ir_sensor_housing_body_height()
+  escher_ir_sensor_pcb_height()
   - escher_ir_sensor_hole_offset_top();
 
 /**
