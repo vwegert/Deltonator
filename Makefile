@@ -114,6 +114,10 @@ extrusions: \
 #
 sheets: \
 	parts/sheets/bed.stl \
+	parts/sheets/enclosure_door_inner_horizontal.stl \
+	parts/sheets/enclosure_door_inner_vertical.stl \
+	parts/sheets/enclosure_door_outer_horizontal.stl \
+	parts/sheets/enclosure_door_outer_vertical.stl \
 	parts/sheets/enclosure_long_side.stl \
 	parts/sheets/enclosure_short_side.stl 
 

@@ -96,7 +96,7 @@ FRAME_HEAD_GUIDE_CLEARANCE = 0.5;
 // ===== ENCLOSURE DIMENSIONS =========================================================================================
 
 // The material thickness of the solid (back and side) enclosure walls.
-ENCLOSURE_SOLID_THICKNESS = 4;
+ENCLOSURE_SOLID_THICKNESS = 6.5;
 
 // The thickness of the insulation layer between the enclosure walls and the brackets they are mounted to.
 ENCLOSURE_INSULATION_THICKNESS = 2;
@@ -116,6 +116,20 @@ ENCLOSURE_BRACKET_WIDTH = 50;
 
 // The distance of the two screw holes and nut recesses in the brackets.
 ENCLOSURE_BRACKET_SCREW_DISTANCE = 20;
+
+// The size of the glass pane in the front door.
+ENCLOSURE_GLASS_WIDTH = 350;
+ENCLOSURE_GLASS_HEIGHT = 700;
+
+// The width of the bevel in the front door that holds the glass.
+ENCLOSURE_GLASS_BEVEL_WIDTH = 15;
+
+// The additional clearance on the sides of the front door to allow for the hinge to move.
+ENCLOSURE_DOOR_SIDE_CLEARANCE = 2.0;
+
+// The thickness of the material of the front door.
+ENCLOSURE_DOOR_WOOD_THICKNESS = 3.0;
+ENCLOSURE_DOOR_GLASS_THICKNESS = 1.8;
 
 // ===== CARRIAGE DIMENSIONS ==========================================================================================
 

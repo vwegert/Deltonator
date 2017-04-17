@@ -1179,6 +1179,63 @@ function enclosure_long_side_outer_hole_offset() =
   enclosure_bracket_center_horizontal_offset() + enclosure_bracket_screw_distance() / 2; 
 
 /**
+ * The additional clearance on the sides of the front door to allow for the hinge to move.
+ */
+function enclosure_door_side_clearance() = ENCLOSURE_DOOR_SIDE_CLEARANCE;
+
+/**
+ * The width of the door.
+ */
+function enclosure_door_width() = enclosure_long_side_width() - enclosure_door_side_clearance();
+
+/**
+ * The size of the glass pane in the front door.
+ */
+function enclosure_glass_width() = ENCLOSURE_GLASS_WIDTH;
+function enclosure_glass_height() = ENCLOSURE_GLASS_HEIGHT;
+
+/**
+ * The width of the bevel in the front door that holds the glass.
+ */
+function enclosure_glass_bevel_width() = ENCLOSURE_GLASS_BEVEL_WIDTH;
+
+/**
+ * The size of the window in the door.
+ */
+function enclosure_window_width() = enclosure_glass_width() - 2 * enclosure_glass_bevel_width();
+function enclosure_window_height() = enclosure_glass_height() - 2 * enclosure_glass_bevel_width();
+
+/**
+ * The thickness of the material of the front door.
+ */
+function enclosure_door_wood_thickness() = ENCLOSURE_DOOR_WOOD_THICKNESS;
+function enclosure_door_glass_thickness() = ENCLOSURE_DOOR_GLASS_THICKNESS;
+
+/**
+ * The sizes of the wooden parts of the front door.
+ */
+function enclosure_door_outer_vertical_part_size() = [
+    enclosure_door_wood_thickness(),
+    (enclosure_door_width() - enclosure_window_width()) / 2,
+    enclosure_long_side_height()
+  ];
+function enclosure_door_outer_horizontal_part_size() = [
+    enclosure_door_wood_thickness(),
+    enclosure_window_width(),
+    (enclosure_long_side_height() - enclosure_window_height()) / 2
+  ];
+function enclosure_door_inner_vertical_part_size() = [
+    enclosure_door_wood_thickness(),
+    (enclosure_door_width() - enclosure_glass_width()) / 2,
+    enclosure_glass_height()
+  ];
+function enclosure_door_inner_horizontal_part_size() = [
+    enclosure_door_wood_thickness(),
+    enclosure_door_width(),
+    (enclosure_long_side_height() - enclosure_glass_height()) / 2
+  ];
+
+/**
  * The resolution of the holes in the enclosure plates.
  */
 function enclosure_hole_resolution() = 32;

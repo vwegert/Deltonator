@@ -14,6 +14,8 @@ include <../conf/part_sizes.scad>
 
 use <../bom/bom.scad>
 
+use <../assemblies/front_door.scad>
+
 use <../parts/extrusions/vslot_2020.scad>
 use <../parts/sheets/enclosure_long_side.scad>
 use <../parts/printed/enclosure_side_bracket.scad>
@@ -156,12 +158,14 @@ module _horizontal_assembly(side = A, with_connectors = false) {
 		}
 	}
 
-	// the enclosure walls on the sides opposing the A and B rails
-	if ((side == A) || (side == B)) {
-		translate([-enclosure_long_side_gap() - enclosure_insulation_thickness() - enclosure_solid_thickness() - epsilon(), horizontal_extrusion_length()/2, 0]) {
+	// the enclosure walls on the sides opposing the A and B rails, the front door on the side opposing the C rail
+	translate([-enclosure_long_side_gap() - enclosure_insulation_thickness() - enclosure_solid_thickness() - epsilon(), horizontal_extrusion_length()/2, 0]) {
+		if ((side == A) || (side == B)) {
 			enclosure_long_side_plate();
 			enclosure_long_side_plate_hardware();
-		}		
+		} else {
+			front_door_assembly();
+		}
 	}
 
 }
