@@ -121,6 +121,9 @@ ENCLOSURE_BRACKET_SCREW_DISTANCE = 20;
 ENCLOSURE_GLASS_WIDTH = 350;
 ENCLOSURE_GLASS_HEIGHT = 700;
 
+// The size of the gap around the glass pane.
+ENCLOSURE_GLASS_GAP_WIDTH = 1.0;
+
 // The width of the bevel in the front door that holds the glass.
 ENCLOSURE_GLASS_BEVEL_WIDTH = 15;
 

@@ -1184,15 +1184,21 @@ function enclosure_long_side_outer_hole_offset() =
 function enclosure_door_side_clearance() = ENCLOSURE_DOOR_SIDE_CLEARANCE;
 
 /**
- * The width of the door.
+ * The width and height of the door.
  */
 function enclosure_door_width() = enclosure_long_side_width() - enclosure_door_side_clearance();
+function enclosure_door_height() = enclosure_long_side_height() + 2 * enclosure_solid_thickness();
 
 /**
  * The size of the glass pane in the front door.
  */
 function enclosure_glass_width() = ENCLOSURE_GLASS_WIDTH;
 function enclosure_glass_height() = ENCLOSURE_GLASS_HEIGHT;
+
+/**
+ * The size of the gap around the glass pane.
+ */
+function enclosure_glass_gap_width() = ENCLOSURE_GLASS_GAP_WIDTH;
 
 /**
  * The width of the bevel in the front door that holds the glass.
@@ -1217,22 +1223,22 @@ function enclosure_door_glass_thickness() = ENCLOSURE_DOOR_GLASS_THICKNESS;
 function enclosure_door_outer_vertical_part_size() = [
     enclosure_door_wood_thickness(),
     (enclosure_door_width() - enclosure_window_width()) / 2,
-    enclosure_long_side_height()
+    enclosure_door_height()
   ];
 function enclosure_door_outer_horizontal_part_size() = [
     enclosure_door_wood_thickness(),
     enclosure_window_width(),
-    (enclosure_long_side_height() - enclosure_window_height()) / 2
+    (enclosure_door_height() - enclosure_window_height()) / 2
   ];
 function enclosure_door_inner_vertical_part_size() = [
     enclosure_door_wood_thickness(),
-    (enclosure_door_width() - enclosure_glass_width()) / 2,
+    (enclosure_door_width() - enclosure_glass_width() - enclosure_glass_gap_width()) / 2,
     enclosure_glass_height()
   ];
 function enclosure_door_inner_horizontal_part_size() = [
     enclosure_door_wood_thickness(),
     enclosure_door_width(),
-    (enclosure_long_side_height() - enclosure_glass_height()) / 2
+    (enclosure_door_height() - enclosure_glass_height() - enclosure_glass_gap_width()) / 2
   ];
 
 /**

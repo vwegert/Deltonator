@@ -25,7 +25,7 @@ use <../parts/vitamins/vitamins.scad>
  * Provides access to the assembly.
  */
 module front_door_assembly() {
-	translate([2 * enclosure_door_wood_thickness(), enclosure_door_width() / 2, 0])
+	translate([2 * enclosure_door_wood_thickness(), enclosure_door_width() / 2, -enclosure_solid_thickness()])
 		rotate([0, 0, 180])
 			_front_door_assembly();
 }
