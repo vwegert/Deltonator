@@ -913,6 +913,89 @@ function effector_e3d_v6lite_spacer_height() =
 function effector_e3d_v6lite_spacer_width()  = 15.0;
 function effector_e3d_v6lite_spacer_depth()  = 15.0;
 
+/** 
+ * The Z distance between the tip of the printer nozzle and the underside of the effector plate.
+ */
+function effector_e3d_v6lite_nozzle_height() = 
+  hotend_e3d_v6lite_overall_height() 
+  - effector_e3d_v6lite_spacer_height() 
+  - effector_base_thickness();
+
+/**
+ * The clearance between the Z plane of the printer nozzle and the underside of the part cooling airboxes.
+ */
+function effector_e3d_v6lite_pc_airbox_clearance() = 5.0; // TODO make this configurable
+
+/**
+ * The thickness of the bottom wall of the part cooling fan block.
+ */
+function effector_e3d_v6lite_pc_airbox_bottom_wall() = 1.0;  // TODO make this configurable
+
+/**
+ * The height of the part cooling airboxes (including the effector height).
+ */
+function effector_e3d_v6lite_pc_airbox_height() = 
+  effector_base_thickness() 
+  + effector_e3d_v6lite_nozzle_height() - effector_e3d_v6lite_pc_airbox_clearance();
+
+/**
+ * The depth of the nozzle block next to the part cooling fan holder, beneath the effector plate.
+ */
+function effector_e3d_v6lite_pc_nozzle_block_depth() = 5.0; // TODO make this configurable
+
+/**
+ * The depth of the screw holes to hold the part cooling fans.
+ */
+function effector_e3d_v6lite_pcf_screw_depth() = 18; // TODO make this configurable
+
+/**
+ * The dimensions of the part cooling nozzles.
+ */
+function effector_e3d_v6lite_pc_nozzle_height() = 4.0; // TODO make this configurable
+function effector_e3d_v6lite_pc_nozzle_width() = pc_fan_inner_diameter();
+
+/** 
+ * The distance in the XY plane between the tip of the printer nozzle and the edge of the part cooling nozzle.
+ */
+function effector_e3d_v6lite_pc_nozzle_center_distance() =
+  effector_base_center_long_edge_distance() - effector_e3d_v6lite_pc_nozzle_block_depth();
+
+/**
+ * The angle of the airflow through the part cooling nozzle.
+ */
+function effector_e3d_v6lite_pc_flow_angle() = 
+  atan((effector_e3d_v6lite_nozzle_height() - 
+         (effector_e3d_v6lite_pc_airbox_height() - effector_base_thickness() - effector_e3d_v6lite_pc_airbox_bottom_wall() - effector_e3d_v6lite_pc_nozzle_height() / 2)) 
+       / effector_e3d_v6lite_pc_nozzle_center_distance());
+
+/**
+ * The distance in Z direction between the top of the effector and the center of the part cooling nozzle.
+ */
+function effector_e3d_v6lite_pc_nozzle_center_z_offset() = 
+  effector_e3d_v6lite_pc_airbox_height() 
+  - effector_e3d_v6lite_pc_airbox_bottom_wall() 
+  - effector_e3d_v6lite_pc_nozzle_height() / 2;
+
+/**
+ * The Z offset of the flow path of the part cooling nozzles, taking into account the rotation.
+ */
+function effector_e3d_v6lite_pc_nozzle_path_z_offset() = 
+  effector_e3d_v6lite_pc_nozzle_center_z_offset() 
+  - effector_base_thickness() 
+  - tan(effector_e3d_v6lite_pc_flow_angle()) * effector_e3d_v6lite_pc_nozzle_center_distance();
+
+/**
+ * The depth of the "airbox" underneath the part cooling fan.
+ */
+function effector_e3d_v6lite_pc_airbox_depth() = 
+  effector_e3d_v6lite_pc_nozzle_center_z_offset() 
+  + effector_base_thickness() 
+  - tan(effector_e3d_v6lite_pc_flow_angle()) * effector_e3d_v6lite_pc_nozzle_center_distance();
+  // effector_e3d_v6lite_pc_airbox_height() 
+  // - effector_e3d_v6lite_pc_airbox_bottom_wall() 
+  // - effector_e3d_v6lite_pc_nozzle_height() / 2;
+
+
 // ===== ROD LENGTH CALCULATION =======================================================================================
 
 /**

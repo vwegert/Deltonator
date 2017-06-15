@@ -506,6 +506,7 @@ function escher_ir_sensor_nozzle_offset() = 1.5;
  * The fan size.
  */
 function pc_fan_side_length() = 25;
+function pc_fan_inner_diameter() = 22;
 function pc_fan_depth() = 10;
 function pc_fan_corner_radius() = 2.0; 
 
