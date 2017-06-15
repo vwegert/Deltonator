@@ -500,20 +500,20 @@ function escher_ir_sensor_magnet_height() = 3.0;
  */
 function escher_ir_sensor_nozzle_offset() = 1.5;
 
-// ===== 40 mm AXIAL FAN FOR PART COOLING =============================================================================
+// ===== AXIAL FAN FOR PART COOLING ===================================================================================
 
 /** 
  * The fan size.
  */
 function pc_fan_side_length() = 25;
 function pc_fan_depth() = 10;
-function pc_fan_corner_radius() = 4.0; // TODO double-check these values
+function pc_fan_corner_radius() = 2.0; 
 
 /**
  * The size and position of the mounting holes.
  */
-function pc_fan_hole_diameter() = 4.0; // TODO double-check these values
-function pc_fan_hole_offset() = 4.0; // TODO double-check these values
+function pc_fan_hole_diameter() = 3.0; 
+function pc_fan_hole_offset() = 2.5; 
 
 // ===== E3D V6 LITE HOTEND ===========================================================================================
 
