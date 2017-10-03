@@ -112,10 +112,7 @@ ENCLOSURE_BRACKET_THICKNESS = 6;
 
 // The width of the brackets that hold the outer enclosure walls, excluding the parts that bolt on to the 
 // horizontal rails.
-ENCLOSURE_BRACKET_WIDTH = 50;
-
-// The distance of the two screw holes and nut recesses in the brackets.
-ENCLOSURE_BRACKET_SCREW_DISTANCE = 20;
+ENCLOSURE_BRACKET_WIDTH = 40;
 
 // The size of the glass pane in the front door.
 ENCLOSURE_GLASS_WIDTH = 350;

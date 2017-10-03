@@ -57,28 +57,24 @@ module _render_enclosure_long_side_plate() {
 		translate([0, -enclosure_long_side_width()/2, 0])
 			cube([enclosure_long_side_thickness(), enclosure_long_side_width(), enclosure_long_side_height()]);
 
-		// minus the mounting holes through the bed bracket
-		translate([0, -enclosure_long_side_inner_hole_offset(), bed_horizontal_extrusion_center_height()])
+		// minus the mounting holes through the head bracket
+		translate([0, -enclosure_long_side_hole_offset(), head_horizontal_extrusion_center_height()])
 			_enclosure_long_side_screw_hole();
-		translate([0, enclosure_long_side_inner_hole_offset(), bed_horizontal_extrusion_center_height()])
+		translate([0, enclosure_long_side_hole_offset(), head_horizontal_extrusion_center_height()])
+			_enclosure_long_side_screw_hole();
+
+		// minus the mounting holes through the bed bracket
+		translate([0, -enclosure_long_side_hole_offset(), bed_horizontal_extrusion_center_height()])
+			_enclosure_long_side_screw_hole();
+		translate([0, enclosure_long_side_hole_offset(), bed_horizontal_extrusion_center_height()])
 			_enclosure_long_side_screw_hole();
 		
-		translate([0, -enclosure_long_side_outer_hole_offset(), bed_horizontal_extrusion_center_height()])
+		// minus the mounting holes through the footer bracket
+		translate([0, -enclosure_long_side_hole_offset(), foot_horizontal_extrusion_center_height()])
 			_enclosure_long_side_screw_hole();
-		translate([0, enclosure_long_side_outer_hole_offset(), bed_horizontal_extrusion_center_height()])
+		translate([0, enclosure_long_side_hole_offset(), foot_horizontal_extrusion_center_height()])
 			_enclosure_long_side_screw_hole();
-
-		// minus the mounting holes through the head
-		translate([0, -enclosure_long_side_inner_hole_offset(), head_horizontal_extrusion_center_height()])
-			_enclosure_long_side_screw_hole();
-		translate([0, enclosure_long_side_inner_hole_offset(), head_horizontal_extrusion_center_height()])
-			_enclosure_long_side_screw_hole();
-
-		translate([0, -enclosure_long_side_outer_hole_offset(), head_horizontal_extrusion_center_height()])
-			_enclosure_long_side_screw_hole();
-		translate([0, enclosure_long_side_outer_hole_offset(), head_horizontal_extrusion_center_height()])
-			_enclosure_long_side_screw_hole();
-
+		
 	}
 }
 
@@ -87,17 +83,26 @@ module _render_enclosure_long_side_plate() {
  */
 module enclosure_long_side_plate_hardware() {
 
-	// the mounting screws through the bed bracket
-	translate([0, -enclosure_long_side_outer_hole_offset(), bed_horizontal_extrusion_center_height()])
+	// the mounting screws through the head bracket
+	translate([0, -enclosure_long_side_hole_offset(), head_horizontal_extrusion_center_height()])
 		_enclosure_long_side_screw();
-	translate([0, enclosure_long_side_outer_hole_offset(), bed_horizontal_extrusion_center_height()])
+	translate([0, enclosure_long_side_hole_offset(), head_horizontal_extrusion_center_height()])
 		_enclosure_long_side_screw();
 
-	// the mounting screws through the head
-	translate([0, -enclosure_long_side_outer_hole_offset(), head_horizontal_extrusion_center_height()])
+	// the mounting screws through the bed bracket
+	translate([0, -enclosure_long_side_hole_offset(), bed_horizontal_extrusion_center_height()])
 		_enclosure_long_side_screw();
-	translate([0, enclosure_long_side_outer_hole_offset(), head_horizontal_extrusion_center_height()])
+	translate([0, enclosure_long_side_hole_offset(), bed_horizontal_extrusion_center_height()])
 		_enclosure_long_side_screw();
+
+	// the mounting screws through the footer bracket
+	if (foot_with_rail()) {
+		translate([0, -enclosure_long_side_hole_offset(), foot_horizontal_extrusion_center_height()])
+			_enclosure_long_side_screw();
+		translate([0, enclosure_long_side_hole_offset(), foot_horizontal_extrusion_center_height()])
+			_enclosure_long_side_screw();
+	}
+
 }
 
 _render_enclosure_long_side_plate();

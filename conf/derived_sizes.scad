@@ -1062,7 +1062,7 @@ function frame_screw_size() = M4;
 
 /**
  * The diameter of the heads of the screws used to assemble the frame. Actually, this is the size of the inset flange.
-* The screw head of a M5 hex screw is 8.5 mm in diameter, so 10 mm should leave enough clearance.
+ * The screw head of a M5 hex screw is 8.5 mm in diameter, so 10 mm should leave enough clearance.
  */
 function frame_screw_head_size() = washer_diameter(frame_screw_size() + 1);
 
@@ -1084,6 +1084,7 @@ function horizontal_extrusion_outward_offset() = (makerslide_base_width()/2 * si
  */
 function head_horizontal_extrusion_center_height() = vertical_extrusion_length() - vslot_2020_width()/2; 
 function bed_horizontal_extrusion_center_height() = bed_bracket_z_offset() + bed_bracket_height() - vslot_2020_width()/2; 
+function foot_horizontal_extrusion_center_height() = vslot_2020_width()/2; 
 
 /**
  * The distance of the motor front face to the inward face of the vertical MakerSlide extrusion.
@@ -1253,13 +1254,10 @@ function enclosure_long_side_width() =
 function enclosure_long_side_height() = vertical_extrusion_length();
 function enclosure_long_side_thickness() = enclosure_solid_thickness();
 
-/**
+/*
  * The horizontal distance of the holes in the long sides from the center of the plate.
  */
-function enclosure_long_side_inner_hole_offset() = 
-  enclosure_bracket_center_horizontal_offset() - enclosure_bracket_screw_distance() / 2;
-function enclosure_long_side_outer_hole_offset() = 
-  enclosure_bracket_center_horizontal_offset() + enclosure_bracket_screw_distance() / 2; 
+function enclosure_long_side_hole_offset() = enclosure_bracket_center_horizontal_offset();
 
 /**
  * The additional clearance on the sides of the front door to allow for the hinge to move.
@@ -1361,11 +1359,6 @@ function enclosure_bracket_depth() = enclosure_long_side_gap();
  * The width of the entire bracket.
  */
 function enclosure_bracket_total_width() = 2 * enclosure_bracket_foot_width() + enclosure_bracket_body_width();
-
-/**
- * The distance of the two screw holes and nut recesses in the brackets.
- */
-function enclosure_bracket_screw_distance() = ENCLOSURE_BRACKET_SCREW_DISTANCE;
 
 /**
  * The distance of the outer edge of the brackets from the outer edge of the horizontal rails.

@@ -105,11 +105,25 @@ module _horizontal_assembly_bed_holder() {
  * This module is not intended to be called outside of this file.
  */
 module _horizontal_assembly(side = A, with_connectors = false) {
-	if (foot_with_rail()) {
-		// the bottom extrusion
-		translate([vslot_2020_depth(), 0, 0])
-			rotate([0, 0, 90])
-				vslot_2020_side();
+	// the top-level elements
+	translate([vslot_2020_depth(), 0, vertical_extrusion_length() - vslot_2020_width()]) {
+		// the horizontal extrusion
+		rotate([0, 0, 90])
+			vslot_2020_side();
+
+		// the brackets on the A and B sides to hold the enclosure walls
+		if ((side == A) || (side == B)) {
+			translate([-vslot_2020_depth(), enclosure_bracket_total_width()/2 + enclosure_bracket_horizontal_offset(), 0]) 
+				rotate([0, 0, 180]) {
+					enclosure_side_bracket();
+					enclosure_side_bracket_hardware();
+				}
+			translate([-vslot_2020_depth(), horizontal_extrusion_length() - (enclosure_bracket_total_width()/2 + enclosure_bracket_horizontal_offset()), 0]) 
+				rotate([0, 0, 180]) {
+					enclosure_side_bracket();
+					enclosure_side_bracket_hardware();
+				}
+		}
 	}
 
 	// the bed-level elements
@@ -122,13 +136,13 @@ module _horizontal_assembly(side = A, with_connectors = false) {
 		if ((side == A) || (side == B)) {
 			translate([-vslot_2020_depth(), enclosure_bracket_total_width()/2 + enclosure_bracket_horizontal_offset(), 0]) 
 				rotate([0, 0, 180]) {
-					enclosure_side_bracket(right_side = true);
-					enclosure_side_bracket_hardware(right_side = true, nut_left = true, nut_right = false);
+					enclosure_side_bracket();
+					enclosure_side_bracket_hardware();
 				}
 			translate([-vslot_2020_depth(), horizontal_extrusion_length() - (enclosure_bracket_total_width()/2 + enclosure_bracket_horizontal_offset()), 0]) 
 				rotate([0, 0, 180]) {
-					enclosure_side_bracket(right_side = false);
-					enclosure_side_bracket_hardware(right_side = false, nut_left = true, nut_right = false);
+					enclosure_side_bracket();
+					enclosure_side_bracket_hardware();
 				}
 		}
 	}
@@ -137,26 +151,28 @@ module _horizontal_assembly(side = A, with_connectors = false) {
 	translate([0, (horizontal_extrusion_length() - rail_bracket_width())/2, bed_bracket_z_offset() + bed_bracket_height() - vslot_2020_width() - epsilon()]) 
 		_horizontal_assembly_bed_holder();
 
-	// the top-level elements
-	translate([vslot_2020_depth(), 0, vertical_extrusion_length() - vslot_2020_width()]) {
-		// the horizontal extrusion
-		rotate([0, 0, 90])
-			vslot_2020_side();
+	// the foot-level elements
+	if (foot_with_rail()) {
+		// the bottom extrusion
+		translate([vslot_2020_depth(), 0, 0])
+			rotate([0, 0, 90])
+				vslot_2020_side();
 
 		// the brackets on the A and B sides to hold the enclosure walls
 		if ((side == A) || (side == B)) {
-			translate([-vslot_2020_depth(), enclosure_bracket_total_width()/2 + enclosure_bracket_horizontal_offset(), 0]) 
+			translate([0, enclosure_bracket_total_width()/2 + enclosure_bracket_horizontal_offset(), 0]) 
 				rotate([0, 0, 180]) {
-					enclosure_side_bracket(right_side = true);
-					enclosure_side_bracket_hardware(right_side = true, nut_left = true, nut_right = true);
+					enclosure_side_bracket();
+					enclosure_side_bracket_hardware();
 				}
-			translate([-vslot_2020_depth(), horizontal_extrusion_length() - (enclosure_bracket_total_width()/2 + enclosure_bracket_horizontal_offset()), 0]) 
+			translate([0, horizontal_extrusion_length() - (enclosure_bracket_total_width()/2 + enclosure_bracket_horizontal_offset()), 0]) 
 				rotate([0, 0, 180]) {
-					enclosure_side_bracket(right_side = false);
-					enclosure_side_bracket_hardware(right_side = false, nut_left = true, nut_right = true);
+					enclosure_side_bracket();
+					enclosure_side_bracket_hardware();
 				}
 		}
 	}
+
 
 	// the enclosure walls on the sides opposing the A and B rails, the front door on the side opposing the C rail
 	translate([-enclosure_long_side_gap() - enclosure_insulation_thickness() - enclosure_solid_thickness() - epsilon(), horizontal_extrusion_length()/2, 0]) {

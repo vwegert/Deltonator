@@ -75,18 +75,9 @@ module _render_enclosure_side_bracket() {
 							     h = enclosure_bracket_thickness() + 2 * epsilon(),
 							     $fn = enclosure_bracket_resolution());
 
-				// minus the left screw hole in the bracket center
+				// minus the screw hole in the bracket center
 				translate([enclosure_bracket_depth() - enclosure_bracket_thickness() - epsilon(), 
-					       -enclosure_bracket_screw_distance()/2,
-					       enclosure_bracket_height()/2])
-					rotate([0, 90, 0])
-						cylinder(d = frame_screw_size(), 
-							     h = enclosure_bracket_thickness() + 2 * epsilon(),
-							     $fn = enclosure_bracket_resolution());
-
-				// minus the right screw hole in the bracket center
-				translate([enclosure_bracket_depth() - enclosure_bracket_thickness() - epsilon(), 
-					       enclosure_bracket_screw_distance()/2,
+					       0,
 					       enclosure_bracket_height()/2])
 					rotate([0, 90, 0])
 						cylinder(d = frame_screw_size(), 
@@ -95,15 +86,10 @@ module _render_enclosure_side_bracket() {
 
 				// minus a recess for the inner nut on the left-hand side
 				translate([enclosure_bracket_depth() - enclosure_bracket_thickness() - epsilon(), 
-					       -enclosure_bracket_screw_distance()/2,
+					       0,
 					       enclosure_bracket_height()/2])
 						nut_recess(size = frame_screw_size());
 
-				// minus a recess for the outer nut on the right-hand side
-				translate([enclosure_bracket_depth() - nut_thickness(frame_screw_size()) + epsilon(), 
-					       enclosure_bracket_screw_distance()/2,
-					       enclosure_bracket_height()/2])
-						nut_recess(size = frame_screw_size());
 			}
 		} 
 }
@@ -111,24 +97,17 @@ module _render_enclosure_side_bracket() {
 /**
  * Main module to use the pre-rendered bracket. If rotated i
  */
-module enclosure_side_bracket(right_side = false) {
+module enclosure_side_bracket() {
 	bom_entry(section = "Printed Parts", description = "Enclosure", size = "Side Bracket");
 	color_printed_outer_frame() {
-		if (right_side) {
-			translate([0, 0, enclosure_bracket_height()])
-				rotate([180, 0, 0])
-					import(file = "enclosure_side_bracket.stl");
-		} else {
-			import(file = "enclosure_side_bracket.stl");
-		}
+		import(file = "enclosure_side_bracket.stl");
 	}
 }
 
 /** 
  * Renders the hardware (nuts, bolts, screws) that are used to fixed the printed part to the surrounding parts.
  */
-module _enclosure_side_bracket_hardware(nut_left = false, nut_right = false) {
-
+module enclosure_side_bracket_hardware() {
 	// the washer and screw on the left-hand side
 	translate([enclosure_bracket_thickness(), 
 		       -enclosure_bracket_total_width()/2 + enclosure_bracket_foot_width()/2,
@@ -151,35 +130,11 @@ module _enclosure_side_bracket_hardware(nut_left = false, nut_right = false) {
 				screw(size = frame_screw_size(), length = 12);
 	}
 
-	// the inner nut on the left-hand side
-	if (nut_left) {
-		translate([enclosure_bracket_depth() - enclosure_bracket_thickness() - epsilon(), 
-			       -enclosure_bracket_screw_distance()/2,
-			       enclosure_bracket_height()/2])
-				nut(size = frame_screw_size());
-	}
-
-	// the outer nut on the right-hand side
-	if (nut_right) {
-		translate([enclosure_bracket_depth() - nut_thickness(frame_screw_size()) + epsilon(), 
-			       enclosure_bracket_screw_distance()/2,
-			       enclosure_bracket_height()/2])
-				nut(size = frame_screw_size());
-	}
-
-}
-
-/** 
- * Renders the hardware (nuts, bolts, screws) that are used to fixed the printed part to the surrounding parts.
- */
-module enclosure_side_bracket_hardware(right_side = false, nut_left = false, nut_right = false) {
-	if (right_side) {
-		translate([0, 0, enclosure_bracket_height()])
-			rotate([180, 0, 0])
-				_enclosure_side_bracket_hardware(nut_left = nut_left, nut_right = nut_right);
-	} else {
-		_enclosure_side_bracket_hardware(nut_left = nut_left, nut_right = nut_right);
-	}
+	// the inner nut 
+	translate([enclosure_bracket_depth() - enclosure_bracket_thickness() - epsilon(), 
+		       0,
+		       enclosure_bracket_height()/2])
+			nut(size = frame_screw_size());
 }
 
 _render_enclosure_side_bracket();
