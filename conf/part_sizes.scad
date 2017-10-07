@@ -539,3 +539,50 @@ function hotend_e3d_v6lite_mounting_hole_size() = M4;
  * The height of the hotend from the underside of the mounting plate to the tip of the nozzle.
  */
 function hotend_e3d_v6lite_overall_height() = 53.0; 
+
+// ===== MEANWELL POWER SUPPLY ========================================================================================
+
+/**
+ * The outer dimensions of the power supply housing.
+ */
+function mwps_length() = 247;
+function mwps_width()  = 127;
+function mwps_height() =  63.5;
+
+/**
+ * The size and position of the terminals on the primary (mains) side.
+ */
+function mwps_pri_term_length()   = 14;
+function mwps_pri_term_width()    = 35; // theoretically: 3 * 10 + (10 - 8.2) / 2
+function mwps_pri_term_height()   = 15; 
+function mwps_pri_term_offset_y() = 11.5; 
+function mwps_pri_term_offset_z() =  9.5; 
+
+/**
+ * The size and position of the terminals on the secondary (output) side.
+ */
+function mwps_sec_term_length()   = 17;
+function mwps_sec_term_width()    = 82; // theoretically 6 * 13 + (13 - 10) / 2;
+function mwps_sec_term_height()   = 19;
+function mwps_sec_term_offset_y() = 26; 
+function mwps_sec_term_offset_z() =  9; 
+
+/**
+ * The size and position of the screw holes in the sides.
+ */
+function mpws_screw_diameter()     = 3;
+function mpws_screw_depth()        = 4;
+function mpws_lower_screw_height() = mwps_height() - 30 - 20;
+function mpws_upper_screw_height() = mwps_height() - 30;
+function mpws_pri_screw_offset()   =  11;
+function mpws_screw_distance_x()   = 220;
+function mpws_sec_screw_offset()   = mwps_length() - mpws_pri_screw_offset() - mpws_screw_distance_x();
+
+// ===== AUXILIARY FUNCTIONS ===========================================================================================
+
+/**
+ * A small value that can be added to or subtracted from edges to eliminate rendering artifacts.
+ */
+function epsilon() = 0.01;
+
+

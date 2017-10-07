@@ -136,6 +136,7 @@ vitamins: \
 	parts/vitamins/electromechanic/stepper_nema23_medium.stl \
 	parts/vitamins/electromechanic/stepper_nema23_short.stl \
 	parts/vitamins/electronic/escher_ir_sensor.stl \
+	parts/vitamins/electronic/mwps_case_926a.stl \
 	parts/vitamins/mechanic/ball.stl \
 	parts/vitamins/mechanic/bearing_f623.stl \
 	parts/vitamins/mechanic/bearing_625.stl \

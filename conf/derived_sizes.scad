@@ -1489,10 +1489,3 @@ function escher_ir_sensor_magnet_holder_depth() = escher_ir_sensor_housing_body_
  */
 function escher_ir_sensor_resolution() = 32;
 
-// ===== AUXILIARY FUNCTIONS ===========================================================================================
-
-/**
- * A small value that can be added to or subtracted from edges to eliminate rendering artifacts.
- */
-function epsilon() = 0.01;
-
