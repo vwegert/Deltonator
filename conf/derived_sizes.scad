@@ -1489,3 +1489,13 @@ function escher_ir_sensor_magnet_holder_depth() = escher_ir_sensor_housing_body_
  */
 function escher_ir_sensor_resolution() = 32;
 
+// ===== MEANWELL POWER SUPPLY ========================================================================================
+
+/** 
+ * The height of the power supply above the lower edge of the enclosure plate.
+ */
+
+function mwps_y_offset() = bed_bracket_top_level() + 25;
+
+
+

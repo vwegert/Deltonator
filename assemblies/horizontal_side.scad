@@ -22,6 +22,11 @@ use <../parts/printed/enclosure_side_bracket.scad>
 use <../parts/vitamins/vitamins.scad>
 
 /**
+ * A is the right semi-back side that holds the Duet Wifi, Duet X5 and the extruders.
+ * B is the left semi-back side that holds the power supply
+ */
+
+/**
  * Provides access to the assembly.
  */
 module horizontal_assembly(side = A, angle = 0, with_connectors = false) {
@@ -173,7 +178,6 @@ module _horizontal_assembly(side = A, with_connectors = false) {
 		}
 	}
 
-
 	// the enclosure walls on the sides opposing the A and B rails, the front door on the side opposing the C rail
 	translate([-enclosure_long_side_gap() - enclosure_insulation_thickness() - enclosure_solid_thickness() - epsilon(), horizontal_extrusion_length()/2, 0]) {
 		if ((side == A) || (side == B)) {
@@ -184,7 +188,33 @@ module _horizontal_assembly(side = A, with_connectors = false) {
 		}
 	}
 
+	// for side A, add the electronics; for side B, add the power supply
+	translate([-enclosure_long_side_gap() - enclosure_insulation_thickness() - enclosure_solid_thickness() - epsilon(), horizontal_extrusion_length()/2, 0]) {
+		if (side == A) {
+			_horizontal_assembly_electronics();
+		}
+		if (side == B) {
+			_horizontal_assembly_power_supply();
+		}
+	}
+
+}
+
+/**
+ * Adds the electronics and extruders to the right side (A).
+ */
+module _horizontal_assembly_electronics() {
+	// TODO 
+}
+
+/**
+ * Adds the power supply to the left side (B).
+ */
+module _horizontal_assembly_power_supply() {
+	translate([0, mwps_length()/2, mwps_y_offset()])
+		rotate([90, 0, -90])
+			mwps_case_926a();
 }
 
 // render the axis to a separate output file if requested
-_horizontal_assembly(side = A, with_connectors = true);
+_horizontal_assembly(side = B, with_connectors = true);
