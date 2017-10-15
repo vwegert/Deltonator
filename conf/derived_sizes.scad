@@ -1489,17 +1489,33 @@ function escher_ir_sensor_magnet_holder_depth() = escher_ir_sensor_housing_body_
  */
 function escher_ir_sensor_resolution() = 32;
 
-// ===== POWER SUPPLY =================================================================================================
+// ===== POWER SUPPLY AND DISTRIBUTION ================================================================================
+
+// ps_  = power supply 
+// pd_  = power distribution (mains plug, switch, SSD, ...)
+// psd_ = values concerning both ps_ and pd_
+
+/**
+ * The thickness of the cover walls.
+ */
+function psd_cover_wall_thickness() = POWER_WALL_THICKNESS;
+
+/**
+ * The clearance between the inner and outer parts of the covers as well as between the covers.
+ */
+function psd_wall_clearance() = POWER_CLEARANCE;
 
 /**
  * The resolution of the holes and the rounded edges.
  */
-function ps_cover_resolution() = 32;
+function psd_cover_resolution() = 32;
 
-// /** 
-//  * The height of the power supply above the lower edge of the enclosure plate.
-//  */
-// function ps_y_offset() = bed_bracket_top_level() + 25;
+/**
+ * The distance and height of the slot to pass cables between the ps_ and the pd_ side.
+ */
+function psd_cable_slot_offset() = 25;
+function psd_cable_slot_width()  = 25;
+function psd_cable_slot_height() = 20;
 
 /**
  * The additional clearance to factor in for printing inaccuracies.
@@ -1534,6 +1550,11 @@ function ps_base_inner_height() = ps_height() + ps_height_additional_clearance()
 function ps_base_strut_width() = 10.0;
 
 /**
+ * The depth of the screw hole in the support pillar.
+ */
+function ps_base_pillar_hole_depth() = ps_base_inner_height() * 0.75;
+
+/**
  * How much of the power supply is being covered, and how much room to leave below the power supply inside the cover.
  */
 function ps_base_ps_cover() = 70;
@@ -1546,42 +1567,63 @@ function ps_base_outer_width_x() = ps_base_inner_width() + 2 * ps_base_strut_wid
 function ps_base_outer_width_y() = ps_base_ps_cover() + ps_base_inner_clearance() + ps_base_strut_width();
 // inner height = outer height
 
-// /**
-//  * The placement of the mounting screw holes on both base parts.
-//  */
-// function ps_base_mount_screw_offset_x() = 0.0;
-// function ps_base_mount_screw_offset_z() = 0.0;
+/**
+ * The inner and outer size of the power supply cover.
+ */
+function ps_cover_inner_width_x() = ps_base_outer_width_x() + 2 * psd_wall_clearance();
+function ps_cover_inner_width_y() = ps_base_outer_width_y() + psd_wall_clearance();
+function ps_cover_inner_height()  = ps_base_inner_height()  + psd_wall_clearance();
+function ps_cover_outer_width_x() = ps_cover_inner_width_x() + 2 * psd_cover_wall_thickness();
+function ps_cover_outer_width_y() = ps_cover_inner_width_y() + psd_cover_wall_thickness();
+function ps_cover_outer_height()  = ps_cover_inner_height()  + psd_wall_clearance();
 
-// /**
-//  * The width and height of the tabs that hold the power supply on both base parts.
-//  */ 
-// function ps_base_ps_tab_width() = 9.0;
-// function ps_base_ps_tab_height() = mwps_height() + ps_height_additional_clearance(); 
+/**
+ * The offset of the cover so that the rendered parts line up.
+ */
+function ps_cover_offset() = [
+    -( psd_wall_clearance() + psd_cover_wall_thickness() ),
+    -( psd_wall_clearance() + psd_cover_wall_thickness() ),
+    psd_wall_clearance()
+  ];
 
-// /**
-//  * The height of the power supply screw holes relative to the base plate origin.
-//  */
-// function ps_base_lower_ps_screw_height() = ps_base_thickness() + ps_height_additional_clearance() / 2 + mpws_lower_screw_height();
-// function ps_base_upper_ps_screw_height() = ps_base_thickness() + ps_height_additional_clearance() / 2 + mpws_upper_screw_height();
+/**
+ * The offset of the screw holes in the top face.
+ */
+function ps_cover_screw_offset() = [
+    [ psd_cover_wall_thickness() + psd_wall_clearance() + ps_base_strut_width() / 2,
+      psd_cover_wall_thickness() + psd_wall_clearance() + ps_base_strut_width() / 2,
+      0 ],
+    [ ps_cover_outer_width_x() - (psd_cover_wall_thickness() + psd_wall_clearance() + ps_base_strut_width() / 2),
+      psd_cover_wall_thickness() + psd_wall_clearance() + ps_base_strut_width() / 2,
+      0 ],
+    [ psd_cover_wall_thickness() + psd_wall_clearance() + ps_base_strut_width() / 2,
+      ps_cover_outer_width_y() - (psd_wall_clearance() + ps_base_strut_width() / 2),
+      0 ],
+    [ ps_cover_outer_width_x() - (psd_cover_wall_thickness() + psd_wall_clearance() + ps_base_strut_width() / 2),
+      ps_cover_outer_width_y() - (psd_wall_clearance() + ps_base_strut_width() / 2),
+      0 ]
+  ];
 
-// /**
-//  * Primary side: 
-//  *  - How much of the power supply case should be covered?
-//  *  - How much space do we need "behind" the power supply to mount stuff?
-//  *  - What is the total length of the base on the primary side?
-//  */
-// function ps_pri_case_cover_length() = mpws_pri_screw_offset() * 2.5;
-// function ps_pri_case_inner_length() = 80.0;
-// function ps_pri_base_length() = ps_pri_case_cover_length() + ps_pri_case_inner_length();
+/**
+ * The parameters of the ventilation slots in the bottom of the power supply cover.
+ */
+function ps_cover_vent_width() = 2.5;
+function ps_cover_vent_spacing() = 5.0;
+function ps_cover_vent_edge_clearance() = 3 * ps_base_thickness();
+function ps_cover_vent_area_height() = ps_cover_outer_height() - 2 * ps_cover_vent_edge_clearance();
+function ps_cover_vent_area_width() = ps_cover_outer_width_x() - 2 * ps_cover_vent_edge_clearance();
 
-// /**
-//  * The position of the support strut in the base (parallel to the power supply).
-//  */ 
-// function ps_pri_base_strut_offset_z() = 72.0; // distance center-center of the mounting holes
+/**
+ * The minimum and maximum length of the screws to hold the cover.
+ */
+function ps_cover_screw_min_length() = 
+  10
+  + psd_wall_clearance()
+  + psd_cover_wall_thickness()
+  + washer_thickness(size = ps_base_mount_screw_size());
+function ps_cover_screw_max_length() = 
+  ps_base_pillar_hole_depth() 
+  + psd_wall_clearance()
+  + psd_cover_wall_thickness()
+  + washer_thickness(size = ps_base_mount_screw_size());
 
-// /**
-//  * The distance of the SSR heat sink mounting holes in the struts from the power supply back side, and the size of 
-//  * the holes.
-//  */
-// function ps_pri_base_ssr_hole_distance() = 40.0;
-// function ps_pri_base_ssr_hole_size() = M4;

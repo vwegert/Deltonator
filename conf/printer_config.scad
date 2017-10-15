@@ -211,6 +211,14 @@ EFFECTOR_TYPE = EFFECTOR_E3D_V6LITE;
 // The clearance in Z direction to leave beneath the effector plate.
 EFFECTOR_Z_CLEARANCE = 30.0;
 
+// ===== POWER DISTRIBUTION PARAMETERS ================================================================================
+
+// The thickness of the cover walls.
+POWER_WALL_THICKNESS = 2.5;
+
+// The clearance between the inner and outer parts of the covers as well as between the covers.
+POWER_CLEARANCE = 0.5;
+
 // ===== OTHER DIMENSIONS AND PARAMETERS ==============================================================================
 
 // The range by which the vertical belt tensioner can be adjusted.
