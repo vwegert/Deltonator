@@ -1489,13 +1489,99 @@ function escher_ir_sensor_magnet_holder_depth() = escher_ir_sensor_housing_body_
  */
 function escher_ir_sensor_resolution() = 32;
 
-// ===== MEANWELL POWER SUPPLY ========================================================================================
+// ===== POWER SUPPLY =================================================================================================
 
-/** 
- * The height of the power supply above the lower edge of the enclosure plate.
+/**
+ * The resolution of the holes and the rounded edges.
  */
+function ps_cover_resolution() = 32;
 
-function mwps_y_offset() = bed_bracket_top_level() + 25;
+// /** 
+//  * The height of the power supply above the lower edge of the enclosure plate.
+//  */
+// function ps_y_offset() = bed_bracket_top_level() + 25;
 
+/**
+ * The additional clearance to factor in for printing inaccuracies.
+ */
+function ps_width_additional_clearance() = 1.0;
+function ps_height_additional_clearance() = 1.0;
 
+/**
+ * The size of the screws used to fasten the power supply assembly bases to the enclosure.
+ */
+function ps_base_mount_screw_size() = M4;
+function ps_base_mount_screw_min_length() = 
+  enclosure_solid_thickness() 
+  + ps_base_thickness() 
+  + washer_thickness(ps_base_mount_screw_size());
 
+/**
+ * The thickness of the base frame that is attached to the enclosure plate. Be aware that these plates need to be 
+ * thick enough to hold a nut to fasten them to the enclosure plate.
+ */
+function ps_base_thickness() = ceil(nut_thickness(ps_base_mount_screw_size()) * 1.5);
+
+/**
+ * The size of the cut-out in the top side to hold the power supply.
+ */
+function ps_base_inner_width()  = ps_width()  + ps_width_additional_clearance();
+function ps_base_inner_height() = ps_height() + ps_height_additional_clearance();
+
+/**
+ * The width of the frame of both base parts.
+ */
+function ps_base_strut_width() = 10.0;
+
+/**
+ * How much of the power supply is being covered, and how much room to leave below the power supply inside the cover.
+ */
+function ps_base_ps_cover() = 70;
+function ps_base_inner_clearance() = 60;
+
+/**
+ * The outer size of the power supply base.
+ */
+function ps_base_outer_width_x() = ps_base_inner_width() + 2 * ps_base_strut_width();
+function ps_base_outer_width_y() = ps_base_ps_cover() + ps_base_inner_clearance() + ps_base_strut_width();
+// inner height = outer height
+
+// /**
+//  * The placement of the mounting screw holes on both base parts.
+//  */
+// function ps_base_mount_screw_offset_x() = 0.0;
+// function ps_base_mount_screw_offset_z() = 0.0;
+
+// /**
+//  * The width and height of the tabs that hold the power supply on both base parts.
+//  */ 
+// function ps_base_ps_tab_width() = 9.0;
+// function ps_base_ps_tab_height() = mwps_height() + ps_height_additional_clearance(); 
+
+// /**
+//  * The height of the power supply screw holes relative to the base plate origin.
+//  */
+// function ps_base_lower_ps_screw_height() = ps_base_thickness() + ps_height_additional_clearance() / 2 + mpws_lower_screw_height();
+// function ps_base_upper_ps_screw_height() = ps_base_thickness() + ps_height_additional_clearance() / 2 + mpws_upper_screw_height();
+
+// /**
+//  * Primary side: 
+//  *  - How much of the power supply case should be covered?
+//  *  - How much space do we need "behind" the power supply to mount stuff?
+//  *  - What is the total length of the base on the primary side?
+//  */
+// function ps_pri_case_cover_length() = mpws_pri_screw_offset() * 2.5;
+// function ps_pri_case_inner_length() = 80.0;
+// function ps_pri_base_length() = ps_pri_case_cover_length() + ps_pri_case_inner_length();
+
+// /**
+//  * The position of the support strut in the base (parallel to the power supply).
+//  */ 
+// function ps_pri_base_strut_offset_z() = 72.0; // distance center-center of the mounting holes
+
+// /**
+//  * The distance of the SSR heat sink mounting holes in the struts from the power supply back side, and the size of 
+//  * the holes.
+//  */
+// function ps_pri_base_ssr_hole_distance() = 40.0;
+// function ps_pri_base_ssr_hole_size() = M4;

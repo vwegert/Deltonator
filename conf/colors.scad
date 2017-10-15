@@ -47,6 +47,14 @@ module color_printed_inner_frame() {
 } 
 
 /**
+ * The color of the printed power supply case.
+ */
+module color_printed_ps_case() {
+	color("DodgerBlue")
+		children();
+} 
+
+/**
  * The color of the printed carriages.
  */
 module color_printed_carriage() {

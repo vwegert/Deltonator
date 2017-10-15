@@ -100,6 +100,7 @@ printed: vitamins \
 	parts/printed/magnet_holder_carriage.stl \
 	parts/printed/magnet_holder_effector.stl \
 	parts/printed/motor_bracket.stl \
+	parts/printed/power_supply_base.stl \
 	parts/printed/tensioner.stl
 
 #
