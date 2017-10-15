@@ -123,6 +123,10 @@ echo(hotend_e3d_v6lite_cutout_depth_back = hotend_e3d_v6lite_cutout_depth_back()
 echo(hotend_e3d_v6lite_mounting_hole_distance = hotend_e3d_v6lite_mounting_hole_distance());
 echo(hotend_e3d_v6lite_mounting_hole_size = hotend_e3d_v6lite_mounting_hole_size());
 echo(hotend_e3d_v6lite_overall_height = hotend_e3d_v6lite_overall_height());
+echo(ps_length = ps_length());
+echo(ps_width = ps_width());
+echo(ps_height = ps_height());
+echo(epsilon = epsilon());
 echo("----- conf/derived_sizes.scad ----------------------------------------");
 echo(vertical_extrusion_length = vertical_extrusion_length());
 echo(horizontal_extrusion_length = horizontal_extrusion_length());
@@ -423,4 +427,3 @@ echo(escher_ir_sensor_magnet_holder_width = escher_ir_sensor_magnet_holder_width
 echo(escher_ir_sensor_magnet_holder_height = escher_ir_sensor_magnet_holder_height());
 echo(escher_ir_sensor_magnet_holder_depth = escher_ir_sensor_magnet_holder_depth());
 echo(escher_ir_sensor_resolution = escher_ir_sensor_resolution());
-echo(epsilon = epsilon());
