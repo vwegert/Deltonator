@@ -549,6 +549,19 @@ function ps_length() = 215;
 function ps_width()  = 114;
 function ps_height() =  50;
 
+/**
+ * The distance between the mounting holes (assuming they are centered on the mounting side).
+ */
+function ps_screw_distance_length() = 150;
+function ps_screw_distance_width()  =  50;
+
+/**
+ * The size and maximum depth of the mounting screws.
+ */
+function ps_screw_size()     = M4;
+function ps_screw_min_depth() = 2.0;
+function ps_screw_max_depth() = 5.0;
+
 // ===== AUXILIARY FUNCTIONS ===========================================================================================
 
 /**

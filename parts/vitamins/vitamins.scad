@@ -109,6 +109,39 @@ module power_supply() {
 		import(file = "electronic/power_supply.stl"); 
 }
 
+/**
+ * Renders a nut to be placed in the base struts.
+ */
+module _power_supply_screw_washer(screw_material_thickness) {
+	translate([0, 0, -(screw_material_thickness + washer_thickness(size = ps_screw_size()))]) 
+		rotate([0, -90, 0]) {
+			screw(size = ps_screw_size(),
+				  min_length = screw_material_thickness + ps_screw_min_depth(),
+				  max_length = screw_material_thickness + ps_screw_max_depth());
+			washer(size = ps_screw_size());
+		}
+} 
+
+/** 
+ * Renders the hardware (nuts, bolts, screws) that are used to fixed the power supply to the bed.
+ */
+module power_supply_hardware(screw_material_thickness = 6) {
+	_offset_x = (ps_width() - ps_screw_distance_width()) / 2;
+	_left_x   = _offset_x;
+	_right_x  = ps_width() - _offset_x;
+	_offset_y = (ps_length() - ps_screw_distance_length()) / 2;
+	_bottom_y = _offset_y;
+	_top_y    = ps_length() - _offset_y;
+	translate([_left_x, _bottom_y, 0])
+		_power_supply_screw_washer(screw_material_thickness);
+	translate([_right_x, _bottom_y, 0])
+		_power_supply_screw_washer(screw_material_thickness);
+	translate([_left_x, _top_y, 0])
+		_power_supply_screw_washer(screw_material_thickness);
+	translate([_right_x, _top_y, 0])
+		_power_supply_screw_washer(screw_material_thickness);
+}
+
 // ===== parts/vitamins/mechanic/ball_*.* ==============================================================================
 
 /**
