@@ -1561,6 +1561,12 @@ function ps_base_ps_cover() = 70;
 function ps_base_inner_clearance() = 60;
 
 /**
+ * The offset of the power supply inside the bracket.
+ */
+function ps_base_ps_offset_x() = ps_base_strut_width() + ps_width_additional_clearance() / 2;
+function ps_base_ps_offset_y() = ps_base_strut_width() + ps_base_inner_clearance();
+
+/**
  * The outer size of the power supply base.
  */
 function ps_base_outer_width_x() = ps_base_inner_width() + 2 * ps_base_strut_width();
@@ -1597,10 +1603,10 @@ function ps_cover_screw_offset() = [
       psd_cover_wall_thickness() + psd_wall_clearance() + ps_base_strut_width() / 2,
       0 ],
     [ psd_cover_wall_thickness() + psd_wall_clearance() + ps_base_strut_width() / 2,
-      ps_cover_outer_width_y() - (psd_wall_clearance() + ps_base_strut_width() / 2),
+      ps_cover_outer_width_y() - ps_base_strut_width() / 2,
       0 ],
     [ ps_cover_outer_width_x() - (psd_cover_wall_thickness() + psd_wall_clearance() + ps_base_strut_width() / 2),
-      ps_cover_outer_width_y() - (psd_wall_clearance() + ps_base_strut_width() / 2),
+      ps_cover_outer_width_y() - ps_base_strut_width() / 2,
       0 ]
   ];
 
@@ -1626,4 +1632,5 @@ function ps_cover_screw_max_length() =
   + psd_wall_clearance()
   + psd_cover_wall_thickness()
   + washer_thickness(size = ps_base_mount_screw_size());
+
 

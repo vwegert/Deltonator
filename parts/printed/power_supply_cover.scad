@@ -146,20 +146,21 @@ module power_supply_cover() {
  * Renders the hardware (nuts, bolts, screws) that are used to fixed the printed part to the surrounding parts.
  */
 module power_supply_cover_hardware() {
-	translate([0,
-			   0,
-			   ps_cover_outer_height() + washer_thickness(size = ps_base_mount_screw_size())]) {
-		_screw_offsets = ps_cover_screw_offset();
-		for (i = [0:3])
-			translate(_screw_offsets[i]) {
-				rotate([0, 90, 0])
- 				screw(size = ps_base_mount_screw_size(),				
-	 				  min_length = ps_cover_screw_min_length(),
-	 				  max_length = ps_cover_screw_max_length());
-				rotate([0, 90, 0])
-	 			washer(size = ps_base_mount_screw_size());
+	translate(ps_cover_offset())
+		translate([0,
+				   0,
+				   ps_cover_outer_height() + washer_thickness(size = ps_base_mount_screw_size())]) {
+			_screw_offsets = ps_cover_screw_offset();
+			for (i = [0:3])
+				translate(_screw_offsets[i]) {
+					rotate([0, 90, 0])
+ 					screw(size = ps_base_mount_screw_size(),				
+		 				  min_length = ps_cover_screw_min_length(),
+		 				  max_length = ps_cover_screw_max_length());
+					rotate([0, 90, 0])
+		 			washer(size = ps_base_mount_screw_size());
+			}
 		}
-	}
 }
 
 _render_power_supply_cover();
