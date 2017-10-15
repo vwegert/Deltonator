@@ -97,16 +97,16 @@ module escher_ir_sensor() {
 		import(file = "electronic/escher_ir_sensor.stl"); 
 }
 
-// ===== parts/vitamins/electronic/mwps_case_926a.* ===================================================================
+// ===== parts/vitamins/electronic/power_supply.* =====================================================================
 
 /**
- * Provides a pre-rendered approximation of a power supply case designated as "Case No. 926A" in the MeanWell 
- * data sheets. The "front" side is the one aligned to the Y axis (front if primary is left, secondary right).
+ * Provides a pre-rendered approximation of a power supply.
+ * The "front" side is the one aligned to the Y axis (front if primary is left, secondary right).
  */
-module mwps_case_926a() {
-	bom_entry(section = "Electronic Components", description = "MeanWell Power Supply", size = "926A");
+module power_supply() {
+	bom_entry(section = "Electronic Components", description = "Power Supply", size = "");
 	color_electronics()
-		import(file = "electronic/mwps_case_926a.stl"); 
+		import(file = "electronic/power_supply.stl"); 
 }
 
 // ===== parts/vitamins/mechanic/ball_*.* ==============================================================================
