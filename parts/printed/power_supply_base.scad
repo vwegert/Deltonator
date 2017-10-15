@@ -136,11 +136,11 @@ module power_supply_base() {
 /**
  * Renders a nut to be placed in the base struts.
  */
-module _power_supply_base_nut_screw(head_rotation = 0) {
+module _power_supply_base_nut_screw(head_rotation = 0, screw_material_thickness = 6) {
 	translate([0, 0, ps_base_thickness()])
 		rotate([0, 90, head_rotation])
 			nut(size = ps_base_mount_screw_size());
-	translate([0, 0, -(enclosure_solid_thickness() + washer_thickness(size = ps_base_mount_screw_size()))]) 
+	translate([0, 0, -(screw_material_thickness + washer_thickness(size = ps_base_mount_screw_size()))]) 
 		rotate([0, -90, 0]) {
 			screw(size = ps_base_mount_screw_size(),
 				  min_length = ps_base_mount_screw_min_length());
@@ -157,31 +157,31 @@ module power_supply_base_hardware(screw_material_thickness = 6) {
 	translate([ps_base_outer_width_x() * 0.25, 
 			   ps_base_strut_width() / 2, 
 			   0])
-		_power_supply_base_nut_screw();
+		_power_supply_base_nut_screw(screw_material_thickness = screw_material_thickness);
 	translate([ps_base_outer_width_x() * 0.75, 
 			   ps_base_strut_width() / 2, 
 			   0])
-		_power_supply_base_nut_screw();
+		_power_supply_base_nut_screw(screw_material_thickness = screw_material_thickness);
 
 	// left vertical strut
 	translate([ps_base_strut_width() / 2, 
 			   ps_base_outer_width_y() * 0.25, 
 			   0])
-		_power_supply_base_nut_screw(head_rotation = 90);
+		_power_supply_base_nut_screw(head_rotation = 90, screw_material_thickness = screw_material_thickness);
 	translate([ps_base_strut_width() / 2, 
 			   ps_base_outer_width_y() * 0.75, 
 			   0])
-		_power_supply_base_nut_screw(head_rotation = 90);
+		_power_supply_base_nut_screw(head_rotation = 90, screw_material_thickness = screw_material_thickness);
 
 	// right vertical strut
 	translate([ps_base_outer_width_x() - ps_base_strut_width() / 2, 
 			   ps_base_outer_width_y() * 0.25, 
 			   0])
-		_power_supply_base_nut_screw(head_rotation = 90);
+		_power_supply_base_nut_screw(head_rotation = 90, screw_material_thickness = screw_material_thickness);
 	translate([ps_base_outer_width_x() - ps_base_strut_width() / 2, 
 			   ps_base_outer_width_y() * 0.75, 
 			   0])
-		_power_supply_base_nut_screw(head_rotation = 90);
+		_power_supply_base_nut_screw(head_rotation = 90, screw_material_thickness = screw_material_thickness);
 
 }
 
