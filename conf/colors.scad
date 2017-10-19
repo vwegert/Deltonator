@@ -47,9 +47,9 @@ module color_printed_inner_frame() {
 } 
 
 /**
- * The color of the printed power supply case.
+ * The color of the printed power supply and distribution cases.
  */
-module color_printed_ps_case() {
+module color_printed_psd_case() {
 	color("DodgerBlue")
 		children();
 } 

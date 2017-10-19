@@ -29,7 +29,7 @@ module _power_supply_cover_top() {
 			_screw_offsets = ps_cover_screw_offset();
 			for (i = [0:3])
 				translate(_screw_offsets[i])
-					cylinder(d = ps_base_mount_screw_size(),
+					cylinder(d = psd_base_mount_screw_size(),
 							 h = psd_cover_wall_thickness() + epsilon(),
 							 $fn = psd_cover_resolution());
 		}
@@ -121,7 +121,7 @@ module _power_supply_cover_bottom() {
  * power_supply_cover() instead.
  */
 module _render_power_supply_cover() {
-	color_printed_ps_case()
+	color_printed_psd_case()
 		render() {
 			union() {
 				_power_supply_cover_top();
@@ -137,7 +137,7 @@ module _render_power_supply_cover() {
  */
 module power_supply_cover() {
 	bom_entry(section = "Printed Parts", description = "Power Supply and Distribution", size = "Power Supply Cover");
-	color_printed_ps_case()
+	color_printed_psd_case()
 		translate(ps_cover_offset())
 			import(file = "power_supply_cover.stl");
 }
@@ -149,16 +149,16 @@ module power_supply_cover_hardware() {
 	translate(ps_cover_offset())
 		translate([0,
 				   0,
-				   ps_cover_outer_height() + washer_thickness(size = ps_base_mount_screw_size())]) {
+				   ps_cover_outer_height() + washer_thickness(size = psd_base_mount_screw_size())]) {
 			_screw_offsets = ps_cover_screw_offset();
 			for (i = [0:3])
 				translate(_screw_offsets[i]) {
 					rotate([0, 90, 0])
- 					screw(size = ps_base_mount_screw_size(),				
+ 					screw(size = psd_base_mount_screw_size(),				
 		 				  min_length = ps_cover_screw_min_length(),
 		 				  max_length = ps_cover_screw_max_length());
 					rotate([0, 90, 0])
-		 			washer(size = ps_base_mount_screw_size());
+		 			washer(size = psd_base_mount_screw_size());
 			}
 		}
 }

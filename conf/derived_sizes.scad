@@ -1520,34 +1520,36 @@ function psd_cable_slot_height() = 20;
 /**
  * The additional clearance to factor in for printing inaccuracies.
  */
-function ps_width_additional_clearance() = 1.0;
-function ps_height_additional_clearance() = 1.0;
+function psd_width_additional_clearance() = 1.0;
+function psd_height_additional_clearance() = 1.0;
 
 /**
- * The size of the screws used to fasten the power supply assembly bases to the enclosure.
+ * The size of the screws used to fasten the power supply and distribution assembly bases to the enclosure.
  */
-function ps_base_mount_screw_size() = M4;
-function ps_base_mount_screw_min_length() = 
+function psd_base_mount_screw_size() = M4;
+function psd_base_mount_screw_min_length() = 
   enclosure_solid_thickness() 
-  + ps_base_thickness() 
-  + washer_thickness(ps_base_mount_screw_size());
+  + psd_base_thickness() 
+  + washer_thickness(psd_base_mount_screw_size());
 
 /**
  * The thickness of the base frame that is attached to the enclosure plate. Be aware that these plates need to be 
  * thick enough to hold a nut to fasten them to the enclosure plate.
  */
-function ps_base_thickness() = ceil(nut_thickness(ps_base_mount_screw_size()) * 1.5);
-
-/**
- * The size of the cut-out in the top side to hold the power supply.
- */
-function ps_base_inner_width()  = ps_width()  + ps_width_additional_clearance();
-function ps_base_inner_height() = ps_height() + ps_height_additional_clearance();
+function psd_base_thickness() = ceil(nut_thickness(psd_base_mount_screw_size()) * 1.5);
 
 /**
  * The width of the frame of both base parts.
  */
-function ps_base_strut_width() = 10.0;
+function psd_base_strut_width() = 10.0;
+
+// - - - - - P O W E R   S U P P L Y - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+/**
+ * The size of the cut-out in the top side to hold the power supply.
+ */
+function ps_base_inner_width()  = ps_width()  + psd_width_additional_clearance();
+function ps_base_inner_height() = ps_height() + psd_height_additional_clearance();
 
 /**
  * The depth of the screw hole in the support pillar.
@@ -1563,14 +1565,14 @@ function ps_base_inner_clearance() = 60;
 /**
  * The offset of the power supply inside the bracket.
  */
-function ps_base_ps_offset_x() = ps_base_strut_width() + ps_width_additional_clearance() / 2;
-function ps_base_ps_offset_y() = ps_base_strut_width() + ps_base_inner_clearance();
+function ps_base_ps_offset_x() = psd_base_strut_width() + psd_width_additional_clearance() / 2;
+function ps_base_ps_offset_y() = psd_base_strut_width() + ps_base_inner_clearance();
 
 /**
  * The outer size of the power supply base.
  */
-function ps_base_outer_width_x() = ps_base_inner_width() + 2 * ps_base_strut_width();
-function ps_base_outer_width_y() = ps_base_ps_cover() + ps_base_inner_clearance() + ps_base_strut_width();
+function ps_base_outer_width_x() = ps_base_inner_width() + 2 * psd_base_strut_width();
+function ps_base_outer_width_y() = ps_base_ps_cover() + ps_base_inner_clearance() + psd_base_strut_width();
 // inner height = outer height
 
 /**
@@ -1596,17 +1598,17 @@ function ps_cover_offset() = [
  * The offset of the screw holes in the top face.
  */
 function ps_cover_screw_offset() = [
-    [ psd_cover_wall_thickness() + psd_wall_clearance() + ps_base_strut_width() / 2,
-      psd_cover_wall_thickness() + psd_wall_clearance() + ps_base_strut_width() / 2,
+    [ psd_cover_wall_thickness() + psd_wall_clearance() + psd_base_strut_width() / 2,
+      psd_cover_wall_thickness() + psd_wall_clearance() + psd_base_strut_width() / 2,
       0 ],
-    [ ps_cover_outer_width_x() - (psd_cover_wall_thickness() + psd_wall_clearance() + ps_base_strut_width() / 2),
-      psd_cover_wall_thickness() + psd_wall_clearance() + ps_base_strut_width() / 2,
+    [ ps_cover_outer_width_x() - (psd_cover_wall_thickness() + psd_wall_clearance() + psd_base_strut_width() / 2),
+      psd_cover_wall_thickness() + psd_wall_clearance() + psd_base_strut_width() / 2,
       0 ],
-    [ psd_cover_wall_thickness() + psd_wall_clearance() + ps_base_strut_width() / 2,
-      ps_cover_outer_width_y() - ps_base_strut_width() / 2,
+    [ psd_cover_wall_thickness() + psd_wall_clearance() + psd_base_strut_width() / 2,
+      ps_cover_outer_width_y() - psd_base_strut_width() / 2,
       0 ],
-    [ ps_cover_outer_width_x() - (psd_cover_wall_thickness() + psd_wall_clearance() + ps_base_strut_width() / 2),
-      ps_cover_outer_width_y() - ps_base_strut_width() / 2,
+    [ ps_cover_outer_width_x() - (psd_cover_wall_thickness() + psd_wall_clearance() + psd_base_strut_width() / 2),
+      ps_cover_outer_width_y() - psd_base_strut_width() / 2,
       0 ]
   ];
 
@@ -1615,7 +1617,7 @@ function ps_cover_screw_offset() = [
  */
 function ps_cover_vent_width() = 2.5;
 function ps_cover_vent_spacing() = 5.0;
-function ps_cover_vent_edge_clearance() = 3 * ps_base_thickness();
+function ps_cover_vent_edge_clearance() = 3 * psd_base_thickness();
 function ps_cover_vent_area_height() = ps_cover_outer_height() - 2 * ps_cover_vent_edge_clearance();
 function ps_cover_vent_area_width() = ps_cover_outer_width_x() - 2 * ps_cover_vent_edge_clearance();
 
@@ -1626,11 +1628,24 @@ function ps_cover_screw_min_length() =
   10
   + psd_wall_clearance()
   + psd_cover_wall_thickness()
-  + washer_thickness(size = ps_base_mount_screw_size());
+  + washer_thickness(size = psd_base_mount_screw_size());
 function ps_cover_screw_max_length() = 
   ps_base_pillar_hole_depth() 
   + psd_wall_clearance()
   + psd_cover_wall_thickness()
-  + washer_thickness(size = ps_base_mount_screw_size());
+  + washer_thickness(size = psd_base_mount_screw_size());
 
+// - - - - - P O W E R   D I S T R I B U T I O N  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+/**
+ * The outer size of the power distribution base.
+ */
+function pd_base_outer_width_x() = 160; // TODO make this configurable
+function pd_base_outer_width_y() = 180; // TODO make this configurable
+function pd_base_outer_height()  =  85; // TODO make this configurable
+
+/**
+ * The depth of the screw hole in the support pillar.
+ */
+function pd_base_pillar_hole_depth() = pd_base_outer_height() * 0.75;
 

@@ -17,12 +17,12 @@ use <../../parts/vitamins/vitamins.scad>
  * Renders a hole with a nut recess for one of the base struts.
  */
 module _power_supply_base_frame_nut_hole(head_rotation = 0) {
-	cylinder(d = ps_base_mount_screw_size(), 
-		     h = ps_base_thickness() + epsilon(),
+	cylinder(d = psd_base_mount_screw_size(), 
+		     h = psd_base_thickness() + epsilon(),
 		     $fn = psd_cover_resolution());
-	translate([0, 0, ps_base_thickness() + epsilon()])
+	translate([0, 0, psd_base_thickness() + epsilon()])
 		rotate([0, 90, head_rotation]) 
-			nut_recess(ps_base_mount_screw_size());
+			nut_recess(psd_base_mount_screw_size());
 }
 
 /**
@@ -32,15 +32,15 @@ module _power_supply_base_frame_hstrut() {
 	difference() {
 		// the strut
 		cube([ps_base_outer_width_x(),
-			  ps_base_strut_width(),
-			  ps_base_thickness()]);
+			  psd_base_strut_width(),
+			  psd_base_thickness()]);
 		// minus the screw holes
 		translate([ps_base_outer_width_x() * 0.25,
-			       ps_base_strut_width() / 2,
+			       psd_base_strut_width() / 2,
 			       0]) 
 			_power_supply_base_frame_nut_hole();
 		translate([ps_base_outer_width_x() * 0.75,
-			       ps_base_strut_width() / 2,
+			       psd_base_strut_width() / 2,
 			       0]) 
 			_power_supply_base_frame_nut_hole();
 
@@ -53,15 +53,15 @@ module _power_supply_base_frame_hstrut() {
 module _power_supply_base_frame_vstrut() {
 	difference() {
 		// the strut
-		cube([ps_base_strut_width(),
+		cube([psd_base_strut_width(),
 			  ps_base_outer_width_y(),
-			  ps_base_thickness()]);
+			  psd_base_thickness()]);
 		// minus the screw holes
-		translate([ps_base_strut_width() / 2,
+		translate([psd_base_strut_width() / 2,
 				   ps_base_outer_width_y() * 0.25,
 			       0]) 
 			_power_supply_base_frame_nut_hole(head_rotation = 90);
-		translate([ps_base_strut_width() / 2,
+		translate([psd_base_strut_width() / 2,
 				   ps_base_outer_width_y() * 0.75,
 			       0]) 
 			_power_supply_base_frame_nut_hole(head_rotation = 90);
@@ -75,14 +75,14 @@ module _power_supply_base_pillar() {
 	_hole_z_offset = ps_base_inner_height() * 0.25;
 	difference() {
 		// the pillar
-		cube([ps_base_strut_width(),
-			  ps_base_strut_width(),
+		cube([psd_base_strut_width(),
+			  psd_base_strut_width(),
 			  ps_base_inner_height()]);
 		// minus the screw hole
-		translate([ps_base_strut_width() / 2,
-				   ps_base_strut_width() / 2,
+		translate([psd_base_strut_width() / 2,
+				   psd_base_strut_width() / 2,
 				   _hole_z_offset + epsilon()])
-				cylinder(d = tap_base_diameter(size = ps_base_mount_screw_size()), 
+				cylinder(d = tap_base_diameter(size = psd_base_mount_screw_size()), 
 					     h = ps_base_pillar_hole_depth(),
 					     $fn = psd_cover_resolution());
 	}
@@ -97,7 +97,7 @@ module _power_supply_base_frame() {
 		_power_supply_base_frame_hstrut();
 		// the vertical struts
 		_power_supply_base_frame_vstrut();
-		translate([ps_base_outer_width_x() - ps_base_strut_width(), 0, 0])
+		translate([ps_base_outer_width_x() - psd_base_strut_width(), 0, 0])
 			_power_supply_base_frame_vstrut();
 	}
 }
@@ -107,18 +107,18 @@ module _power_supply_base_frame() {
  * power_supply_base() instead.
  */
 module _render_power_supply_base() {
-	color_printed_ps_case()
+	color_printed_psd_case()
 		render() {
 			union() {
 				// the base frame
 				_power_supply_base_frame();
 				// the support pillars
 				_power_supply_base_pillar();
-				translate([0, ps_base_outer_width_y() - ps_base_strut_width(), 0])
+				translate([0, ps_base_outer_width_y() - psd_base_strut_width(), 0])
 					_power_supply_base_pillar();
-				translate([ps_base_outer_width_x() - ps_base_strut_width(), 0, 0])
+				translate([ps_base_outer_width_x() - psd_base_strut_width(), 0, 0])
 					_power_supply_base_pillar();
-				translate([ps_base_outer_width_x() - ps_base_strut_width(), ps_base_outer_width_y() - ps_base_strut_width(), 0])
+				translate([ps_base_outer_width_x() - psd_base_strut_width(), ps_base_outer_width_y() - psd_base_strut_width(), 0])
 					_power_supply_base_pillar();
 			}
 		} 
@@ -129,7 +129,7 @@ module _render_power_supply_base() {
  */
 module power_supply_base() {
 	bom_entry(section = "Printed Parts", description = "Power Supply and Distribution", size = "Power Supply Base");
-	color_printed_ps_case()
+	color_printed_psd_case()
 		import(file = "power_supply_base.stl");
 }
 
@@ -137,14 +137,14 @@ module power_supply_base() {
  * Renders a nut to be placed in the base struts.
  */
 module _power_supply_base_nut_screw(head_rotation = 0, screw_material_thickness = 6) {
-	translate([0, 0, ps_base_thickness()])
+	translate([0, 0, psd_base_thickness()])
 		rotate([0, 90, head_rotation])
-			nut(size = ps_base_mount_screw_size());
-	translate([0, 0, -(screw_material_thickness + washer_thickness(size = ps_base_mount_screw_size()))]) 
+			nut(size = psd_base_mount_screw_size());
+	translate([0, 0, -(screw_material_thickness + washer_thickness(size = psd_base_mount_screw_size()))]) 
 		rotate([0, -90, 0]) {
-			screw(size = ps_base_mount_screw_size(),
-				  min_length = ps_base_mount_screw_min_length());
-			washer(size = ps_base_mount_screw_size());
+			screw(size = psd_base_mount_screw_size(),
+				  min_length = psd_base_mount_screw_min_length());
+			washer(size = psd_base_mount_screw_size());
 		}
 } 
 
@@ -155,30 +155,30 @@ module power_supply_base_hardware(screw_material_thickness = 6) {
 
 	// horizontal strut
 	translate([ps_base_outer_width_x() * 0.25, 
-			   ps_base_strut_width() / 2, 
+			   psd_base_strut_width() / 2, 
 			   0])
 		_power_supply_base_nut_screw(screw_material_thickness = screw_material_thickness);
 	translate([ps_base_outer_width_x() * 0.75, 
-			   ps_base_strut_width() / 2, 
+			   psd_base_strut_width() / 2, 
 			   0])
 		_power_supply_base_nut_screw(screw_material_thickness = screw_material_thickness);
 
 	// left vertical strut
-	translate([ps_base_strut_width() / 2, 
+	translate([psd_base_strut_width() / 2, 
 			   ps_base_outer_width_y() * 0.25, 
 			   0])
 		_power_supply_base_nut_screw(head_rotation = 90, screw_material_thickness = screw_material_thickness);
-	translate([ps_base_strut_width() / 2, 
+	translate([psd_base_strut_width() / 2, 
 			   ps_base_outer_width_y() * 0.75, 
 			   0])
 		_power_supply_base_nut_screw(head_rotation = 90, screw_material_thickness = screw_material_thickness);
 
 	// right vertical strut
-	translate([ps_base_outer_width_x() - ps_base_strut_width() / 2, 
+	translate([ps_base_outer_width_x() - psd_base_strut_width() / 2, 
 			   ps_base_outer_width_y() * 0.25, 
 			   0])
 		_power_supply_base_nut_screw(head_rotation = 90, screw_material_thickness = screw_material_thickness);
-	translate([ps_base_outer_width_x() - ps_base_strut_width() / 2, 
+	translate([ps_base_outer_width_x() - psd_base_strut_width() / 2, 
 			   ps_base_outer_width_y() * 0.75, 
 			   0])
 		_power_supply_base_nut_screw(head_rotation = 90, screw_material_thickness = screw_material_thickness);
@@ -191,43 +191,43 @@ module power_supply_base_hardware(screw_material_thickness = 6) {
 module power_supply_base_punch(hole_depth = 100) {
 	// horizontal strut
 	translate([ps_base_outer_width_x() * 0.25, 
-			   ps_base_strut_width() / 2, 
+			   psd_base_strut_width() / 2, 
 			   -( hole_depth - epsilon())])
-		cylinder(d = ps_base_mount_screw_size(), 
+		cylinder(d = psd_base_mount_screw_size(), 
 		    	 h = hole_depth,
 			     $fn = psd_cover_resolution());
 	translate([ps_base_outer_width_x() * 0.75, 
-			   ps_base_strut_width() / 2, 
+			   psd_base_strut_width() / 2, 
 			   -( hole_depth - epsilon())])
-		cylinder(d = ps_base_mount_screw_size(), 
+		cylinder(d = psd_base_mount_screw_size(), 
 		    	 h = hole_depth,
 			     $fn = psd_cover_resolution());
 
 	// left vertical strut
-	translate([ps_base_strut_width() / 2, 
+	translate([psd_base_strut_width() / 2, 
 			   ps_base_outer_width_y() * 0.25, 
 			   -( hole_depth - epsilon())])
-		cylinder(d = ps_base_mount_screw_size(), 
+		cylinder(d = psd_base_mount_screw_size(), 
 		    	 h = hole_depth,
 			     $fn = psd_cover_resolution());
-	translate([ps_base_strut_width() / 2, 
+	translate([psd_base_strut_width() / 2, 
 			   ps_base_outer_width_y() * 0.75, 
 			   -( hole_depth - epsilon())])
-		cylinder(d = ps_base_mount_screw_size(), 
+		cylinder(d = psd_base_mount_screw_size(), 
 		    	 h = hole_depth,
 			     $fn = psd_cover_resolution());
 
 	// right vertical strut
-	translate([ps_base_outer_width_x() - ps_base_strut_width() / 2, 
+	translate([ps_base_outer_width_x() - psd_base_strut_width() / 2, 
 			   ps_base_outer_width_y() * 0.25, 
 			   -( hole_depth - epsilon())])
-		cylinder(d = ps_base_mount_screw_size(), 
+		cylinder(d = psd_base_mount_screw_size(), 
 		    	 h = hole_depth,
 			     $fn = psd_cover_resolution());
-	translate([ps_base_outer_width_x() - ps_base_strut_width() / 2, 
+	translate([ps_base_outer_width_x() - psd_base_strut_width() / 2, 
 			   ps_base_outer_width_y() * 0.75, 
 			   -( hole_depth - epsilon())])
-		cylinder(d = ps_base_mount_screw_size(), 
+		cylinder(d = psd_base_mount_screw_size(), 
 		    	 h = hole_depth,
 			     $fn = psd_cover_resolution());
 }
