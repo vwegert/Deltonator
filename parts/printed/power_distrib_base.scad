@@ -260,4 +260,3 @@ module power_distrib_base_punch(hole_depth = 100) {
 }
 
 _render_power_distrib_base();
-power_distrib_base_punch();
