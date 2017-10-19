@@ -562,7 +562,17 @@ function ps_screw_size()     = M4;
 function ps_screw_min_depth() = 2.0;
 function ps_screw_max_depth() = 5.0;
 
-// ===== AUXILIARY FUNCTIONS ===========================================================================================
+// ===== POWER CONNECTOR / SWITCH / FUSE ASSEMBLY =====================================================================
+
+/**
+ * The dimensions of the cutout and the screw holes for the power connector.
+ */
+function pcsfa_width()  = 28;
+function pcsfa_height() = 48;
+function pcsfa_screw_hole_diameter() = 2.5;
+function pcsfa_screw_hole_distance() = 40;
+
+// ===== AUXILIARY FUNCTIONS ==========================================================================================
 
 /**
  * A small value that can be added to or subtracted from edges to eliminate rendering artifacts.

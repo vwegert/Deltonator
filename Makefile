@@ -101,6 +101,7 @@ printed: vitamins \
 	parts/printed/magnet_holder_effector.stl \
 	parts/printed/motor_bracket.stl \
 	parts/printed/power_distrib_base.stl \
+	parts/printed/power_distrib_cover.stl \
 	parts/printed/power_supply_base.stl \
 	parts/printed/power_supply_cover.stl \
 	parts/printed/tensioner.stl

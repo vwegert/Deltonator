@@ -1552,7 +1552,7 @@ function ps_base_inner_width()  = ps_width()  + psd_width_additional_clearance()
 function ps_base_inner_height() = ps_height() + psd_height_additional_clearance();
 
 /**
- * The depth of the screw hole in the support pillar.
+ * The depth of the screw hole in the support pillars.
  */
 function ps_base_pillar_hole_depth() = ps_base_inner_height() * 0.75;
 
@@ -1645,7 +1645,84 @@ function pd_base_outer_width_y() = 180; // TODO make this configurable
 function pd_base_outer_height()  =  85; // TODO make this configurable
 
 /**
- * The depth of the screw hole in the support pillar.
+ * The depth of the screw hole in the support pillars.
  */
 function pd_base_pillar_hole_depth() = pd_base_outer_height() * 0.75;
 
+/**
+ * The inner and outer size of the power distribution cover.
+ */
+function pd_cover_inner_width_x() = pd_base_outer_width_x() + 2 * psd_wall_clearance();
+function pd_cover_inner_width_y() = pd_base_outer_width_y() + 2 * psd_wall_clearance();
+function pd_cover_inner_height()  = pd_base_outer_height()  + psd_wall_clearance();
+function pd_cover_outer_width_x() = pd_cover_inner_width_x() + 2 * psd_cover_wall_thickness();
+function pd_cover_outer_width_y() = pd_cover_inner_width_y() + 2 * psd_cover_wall_thickness();
+function pd_cover_outer_height()  = pd_cover_inner_height()  + psd_wall_clearance();
+
+/**
+ * The offset of the cover so that the rendered parts line up.
+ */
+function pd_cover_offset() = [
+    -( psd_wall_clearance() + psd_cover_wall_thickness() ),
+    -( psd_wall_clearance() + psd_cover_wall_thickness() ),
+    psd_wall_clearance()
+  ];
+
+/**
+ * The offset of the screw holes in the top face.
+ */
+function pd_cover_screw_offset() = [
+    [ psd_cover_wall_thickness() + psd_wall_clearance() + psd_base_strut_width() / 2,
+      psd_cover_wall_thickness() + psd_wall_clearance() + psd_base_strut_width() / 2,
+      0 ],
+    [ pd_cover_outer_width_x() - (psd_cover_wall_thickness() + psd_wall_clearance() + psd_base_strut_width() / 2),
+      psd_cover_wall_thickness() + psd_wall_clearance() + psd_base_strut_width() / 2,
+      0 ],
+    [ psd_cover_wall_thickness() + psd_wall_clearance() + psd_base_strut_width() / 2,
+      pd_cover_outer_width_y() - psd_wall_clearance() - psd_cover_wall_thickness() - psd_base_strut_width() / 2,
+      0 ],
+    [ pd_cover_outer_width_x() - (psd_cover_wall_thickness() + psd_wall_clearance() + psd_base_strut_width() / 2),
+      pd_cover_outer_width_y() - psd_wall_clearance() - psd_cover_wall_thickness() - psd_base_strut_width() / 2,
+      0 ]
+  ];
+
+/**
+ * The parameters of the ventilation slots in the top and bottom of the power distribution cover.
+ */
+function pd_cover_vent_width() = 2.5;
+function pd_cover_vent_spacing() = 5.0;
+function pd_cover_vent_edge_clearance() = 5 * psd_base_thickness();
+function pd_cover_vent_area_height() = pd_cover_outer_height() - 2 * pd_cover_vent_edge_clearance();
+function pd_cover_vent_area_width() = pd_cover_outer_width_x() - 2 * pd_cover_vent_edge_clearance();
+
+/**
+ * The minimum and maximum length of the screws to hold the cover.
+ */
+function pd_cover_screw_min_length() = 
+  10
+  + psd_wall_clearance()
+  + psd_cover_wall_thickness()
+  + washer_thickness(size = psd_base_mount_screw_size());
+function pd_cover_screw_max_length() = 
+  pd_base_pillar_hole_depth() 
+  + psd_wall_clearance()
+  + psd_cover_wall_thickness()
+  + washer_thickness(size = psd_base_mount_screw_size());
+
+/**
+ * The size and position of the thickened part of the wall that holds the power connector, switch and fuse assembly.
+ */
+function pd_cover_pcsfa_support_size_x() = 5.0;
+function pd_cover_pcsfa_support_size_y() = pcsfa_width() + (pcsfa_screw_hole_distance() - pcsfa_width()) * 2;
+function pd_cover_pcsfa_support_size_z() = pd_base_outer_height() - psd_base_thickness() - psd_wall_clearance();
+function pd_cover_pcsfa_support_offset() = [
+  - pd_cover_pcsfa_support_size_x(),
+  psd_cover_wall_thickness() + psd_base_strut_width() + psd_wall_clearance() * 2,
+  pd_base_outer_height() - pd_cover_pcsfa_support_size_z()
+];
+
+/**
+ * The position of the power connector, switch and fuse assembly.
+ */
+function pd_cover_pcsfa_offset_y() = pd_cover_pcsfa_support_offset()[1] + (pd_cover_pcsfa_support_size_y() / 2);
+function pd_cover_pcsfa_offset_z() = (pd_base_outer_height() - pcsfa_height()) / 2;
