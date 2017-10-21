@@ -99,6 +99,7 @@ printed: vitamins \
 	parts/printed/ir_sensor_housing.stl \
 	parts/printed/magnet_holder_carriage.stl \
 	parts/printed/magnet_holder_effector.stl \
+	parts/printed/molex_2x2_holder.stl \
 	parts/printed/motor_bracket.stl \
 	parts/printed/power_distrib_base.stl \
 	parts/printed/power_distrib_cover.stl \
