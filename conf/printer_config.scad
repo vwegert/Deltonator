@@ -219,6 +219,17 @@ POWER_WALL_THICKNESS = 1.5;
 // The clearance between the inner and outer parts of the covers as well as between the covers.
 POWER_CLEARANCE = 0.5;
 
+// ===== ELECTRONICS MOUNTING PARAMETERS ==============================================================================
+
+// The thickness of the cover walls.
+ELECTRONICS_WALL_THICKNESS = 1.5;
+
+// The mounting height of the PCBs above the enclosure wall.
+ELECTRONICS_PCB_HEIGHT = 65.0;
+
+// The height of the wall around the PCB.
+ELECTRONICS_PCB_WALL_HEIGHT = 2.5;
+
 // ===== OTHER DIMENSIONS AND PARAMETERS ==============================================================================
 
 // The range by which the vertical belt tensioner can be adjusted.

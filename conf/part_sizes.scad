@@ -572,6 +572,44 @@ function pcsfa_height() = 48;
 function pcsfa_screw_hole_diameter() = 2.5;
 function pcsfa_screw_hole_distance() = 40;
 
+// ===== DUET WIFI AND DUEXn PCB ======================================================================================
+
+// We assume that Duet and DueXn have the same dimensions.
+// see https://www.duet3d.com/wiki/Mounting_and_cooling_the_board
+
+/**
+ * The dimension of the DuetWifi PCB.
+ */
+function duet_pcb_width() = 123.0;
+function duet_pcb_height() = 100.0;
+
+/**
+ * The size and distance of the mounting holes from the edge.
+ */
+function duet_mount_size() = M4;
+function duet_mount_offset_width() = 4.0;
+function duet_mount_offset_height() = 4.0;
+
+// ===== MAIN ELECTRONICS COOLING FAN =================================================================================
+
+/**
+ * The size and height of the fan.
+ */
+function efan_width()  = 80.0;
+function efan_height() = 25.0;
+
+/**
+ * The size of the ring used by the fan blades.
+ */
+function efan_outer_vent_diameter() = 77.0;
+function efan_inner_vent_diameter() = 35.0;
+
+/**
+ * The size and position of the mounting holes.
+ */
+function efan_screw_size()   = M4;
+function efan_screw_offset() = 3.5;
+
 // ===== AUXILIARY FUNCTIONS ==========================================================================================
 
 /**

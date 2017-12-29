@@ -1726,3 +1726,164 @@ function pd_cover_pcsfa_support_offset() = [
  */
 function pd_cover_pcsfa_offset_y() = pd_cover_pcsfa_support_offset()[1] + (pd_cover_pcsfa_support_size_y() / 2);
 function pd_cover_pcsfa_offset_z() = (pd_base_outer_height() - pcsfa_height()) / 2;
+
+// ===== DUET WIFI HOLDER =============================================================================================
+
+/**
+ * The wall thickness of the holder.
+ */
+function duet_holder_wall_thickness() = ELECTRONICS_WALL_THICKNESS;
+
+/**
+ * The height of the PCB underside above the enclosure.
+ */
+function duet_holder_pcb_height() = ELECTRONICS_PCB_HEIGHT;
+
+/**
+ * The height of the wall around the PCB.
+ */
+function duet_holder_wall_extra_height() = ELECTRONICS_PCB_WALL_HEIGHT;
+
+/**
+ * The resolution of the holes and the rounded edges.
+ */
+function duet_holder_resolution() = 32;
+
+/**
+ * The outer size of the Duet Wifi holder.
+ */
+function duet_holder_size_x() = duet_pcb_width() + duet_holder_wall_thickness();
+function duet_holder_size_y() = duet_pcb_height() + 2 * duet_holder_wall_thickness();
+function duet_holder_size_z_inner() = duet_holder_pcb_height();
+function duet_holder_size_z_outer() = duet_holder_pcb_height() + duet_holder_wall_extra_height();
+
+/**
+ * The size of the screws used to fasten the holder to the enclosure.
+ */
+function duet_holder_mount_screw_size() = M4;
+function duet_holder_mount_screw_min_length() = 
+  enclosure_solid_thickness() 
+  + duet_holder_strut_thickness() 
+  + washer_thickness(duet_holder_mount_screw_size());
+
+/**
+ * The thickness of the base frame that is attached to the enclosure plate. Be aware that these plates need to be 
+ * thick enough to hold a nut to fasten them to the enclosure plate.
+ */
+function duet_holder_strut_thickness() = ceil(nut_thickness(duet_holder_mount_screw_size()) * 1.5);
+
+/**
+ * The width of the base struts.
+ */
+function duet_holder_strut_width() = 10.0;
+
+/**
+ * The offset of the outer edges of the struts from the outer shell.
+ */
+function duet_holder_strut_offset() = 2 * duet_holder_wall_thickness();
+
+/**
+ * The length of the base struts.
+ */
+function duet_holder_strut_size_x() = duet_holder_size_x() - 4 * duet_holder_wall_thickness();
+function duet_holder_strut_size_y() = duet_holder_size_y() - 4 * duet_holder_wall_thickness();
+
+/**
+ * The width of the mounting pillar.
+ */
+function duet_holder_pillar_width() = 8.0;
+
+/** 
+ * The size and positioning of the outer vent holes.
+ */
+function duet_holder_outer_vent_edge_clearance()   = 12.0;
+function duet_holder_outer_vent_area_width() = duet_holder_size_x() - 2 * duet_holder_outer_vent_edge_clearance();
+function duet_holder_outer_vent_area_height()      = duet_holder_size_z_inner() - 2 * duet_holder_outer_vent_edge_clearance();
+function duet_holder_outer_vent_width()            = 8.0;
+function duet_holder_outer_vent_spacing()          = 3.0;
+
+// ===== MAIN ELECTRONICS COOLING FAN HOLDER===========================================================================
+
+/**
+ * The wall thickness of the holder.
+ */
+function duet_fan_holder_wall_thickness() = ELECTRONICS_WALL_THICKNESS;
+
+/**
+ * The X length of the part of the fan holder that will lie beneath the ribbon cable connecting the boards.
+ */
+function duet_fan_holder_covered_size_x() = 85.0; // TODO make this configurable
+
+/**
+ * The additional clearance to leave around the fan on all sides.
+ */
+function duet_fan_holder_fan_clearance() = 0.5; 
+
+/**
+ * The overall size (outer edges) of the holder
+ */
+function duet_fan_holder_size_x() = 
+  duet_fan_holder_covered_size_x() 
+  + efan_width() 
+  + duet_fan_holder_fan_clearance()
+  + duet_fan_holder_wall_thickness();
+function duet_fan_holder_size_y() = 
+  duet_fan_holder_wall_thickness()
+  + duet_fan_holder_fan_clearance()
+  + efan_width()
+  + duet_fan_holder_fan_clearance()
+  + duet_fan_holder_wall_thickness();
+function duet_fan_holder_size_z() = duet_holder_size_z_outer(); // by design - align the top edges
+  
+/** 
+ * The position of the center of the fan in the fan holder coordinate system.
+ */
+function duet_fan_holder_fan_offset_x() = 
+  duet_fan_holder_size_x() 
+  - duet_fan_holder_wall_thickness() 
+  - duet_fan_holder_fan_clearance()
+  - efan_width() / 2;
+function duet_fan_holder_fan_offset_y() = 
+  duet_fan_holder_size_y() / 2;
+
+/**
+ * The position of the screw holes relative to the center of the fan.
+ */  
+function duet_fan_holder_fan_screw_center_offset() = efan_width() / 2 - efan_screw_offset();
+
+/**
+ * The spacing of the fan grill.
+ */
+function duet_fan_holder_grill_strut_width() = 1.5;
+function duet_fan_holder_grill_strut_count() = 2;
+function duet_fan_holder_grill_width() = (efan_outer_vent_diameter() - efan_inner_vent_diameter()) / 2;
+function duet_fan_holder_grill_strut_spacing() = 
+  (duet_fan_holder_grill_width() - duet_fan_holder_grill_strut_count() * duet_fan_holder_grill_strut_width())
+  / 
+  (duet_fan_holder_grill_strut_count() + 1);
+
+/**
+ * The size of the support pillars.
+ */
+function duet_fan_holder_pillar_width() = 8.0;
+function duet_fan_holder_pillar_height() = 
+  duet_fan_holder_size_z()
+  - duet_fan_holder_wall_thickness()
+  - duet_fan_holder_fan_clearance()
+  - efan_height()
+  - duet_fan_holder_fan_clearance();
+
+/**
+ * The size and positioning of the vent hole between the fan holder and the adjacent components.
+ */
+function duet_fan_holder_inner_vent_offset_x() = duet_fan_holder_pillar_width() * 1.5;
+function duet_fan_holder_inner_vent_offset_z() = duet_holder_strut_thickness() * 2;
+function duet_fan_holder_inner_vent_width()    = duet_fan_holder_covered_size_x() - 2 * duet_fan_holder_inner_vent_offset_x();
+function duet_fan_holder_inner_vent_height()   = duet_fan_holder_size_z() - 2 * duet_fan_holder_inner_vent_offset_z();
+
+/**
+ * The resolution of the holes and the rounded edges.
+ */
+function duet_fan_holder_resolution() = 32;
+
+

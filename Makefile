@@ -86,6 +86,9 @@ assemblies: extrusions sheets vitamins printed \
 printed: vitamins \
 	parts/printed/bed_bracket.stl \
 	parts/printed/carriage.stl \
+	parts/printed/duet_fan_holder.stl \
+	parts/printed/duet_holder.stl \
+	parts/printed/duetx_holder.stl \
 	parts/printed/effector_dummy.stl \
 	parts/printed/effector_e3d_v6lite.stl \
 	parts/printed/effector_e3d_v6lite_spacer.stl \
