@@ -18,11 +18,11 @@ use <../../parts/vitamins/vitamins.scad>
 _mh_bottom_length     = 40;
 _mh_bottom_width      = 15;
 _mh_bottom_screw_size = M4;
-_mh_bottom_height     = ceil(nut_thickness(_mh_bottom_screw_size) * 1.5);
+_mh_bottom_height     = ceil(nut_thickness(_mh_bottom_screw_size) * 1.2);
 
 _mh_tab_width     = 25;
 _mh_tab_height    = 20;
-_mh_tab_thickness = 2;
+_mh_tab_thickness = 2.25;
 
 _mh_screw_x_offset = (_mh_bottom_length - _mh_tab_width) / 4;
 
@@ -56,10 +56,14 @@ module _molex_2x2_holder_tab() {
 		cube([_mh_tab_width,
 			  _mh_tab_thickness,
 			  _mh_tab_height]);
-		translate([5, 0, 5])
-			cube([15, _mh_tab_thickness, 10]);
+		translate([7.5, 0, 5])
+			cube([10, _mh_tab_thickness, 10]);
 		translate([10.5, 0, 15])
-			cube([4, _mh_tab_thickness, 1]);
+			cube([4, _mh_tab_thickness, 1.2]);
+		translate([7.5 - 2.5, 0, 5 + 2.5 - 0.15])
+			cube([2.5, _mh_tab_thickness, 5.3]);
+		translate([7.5 + 10, 0, 5 + 2.5 - 0.15])
+			cube([2.5, _mh_tab_thickness, 5.3]);
 	}
 }
 
