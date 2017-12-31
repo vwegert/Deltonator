@@ -138,7 +138,7 @@ module _duetx_holder_wall_left() {
  * Creates the right wall (as mounted - max X) of the holder.
  */
 module _duetx_holder_wall_right() {
-	translate([duet_pcb_width() - duet_holder_wall_thickness(),
+	translate([duet_pcb_mount_width() - duet_holder_wall_thickness(),
 			   0,
 			   0]) {
 
@@ -185,7 +185,7 @@ module _duetx_holder_wall_bottom() {
  */
 module _duetx_holder_wall_top() {
 	translate([0,
-			   duet_pcb_height(),
+			   duet_pcb_mount_height(),
 			   0]) {
 		difference() {
 			// the wall...
@@ -231,16 +231,16 @@ module _render_duetx_holder() {
 						   duet_holder_wall_thickness(),
 						   0])
 					_duetx_holder_pillar();
-				translate([duet_holder_wall_thickness() + duet_pcb_width() - duet_holder_pillar_width(),
+				translate([duet_holder_wall_thickness() + duet_pcb_width()  + duet_holder_pcb_clearance() - duet_holder_pillar_width(),
 						   duet_holder_wall_thickness(),
 						   0])
 					_duetx_holder_pillar();
 				translate([duet_holder_wall_thickness(),
-						   duet_holder_wall_thickness() + duet_pcb_height() - duet_holder_pillar_width(),
+						   duet_holder_wall_thickness() + duet_pcb_height() + duet_holder_pcb_clearance() - duet_holder_pillar_width(),
 						   0])
 					_duetx_holder_pillar();
-				translate([duet_holder_wall_thickness() + duet_pcb_width() - duet_holder_pillar_width(),
-						   duet_holder_wall_thickness() + duet_pcb_height() - duet_holder_pillar_width(),
+				translate([duet_holder_wall_thickness() + duet_pcb_width()  + duet_holder_pcb_clearance() - duet_holder_pillar_width(),
+						   duet_holder_wall_thickness() + duet_pcb_height() + duet_holder_pcb_clearance() - duet_holder_pillar_width(),
 						   0])
 					_duetx_holder_pillar();
 			}

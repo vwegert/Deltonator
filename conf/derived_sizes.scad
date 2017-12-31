@@ -1745,15 +1745,26 @@ function duet_holder_pcb_height() = ELECTRONICS_PCB_HEIGHT;
 function duet_holder_wall_extra_height() = ELECTRONICS_PCB_WALL_HEIGHT;
 
 /**
+ * The amount of clearance to leave around the PCBs on each side.
+ */
+function duet_holder_pcb_clearance() = ELECTRONICS_PCB_CLEARANCE;
+
+/**
  * The resolution of the holes and the rounded edges.
  */
 function duet_holder_resolution() = 32;
 
 /**
+ * The size of the mounting area of the PCBs.
+ */
+function duet_pcb_mount_width()  = duet_pcb_width() + 2 * duet_holder_pcb_clearance();
+function duet_pcb_mount_height() = duet_pcb_height() + 2 * duet_holder_pcb_clearance();
+
+/**
  * The outer size of the Duet Wifi holder.
  */
-function duet_holder_size_x() = duet_pcb_width() + duet_holder_wall_thickness();
-function duet_holder_size_y() = duet_pcb_height() + 2 * duet_holder_wall_thickness();
+function duet_holder_size_x() = duet_pcb_mount_width() + duet_holder_wall_thickness();
+function duet_holder_size_y() = duet_pcb_mount_height() + 2 * duet_holder_wall_thickness();
 function duet_holder_size_z_inner() = duet_holder_pcb_height();
 function duet_holder_size_z_outer() = duet_holder_pcb_height() + duet_holder_wall_extra_height();
 
@@ -1797,7 +1808,7 @@ function duet_holder_pillar_width() = 8.0;
  * The size and positioning of the outer vent holes.
  */
 function duet_holder_outer_vent_edge_clearance()   = 12.0;
-function duet_holder_outer_vent_area_width() = duet_holder_size_x() - 2 * duet_holder_outer_vent_edge_clearance();
+function duet_holder_outer_vent_area_width()       = duet_holder_size_x() - 2 * duet_holder_outer_vent_edge_clearance();
 function duet_holder_outer_vent_area_height()      = duet_holder_size_z_inner() - 2 * duet_holder_outer_vent_edge_clearance();
 function duet_holder_outer_vent_width()            = 8.0;
 function duet_holder_outer_vent_spacing()          = 3.0;

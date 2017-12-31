@@ -230,6 +230,9 @@ ELECTRONICS_PCB_HEIGHT = 65.0;
 // The height of the wall around the PCB.
 ELECTRONICS_PCB_WALL_HEIGHT = 2.5;
 
+// The amount of clearance to leave around the PCBs on each side.
+ELECTRONICS_PCB_CLEARANCE = 0.5;
+
 // ===== OTHER DIMENSIONS AND PARAMETERS ==============================================================================
 
 // The range by which the vertical belt tensioner can be adjusted.
